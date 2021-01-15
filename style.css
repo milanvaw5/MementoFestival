@@ -1,0 +1,65 @@
+@import './css/reset.css';
+@import './css/vars.css';
+@import './css/home.css';
+
+/*
+@font-face {
+  font-family: slab;
+  src:
+    url(assets/fonts/roboto-slab/RobotoSlab-Regular.woff2) format('woff2'),
+    url(assets/fonts/roboto-slab/RobotoSlab-Regular.woff) format('woff'),
+    url(assets/fonts/roboto-slab/RobotoSlab-Regular.ttf) format('truetype');
+}
+*/
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+/* stylelint-disable */
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+/* stylelint-enable */
+
+body {
+  font-family: Avenir, Arial, Helvetica, sans-serif;
+  background-color: var(--backgroundColor);
+  width: 100%;
+  font-size: 1.6rem;
+  color: var(--darkgrey);
+  line-height: 1.5;
+}
+
+main {
+  width: 100%;
+  /*width: 94.6rem;*/
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  min-height: 50rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.noDisplay {
+  visibility: hidden;
+  position: absolute;
+  z-index: 0;
+  transition: all 300ms;
+  opacity: 0;
+}
+
+/*------------------------------------------*/
