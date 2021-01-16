@@ -1,12 +1,6 @@
-import MenuScene from './scenes/MenuScene.js';
-import GameScene from './scenes/GameScene.js';
-import NextScene from './scenes/NextScene.js';
-import GameoverScene from './scenes/GameoverScene.js';
-import VictoryScene from './scenes/VictoryScene.js';
-
-
-
+import LBoxScene from './scenes/LBoxScene.js';
 export default class Game extends Phaser.Game{
+
   constructor(){
     let config = {
       type: Phaser.AUTO,
@@ -19,13 +13,9 @@ export default class Game extends Phaser.Game{
         },
       },
     }
-    super(config); 
-    //start first Scene and add other to game
-    this.scene.add(`menuscene`,MenuScene,true);
-    this.scene.add(`gamescene`,GameScene,false);
-    this.scene.add(`nextscene`,NextScene,false);
-    this.scene.add(`gameoverscene`,GameoverScene,false);
-    this.scene.add(`victoryscene`,VictoryScene,false);
- 
+    super(config);
+    this.scene.add(`lboxscene`,LBoxScene,true);
+    this.physics.scene.setBoundsCollision(true, true, true, true);
+    console.log('CONNECTING TO SCENE');
   }
 }
