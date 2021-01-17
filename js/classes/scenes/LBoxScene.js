@@ -1,4 +1,3 @@
-//let words;
 //let letters;
 //let numberOfWords = 0;
 let backgroundimage;
@@ -26,6 +25,17 @@ export default class LetterBoxScene extends Phaser.Scene {
 
   create(){
     console.log(`CREATE`);
+    //this.physics.world.checkCollision.up = false;
+
+    /*let words = this.physics.add.group({
+      key: 'block',
+      frameQuantity: 6,
+      bounceY: 0.5,
+      dragY: 30,
+      velocityY: 300,
+      collideWorldBounds: true,
+      setXY: { x: 400, y: 0, stepY: -200 }
+  });*/
 
     backgroundimage = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'backgroundimage');
 
@@ -38,24 +48,26 @@ export default class LetterBoxScene extends Phaser.Scene {
       loop: true
     });
 
-    this.word = this.physics.add.sprite(100, 450, 'word');
-
-    this.word.setCollideWorldBounds(true);
-    this.word.body.setBounce(20, 20);
-    //this.word.setDepth(1);
-
-    this.words = this.physics.add.group();
-
   }
 
   update(){
-
+    //this.physics.arcade.collide(word, word);
   }
 
   spawnWords() {
-    const word = this.physics.add.sprite(1700, Phaser.Math.Between(0, 1200), 'word');
-    //this.words.add(word); //geeft error this.words undefined
-    word.setVelocityY(Phaser.Math.Between(0, 1000));
+    const word = this.physics.add.sprite(Phaser.Math.Between(0, this.cameras.main.width / 2), 0, 'word');
+    word.body.setGravityY(300);
+    word.body.mass = 20;
+    word.body.acceleration.set(0, 0.8);
+    word.setCollideWorldBounds(true);
+    word.body.setBounce(0, 0.7);
+    //this.physics.add.collider(word, word, this.collideWords, null, this);
+    //words.add(word); //geeft error this.words undefined
+    word.setVelocityY(100);
     console.log('SPAWN WORD');
   }
+
+  //collideWords(word, word){
+
+  //}
 }

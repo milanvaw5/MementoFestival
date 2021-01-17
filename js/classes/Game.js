@@ -9,13 +9,13 @@ export default class Game extends Phaser.Game{
       physics: {
         default: 'arcade',
         arcade: {
-          gravity: { y: 0 },
+          gravity: { y: 1000 },
         },
       },
     }
     super(config);
     this.scene.add(`lboxscene`,LBoxScene,true);
-    this.physics.scene.setBoundsCollision(true, true, true, true);
+    //this.physics.scene.setBoundsCollision(true, true, true, true);
     console.log('CONNECTING TO SCENE');
   }
 }
