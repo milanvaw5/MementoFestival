@@ -6,5 +6,6 @@ let myGame;
     console.log("GAME STARTED");
     myGame = new Game();
   };
+
   init();
 }

@@ -1,5 +1,5 @@
 import LBoxScene from './scenes/LBoxScene.js';
-export default class Game extends Phaser.Game{
+export default class Game extends Phaser.Game {
 
   constructor(){
     let config = {
@@ -15,7 +15,6 @@ export default class Game extends Phaser.Game{
     }
     super(config);
     this.scene.add(`lboxscene`,LBoxScene,true);
-    //this.physics.scene.setBoundsCollision(true, true, true, true);
     console.log('CONNECTING TO SCENE');
   }
 }
