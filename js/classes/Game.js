@@ -7,9 +7,14 @@ export default class Game extends Phaser.Game {
       width:1700,
       height:1200,
       physics: {
-        default: 'arcade',
-        arcade: {
-          gravity: { y: 1000 },
+        default: 'matter',
+        matter: {
+          gravity: { y: 2 },
+          setBounds: {
+            bottom: true,
+            left: true,
+            right: true
+          }
         },
       },
     }
