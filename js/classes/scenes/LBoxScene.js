@@ -1,5 +1,4 @@
 let letter;
-let letters= [];
 //let backgroundimage;
 let spawnWordInterval;
 
