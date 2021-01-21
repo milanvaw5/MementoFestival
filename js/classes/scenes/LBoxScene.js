@@ -2,8 +2,10 @@ let letter;
 //let backgroundimage;
 let spawnWordInterval;
 
-let readWord = 'abc';
+let readWord = 'abcd';
 let split = [];
+
+let letters = [];
 
 let auteurInput = ['Verloren','hinkel ik','over de sproeten op mijn vingers',
 'Afgeslagen','langzaam ademend','langs mijn armen dwalend','Mijn rug','terug – gezucht –',
@@ -27,7 +29,7 @@ export default class LetterBoxScene extends Phaser.Scene {
     //Preloading sprites
 
     //this.load.image('backgroundimage', 'assets/bimg.jpg');
-    this.load.image('ball', 'assets/ball.png');
+    this.load.image('d', 'assets/ball.png');
     this.load.spritesheet('a', 'assets/enemy.png', { frameWidth: 65, frameHeight: 51 });
     this.load.spritesheet('b', 'assets/boss.png', { frameWidth: 380, frameHeight: 166 });
     this.load.spritesheet('c', 'assets/explosion.png', { frameWidth: 192, frameHeight: 192 });
@@ -52,6 +54,9 @@ export default class LetterBoxScene extends Phaser.Scene {
 
   update(){
 
+    if (letters.length === 20) {
+
+    }
   }
 
   spawnWord() {
@@ -66,11 +71,11 @@ export default class LetterBoxScene extends Phaser.Scene {
 
       let spacebetween = 0;
 
-      if( (split.length*100) > this.cameras.main.width) {
-        spacebetween = spacebetween + (split.length*50);
+      if( (split.length*50) > this.cameras.main.width) {
+        spacebetween = spacebetween + (split.length*10);
       }
       else {
-        spacebetween = spacebetween + (split.length*100);
+        spacebetween = spacebetween + (split.length*50);
       }
         console.log('spawnWord: ' + split[letter]);
 
@@ -79,28 +84,37 @@ export default class LetterBoxScene extends Phaser.Scene {
 
     }
 
-  }
+  };
 
-  handleSubmitForm = e => {
-
-    const $form = e.currentTarget;
-    e.preventDefault();
+  readInWord() {
     readWord = document.querySelector('.enteredWord').value;
-    console.log(readWord);
-    this.splitWord(readWord);
-  }
+
+    if(readWord != '')
+    {
+      console.log(readWord);
+      this.splitWord(readWord);
+      return false; // Then it won't PostBack.
+
+    }
+    else {
+      console.log('Er werd niets ingevult');
+      return true;
+    }
+  };
 
   splitWord (){
 
   if (readWord === '') {
     //alert('Oeps, je hebt niets ingevuld... (Oops, you didn`t fill anything in)');
-    readWord = 'abc';
+    readWord = 'abcd';
     //return false;
   }
 
   split = readWord.split('');
   console.log('splitWord: ' + split);
 
-  }
+  letters.push(split);
+
+  };
 
 }
