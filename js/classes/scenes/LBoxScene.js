@@ -6,7 +6,10 @@ let spawnWordInterval;
 let readWord = 'abc';
 let split = [];
 
-let word = [];
+let auteurInput = ['Verloren','hinkel ik','over de sproeten op mijn vingers',
+'Afgeslagen','langzaam ademend','langs mijn armen dwalend','Mijn rug','terug – gezucht –',
+'geen bescherming op de vlucht','Veilig','aan mijn zij','de afgrond daar als lijn',
+'Onontdekt','en zorgeloos','dolend door mijn eigen hoofd'];
 
 const lettersprites = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
