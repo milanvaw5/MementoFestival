@@ -2,7 +2,7 @@ let letter;
 //let backgroundimage;
 let spawnWordInterval;
 
-let readWord = 'abcd';
+let readWord = 'abcde';
 let split = [];
 
 let letters = [];
@@ -30,9 +30,10 @@ export default class LetterBoxScene extends Phaser.Scene {
 
     //this.load.image('backgroundimage', 'assets/bimg.jpg');
     this.load.image('d', 'assets/ball.png');
-    this.load.spritesheet('a', 'assets/enemy.png', { frameWidth: 65, frameHeight: 51 });
-    this.load.spritesheet('b', 'assets/boss.png', { frameWidth: 380, frameHeight: 166 });
-    this.load.spritesheet('c', 'assets/explosion.png', { frameWidth: 192, frameHeight: 192 });
+    this.load.spritesheet('a', 'assets/enemy.png', { frameWidth: 35, frameHeight: 35 });
+    this.load.spritesheet('b', 'assets/dude.png', { frameWidth: 35, frameHeight: 35 });
+    this.load.spritesheet('c', 'assets/explosion.png', { frameWidth: 35, frameHeight: 35 });
+    this.load.spritesheet('e', 'assets/idle2.png', { frameWidth: 35, frameHeight: 35 });
   }
 
   create(){
@@ -61,7 +62,11 @@ export default class LetterBoxScene extends Phaser.Scene {
 
   spawnWord() {
 
-    let fallPosition = Phaser.Math.Between(20, this.cameras.main.width / 2);
+    let widthDivScreen = document.querySelector('.bottomblock');
+    console.log(widthDivScreen.width);
+
+    let fallPosition = Phaser.Math.Between(20, widthDivScreen.offsetWidth / 2);
+
     this.splitWord();
 
     console.log('SPAWN WORD');
@@ -71,11 +76,11 @@ export default class LetterBoxScene extends Phaser.Scene {
 
       let spacebetween = 0;
 
-      if( (split.length*50) > this.cameras.main.width) {
-        spacebetween = spacebetween + (split.length*10);
+      if( (split.length*5) > widthDivScreen.offsetWidth) {
+        spacebetween = spacebetween + (split.length*2);
       }
       else {
-        spacebetween = spacebetween + (split.length*50);
+        spacebetween = spacebetween + (split.length*5);
       }
         console.log('spawnWord: ' + split[letter]);
 
@@ -106,7 +111,7 @@ export default class LetterBoxScene extends Phaser.Scene {
 
   if (readWord === '') {
     //alert('Oeps, je hebt niets ingevuld... (Oops, you didn`t fill anything in)');
-    readWord = 'abcd';
+    readWord = 'abcde';
     //return false;
   }
 

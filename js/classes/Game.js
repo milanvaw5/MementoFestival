@@ -3,9 +3,10 @@ export default class Game extends Phaser.Game {
 
   constructor(){
     let config = {
+      width: 1200,
+      height: 1200,
       type: Phaser.AUTO,
-      width:1700,
-      height:1200,
+      parent: 'bottomblock',
       physics: {
         default: 'matter',
         matter: {
