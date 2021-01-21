@@ -12,9 +12,6 @@ let auteurInput = ['Verloren','hinkel ik','over de sproeten op mijn vingers',
 'Onontdekt','en zorgeloos','dolend door mijn eigen hoofd'];
 
 const lettersprites = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-
-let i;
-let j;
 export default class LetterBoxScene extends Phaser.Scene {
 
   constructor(config){
