@@ -24,7 +24,7 @@ export default class LetterBoxScene extends Phaser.Scene {
 
   preload(){
     console.log(`PRELOAD`);
-    //1. Preloading images
+    //Preloading sprites
 
     //this.load.image('backgroundimage', 'assets/bimg.jpg');
     this.load.image('ball', 'assets/ball.png');
@@ -57,7 +57,6 @@ export default class LetterBoxScene extends Phaser.Scene {
   spawnWord() {
 
     let fallPosition = Phaser.Math.Between(20, this.cameras.main.width / 2);
-
     this.splitWord();
 
     console.log('SPAWN WORD');
@@ -73,12 +72,9 @@ export default class LetterBoxScene extends Phaser.Scene {
       else {
         spacebetween = spacebetween + (split.length*100);
       }
-        //console.log(split[j]+'.png');
         console.log('spawnWord: ' + split[letter]);
 
-      split[letter] = this.matter.add.sprite(fallPosition, 0, split[letter]);
-      //letters.add(split[letter]);
-
+        split[letter] = this.matter.add.sprite(fallPosition, 0, split[letter]);
         fallPosition = fallPosition + spacebetween;
 
     }
