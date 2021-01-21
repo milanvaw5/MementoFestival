@@ -86,11 +86,16 @@ export default class LetterBoxScene extends Phaser.Scene {
 
   }
 
-  splitWord (e){
+  handleSubmitForm = e => {
 
-  const $form = e.currentTarget;
+    const $form = e.currentTarget;
     e.preventDefault();
     readWord = document.querySelector('.enteredWord').value;
+    console.log(readWord);
+    this.splitWord(readWord);
+  }
+
+  splitWord (){
 
   if (readWord === '') {
     //alert('Oeps, je hebt niets ingevuld... (Oops, you didn`t fill anything in)');
@@ -101,6 +106,6 @@ export default class LetterBoxScene extends Phaser.Scene {
   split = readWord.split('');
   console.log('splitWord: ' + split);
 
-  };
+  }
 
 }
