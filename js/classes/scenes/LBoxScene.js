@@ -14,11 +14,29 @@ let auteurInput = ['Verloren','hinkel ik','over de sproeten op mijn vingers',
 
 const lettersprites = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
-const videoWidth = 600;
-const videoHeight = 700;
-const colorRight = "red";
-const colorLeft = "black";
+let leftWristPos = {x:1, y:1};
+let rightWristPos = {x:1, y:1};
+let leftEyePos = {x:1, y:1};
+let rightEyePos = {x:1, y:1};
+let leftShoulderPos = {x:1, y:1};
+let rightShoulderPos = {x:1, y:1};
+let leftElbowPos = {x:1, y:1};
+let rightElbowPos = {x:1, y:1};
+let leftKneePos = {x:1, y:1};
+let rightKneePos = {x:1, y:1};
+let leftHipPos = {x:1, y:1};
+let rightHipPos = {x:1, y:1};
+let leftAnklePos = {x:1, y:1};
+let rightAnklePos = {x:1, y:1};
 
+{
+  const videoWidth = 1280;
+  const videoHeight = 760;
+  const colorRight = "red";
+  const colorLeft = "black";
+  // We create an object with the parameters that we want for the model. 
+  let poseNetModel;
+ 
 const poseNetState = {
   algorithm: 'single-pose',
   input: {
@@ -38,14 +56,15 @@ const poseNetState = {
   },
 };
 
+
 const detectPoseInRealTime = (video) => {
   const canvas = document.getElementById('output');
   const ctx = canvas.getContext('2d');
   const flipPoseHorizontal = true;
-  console.log(video)
+
   canvas.width = videoWidth;
   canvas.height = videoHeight;
-  console.log(videoHeight)
+
   async function poseDetectionFrame() {
     let poses = [];
     let minPoseConfidence;
@@ -85,6 +104,104 @@ const detectPoseInRealTime = (video) => {
   poseDetectionFrame();
 }
 
+function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
+  let leftWrist = keypoints.find(point => point.part === 'leftWrist');
+  let rightWrist = keypoints.find(point => point.part === 'rightWrist');
+  let leftEye = keypoints.find(point => point.part === 'leftEye');
+  let rightEye = keypoints.find(point => point.part === 'rightEye');
+  let leftShoulder = keypoints.find(point => point.part === 'leftShoulder');
+  let rightShoulder = keypoints.find(point => point.part === 'rightShoulder');
+  let leftElbow = keypoints.find(point => point.part === 'leftElbow');
+  let rightElbow = keypoints.find(point => point.part === 'rightElbow');
+  let leftHip = keypoints.find(point => point.part === 'leftHip');
+  let rightHip = keypoints.find(point => point.part === 'rightHip');
+  let leftKnee = keypoints.find(point => point.part === 'leftKnee');
+  let rightKnee = keypoints.find(point => point.part === 'rightKnee');
+  let leftAnkle = keypoints.find(point => point.part === 'leftAnkle');
+  let rightAnkle = keypoints.find(point => point.part === 'rightAnkle');
+  // plaats joints naar believen
+
+  if (leftWrist.score > minConfidence) {
+      const {y, x} = leftWrist.position;
+      leftWristPos = leftWrist.position;
+      drawPoint(ctx, y * scale, x * scale, 10, colorLeft);
+  }
+
+  if (rightWrist.score > minConfidence) {
+      const {y, x} = rightWrist.position;
+      rightWristPos = rightWrist.position;
+      drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+  }
+
+  if (rightEye.score > minConfidence) {
+    const {y, x} = rightEye.position;
+    rightEyePos = rightEye.position;
+    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+  }
+  if (leftEye.score > minConfidence) {
+    const {y, x} = leftEye.position;
+    leftEyePos = leftEye.position;
+    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+  }
+  if (leftShoulder.score > minConfidence) {
+    const {y, x} = leftShoulder.position;
+    leftShoulderPos = leftShoulder.position;
+    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+  }
+  if (rightShoulder.score > minConfidence) {
+    const {y, x} = rightShoulder.position;
+    rightShoulderPos = rightShoulder.position;
+    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+  }
+  if (leftElbow.score > minConfidence) {
+    const {y, x} = leftElbow.position;
+    leftElbowPos = leftElbow.position;
+    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+  }
+  if (rightElbow.score > minConfidence) {
+    const {y, x} = rightElbow.position;
+    rightElbowPos = rightElbow.position;
+    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+  }
+  if (leftHip.score > minConfidence) {
+    const {y, x} = leftHip.position;
+    leftHipPos = leftHip.position;
+    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+  }
+  if (rightHip.score > minConfidence) {
+    const {y, x} = rightHip.position;
+    rightHipPos = rightHip.position;
+    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+  }
+  if (leftKnee.score > minConfidence) {
+    const {y, x} = leftKnee.position;
+    leftKneePos = leftKnee.position;
+    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+  }
+  if (rightKnee.score > minConfidence) {
+    const {y, x} = rightKnee.position;
+    rightKneePos = rightKnee.position;
+    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+  }
+  if (leftAnkle.score > minConfidence) {
+    const {y, x} = leftAnkle.position;
+    leftAnklePos = leftAnkle.position;
+    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+  }
+  if (rightAnkle.score > minConfidence) {
+    const {y, x} = rightAnkle.position;
+    rightAnklePos = rightAnkle.position;
+    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+  }
+}
+
+function drawPoint(ctx, y, x, r, color) {
+ctx.beginPath();
+ctx.arc(x, y, r, 0, 2 * Math.PI);
+ctx.fillStyle = color;
+ctx.fill();
+}
+
 const setupCamera = async () => {
   const video = document.getElementById('video');
   video.width = videoWidth;
@@ -105,7 +222,7 @@ const setupCamera = async () => {
 }
 
 const startVideo = async () => {
-
+ let video;
   try {
     video = await setupCamera();
     video.play();
@@ -116,6 +233,19 @@ const startVideo = async () => {
   detectPoseInRealTime(video);
 }
 
+const init = async () => {
+   poseNetModel = await posenet.load({
+      architecture: poseNetState.input.architecture,
+      outputStride: poseNetState.input.outputStride,
+      inputResolution: poseNetState.input.inputResolution,
+      multiplier: poseNetState.input.multiplier,
+      quantBytes: poseNetState.input.quantBytes
+  });
+  startVideo();
+}
+init();
+}
+
 
 export default class LetterBoxScene extends Phaser.Scene {
 
@@ -123,20 +253,7 @@ export default class LetterBoxScene extends Phaser.Scene {
     super(config);
   }
 
-  init = async () => {
-    //reset some variables
-    console.log('INITLIALIZING');
-    poseNetModel = await posenet.load({
-      architecture: poseNetState.input.architecture,
-      outputStride: poseNetState.input.outputStride,
-      inputResolution: poseNetState.input.inputResolution,
-      multiplier: poseNetState.input.multiplier,
-      quantBytes: poseNetState.input.quantBytes
-  });
-  console.log(poseNetModel)
-  startVideo();
-
-  }
+  
 
   preload(){
     console.log(`PRELOAD`);
@@ -144,10 +261,13 @@ export default class LetterBoxScene extends Phaser.Scene {
 
     //this.load.image('backgroundimage', 'assets/bimg.jpg');
     this.load.image('d', 'assets/ball.png');
+    this.load.image('test', 'assets/test.png');
     this.load.spritesheet('a', 'assets/enemy.png', { frameWidth: 35, frameHeight: 35 });
     this.load.spritesheet('b', 'assets/dude.png', { frameWidth: 35, frameHeight: 35 });
-    this.load.spritesheet('c', 'assets/explosion.png', { frameWidth: 35, frameHeight: 35 });
-    this.load.spritesheet('e', 'assets/idle2.png', { frameWidth: 35, frameHeight: 35 });
+    this.load.spritesheet('c', 'assets/dude.png', { frameWidth: 35, frameHeight: 35 });
+    this.load.spritesheet('e', 'assets/dude.png', { frameWidth: 35, frameHeight: 35 });
+
+
   }
 
   create(){
@@ -155,10 +275,29 @@ export default class LetterBoxScene extends Phaser.Scene {
 
     //backgroundimage = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'backgroundimage');
 
-    this.spawnWord();
+    this.leftWristAvatar = this.matter.add.image(leftWristPos.x, leftWristPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
+    this.rightWristAvatar = this.matter.add.image(rightWristPos.x, rightWristPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
+    this.leftEyeAvatar = this.matter.add.image(leftEyePos.x, leftEyePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
+    this.rightEyeAvatar = this.matter.add.image(rightEyePos.x, rightEyePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
+    this.leftShoulderAvatar = this.matter.add.image(leftShoulderPos.x, leftShoulderPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
+    this.rightShoulderAvatar = this.matter.add.image(rightShoulderPos.x, rightShoulderPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
+    this.leftElbowAvatar = this.matter.add.image(leftElbowPos.x, leftElbowPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
+    this.rightElbowAvatar = this.matter.add.image(rightElbowPos.x, rightElbowPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
+    this.leftHipAvatar = this.matter.add.image(leftHipPos.x, leftHipPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
+    this.rightHipAvatar = this.matter.add.image(rightHipPos.x, rightHipPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
+    this.leftKneeAvatar = this.matter.add.image(leftKneePos.x, leftKneePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
+    this.rightKneeAvatar = this.matter.add.image(rightKneePos.x, rightKneePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
+    this.leftAnkleAvatar = this.matter.add.image(leftAnklePos.x, leftAnklePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
+    this.rightAnkleAvatar = this.matter.add.image(rightAnklePos.x, rightAnklePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
+
+    
+    this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();
+
+   // this.leftEyeAvatar.Body.addForce(200); 
+    // this.rightEyeAvatar.Body.addForce(200);
 
     spawnWordInterval = this.time.addEvent({
-      delay: 10000,
+      delay: 100000,
       callback: this.spawnWord,
       callbackScope: this,
       args: [],
@@ -172,18 +311,46 @@ export default class LetterBoxScene extends Phaser.Scene {
     if (letters.length === 20) {
 
     }
+    this.leftWristAvatar.x = leftWristPos.x;
+    this.leftWristAvatar.y = leftWristPos.y + 200;
+    this.leftEyeAvatar.x = leftEyePos.x;
+    this.leftEyeAvatar.y = leftEyePos.y + 200;
+    this.leftShoulderAvatar.x = leftShoulderPos.x;
+    this.leftShoulderAvatar.y = leftShoulderPos.y + 200;
+    this.leftElbowAvatar.x = leftElbowPos.x;
+    this.leftElbowAvatar.y = leftElbowPos.y + 200;
+    this.leftHipAvatar.x = leftHipPos.x;
+    this.leftHipAvatar.y = leftHipPos.y + 200;
+    this.leftKneeAvatar.x = leftKneePos.x;
+    this.leftKneeAvatar.y = leftKneePos.y + 200;
+    this.leftAnkleAvatar.x = leftAnklePos.x;
+    this.leftAnkleAvatar.y = leftAnklePos.y + 200;
+
+    this.rightWristAvatar.x = rightWristPos.x;
+    this.rightWristAvatar.y = rightWristPos.y + 200;
+    this.rightEyeAvatar.x = rightEyePos.x;
+    this.rightEyeAvatar.y = rightEyePos.y + 200;
+    this.rightShoulderAvatar.x = rightShoulderPos.x;
+    this.rightShoulderAvatar.y = rightShoulderPos.y + 200;
+    this.rightElbowAvatar.x = rightElbowPos.x;
+    this.rightElbowAvatar.y = rightElbowPos.y + 200;
+    this.rightHipAvatar.x = rightHipPos.x;
+    this.rightHipAvatar.y = rightHipPos.y + 200;
+    this.rightKneeAvatar.x = rightKneePos.x;
+    this.rightKneeAvatar.y = rightKneePos.y + 200;
+    this.rightAnkleAvatar.x = rightAnklePos.x;
+    this.rightAnkleAvatar.y = rightAnklePos.y + 200;
+
   }
 
   spawnWord() {
 
     let widthDivScreen = document.querySelector('.bottomblock');
-    console.log(widthDivScreen.width);
 
     let fallPosition = Phaser.Math.Between(20, widthDivScreen.offsetWidth / 2);
 
     this.splitWord();
 
-    console.log('SPAWN WORD');
 
     for (letter = 0; letter < split.length; letter++)
     {
@@ -198,7 +365,8 @@ export default class LetterBoxScene extends Phaser.Scene {
       }
         console.log('spawnWord: ' + split[letter]);
 
-        split[letter] = this.matter.add.sprite(fallPosition, 0, split[letter]);
+        split[letter] = this.matter.add.sprite(fallPosition, 0, split[letter], 0, {restitution: .5});
+
         fallPosition = fallPosition + spacebetween;
 
     }
@@ -237,39 +405,6 @@ export default class LetterBoxScene extends Phaser.Scene {
   };
 
 
-  drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
-    let leftWrist = keypoints.find(point => point.part === 'leftWrist');
-    let rightWrist = keypoints.find(point => point.part === 'rightWrist');
-    let leftEye = keypoints.find(point => point.part === 'leftEye');
-    let rightEye = keypoints.find(point => point.part === 'rightEye');
-    // plaats joints naar believen
 
-    if (leftWrist.score > minConfidence) {
-        const {y, x} = leftWrist.position;
-        drawPoint(ctx, y * scale, x * scale, 10, colorLeft);
-    }
-
-    if (rightWrist.score > minConfidence) {
-        const {y, x} = rightWrist.position;
-        drawPoint(ctx, y * scale, x * scale, 10, colorRight);
-    }
-
-    if (leftEye.score > minConfidence) {
-      const {y, x} = leftEye.position;
-      drawPoint(ctx, y * scale, x * scale, 10, colorLeft);
-  }
-
-  if (rightEye.score > minConfidence) {
-      const {y, x} = rightEye.position;
-      drawPoint(ctx, y * scale, x * scale, 10, colorRight);
-  }
-}
-
-drawPoint(ctx, y, x, r, color) {
-  ctx.beginPath();
-  ctx.arc(x, y, r, 0, 2 * Math.PI);
-  ctx.fillStyle = color;
-  ctx.fill();
-}
 
 }
