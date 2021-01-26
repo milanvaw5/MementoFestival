@@ -6,7 +6,7 @@ let timer;
 let readWord = 'abcde';
 let split = [];
 
-let letters = ['a','b','c'];
+let letters = ['z','o','n','n','e','s','c','h','i','j','n'];
 
 let widthDivScreen = document.querySelector('.bottomblock');
 let spacebetween = 0;
@@ -263,12 +263,34 @@ export default class LetterBoxScene extends Phaser.Scene {
     //Preloading sprites
 
     //this.load.image('backgroundimage', 'assets/bimg.jpg');
-    this.load.image('d', 'assets/ball.png');
+    //this.load.image('d', 'assets/ball.png');
     this.load.image('test', 'assets/test.png');
-    this.load.spritesheet('a', 'assets/enemy.png', { frameWidth: 35, frameHeight: 35 });
-    this.load.spritesheet('b', 'assets/dude.png', { frameWidth: 35, frameHeight: 35 });
-    this.load.spritesheet('c', 'assets/dude.png', { frameWidth: 35, frameHeight: 35 });
-    this.load.spritesheet('e', 'assets/dude.png', { frameWidth: 35, frameHeight: 35 });
+    this.load.spritesheet('a', 'assets/img/alphabet/a.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('b', 'assets/img/alphabet/b.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('c', 'assets/img/alphabet/c.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('d', 'assets/img/alphabet/d.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('e', 'assets/img/alphabet/e.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('f', 'assets/img/alphabet/f.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('g', 'assets/img/alphabet/g.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('h', 'assets/img/alphabet/h.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('i', 'assets/img/alphabet/i.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('j', 'assets/img/alphabet/j.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('k', 'assets/img/alphabet/k.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('l', 'assets/img/alphabet/l.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('m', 'assets/img/alphabet/m.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('n', 'assets/img/alphabet/n.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('o', 'assets/img/alphabet/o.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('p', 'assets/img/alphabet/p.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('q', 'assets/img/alphabet/q.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('r', 'assets/img/alphabet/r.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('s', 'assets/img/alphabet/s.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('t', 'assets/img/alphabet/t.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('u', 'assets/img/alphabet/u.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('v', 'assets/img/alphabet/v.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('w', 'assets/img/alphabet/w.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('x', 'assets/img/alphabet/x.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('y', 'assets/img/alphabet/y.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.spritesheet('z', 'assets/img/alphabet/z.png', { frameWidth: 40, frameHeight: 73 });
 
   }
 
@@ -373,16 +395,16 @@ export default class LetterBoxScene extends Phaser.Scene {
   //woord word gespawned op scherm
   spawnWord() {
 
-    let fallPosition = Phaser.Math.Between(20, widthDivScreen.offsetWidth / 2);
+    let fallPosition = Phaser.Math.Between(20, widthDivScreen.offsetWidth / 4);
     this.splitWord();
 
     for (letter = 0; letter < split.length; letter++)
     {
-      if( (split.length*5) > widthDivScreen.offsetWidth) {
-        spacebetween = spacebetween + (split.length*2);
+      if( (split.length*5) > 200) {
+        spacebetween = spacebetween + (5);
       }
       else {
-        spacebetween = spacebetween + (split.length*5);
+        spacebetween = spacebetween + (10);
       }
         console.log('spawnWord: ' + split[letter]);
         split[letter] = this.matter.add.sprite(fallPosition, 0, split[letter], 0, {restitution: .5});
