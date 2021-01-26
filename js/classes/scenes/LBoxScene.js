@@ -1,18 +1,23 @@
 let letter;
 //let backgroundimage;
 let spawnWordInterval;
+let timer;
 
 let readWord = 'abcde';
 let split = [];
 
-let letters = [];
+let letters = ['a','b','c'];
 
+let widthDivScreen = document.querySelector('.bottomblock');
+let spacebetween = 0;
+
+/*
 let auteurInput = ['Verloren','hinkel ik','over de sproeten op mijn vingers',
 'Afgeslagen','langzaam ademend','langs mijn armen dwalend','Mijn rug','terug – gezucht –',
 'geen bescherming op de vlucht','Veilig','aan mijn zij','de afgrond daar als lijn',
-'Onontdekt','en zorgeloos','dolend door mijn eigen hoofd'];
+'Onontdekt','en zorgeloos','dolend door mijn eigen hoofd'];*/
 
-const lettersprites = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+let auteurInput = ['bde'];
 
 let leftWristPos = {x:1, y:1};
 let rightWristPos = {x:1, y:1};
@@ -34,9 +39,9 @@ let rightAnklePos = {x:1, y:1};
   const videoHeight = 760;
   const colorRight = "red";
   const colorLeft = "black";
-  // We create an object with the parameters that we want for the model. 
+  // We create an object with the parameters that we want for the model.
   let poseNetModel;
- 
+
 const poseNetState = {
   algorithm: 'single-pose',
   input: {
@@ -253,8 +258,6 @@ export default class LetterBoxScene extends Phaser.Scene {
     super(config);
   }
 
-  
-
   preload(){
     console.log(`PRELOAD`);
     //Preloading sprites
@@ -266,7 +269,6 @@ export default class LetterBoxScene extends Phaser.Scene {
     this.load.spritesheet('b', 'assets/dude.png', { frameWidth: 35, frameHeight: 35 });
     this.load.spritesheet('c', 'assets/dude.png', { frameWidth: 35, frameHeight: 35 });
     this.load.spritesheet('e', 'assets/dude.png', { frameWidth: 35, frameHeight: 35 });
-
 
   }
 
@@ -290,27 +292,32 @@ export default class LetterBoxScene extends Phaser.Scene {
     this.leftAnkleAvatar = this.matter.add.image(leftAnklePos.x, leftAnklePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
     this.rightAnkleAvatar = this.matter.add.image(rightAnklePos.x, rightAnklePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
 
-    
-    this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();this.spawnWord();
 
-   // this.leftEyeAvatar.Body.addForce(200); 
-    // this.rightEyeAvatar.Body.addForce(200);
+    this.spawnLetters();
 
-    spawnWordInterval = this.time.addEvent({
-      delay: 100000,
+    timer = setTimeout(this.readInAuteurInput(), 5000);
+
+    /*spawnWordInterval = this.time.addEvent({
+      delay: 10000,
       callback: this.spawnWord,
       callbackScope: this,
       args: [],
       loop: true
-    });
-
+    });*/
   }
 
   update(){
-
+    //bij een bepaald aantal letters op het scherm - zullen er een hoeveelheid verdwijnen,
+    //random gekozen om zo nieuwe woorden en mysterie te creëren
     if (letters.length === 20) {
-
+      for (let numberOfRemoveletters = 10; numberOfRemoveletters>0; numberOfRemoveletters--){
+        for(let removeletters = letters.length-1; removeletters >= 0; removeletters--){
+          array.splice(Math.floor(Math.random()*removeletters.length), 1);
+        }
+      }
+      console.log(letters);
     }
+
     this.leftWristAvatar.x = leftWristPos.x;
     this.leftWristAvatar.y = leftWristPos.y + 200;
     this.leftEyeAvatar.x = leftEyePos.x;
@@ -341,22 +348,36 @@ export default class LetterBoxScene extends Phaser.Scene {
     this.rightAnkleAvatar.x = rightAnklePos.x;
     this.rightAnkleAvatar.y = rightAnklePos.y + 200;
 
-  }
+  };
 
-  spawnWord() {
-
-    let widthDivScreen = document.querySelector('.bottomblock');
+  spawnLetters() {
 
     let fallPosition = Phaser.Math.Between(20, widthDivScreen.offsetWidth / 2);
 
-    this.splitWord();
+    for (let startOffLetters = 0; startOffLetters < letters.length; startOffLetters++)
+    {
 
+      if( (letters.length*5) > widthDivScreen.offsetWidth) {
+        spacebetween = spacebetween + (letters.length*2);
+      }
+      else {
+        spacebetween = spacebetween + (letters.length*5);
+      }
+        console.log('spawnLetters: ' + letters[startOffLetters]);
+        letters[startOffLetters] = this.matter.add.sprite(fallPosition, 0, letters[startOffLetters], 0, {restitution: .5});
+        fallPosition = fallPosition + spacebetween;
+    }
+    console.log('start letters are dropped');
+  };
+
+  //woord word gespawned op scherm
+  spawnWord() {
+
+    let fallPosition = Phaser.Math.Between(20, widthDivScreen.offsetWidth / 2);
+    this.splitWord();
 
     for (letter = 0; letter < split.length; letter++)
     {
-
-      let spacebetween = 0;
-
       if( (split.length*5) > widthDivScreen.offsetWidth) {
         spacebetween = spacebetween + (split.length*2);
       }
@@ -364,47 +385,45 @@ export default class LetterBoxScene extends Phaser.Scene {
         spacebetween = spacebetween + (split.length*5);
       }
         console.log('spawnWord: ' + split[letter]);
-
         split[letter] = this.matter.add.sprite(fallPosition, 0, split[letter], 0, {restitution: .5});
-
         fallPosition = fallPosition + spacebetween;
+        letters.push(split[letter]);
+        console.log(letters);
 
     }
 
   };
 
+   //indien een woord werd ingegeven word het woord ingelezen gesplits en erna gespawend
   readInWord() {
-    readWord = document.querySelector('.enteredWord').value;
-
-    if(readWord != '')
-    {
+    if (readWord!= '') {
+      readWord = document.querySelector('.enteredWord').value;
       console.log(readWord);
       this.splitWord(readWord);
+      this.spawnWord();
+      timer = setInterval(this.readInAuteurInput(), 50000); //timer resetten
       return false; // Then it won't PostBack.
-
     }
     else {
-      console.log('Er werd niets ingevult');
-      return true;
+      console.log('niks ingegeven')
+      return false;
     }
   };
 
   splitWord (){
-
-  if (readWord === '') {
-    //alert('Oeps, je hebt niets ingevuld... (Oops, you didn`t fill anything in)');
-    readWord = 'abcde';
-    //return false;
-  }
-
-  split = readWord.split('');
-  console.log('splitWord: ' + split);
-
-  letters.push(split);
-
+    split = readWord.split('');
+    console.log('splitWord: ' + split);
+    letters.push(split);
   };
 
-
-
-
+    //de timer is nul dus word een auteurinput gedropt en daarna de timer gereset
+    readInAuteurInput() {
+      console.log('auteurinput');
+      readWord = auteurInput[Math.floor(Math.random() * auteurInput.length)];
+      console.log(readWord);
+      this.splitWord(readWord);
+      this.spawnWord();
+      timer = setInterval(this.readInAuteurInput, 50000); //timer resetten
+      return false;
+    };
 }
