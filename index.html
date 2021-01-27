@@ -73,7 +73,7 @@
       <article class="section__article">
         <h3 clas="article__title">Form to enter word</h3>
         <form name="wordForm">
-          Wat betekent verdwalen voor jouw?<input type="text" class="enteredWord" name="enteredWord">
+          Wat betekent verdwalen voor jouw?<input type="text" id="enteredWord" class="enteredWord" name="enteredWord">
           <input id="sumbitwordbutton" class="button bigbutton" type="button" value="VERSTUUR">
         </form>
       </article>
@@ -117,8 +117,37 @@
 
       <script src="js/vendors/phaser.min.js"></script>
       <script src="js/vendors/matter.js"></script>
+      <script src="https://cdn.socket.io/socket.io-3.0.1.min.js%22%3E"></script>
       <script type="module" src="js/script.js"></script>
       <script type="module" src="js/camera.js"></script>
+  <script>
+  {
+    const $msgForm = document.getElementById('wordForm');
+    const $msgInput = document.getElementById('enteredWord');
+    //const $messages = document.getElementById('messages');
 
+    let socket; // will be assigned a value later
+
+    const init = () => {
+      socket = io.connect('/');
+      socket.on('connect', () => {
+        console.log(`Connected: ${socket.id}`);
+      });
+      socket.on('message', message => {
+        console.log(`Received message: ${message}`);
+        //$messages.value += `${message}\n`;
+      });
+      $msgForm.addEventListener('submit', e => handleSubmitMessage(e));
+    };
+
+    const handleSubmitMessage = e => {
+      e.preventDefault();
+      socket.emit('message', $msgInput.value);
+      $msgInput.value = '';
+    };
+
+    init();
+  }
+  </script>
   </body>
 </html>

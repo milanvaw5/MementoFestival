@@ -250,6 +250,7 @@ const init = async () => {
   startVideo();
 }
 init();
+
 }
 
 
@@ -320,7 +321,7 @@ export default class LetterBoxScene extends Phaser.Scene {
 
     //timer = setTimeout(this.readInAuteurInput(), 50000);
 
-    document.getElementById('sumbitwordbutton').addEventListener('click', this.readInWord);
+    //document.getElementById('sumbitwordbutton').addEventListener('click', this.readInWord);
 
     /*spawnWordInterval = this.time.addEvent({
       delay: 10000,
