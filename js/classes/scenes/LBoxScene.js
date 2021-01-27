@@ -8,8 +8,9 @@ let split = [];
 
 let letters = ['z','o','n','n','e','s','c','h','i','j','n'];
 
-let widthDivScreen = document.querySelector('.bottomblock');
-let spacebetween = 0;
+let widthDivScreen = document.querySelector('.bottomblock').style.width;
+
+let spacebetween = 20;
 
 /*
 let auteurInput = ['Verloren','hinkel ik','over de sproeten op mijn vingers',
@@ -17,7 +18,7 @@ let auteurInput = ['Verloren','hinkel ik','over de sproeten op mijn vingers',
 'geen bescherming op de vlucht','Veilig','aan mijn zij','de afgrond daar als lijn',
 'Onontdekt','en zorgeloos','dolend door mijn eigen hoofd'];*/
 
-let auteurInput = ['bde'];
+let auteurInput = ['verloren','hinkelik','overdesproeten','opmijnvingers'];
 
 let leftWristPos = {x:1, y:1};
 let rightWristPos = {x:1, y:1};
@@ -317,8 +318,9 @@ export default class LetterBoxScene extends Phaser.Scene {
 
     this.spawnLetters();
 
-    timer = setTimeout(this.readInAuteurInput(), 5000);
+    timer = setTimeout(this.readInAuteurInput(), 50000);
 
+    document.getElementById('sumbitwordbutton').addEventListener('click', readWord);
     /*spawnWordInterval = this.time.addEvent({
       delay: 10000,
       callback: this.spawnWord,
@@ -374,20 +376,13 @@ export default class LetterBoxScene extends Phaser.Scene {
 
   spawnLetters() {
 
-    let fallPosition = Phaser.Math.Between(20, widthDivScreen.offsetWidth / 2);
+    let fallPosition = Phaser.Math.Between(20, widthDivScreen / 2);
 
     for (let startOffLetters = 0; startOffLetters < letters.length; startOffLetters++)
     {
-
-      if( (letters.length*5) > widthDivScreen.offsetWidth) {
-        spacebetween = spacebetween + (letters.length*2);
-      }
-      else {
-        spacebetween = spacebetween + (letters.length*5);
-      }
-        console.log('spawnLetters: ' + letters[startOffLetters]);
-        letters[startOffLetters] = this.matter.add.sprite(fallPosition, 0, letters[startOffLetters], 0, {restitution: .5});
-        fallPosition = fallPosition + spacebetween;
+      console.log('spawnLetters: ' + letters[startOffLetters]);
+      letters[startOffLetters] = this.matter.add.sprite(fallPosition, 0, letters[startOffLetters], 0, {restitution: .5});
+      fallPosition = fallPosition + spacebetween;
     }
     console.log('start letters are dropped');
   };
@@ -395,31 +390,26 @@ export default class LetterBoxScene extends Phaser.Scene {
   //woord word gespawned op scherm
   spawnWord() {
 
-    let fallPosition = Phaser.Math.Between(20, widthDivScreen.offsetWidth / 4);
+    let fallPosition = Phaser.Math.Between(20, widthDivScreen / 4);
     this.splitWord();
 
     for (letter = 0; letter < split.length; letter++)
     {
-      if( (split.length*5) > 200) {
-        spacebetween = spacebetween + (5);
-      }
-      else {
-        spacebetween = spacebetween + (10);
-      }
-        console.log('spawnWord: ' + split[letter]);
-        split[letter] = this.matter.add.sprite(fallPosition, 0, split[letter], 0, {restitution: .5});
-        fallPosition = fallPosition + spacebetween;
-        letters.push(split[letter]);
-        console.log(letters);
-
+      console.log('spawnWord: ' + split[letter]);
+      split[letter] = this.matter.add.sprite(fallPosition, 0, split[letter], 0, {restitution: .5});
+      fallPosition = fallPosition + spacebetween;
+      letters.push(split[letter]);
+      console.log(letters);
     }
 
   };
 
    //indien een woord werd ingegeven word het woord ingelezen gesplits en erna gespawend
-  readInWord() {
+  readInWord = (e) => {
+    e.preventDefault();
+    readWord = document.querySelector('.enteredWord').value;
+
     if (readWord!= '') {
-      readWord = document.querySelector('.enteredWord').value;
       console.log(readWord);
       this.splitWord(readWord);
       this.spawnWord();
@@ -432,20 +422,25 @@ export default class LetterBoxScene extends Phaser.Scene {
     }
   };
 
-  splitWord (){
-    split = readWord.split('');
-    console.log('splitWord: ' + split);
-    letters.push(split);
-  };
-
     //de timer is nul dus word een auteurinput gedropt en daarna de timer gereset
     readInAuteurInput() {
       console.log('auteurinput');
       readWord = auteurInput[Math.floor(Math.random() * auteurInput.length)];
-      console.log(readWord);
-      this.splitWord(readWord);
-      this.spawnWord();
-      timer = setInterval(this.readInAuteurInput, 50000); //timer resetten
-      return false;
+      if (readWord!= '') {
+        console.log(readWord);
+        this.splitWord(readWord);
+        this.spawnWord();
+        timer = setInterval(this.readInAuteurInput(), 50000); //timer resetten
+        return false;
+      }
+      else {
+        console.log('error auteurinput');
+      }
+    };
+
+    splitWord (){
+      split = readWord.split('');
+      console.log('splitWord: ' + split);
+      letters.push(split);
     };
 }
