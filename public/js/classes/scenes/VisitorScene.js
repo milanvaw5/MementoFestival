@@ -7,7 +7,7 @@ let timer;
 let readWord = 'abcde';
 let split = [];
 
-let letters = ['z','o','n','n','e','s','c','h','i','j','n'];
+let letters = [];
 
 let widthDivScreen = document.querySelector('.bottomblock').style.width;
 
@@ -165,18 +165,6 @@ export default class AdminScene extends Phaser.Scene {
 
   };
 
-  spawnLetters() {
-
-    let fallPosition = Phaser.Math.Between(20, widthDivScreen / 2);
-
-    for (let startOffLetters = 0; startOffLetters < letters.length; startOffLetters++)
-    {
-      console.log('spawnLetters: ' + letters[startOffLetters]);
-      letters[startOffLetters] = this.matter.add.sprite(fallPosition, 0, letters[startOffLetters], 0, {restitution: .5});
-      fallPosition = fallPosition + spacebetween;
-    }
-    console.log('start letters are dropped');
-  };
 
   //woord word gespawned op scherm
   spawnWord() {
@@ -228,14 +216,34 @@ export default class AdminScene extends Phaser.Scene {
         console.log(woordje);
         this.readInWord(woordje);
       });
+      socket.on('messages', messages => {
+        letters = letters.push(woordje);
+        console.log(letters);
+        messages = letters;
+      });
       $msgForm.addEventListener('submit', e => this.handleSubmitMessage(e));
     };
 
     handleSubmitMessage = e => {
     e.preventDefault();
     socket.emit('message', $msgInput.value);
+    socket.emit('messages', messages);
     $msgInput.value = '';
     }
+
+
+  spawnLetters() {
+
+    let fallPosition = Phaser.Math.Between(20, widthDivScreen / 2);
+
+    for (let startOffLetters = 0; startOffLetters < letters.length; startOffLetters++)
+    {
+      console.log('spawnLetters: ' + letters[startOffLetters]);
+      letters[startOffLetters] = this.matter.add.sprite(fallPosition, 0, letters[startOffLetters], 0, {restitution: .5});
+      fallPosition = fallPosition + spacebetween;
+    }
+    console.log('start letters are dropped');
+  };
 
        //indien een woord werd ingegeven word het woord ingelezen gesplits en erna gespawend
    readInWord (){
@@ -244,6 +252,7 @@ export default class AdminScene extends Phaser.Scene {
       console.log(readWord);
       this.splitWord(readWord);
       this.spawnWord();
+      console.log(letters);
       //timer = setInterval(this.readInAuteurInput(), 50000); //timer resetten
     }
     else {
