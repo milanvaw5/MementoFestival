@@ -41,6 +41,44 @@ const $msgInput = document.getElementById('enteredWord');
 //const $messages = document.getElementById('messages');
 
 let socket; // will be assigned a value later
+{
+  const init = () => {
+  socket = io.connect('/');
+  socket.on('connect', () => {
+    console.log(`Connected: ${socket.id}`);
+  });
+  socket.on('message', message => {
+    console.log(`Received message: ${message}`);
+    woordje = message;
+  });
+  $msgForm.addEventListener('submit', e => handleSubmitMessage(e));
+  };
+
+  const handleSubmitMessage = e => {
+  e.preventDefault();
+  socket.emit('message', $msgInput.value);
+  $msgInput.value = '';
+  }
+
+   //indien een woord werd ingegeven word het woord ingelezen gesplits en erna gespawend
+   readInWord = e => {
+    readWord = woordje;
+    if (readWord!= '') {
+      console.log(readWord);
+      this.splitWord(readWord);
+      this.spawnWord();
+      //timer = setInterval(this.readInAuteurInput(), 50000); //timer resetten
+      e.preventDefault();
+    }
+    else {
+      console.log('niks ingegeven')
+      e.preventDefault();
+    }
+  };
+
+  init();
+}
+
 export default class AdminScene extends Phaser.Scene {
 
   constructor(config){
@@ -86,8 +124,6 @@ export default class AdminScene extends Phaser.Scene {
   create(){
     console.log(`CREATE`);
 
-
-    this.makeConnection();
     //backgroundimage = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'backgroundimage');
 
     this.leftWristAvatar = this.matter.add.image(leftWristPos.x, leftWristPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
@@ -216,39 +252,4 @@ export default class AdminScene extends Phaser.Scene {
       console.log('splitWord: ' + split);
       letters.push(split);
     };
-
-    makeConnection() {
-      socket = io.connect('/');
-      socket.on('connect', () => {
-        console.log(`Connected: ${socket.id}`);
-      });
-      socket.on('message', message => {
-        console.log(`Received message: ${message}`);
-        woordje = message;
-        console.log(woordje);
-        this.readInWord(woordje);
-      });
-      $msgForm.addEventListener('submit', e => this.handleSubmitMessage(e));
-    };
-
-    handleSubmitMessage = e => {
-    e.preventDefault();
-    socket.emit('message', $msgInput.value);
-    $msgInput.value = '';
-    }
-
-       //indien een woord werd ingegeven word het woord ingelezen gesplits en erna gespawend
-   readInWord (){
-    readWord = woordje;
-    if (readWord!= '') {
-      console.log(readWord);
-      this.splitWord(readWord);
-      this.spawnWord();
-      //timer = setInterval(this.readInAuteurInput(), 50000); //timer resetten
-    }
-    else {
-      console.log('niks ingegeven')
-      e.preventDefault();
-    }
-  };
 }
