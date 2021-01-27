@@ -1,4 +1,5 @@
-import VisitorScene from './scenes/VisitorScene.js';
+//import VisitorScene from './scenes/VisitorScene.js';
+import AdminScene from './scenes/AdminScene.js';
 export default class Game extends Phaser.Game {
 
   constructor(){
@@ -20,7 +21,8 @@ export default class Game extends Phaser.Game {
       },
     }
     super(config);
-    this.scene.add(`visitorscene`, VisitorScene ,true);
+    //this.scene.add(`visitorscene`, VisitorScene ,true);
+    this.scene.add(`adminscene`, AdminScene ,true);
     console.log('CONNECTING TO SCENE');
   }
 }

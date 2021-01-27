@@ -6,11 +6,15 @@ let timer;
 let readWord = 'abcde';
 let split = [];
 
-let letters = ['z','o','n','n','e','s','c','h','i','j','n'];
+let tensorflowpunten = [];
+
+let letters = [];
 
 let widthDivScreen = document.querySelector('.bottomblock').style.width;
 
 let spacebetween = 20;
+
+let socket; // will be assigned a value later
 
 /*
 let auteurInput = ['Verloren','hinkel ik','over de sproeten op mijn vingers',
@@ -125,6 +129,11 @@ function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
   let rightKnee = keypoints.find(point => point.part === 'rightKnee');
   let leftAnkle = keypoints.find(point => point.part === 'leftAnkle');
   let rightAnkle = keypoints.find(point => point.part === 'rightAnkle');
+
+  tensorflowpunten.push(leftWrist, rightWrist, leftEye, rightEye, leftShoulder, rightShoulder, leftElbow,
+    rightElbow, leftHip, rightHip, leftKnee, rightKnee, leftAnkle, rightAnkle, minConfidence, ctx);
+
+    console.log(tensorflowpunten);
   // plaats joints naar believen
 
   if (leftWrist.score > minConfidence) {
@@ -202,10 +211,11 @@ function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
 }
 
 function drawPoint(ctx, y, x, r, color) {
-ctx.beginPath();
-ctx.arc(x, y, r, 0, 2 * Math.PI);
-ctx.fillStyle = color;
-ctx.fill();
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, 2 * Math.PI);
+  ctx.fillStyle = color;
+  ctx.fill();
+  tensorflowpunten = [];
 }
 
 const setupCamera = async () => {
@@ -299,6 +309,7 @@ export default class AdminScene extends Phaser.Scene {
   create(){
     console.log(`CREATE`);
 
+    this.makeConnectionAdmin();
     //backgroundimage = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'backgroundimage');
 
     this.leftWristAvatar = this.matter.add.image(leftWristPos.x, leftWristPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
@@ -319,17 +330,6 @@ export default class AdminScene extends Phaser.Scene {
 
     this.spawnLetters();
 
-    //timer = setTimeout(this.readInAuteurInput(), 50000);
-
-    //document.getElementById('sumbitwordbutton').addEventListener('click', this.readInWord);
-
-    /*spawnWordInterval = this.time.addEvent({
-      delay: 10000,
-      callback: this.spawnWord,
-      callbackScope: this,
-      args: [],
-      loop: true
-    });*/
   }
 
   update(){
@@ -443,5 +443,17 @@ export default class AdminScene extends Phaser.Scene {
       split = readWord.split('');
       console.log('splitWord: ' + split);
       letters.push(split);
+    };
+
+    makeConnectionAdmin() {
+      socket = io.connect('/');
+      socket.on('connect', () => {
+        console.log(`Connected: ${socket.id}`);
+      });
+      socket.on('points', points => {
+        tensorflowpunten = points;
+        console.log(tensorflowpunten);
+      });
+      //socket.emit('points', points);
     };
 }

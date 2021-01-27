@@ -38,7 +38,6 @@ let rightAnklePos = {x:1, y:1};
 
 const $msgForm = document.getElementById('wordForm');
 const $msgInput = document.getElementById('enteredWord');
-//const $messages = document.getElementById('messages');
 
 let socket; // will be assigned a value later
 export default class AdminScene extends Phaser.Scene {
@@ -109,16 +108,6 @@ export default class AdminScene extends Phaser.Scene {
     this.spawnLetters();
 
     //timer = setTimeout(this.readInAuteurInput(), 50000);
-
-    //document.getElementById('sumbitwordbutton').addEventListener('click', this.readInWord);
-
-    /*spawnWordInterval = this.time.addEvent({
-      delay: 10000,
-      callback: this.spawnWord,
-      callbackScope: this,
-      args: [],
-      loop: true
-    });*/
   }
 
   update(){
@@ -216,18 +205,24 @@ export default class AdminScene extends Phaser.Scene {
         console.log(woordje);
         this.readInWord(woordje);
       });
-      socket.on('messages', messages => {
+      /*socket.on('messages', messages => {
         letters = letters.push(woordje);
         console.log(letters);
         messages = letters;
       });
+      /*socket.on('points', points => {
+        letters = letters.push(woordje);
+        console.log(letters);
+        messages = letters;
+      });*/
       $msgForm.addEventListener('submit', e => this.handleSubmitMessage(e));
     };
 
     handleSubmitMessage = e => {
     e.preventDefault();
     socket.emit('message', $msgInput.value);
-    socket.emit('messages', messages);
+    //socket.emit('messages', messages);
+    //socket.emit('points', points);
     $msgInput.value = '';
     }
 
@@ -260,4 +255,122 @@ export default class AdminScene extends Phaser.Scene {
       e.preventDefault();
     }
   };
+
+
+  drawKeypoints(minConfidence, ctx, scale = 1) {
+    let leftWrist;
+    let rightWrist;
+    let leftEye;
+    let rightEye;
+    let leftShoulder;
+    let rightShoulder;
+    let leftElbow;
+    let rightElbow;
+    let leftHip;
+    let rightHip;
+    let leftKnee;
+    let rightKnee;
+    let leftAnkle;
+    let rightAnkle;
+
+    for (let p; p === tensorflowpunten.length; p++) {
+      leftWrist = tensorflowpunten[p];
+      rightWrist = tensorflowpunten[p]
+      leftEye = tensorflowpunten[p];
+      rightEye = tensorflowpunten[p];
+      leftShoulder = tensorflowpunten[p];
+      rightShoulder = tensorflowpunten[p];
+      leftElbow = tensorflowpunten[p];
+      rightElbow = tensorflowpunten[p];
+      leftHip = tensorflowpunten[p];
+      rightHip = tensorflowpunten[p];
+      leftKnee = tensorflowpunten[p];
+      rightKnee = tensorflowpunten[p];
+      leftAnkle = tensorflowpunten[p];
+      rightAnkle = tensorflowpunten[p];
+      minConfidence = tensorflowpunten[p];
+      ctx = tensorflowpunten[p];
+    }
+    // plaats joints naar believen
+
+    if (leftWrist.score > minConfidence) {
+        const {y, x} = leftWrist.position;
+        leftWristPos = leftWrist.position;
+        drawPoint(ctx, y * scale, x * scale, 10, colorLeft);
+    }
+
+    if (rightWrist.score > minConfidence) {
+        const {y, x} = rightWrist.position;
+        rightWristPos = rightWrist.position;
+        drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    }
+
+    if (rightEye.score > minConfidence) {
+      const {y, x} = rightEye.position;
+      rightEyePos = rightEye.position;
+      drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    }
+    if (leftEye.score > minConfidence) {
+      const {y, x} = leftEye.position;
+      leftEyePos = leftEye.position;
+      drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    }
+    if (leftShoulder.score > minConfidence) {
+      const {y, x} = leftShoulder.position;
+      leftShoulderPos = leftShoulder.position;
+      drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    }
+    if (rightShoulder.score > minConfidence) {
+      const {y, x} = rightShoulder.position;
+      rightShoulderPos = rightShoulder.position;
+      drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    }
+    if (leftElbow.score > minConfidence) {
+      const {y, x} = leftElbow.position;
+      leftElbowPos = leftElbow.position;
+      drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    }
+    if (rightElbow.score > minConfidence) {
+      const {y, x} = rightElbow.position;
+      rightElbowPos = rightElbow.position;
+      drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    }
+    if (leftHip.score > minConfidence) {
+      const {y, x} = leftHip.position;
+      leftHipPos = leftHip.position;
+      drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    }
+    if (rightHip.score > minConfidence) {
+      const {y, x} = rightHip.position;
+      rightHipPos = rightHip.position;
+      drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    }
+    if (leftKnee.score > minConfidence) {
+      const {y, x} = leftKnee.position;
+      leftKneePos = leftKnee.position;
+      drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    }
+    if (rightKnee.score > minConfidence) {
+      const {y, x} = rightKnee.position;
+      rightKneePos = rightKnee.position;
+      drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    }
+    if (leftAnkle.score > minConfidence) {
+      const {y, x} = leftAnkle.position;
+      leftAnklePos = leftAnkle.position;
+      drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    }
+    if (rightAnkle.score > minConfidence) {
+      const {y, x} = rightAnkle.position;
+      rightAnklePos = rightAnkle.position;
+      drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    }
+  }
+
+  drawPoint(ctx, y, x, r, color) {
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, 2 * Math.PI);
+    ctx.fillStyle = color;
+    ctx.fill();
+  }
 }

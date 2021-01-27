@@ -74,7 +74,7 @@
         <h3 clas="article__title">Form to enter word</h3>
         <form id="wordForm">
           Wat betekent verdwalen voor jouw?<input type="text" id="enteredWord" class="enteredWord" name="enteredWord">
-          <input id="sumbitwordbutton" class="button bigbutton" type="button" value="VERSTUUR">
+          <input id="sumbitwordbutton" class="button bigbutton" type="submit" value="VERSTUUR">
         </form>
       </article>
 
@@ -119,115 +119,5 @@
       <script src="js/vendors/matter.js"></script>
       <script src="/socket.io/socket.io.js"></script>
       <script type="module" src="js/script.js"></script>
-  <script>
-  {
-    const $msgForm = document.getElementById('wordForm');
-    const $msgInput = document.getElementById('enteredWord');
-    //const $messages = document.getElementById('messages');
-
-    let socket; // will be assigned a value later
-
-    const init = () => {
-      socket = io.connect('/');
-      socket.on('connect', () => {
-        console.log(`Connected: ${socket.id}`);
-      });
-      socket.on('message', message => {
-        console.log(`Received message: ${message}`);
-        //$messages.value += `${message}\n`;
-      });
-      $msgForm.addEventListener('submit', e => handleSubmitMessage(e));
-    };
-
-    const handleSubmitMessage = e => {
-      e.preventDefault();
-      socket.emit('message', $msgInput.value);
-      $msgInput.value = '';
-    };
-
-    init();
-  }
-  </script>
-  </body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="https://use.typekit.net/wna0uhq.css">
-     <!-- Load TensorFlow.js -->
- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
- <!-- Load Posenet -->
- <script src="https://unpkg.com/@tensorflow-models/posenet"></script>
-    <title>De letterdoos</title>
-</head>
-  <body>
-    <h1 class="titel">De Letterdoos - Memento Festival</h1>
-
-    <section class="onepager__section">
-      <h2 class="section__title">Word Game with input possibilities</h2>
-
-      <article class="section__article">
-        <h3 clas="article__title">Information Website</h3>
-
-        <div class="wordGame topblock">
-          <div class="informationblock video__auteur">
-            <p>LIVE</p>
-            <p>op het festival</p>
-          </div>
-          <button class="button smallbutton"><a class="link buttonlink" href="">Say Hi!</a></button>
-        </div>
-
-        <div id="bottomblock" class="wordGame bottomblock">
-        <!-- hier komt de wordgame -->
-        </div>
-      </article>
-
-      <article class="section__article">
-        <h3 clas="article__title">Form to enter word</h3>
-        <form id="wordForm">
-          Wat betekent verdwalen voor jouw?<input type="text" id="enteredWord" class="enteredWord" name="enteredWord">
-          <input id="sumbitwordbutton" class="button bigbutton" type="button" value="VERSTUUR">
-        </form>
-      </article>
-
-    </section>
-      <script src="js/vendors/phaser.min.js"></script>
-      <script src="js/vendors/matter.js"></script>
-      <script src="/socket.io/socket.io.js"></script>
-      <script type="module" src="js/script.js"></script>
-  <script>
-  {
-    const $msgForm = document.getElementById('wordForm');
-    const $msgInput = document.getElementById('enteredWord');
-    //const $messages = document.getElementById('messages');
-
-    let socket; // will be assigned a value later
-
-    const init = () => {
-      socket = io.connect('/');
-      socket.on('connect', () => {
-        console.log(`Connected: ${socket.id}`);
-      });
-      socket.on('message', message => {
-        console.log(`Received message: ${message}`);
-        //$messages.value += `${message}\n`;
-      });
-      $msgForm.addEventListener('submit', e => handleSubmitMessage(e));
-    };
-
-    const handleSubmitMessage = e => {
-      e.preventDefault();
-      socket.emit('message', $msgInput.value);
-      $msgInput.value = '';
-    };
-
-    init();
-  }
-  </script>
   </body>
 </html>
