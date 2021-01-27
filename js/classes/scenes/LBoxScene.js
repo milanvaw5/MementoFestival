@@ -318,9 +318,10 @@ export default class LetterBoxScene extends Phaser.Scene {
 
     this.spawnLetters();
 
-    timer = setTimeout(this.readInAuteurInput(), 50000);
+    //timer = setTimeout(this.readInAuteurInput(), 50000);
 
-    document.getElementById('sumbitwordbutton').addEventListener('click', readWord);
+    document.getElementById('sumbitwordbutton').addEventListener('click', this.readInWord(), false);
+
     /*spawnWordInterval = this.time.addEvent({
       delay: 10000,
       callback: this.spawnWord,
@@ -405,8 +406,7 @@ export default class LetterBoxScene extends Phaser.Scene {
   };
 
    //indien een woord werd ingegeven word het woord ingelezen gesplits en erna gespawend
-  readInWord = (e) => {
-    e.preventDefault();
+  readInWord = () => {
     readWord = document.querySelector('.enteredWord').value;
 
     if (readWord!= '') {
@@ -414,11 +414,11 @@ export default class LetterBoxScene extends Phaser.Scene {
       this.splitWord(readWord);
       this.spawnWord();
       timer = setInterval(this.readInAuteurInput(), 50000); //timer resetten
-      return false; // Then it won't PostBack.
+      e.preventDefault();
     }
     else {
       console.log('niks ingegeven')
-      return false;
+      //e.preventDefault();
     }
   };
 
