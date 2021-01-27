@@ -1,7 +1,7 @@
 {
-  "main": "js/script.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node js/script.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "express": "^4.17.1",

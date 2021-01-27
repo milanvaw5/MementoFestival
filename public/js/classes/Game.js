@@ -1,4 +1,4 @@
-import LBoxScene from './scenes/LBoxScene.js';
+import VisitorScene from './scenes/VisitorScene.js';
 export default class Game extends Phaser.Game {
 
   constructor(){
@@ -20,7 +20,7 @@ export default class Game extends Phaser.Game {
       },
     }
     super(config);
-    this.scene.add(`lboxscene`,LBoxScene,true);
+    this.scene.add(`visitorscene`, VisitorScene ,true);
     console.log('CONNECTING TO SCENE');
   }
 }

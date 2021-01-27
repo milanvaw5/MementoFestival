@@ -254,7 +254,7 @@ init();
 }
 
 
-export default class LetterBoxScene extends Phaser.Scene {
+export default class AdminScene extends Phaser.Scene {
 
   constructor(config){
     super(config);
