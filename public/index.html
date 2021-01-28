@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://use.typekit.net/wna0uhq.css">
+     <!-- Load TensorFlow.js -->
+ <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
+ <!-- Load Posenet -->
+ <script src="https://unpkg.com/@tensorflow-models/posenet"></script>
+    <title>De letterdoos</title>
+</head>
+  <body>
+    <h1 class="titel">De Letterdoos - Memento Festival</h1>
+
+
+    <section class="onepager__section">
+      <h2 class="section__title">Word Game with input possibilities</h2>
+      <video id="video" playsinline style=" -moz-transform: scaleX(-1);
+      -o-transform: scaleX(-1);
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+      ">
+      </video>
+      <canvas id="output" style="position: absolute; top: 0; left: 0; z-index: 1;"></canvas>
+
+      <article class="section__article">
+        <h3 clas="article__title">Information Website</h3>
+
+        <div class="wordGame topblock">
+          <div class="informationblock video__auteur">
+            <p>LIVE</p>
+            <p>op het festival</p>
+          </div>
+          <button class="button smallbutton"><a class="link buttonlink" href="">Say Hi!</a></button>
+        </div>
+
+        <div id="bottomblock" class="wordGame bottomblock">
+        <!-- hier komt de wordgame -->
+        </div>
+      </article>
+
+    </section>
+  <script src="js/vendors/phaser.min.js"></script>
+  <script src="js/vendors/matter.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="module" src="js/script.js"></script>
+  </body>
+</html>
+
