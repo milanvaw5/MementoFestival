@@ -14,20 +14,28 @@
     <title>De letterdoos</title>
 </head>
   <body>
+    <form class="loginForm" action="post">
+      <label for="">Name</label>
+      <input class="email" type="email" value="">
+      <label for="">Password</label>
+      <input class="password" type="password" value="">
+      <input class="btnLogin" type="submit">
+    </form>
+    <button style="display: none" class="btnLogout">Logout</button>
     <h1 class="titel">De Letterdoos - Memento Festival</h1>
 
 
     <section class="onepager__section">
       <h2 class="section__title">Word Game with input possibilities</h2>
 
-      
+
       <video id="video" playsinline style=" -moz-transform: scaleX(-1);
       -o-transform: scaleX(-1);
       -webkit-transform: scaleX(-1);
       transform: scaleX(-1);
       ">
       </video>
-      <canvas id="output" style="position: absolute; top: 0; left: 0; z-index: 1;"></canvas>
+      <canvas id="output" style="z-index: 1;"></canvas>
 
       <article class="section__article">
         <h3 clas="article__title">Information Website</h3>
@@ -46,10 +54,25 @@
       </article>
 
     </section>
-  <script src="js/vendors/phaser.min.js"></script>
-  <script src="js/vendors/matter.js"></script>
-  <script src="/socket.io/socket.io.js"></script>
-  <script type="module" src="js/script.js"></script>
+
   </body>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-app.js"></script> 
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-auth.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  
+</script>
+<script type="module" src="js/helpers/authentication.js"></script>
+<script src="js/vendors/phaser.min.js"></script>
+<script src="js/vendors/matter.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<!--<script type="module" src="js/script.js"></script>-->
+
 </html>
 

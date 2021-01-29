@@ -133,7 +133,7 @@ function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
   tensorflowpunten.push(leftWrist, rightWrist, leftEye, rightEye, leftShoulder, rightShoulder, leftElbow,
     rightElbow, leftHip, rightHip, leftKnee, rightKnee, leftAnkle, rightAnkle, minConfidence, ctx);
 
-    console.log(tensorflowpunten);
+   // console.log(tensorflowpunten);
   // plaats joints naar believen
 
   if (leftWrist.score > minConfidence) {
