@@ -18,6 +18,8 @@
 
     <section class="onepager__section">
       <h2 class="section__title">Start Information with preview video</h2>
+      <video class="previewVideo" playsinline autoplay muted>
+      </video>
       <video id="video" playsinline style=" -moz-transform: scaleX(-1);
       -o-transform: scaleX(-1);
       -webkit-transform: scaleX(-1);
@@ -72,10 +74,30 @@
 
       <article class="section__article">
         <h3 clas="article__title">Form to enter word</h3>
-        <form id="wordForm">
-          Wat betekent verdwalen voor jouw?<input type="text" id="enteredWord" class="enteredWord" name="enteredWord">
+        <form class="wordForm form-0">
+          
+          Wat betekent verdwalen voor jou?<input type="text" id="enteredWord" class="enteredWord" name="enteredWord">
           <input id="sumbitwordbutton" class="button bigbutton" type="submit" value="VERSTUUR">
+          <button class="btn-next">volgende</button>
         </form>
+
+        <form class="feelingsForm form-1">
+          
+          Hoe voel je je?<input type="text" id="enteredWord" class="enteredWord" name="enteredWord">
+          <input id="sumbitwordbutton" class="button bigbutton" type="submit" value="VERSTUUR">
+          <button class="btn-next">volgende</button>
+        </form>
+
+        <form class="challengeForm form-2">
+          
+          Challenge<input type="text" id="enteredWord" class="enteredWord" name="enteredWord">
+          <input id="sumbitwordbutton" class="button bigbutton" type="submit" value="VERSTUUR">
+          <button class="btn-next">volgende</button>
+        </form>
+        <div class="haikuForm form-3">
+          <p class="haiku">hier komt haiku</p>
+        </div>
+        
       </article>
 
     </section>
@@ -119,5 +141,7 @@
       <script src="js/vendors/matter.js"></script>
       <script src="/socket.io/socket.io.js"></script>
       <script type="module" src="js/script.js"></script>
+      <script type= "module" src="js/helpers/randomVideo.js"></script>
+      <script type= "module" src="js/helpers/formHandler.js"></script>
   </body>
 </html>
