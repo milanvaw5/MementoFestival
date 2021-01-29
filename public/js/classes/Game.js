@@ -1,4 +1,4 @@
-//import VisitorScene from './scenes/VisitorScene.js';
+import VisitorScene from './scenes/VisitorScene.js';
 import AdminScene from './scenes/AdminScene.js';
 export default class Game extends Phaser.Game {
 
@@ -21,8 +21,14 @@ export default class Game extends Phaser.Game {
       },
     }
     super(config);
-    //this.scene.add(`visitorscene`, VisitorScene ,true);
-    this.scene.add(`adminscene`, AdminScene ,true);
+ 
+    const path = window.location.pathname;
+    if(path === "index.html"){
+      this.scene.add(`adminscene`, AdminScene ,true);
+    }else{
+      this.scene.add(`visitorscene`, VisitorScene ,true)
+    }
+   
     console.log('CONNECTING TO SCENE');
   }
 }

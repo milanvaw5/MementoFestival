@@ -19,7 +19,7 @@
 
 
     const randomNumber = () => {
-        const random = Math.floor(Math.random(1)*2);
+        const random = Math.floor(Math.random(1)*videos.length);
         return random;
     }
 

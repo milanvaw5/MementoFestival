@@ -25,7 +25,7 @@ body {
     max-height: 100vh;
 }
 
-.section__title, .article__title {
+.section__title, .article__title , .section-admin__title{
     display: none;
 }
 
@@ -42,3 +42,27 @@ body {
   text-transform: capitalize;
   font-size: 0.8rem;
 }
+
+.wordGame {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: 'overlap';
+}
+canvas {
+    grid-area: overlap;
+    z-index: 1;
+}
+.webcam {
+    grid-area: overlap;
+    z-index: 0;
+}
+
+.section-admin {
+    height: 100vh;
+}
+
+.section-admin--active {
+    display: none;
+}
+

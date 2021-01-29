@@ -11,50 +11,38 @@
  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
  <!-- Load Posenet -->
  <script src="https://unpkg.com/@tensorflow-models/posenet"></script>
-    <title>De letterdoos</title>
+    <title>De Letterdoos - installatie</title>
 </head>
   <body>
-    <form class="loginForm" action="post">
-      <label for="">Name</label>
-      <input class="email" type="email" value="">
-      <label for="">Password</label>
-      <input class="password" type="password" value="">
-      <input class="btnLogin" type="submit">
-    </form>
-    <button style="display: none" class="btnLogout">Logout</button>
+    
     <h1 class="titel">De Letterdoos - Memento Festival</h1>
 
+    <section class="section-admin">
+      <form class="loginForm" action="post">
+        <label for="">E-mail
+        <input class="email" type="email" value="">
+        </label>
+        <label for="">Wachtwoord
+        <input class="password" type="password" value="">
+        </label>
+        <input class="btnLogin" type="submit" value="Login">
+      </form>
+      <button style="display: none" class="btnLogout">Logout</button>
+    </section>
+    <section style="display: none" class="section-admin section-admin--active">
+      <h2 class="section-admin__title">Letterdoos Game</h2>
 
-    <section class="onepager__section">
-      <h2 class="section__title">Word Game with input possibilities</h2>
-
-
-      <video id="video" playsinline style=" -moz-transform: scaleX(-1);
-      -o-transform: scaleX(-1);
-      -webkit-transform: scaleX(-1);
-      transform: scaleX(-1);
-      ">
-      </video>
-      <canvas id="output" style="z-index: 1;"></canvas>
-
-      <article class="section__article">
-        <h3 clas="article__title">Information Website</h3>
-
-        <div class="wordGame topblock">
-          <div class="informationblock video__auteur">
-            <p>LIVE</p>
-            <p>op het festival</p>
-          </div>
-          <button class="button smallbutton"><a class="link buttonlink" href="">Say Hi!</a></button>
-        </div>
-
+      <!--<canvas id="output" style="z-index: 1;"></canvas>-->
         <div id="bottomblock" class="wordGame bottomblock">
         <!-- hier komt de wordgame -->
+        <video class="webcam" id="video" playsinline style=" -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        ">
+        </video>
         </div>
-      </article>
-
     </section>
-
   </body>
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->

@@ -36,18 +36,18 @@ let rightHipPos = {x:1, y:1};
 let leftAnklePos = {x:1, y:1};
 let rightAnklePos = {x:1, y:1};
 
-const $msgForm = document.getElementById('wordForm');
+const $msgForm = document.querySelector(`.wordForm`);
 const $msgInput = document.getElementById('enteredWord');
 
 let socket; // will be assigned a value later
-export default class AdminScene extends Phaser.Scene {
+export default class VisitorScene extends Phaser.Scene {
 
   constructor(config){
     super(config);
   }
 
   preload(){
-    console.log(`PRELOAD`);
+    console.log(`PRELOAD visitor`);
     //Preloading sprites
 
     //this.load.image('backgroundimage', 'assets/bimg.jpg');

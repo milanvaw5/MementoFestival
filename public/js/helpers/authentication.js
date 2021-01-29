@@ -4,12 +4,15 @@
     const $password = document.querySelector(`.password`);
     const $loginForm = document.querySelector(`.loginForm`);
     const $btnLogout = document.querySelector(`.btnLogout`);
+    const $sectionAdminActive = document.querySelector(`.section-admin--active`);
     let firebaseInstance;
     let authInstance;
 
     const authStateChange = user => {
         if(user){
             console.log(`De user is ingelogd: ${user.email}`);
+            $sectionAdminActive.style.display = "block";
+            $sectionAdminActive.scrollIntoView();
             $loginForm.style.display = "none";
             $btnLogout.style.display = "block";
             const script = document.createElement('script')

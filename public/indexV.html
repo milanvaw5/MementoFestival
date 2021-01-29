@@ -8,25 +8,20 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://use.typekit.net/wna0uhq.css">
      <!-- Load TensorFlow.js -->
- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
- <!-- Load Posenet -->
- <script src="https://unpkg.com/@tensorflow-models/posenet"></script>
-    <title>De letterdoos</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
+    <!-- Load Posenet -->
+    <script src="https://unpkg.com/@tensorflow-models/posenet"></script>
+    <title>De Letterdoos - online bezoeker</title>
 </head>
   <body>
     <h1 class="titel">De Letterdoos - Memento Festival</h1>
 
     <section class="onepager__section">
       <h2 class="section__title">Start Information with preview video</h2>
-      <video class="previewVideo" playsinline autoplay muted>
+      <video class="previewVideo" type="video/mp4" playsinline autoplay muted>
+        Your browser does not support the video tag.
       </video>
-      <video id="video" playsinline style=" -moz-transform: scaleX(-1);
-      -o-transform: scaleX(-1);
-      -webkit-transform: scaleX(-1);
-      transform: scaleX(-1);
-      ">
-      </video>
-      <canvas id="output" style="position: absolute; top: 0; left: 0; z-index: 1;"></canvas>
+      
 
       <article class="section__article">
         <h3 clas="article__title">Information Website</h3>

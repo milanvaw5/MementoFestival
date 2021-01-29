@@ -69,11 +69,11 @@ const poseNetState = {
 
 const detectPoseInRealTime = (video) => {
   const canvas = document.getElementById('output');
-  const ctx = canvas.getContext('2d');
+  //const ctx = canvas.getContext('2d');
   const flipPoseHorizontal = true;
 
-  canvas.width = videoWidth;
-  canvas.height = videoHeight;
+  //canvas.width = videoWidth;
+  //canvas.height = videoHeight;
 
   async function poseDetectionFrame() {
     let poses = [];
@@ -92,19 +92,19 @@ const detectPoseInRealTime = (video) => {
         break;
     }
 
-    ctx.clearRect(0, 0, videoWidth, videoHeight);
+    //ctx.clearRect(0, 0, videoWidth, videoHeight);
 
-    if (poseNetState.output.showVideo) {
+   /* if (poseNetState.output.showVideo) {
       ctx.save();
       ctx.scale(-1, 1);
       ctx.translate(-videoWidth, 0);
       ctx.restore();
-    }
+    }*/
 
     poses.forEach(({score, keypoints}) => {
       if (score >= minPoseConfidence) {
         if (poseNetState.output.showPoints) {
-          drawKeypoints(keypoints, minPartConfidence, ctx);
+          drawKeypoints(keypoints, minPartConfidence);
         }
       }
     });
@@ -114,7 +114,7 @@ const detectPoseInRealTime = (video) => {
   poseDetectionFrame();
 }
 
-function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
+function drawKeypoints(keypoints, minConfidence, scale = 1) {
   let leftWrist = keypoints.find(point => point.part === 'leftWrist');
   let rightWrist = keypoints.find(point => point.part === 'rightWrist');
   let leftEye = keypoints.find(point => point.part === 'leftEye');
@@ -131,7 +131,7 @@ function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
   let rightAnkle = keypoints.find(point => point.part === 'rightAnkle');
 
   tensorflowpunten.push(leftWrist, rightWrist, leftEye, rightEye, leftShoulder, rightShoulder, leftElbow,
-    rightElbow, leftHip, rightHip, leftKnee, rightKnee, leftAnkle, rightAnkle, minConfidence, ctx);
+    rightElbow, leftHip, rightHip, leftKnee, rightKnee, leftAnkle, rightAnkle, minConfidence);
 
    // console.log(tensorflowpunten);
   // plaats joints naar believen
@@ -139,84 +139,84 @@ function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
   if (leftWrist.score > minConfidence) {
       const {y, x} = leftWrist.position;
       leftWristPos = leftWrist.position;
-      drawPoint(ctx, y * scale, x * scale, 10, colorLeft);
+      //drawPoint(ctx, y * scale, x * scale, 10, colorLeft);
   }
 
   if (rightWrist.score > minConfidence) {
-      const {y, x} = rightWrist.position;
+      //const {y, x} = rightWrist.position;
       rightWristPos = rightWrist.position;
-      drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+      //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
 
   if (rightEye.score > minConfidence) {
-    const {y, x} = rightEye.position;
+    //const {y, x} = rightEye.position;
     rightEyePos = rightEye.position;
-    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (leftEye.score > minConfidence) {
-    const {y, x} = leftEye.position;
+    //const {y, x} = leftEye.position;
     leftEyePos = leftEye.position;
-    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (leftShoulder.score > minConfidence) {
-    const {y, x} = leftShoulder.position;
+    //const {y, x} = leftShoulder.position;
     leftShoulderPos = leftShoulder.position;
-    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+   // drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (rightShoulder.score > minConfidence) {
-    const {y, x} = rightShoulder.position;
+    //const {y, x} = rightShoulder.position;
     rightShoulderPos = rightShoulder.position;
-    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (leftElbow.score > minConfidence) {
-    const {y, x} = leftElbow.position;
+    //const {y, x} = leftElbow.position;
     leftElbowPos = leftElbow.position;
-    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (rightElbow.score > minConfidence) {
-    const {y, x} = rightElbow.position;
+    //const {y, x} = rightElbow.position;
     rightElbowPos = rightElbow.position;
-    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (leftHip.score > minConfidence) {
-    const {y, x} = leftHip.position;
+    //const {y, x} = leftHip.position;
     leftHipPos = leftHip.position;
-    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (rightHip.score > minConfidence) {
-    const {y, x} = rightHip.position;
+    //const {y, x} = rightHip.position;
     rightHipPos = rightHip.position;
-    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (leftKnee.score > minConfidence) {
-    const {y, x} = leftKnee.position;
+    //const {y, x} = leftKnee.position;
     leftKneePos = leftKnee.position;
-    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (rightKnee.score > minConfidence) {
-    const {y, x} = rightKnee.position;
+    //const {y, x} = rightKnee.position;
     rightKneePos = rightKnee.position;
-    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (leftAnkle.score > minConfidence) {
-    const {y, x} = leftAnkle.position;
+    //const {y, x} = leftAnkle.position;
     leftAnklePos = leftAnkle.position;
-    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (rightAnkle.score > minConfidence) {
-    const {y, x} = rightAnkle.position;
+    //const {y, x} = rightAnkle.position;
     rightAnklePos = rightAnkle.position;
-    drawPoint(ctx, y * scale, x * scale, 10, colorRight);
+    //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
 }
 
-function drawPoint(ctx, y, x, r, color) {
+/*function drawPoint(ctx, y, x, r, color) {
   ctx.beginPath();
   ctx.arc(x, y, r, 0, 2 * Math.PI);
   ctx.fillStyle = color;
   ctx.fill();
   tensorflowpunten = [];
-}
+}*/
 
 const setupCamera = async () => {
   const video = document.getElementById('video');
@@ -257,9 +257,14 @@ const init = async () => {
       multiplier: poseNetState.input.multiplier,
       quantBytes: poseNetState.input.quantBytes
   });
-  startVideo();
+  
+    startVideo();
+  
+  
 }
+if(window.location.pathname === "index.html"){
 init();
+}
 
 }
 
@@ -271,7 +276,7 @@ export default class AdminScene extends Phaser.Scene {
   }
 
   preload(){
-    console.log(`PRELOAD`);
+    console.log(`PRELOAD admin`);
     //Preloading sprites
 
     //this.load.image('backgroundimage', 'assets/bimg.jpg');
