@@ -205,6 +205,10 @@ export default class VisitorScene extends Phaser.Scene {
         console.log(woordje);
         this.readInWord(woordje);
       });
+      socket.on('points', jointPositions => {
+
+        console.log(jointPositions);
+      });
       /*socket.on('messages', messages => {
         letters = letters.push(woordje);
         console.log(letters);
@@ -215,7 +219,10 @@ export default class VisitorScene extends Phaser.Scene {
         console.log(letters);
         messages = letters;
       });*/
-      $msgForm.addEventListener('submit', e => this.handleSubmitMessage(e));
+      if($msgForm){
+        $msgForm.addEventListener('submit', e => this.handleSubmitMessage(e));
+      }
+      
     };
 
     handleSubmitMessage = e => {
