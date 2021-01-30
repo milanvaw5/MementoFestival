@@ -257,10 +257,10 @@ const init = async () => {
       multiplier: poseNetState.input.multiplier,
       quantBytes: poseNetState.input.quantBytes
   });
-  
+
     startVideo();
-  
-  
+
+
 }
 if(window.location.pathname === "index.html"){
 init();
