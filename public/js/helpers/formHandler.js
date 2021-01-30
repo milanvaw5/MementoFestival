@@ -1,5 +1,6 @@
 {
     const $nextButtons = document.querySelectorAll(`.btn-next`);
+    const $wordForm = document.querySelector(`.wordForm`);
     const $feelingsForm = document.querySelector(`.feelingsForm`);
     const $challengeForm = document.querySelector(`.challengeForm`);
     const $haikuForm = document.querySelector(`.haikuForm`);
@@ -11,8 +12,8 @@
     const handleNextForm = e => {
         e.preventDefault();
         document.querySelector(`.form-${currentForm}`).style.display = `none`;
-        if (currentForm === 3) {
-          currentForm = 3;
+        if (currentForm === 4) {
+          currentForm = 4;
 
 
         } else {
@@ -20,7 +21,7 @@
         }
         document.querySelector(`.btn-next`).innerHTML = `&#10132; ${currentForm}/8`;
         document.querySelector(`.form-${currentForm}`).style.display = `block`;
-        if(currentForm === 3){
+        if(currentForm === 4){
             $haiku.textContent = haikus[0];
         }
            
@@ -40,6 +41,7 @@
     
     
     const init = () => {
+        $wordForm.style.display = `none`;
         $feelingsForm.style.display = `none`;
         $challengeForm.style.display = `none`;
         $haikuForm.style.display = `none`;

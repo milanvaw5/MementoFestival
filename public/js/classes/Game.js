@@ -23,7 +23,7 @@ export default class Game extends Phaser.Game {
     super(config);
  
     const path = window.location.pathname;
-    if(path === "index.html"){
+    if(path === "/index.html"){
       this.scene.add(`adminscene`, AdminScene ,true);
     }else{
       this.scene.add(`visitorscene`, VisitorScene ,true)

@@ -13,6 +13,11 @@ io.on('connection', socket => {
     io.sockets.emit(`message`, message);
   });
 
+  socket.on('points', jointPositions => {
+    console.log(jointPositions);
+    io.sockets.emit(`points`, jointPositions);
+  });
+
 });
 
 app.use(express.static('public'));

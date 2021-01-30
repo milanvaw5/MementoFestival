@@ -14,32 +14,32 @@
     <title>De Letterdoos - online bezoeker</title>
 </head>
   <body>
-    <h1 class="titel">De Letterdoos - Memento Festival</h1>
+    <h1 class="titel hidden">De Letterdoos - Memento Festival</h1>
 
     <section class="onepager__section">
-      <h2 class="section__title">Start Information with preview video</h2>
-      <video class="previewVideo" type="video/mp4" playsinline autoplay muted>
-        Your browser does not support the video tag.
-      </video>
+      <h2 class="section__title hidden">Home</h2>
+     
       
 
       <article class="section__article">
-        <h3 clas="article__title">Information Website</h3>
+        <h3 class="article__title hidden">Informatie over De Letterdoos</h3>
         <button class="button smallbutton"><a class="link buttonlink" href="">Bezoek Memento website</a></button>
         <div class="textparagraph">
           <p>Welkom op het memento festival</p>
           <p>Via deze website kan je interactie nemen met het festival dat momenteel fysiek doorgaat in Kortrijk.</p>
         </div>
         <div class="textparagraph">
-          <p>De letterdoos</p>
-          <p>De letterdoos is een fysieke installatie op het festival, maar via deze website brengen we de festival naar jouw toe.
-            Jij bepaald, samen met de rest van de online community wat er op de installatie komt.</p>
+          <p>De Letterdoos</p>
+          <p>De Letterdoos is een fysieke installatie op het festival, maar via deze website brengen we de festival naar jou toe.
+            Jij bepaalt, samen met de rest van de online community wat er op de installatie komt.</p>
         </div>
         <button class="button startbutton"><a class="link buttonlink" href="#wordgame">START</a></button>
       </article>
-
+      <video class="previewVideo" type="video/mp4" playsinline autoplay muted>
+        Your browser does not support the video tag.
+      </video>
       <article class="section__article">
-        <h3 clas="article__title">Videos of literaire creations</h3>
+        <h3 class="article__title hidden">Reeks van video's van literaire creaties van Memento collectief</h3>
         <!--<video></video>-->
         <div class="informationblock video__auteur">
           <p>Gedicht van</p>
@@ -48,18 +48,18 @@
       </article>
     </section>
 
-    <section class="onepager__section">
-      <h2 class="section__title">Word Game with input possibilities</h2>
+    <section id="wordgame" class="onepager__section">
+      <h2 class="section__title hidden">De Letterdoos online game</h2>
 
       <article class="section__article">
-        <h3 clas="article__title">Information Website</h3>
+        <h3 class="article__title hidden">Stream</h3>
 
         <div class="wordGame topblock">
           <div class="informationblock video__auteur">
             <p>LIVE</p>
             <p>op het festival</p>
           </div>
-          <button class="button smallbutton"><a class="link buttonlink" href="">Say Hi!</a></button>
+         
         </div>
 
         <div id="bottomblock" class="wordGame bottomblock">
@@ -68,75 +68,108 @@
       </article>
 
       <article class="section__article">
-        <h3 clas="article__title">Form to enter word</h3>
-        <form class="wordForm form-0">
+        <button>Terug naar home</button>
+        <h3 clas="article__title">Bespeel De Letterdoos</h3>
+
+        <div class="controls">
+          <button class="button smallbutton"><a class="link buttonlink" href="">Schud De Letterdoos</a></button>
+          <button class="button smallbutton"><a class="link buttonlink" href="">Stuur een hartje</a></button>
+          <button class="button smallbutton"><a class="link buttonlink" href="">Zeg hallo!</a></button>
+       </div>
+
+        <div class="memootje">
+
+        <div class="introForm form-0">
+          <p>Een auteur heeft iets achtergelaten voor jou</p>
+          <button class="btn-next">volgende</button>
+        </div>
+        <form class="wordForm form-1">
           
           Wat betekent verdwalen voor jou?<input type="text" id="enteredWord" class="enteredWord" name="enteredWord">
-          <input id="sumbitwordbutton" class="button bigbutton" type="submit" value="VERSTUUR">
+          <input id="sumbitwordbutton" class="button bigbutton" type="submit" value=" VERSTUUR">
           <button class="btn-next">volgende</button>
         </form>
 
-        <form class="feelingsForm form-1">
+        <form class="feelingsForm form-2">
           
           Hoe voel je je?<input type="text" id="enteredWord" class="enteredWord" name="enteredWord">
           <input id="sumbitwordbutton" class="button bigbutton" type="submit" value="VERSTUUR">
           <button class="btn-next">volgende</button>
         </form>
 
-        <form class="challengeForm form-2">
+        <form class="challengeForm form-3">
           
           Challenge<input type="text" id="enteredWord" class="enteredWord" name="enteredWord">
           <input id="sumbitwordbutton" class="button bigbutton" type="submit" value="VERSTUUR">
           <button class="btn-next">volgende</button>
         </form>
-        <div class="haikuForm form-3">
+
+        <div class="haikuForm form-4">
           <p class="haiku">hier komt haiku</p>
         </div>
-        
+
+      </div>
+      <button>Meer over de installatie</button>
       </article>
 
+    </section>
+
+
+    <section class="onepager__section">
+      <h2 class="section__title">Meer informatie over de installatie</h2>
+      <article>
+        <h3>Stap in de Letterdoos</h3>
+        <p>De Letterdoos kan je niet alleen vanop je scherm besturen, maar ook in Kortrijk zelf. Kom eens langs en neem een kijkje of spring zelf in de Letterdoos en beweeg door de letters als het virtuele personage.</p>
+      </article>
+      <article>
+        <h3>Wandelparcours</h3>
+        <p>De Letterdoos maakt deel uit van het Memento wandelparcours en is voor iedereen toegankelijk.</p>
+        <p>Naast het festival organiseert Memento wandelparcours rond Kortrijk. Neem deel via de app en laat je verassen door de adembenemende stad Kortrijk.</p>
+      </article>
+      <article>
+        <h3>Praktisch</h3>
+        <ul>
+          <li>18/04/2021 - 24/04/2021</li>
+          <li>Elke dag van 08:00 tot 20:00</li>
+          <li>Kortrijk op de Houtmarkt 54 </li>
+        </ul>
+      </article>
     </section>
 
     <section class="onepager__section">
-      <h2 class="section__title">In depth information about the website, fesital and covid-19</h2>
+      <h2 class="section__title">Meer informatie over Memento en Covid-19</h2>
 
-      <article class="section__article">
-        <h3 clas="article__title">Informtation about the installation, the festival and covid-19</h3>
-
-        <div class="textparagraph">
-          <p>De letterdoos</p>
-          <p>De letterdoos is een online en ofline installatie gemaakt in de naam van het Memento festival.
-            In samenwerking met leerningen van Devine.</p>
-        </div>
-
-        <div class="textparagraph">
-          <p>Memento Woordfestival 2021</p>
-          <p>Memento is een Woordfestival in Kortrijk, het bestaat uit het initiatief van de Letterzetter van Kortrijk.
-            Letterzetter is een collectief van jonge kunstenaars in de regio, het Lettertype Collectief.
-            De letterzetter van Kortrijk bengt woordkunst steviger in de openbare ruimte en leidt jonge kunstenaars op
-            tot creatieve ondernemers.
-          </p>
-          <div class="buttonbox">
-            <button class="button smallbutton"><a class="link buttonlink" href="">Letterzetter Kortrijk</a></button>
-            <button class="button smallbutton"><a class="link buttonlink" href="">Bezoek MEMENTO website</a></button>
-          </div>
-        </div>
-
-        <div class="textparagraph">
-          <p>Covid-19</p>
-          <p>Het initiatief is onstaan door de restricties door COVID-19.
-            Via De letterdoos willen we de online community bereiken en jullie mee betrekken bij het festival.</p>
-          <p>Wij hopen natuurlijk met de volledige organisatie en collectief oom jullie volgend jaar terug te mogen ontvangen!</p>
-          <button class="button smallbutton"><a class="link buttonlink" href="">Bekijk tickets</a></button>
-        </div>
+      <article>
+        <h3>Memento Woordfestival 2021</h3>
+        <p>De Letterdoos maakt deel uit van het Memento Woordfestival in Kortrijk. Het festival bestaat uit het initiatief van de Letterzetter van Kortrijk. Letterzetter is een collectief van jonge kunstenaars in de regio namelijk het Lettertype Collectief. De letterzetter van Kortrijk brengt woordkunst steviger in de openbare ruimte en leidt jonge kunstenaars op tot creatieve ondernemers. </p>
+        <button>Letterzetter Kortrijk</button>
+        <button>Bekijk tickets</button>
       </article>
+
+      <article>
+        <h3>Covid-19</h3>
+        <p>Het initiatief is ontstaan door de beperkingen van COVID-19. Dit jaar wil Memento meer bieden op het vlak van een online festival ervaring. We betrekken de online community mee op een interactieve manier en maken plaats voor een intieme ontmoeting tussen de artiesten van het collectief en het publiek.</p>
+      </article>
+     
     </section>
 
-      <script src="js/vendors/phaser.min.js"></script>
-      <script src="js/vendors/matter.js"></script>
-      <script src="/socket.io/socket.io.js"></script>
-      <script type="module" src="js/script.js"></script>
-      <script type= "module" src="js/helpers/randomVideo.js"></script>
-      <script type= "module" src="js/helpers/formHandler.js"></script>
+     <footer>
+
+      <ul>
+        <li><a href="">Memento Festival</a></li>
+        <li><a href="">Letterzetter Collectief</a></li>
+        <li><a href="">Memento tickets</a></li>
+        <li><a href="">Wandelparcours app</a></li>
+      </ul>
+      <p>De letterdoos is mede mogelijk gemaakt door Memento & studenten Devine-Howest te Kortijk.</p>
+      <p>Stad Kortrijk - Grote Markt 54 - 8500 Kortrijk - 1777@kortrijk.be - tel. 1777 (gratis)
+        Alle rechten voorbehouden - Gebruiksvoorwaarden - Privacyverklaring</p>
+     </footer>
   </body>
+  <script src="js/vendors/phaser.min.js"></script>
+  <script src="js/vendors/matter.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="module" src="js/script.js"></script>
+  <script type= "module" src="js/helpers/randomVideo.js"></script>
+  <script type= "module" src="js/helpers/formHandler.js"></script>
 </html>
