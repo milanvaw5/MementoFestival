@@ -1,1 +1,45 @@
 /* another css file*/
+
+.onepager__section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.section__article {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.textparagraph {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  line-height: 1.3rem;
+}
+
+.intro__top {
+  max-width: 80%;
+  justify-content: start;
+  line-height: 91.6%;
+}
+
+.button {
+  color: white;
+  padding: 2rem 1rem;
+  margin: 1rem 0;
+  font-weight: 700;
+}
+
+.primbutton {
+  border: 0.1rem solid black;
+  background-color: black;
+}

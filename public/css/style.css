@@ -1,20 +1,3 @@
-/*.body {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    height: 90vh;
-}
-
-#webcam {
-
-}
-
-#canvas {
-    width: 50%;
-    height: 100%;
-    margin: auto;
-}*/
-
 canvas {
     max-width: 100vw;
     max-height: 100vh;
@@ -23,6 +6,7 @@ canvas {
 body {
     max-width: 100vw;
     max-height: 100vh;
+    background-color: var(--backgroundColor);
 }
 
 .section__title, .article__title , .section-admin__title{
@@ -53,6 +37,7 @@ body {
   grid-template-rows: 1fr;
   grid-template-areas: 'overlap';
 }
+
 canvas {
     grid-area: overlap;
     z-index: 1;
