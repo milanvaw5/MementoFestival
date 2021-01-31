@@ -6,7 +6,7 @@ const port = process.env.PORT || 80;
 const io = require('socket.io')(server);
 
 
-let words = ['startWord'];
+let words = [];
 io.on('connection', socket => {
   console.log('Socket connected', socket.id);
   
@@ -19,6 +19,11 @@ io.on('connection', socket => {
     
   });
 
+  socket.on('feeling', selectedFeeling => {
+    console.log(selectedFeeling);
+    io.sockets.emit(`selectedFeeling`, selectedFeeling);
+  });
+
   socket.on('requestWords', () => {
     console.log(words);
     socket.emit('getWords', words);
@@ -26,10 +31,10 @@ io.on('connection', socket => {
 
   
 
-  //socket.on('points', jointPositions => {
-  //  console.log(jointPositions);
-  //  io.sockets.emit(`points`, jointPositions);
-  //});
+  socket.on('points', jointPositions => {
+    console.log(jointPositions);
+    io.sockets.emit(`points`, jointPositions);
+  });
 
 });
 

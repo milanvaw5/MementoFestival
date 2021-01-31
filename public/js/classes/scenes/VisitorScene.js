@@ -6,7 +6,7 @@ let timer;
 let readWord = 'abcde';
 let split = [];
 let letters = [];
-let widthDivScreen = document.querySelector('.bottomblock').style.width;
+let widthDivScreen = document.querySelector(`.wordGame`).style.width;
 let spacebetween = 20;
 
 let jointPositionsGebruikers = {
@@ -51,8 +51,12 @@ let auteurInput = ['Verloren','hinkel ik','over de sproeten op mijn vingers',
 let auteurInput = ['verloren','hinkelik','overdesproeten','opmijnvingers'];
 
 
-const $msgForm = document.querySelector(`.wordForm`);
+const $wordForm = document.querySelector(`.wordForm`);
+const $feelingsForm = document.querySelector(`.feelingsForm`);
+const $challengeForm = document.querySelector(`.challengeForm`);
 const $msgInput = document.getElementById('enteredWord');
+const $feelingOptions = document.querySelectorAll(`.feelingOption`);
+
 
 let socket; // will be assigned a value later
 export default class VisitorScene extends Phaser.Scene {
@@ -299,6 +303,12 @@ export default class VisitorScene extends Phaser.Scene {
         this.readInWord();
         
       });
+      socket.on('selectedFeeling', selectedFeeling => {
+        console.log(selectedFeeling)
+        let fallPosition = Phaser.Math.Between(20, widthDivScreen / 4);
+        this.feeling = this.matter.add.sprite(fallPosition, 0, 'test', 0, {restitution: .5});
+        
+      });
       socket.on('points', jointPositions => {
 
         jointPositionsGebruikersTarget.leftWristPosTarget.x = jointPositions.leftWristPos.x;
@@ -355,19 +365,33 @@ export default class VisitorScene extends Phaser.Scene {
         console.log(letters);
         messages = letters;
       });*/
-      if($msgForm){
-        $msgForm.addEventListener('submit', e => this.handleSubmitMessage(e));
+      if($wordForm){
+        $wordForm.addEventListener('submit', e => this.handleSubmitMessage(e));
+      }
+      if($feelingsForm){
+        $feelingsForm.addEventListener('submit', e => this.handleSubmitFeeling(e));
       }
       
     };
 
     handleSubmitMessage = e => {
-    e.preventDefault();
-    socket.emit('message', $msgInput.value);
-    //socket.emit('messages', messages);
-    //socket.emit('points', points);
-    $msgInput.value = '';
+       e.preventDefault();
+       socket.emit('message', $msgInput.value);
+       //socket.emit('messages', messages);
+       //socket.emit('points', points);
+       $msgInput.value = '';
     }
+    handleSubmitFeeling = e => {
+      e.preventDefault();
+      console.log("clickede")
+      let selectedFeeling;
+      $feelingOptions.forEach(option => {
+        if(option.checked){
+          selectedFeeling = option.value;
+        }
+      });
+      socket.emit('feeling', selectedFeeling);
+   }
 
 
   spawnLetters() {

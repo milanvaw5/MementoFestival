@@ -59,7 +59,7 @@ canvas {
 }
 .webcam {
     grid-area: overlap;
-    z-index: 2;
+    z-index: 0;
 }
 
 .section-admin {

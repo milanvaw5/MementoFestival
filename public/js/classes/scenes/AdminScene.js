@@ -352,7 +352,7 @@ export default class AdminScene extends Phaser.Scene {
 
     this.spawnLetters();
     // emit only 10 times per second
-    this.time.addEvent({ delay: 100000, callback: this.onEvent, callbackScope: this, loop: true });
+    this.time.addEvent({ delay: 100, callback: this.onEvent, callbackScope: this, loop: true });
   }
 
   onEvent(){
@@ -378,7 +378,7 @@ export default class AdminScene extends Phaser.Scene {
     jointPositions.leftEyePos.x += ( jointPositionsTarget.leftEyePosTarget.x - jointPositions.leftEyePos.x ) / fpsFactor;
     jointPositions.leftEyePos.y += ( jointPositionsTarget.leftEyePosTarget.y - jointPositions.leftEyePos.y ) / fpsFactor;
     this.leftEyeAvatar.x = jointPositions.leftEyePos.x;
-    this.leftEyeAvatar.y = jointPositions.leftEyePos.y + 800;
+    this.leftEyeAvatar.y = jointPositions.leftEyePos.y;
 
     jointPositions.leftShoulderPos.x += ( jointPositionsTarget.leftShoulderPosTarget.x - jointPositions.leftShoulderPos.x ) / fpsFactor;
     jointPositions.leftShoulderPos.y += ( jointPositionsTarget.leftShoulderPosTarget.y - jointPositions.leftShoulderPos.y ) / fpsFactor;
@@ -415,7 +415,7 @@ export default class AdminScene extends Phaser.Scene {
     jointPositions.rightEyePos.x += ( jointPositionsTarget.rightEyePosTarget.x - jointPositions.rightEyePos.x ) / fpsFactor;
     jointPositions.rightEyePos.y += ( jointPositionsTarget.rightEyePosTarget.y - jointPositions.rightEyePos.y ) / fpsFactor;
     this.rightEyeAvatar.x = jointPositions.rightEyePos.x;
-    this.rightEyeAvatar.y = jointPositions.rightEyePos.y + 800;
+    this.rightEyeAvatar.y = jointPositions.rightEyePos.y;
 
     jointPositions.rightShoulderPos.x += ( jointPositionsTarget.rightShoulderPosTarget.x - jointPositions.rightShoulderPos.x ) / fpsFactor;
     jointPositions.rightShoulderPos.y += ( jointPositionsTarget.rightShoulderPosTarget.y - jointPositions.rightShoulderPos.y ) / fpsFactor;
