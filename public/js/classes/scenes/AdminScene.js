@@ -5,15 +5,10 @@ let timer;
 let fpsFactor = 5;
 let readWord;
 let split = [];
-
-let tensorflowpunten = [];
-
+let words = [];
 let letters = [];
-
 let widthDivScreen = document.querySelector('.bottomblock').style.width;
-
 let spacebetween = 20;
-
 let socket; // will be assigned a value later
 
 /*
@@ -159,13 +154,13 @@ function drawKeypoints(keypoints, minConfidence, scale = 1) {
 
   if (leftWrist.score > minConfidence) {
       //const {y, x} = leftWrist.position;
-      jointPositionsTarget.leftWristPos = leftWrist.position;
+      jointPositionsTarget.leftWristPosTarget = leftWrist.position;
       //drawPoint(ctx, y * scale, x * scale, 10, colorLeft);
   }
 
   if (rightWrist.score > minConfidence) {
       //const {y, x} = rightWrist.position;
-      jointPositionsTarget.rightWristPos = rightWrist.position;
+      jointPositionsTarget.rightWristPosTarget = rightWrist.position;
       //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
 
@@ -283,11 +278,10 @@ const init = async () => {
     startVideo();
   
   
-}
-if(window.location.pathname === "/index.html" || window.location.pathname === "/"){
-
-init();
-}
+  }
+  if(window.location.pathname === "/index.html" || window.location.pathname === "/"){
+    init();
+  }
 
 }
 
@@ -358,7 +352,7 @@ export default class AdminScene extends Phaser.Scene {
 
     this.spawnLetters();
     // emit only 10 times per second
-    this.time.addEvent({ delay: 100, callback: this.onEvent, callbackScope: this, loop: true });
+    this.time.addEvent({ delay: 100000, callback: this.onEvent, callbackScope: this, loop: true });
   }
 
   onEvent(){
@@ -539,12 +533,19 @@ export default class AdminScene extends Phaser.Scene {
     makeConnectionAdmin() {
       socket = io.connect('/');
       socket.on('connect', () => {
-        console.log(`Connected: ${socket.id}`);
+        console.log(`Admin connected: ${socket.id}`);
       });
       socket.on('message', message => {
         console.log(`Received message: ${message}`);
+        words.push(message);
+       
+        console.log(words);
         readWord = message;
         this.spawnWord();
       });
+    
     };
+
+
 }
+
