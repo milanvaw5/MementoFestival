@@ -8,7 +8,7 @@ let split = [];
 let words = [];
 let letters = [];
 let widthDivScreen = document.querySelector('.bottomblock').style.width;
-let spacebetween = 20;
+let spacebetween = 200;
 let socket; // will be assigned a value later
 
 /*
@@ -486,6 +486,7 @@ export default class AdminScene extends Phaser.Scene {
       console.log('spawnLetters: ' + letters[startOffLetters]);
       letters[startOffLetters] = this.matter.add.sprite(fallPosition, 0, letters[startOffLetters], 0, {restitution: .5});
       fallPosition = fallPosition + spacebetween;
+
     }
     console.log('start letters are dropped');
   };

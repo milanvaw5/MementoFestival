@@ -1,5 +1,6 @@
 @import "home.css";
 @import "vars.css";
+@import "admin.css";
 
 html {
   scroll-behavior: smooth;
@@ -33,31 +34,9 @@ body {
   font-size: 0.8rem;
 }
 
-.wordGame {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  grid-template-areas: 'overlap';
-  background-color: var(--white);
-}
 
-canvas {
-    grid-area: overlap;
-    z-index: 1;
-    background-color: var(--white);
-}
-.webcam {
-    grid-area: overlap;
-    z-index: 0;
-}
 
-.section-admin {
-    height: 100vh;
-}
 
-.section-admin--active {
-    display: none;
-}
 
 .button {
   padding: 1rem 2rem;

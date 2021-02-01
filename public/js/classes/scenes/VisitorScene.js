@@ -6,8 +6,8 @@ let lowercase;
 let readWord = 'abcde';
 let split = [];
 let letters = [];
-let widthDivScreen = document.querySelector(`.wordGame`).style.width;
-let spacebetween = 20;
+let widthDivScreen = document.querySelector(`.bottomblock`).style.width;
+let spacebetween = 60;
 
 let jointPositionsGebruikers = {
   leftWristPos: {x:1, y:1},
@@ -247,7 +247,7 @@ export default class VisitorScene extends Phaser.Scene {
   //woord word gespawned op scherm
   spawnWord() {
 
-    let fallPosition = Phaser.Math.Between(20, widthDivScreen / 4);
+    let fallPosition = Phaser.Math.Between(60, widthDivScreen / 4);
     this.splitWord();
 
     for (letter = 0; letter < split.length; letter++)
@@ -256,7 +256,7 @@ export default class VisitorScene extends Phaser.Scene {
       split[letter] = this.matter.add.sprite(fallPosition, 0, split[letter], 0, {restitution: .5});
       fallPosition = fallPosition + spacebetween;
       letters.push(split[letter]);
-      console.log(letters);
+      //console.log(letters);
     }
 
   };
@@ -405,6 +405,7 @@ export default class VisitorScene extends Phaser.Scene {
       console.log('spawnLetters: ' + letters[startOffLetters]);
       letters[startOffLetters] = this.matter.add.sprite(fallPosition, 0, letters[startOffLetters], 0, {restitution: .5});
       fallPosition = fallPosition + spacebetween;
+      console.log(fallPosition);
     }
     console.log('start letters are dropped');
   };
@@ -420,8 +421,8 @@ export default class VisitorScene extends Phaser.Scene {
       //timer = setInterval(this.readInAuteurInput(), 50000); //timer resetten
     }
     else {
-      console.log('niks ingegeven')
-      e.preventDefault();
+      console.log('niks ingegeven');
+      
     }
   };
 
