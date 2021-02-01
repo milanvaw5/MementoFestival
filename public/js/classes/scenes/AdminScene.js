@@ -326,6 +326,9 @@ export default class AdminScene extends Phaser.Scene {
     this.load.spritesheet('y', 'assets/img/alphabet/y.png', { frameWidth: 40, frameHeight: 73 });
     this.load.spritesheet('z', 'assets/img/alphabet/z.png', { frameWidth: 40, frameHeight: 73 });
 
+    this.load.spritesheet('heart', 'assets/img/interactions/heart.png', { frameWidth: 70, frameHeight: 70 });
+    this.load.spritesheet('wave', 'assets/img/interactions/wave.png', { frameWidth: 70, frameHeight: 70 });
+
   }
 
   create(){

@@ -16,30 +16,21 @@
   <body>
     <h1 class="titel hidden">De Letterdoos - Memento Festival</h1>
 
-    <section class="onepager__section">
+    <section id="intro" class="onepager__section">
       <h2 class="section__title hidden">Home</h2>
 
-
-
-      <article class="section__article">
+      <article class="section__article intro">
         <h3 class="article__title hidden">Informatie over De Letterdoos</h3>
-        <button class="button smallbutton"><a class="link buttonlink" href="">Bezoek Memento website</a></button>
         <div class="textparagraph intro__top">
           <img class="logo" alt="logo" src="assets/img/logo.png">
           <p>De letterdoos is een fysieke installatie op het festival,
             maar via deze website brengen we het festival naar jou toe.
             Jij bepaalt, samen met de rest van de online community wat er op de installatie komt te staan.</p>
         </div>
-        <div class="textparagraph">
-          <p>De Letterdoos</p>
-          <p>De letterdoos is een fysieke installatie op het festival,
-            maar via deze website brengen we het festival naar jou toe.
-            Jij bepaalt, samen met de rest van de online community wat er op de installatie komt te staan.</p>
-        </div>
-        <div class="textparagraph">
+        <div class="textparagraph center">
           <p>Je vindt'em in <strong>Kortijk</strong> op de Houtmarkt 54</p>
           <p><strong>OF</strong></p>
-          <button class="button primbutton"><a class="link buttonlink" href="#wordgame">BEZOEK LETTERDOOS ONLINE</a></button>
+          <a class="link buttonlink prim" href="#wordgame"><button class="button primbutton">BEZOEK LETTERDOOS ONLINE</button></a>
         </div>
       </article>
 
@@ -53,16 +44,17 @@
           <p>Sien Demuynck</p>
         </div>
       </article>
+
     </section>
 
-    <section id="wordgame" class="onepager__section">
+    <section id="wordgame" class="onepager__section section__wordgame">
       <h2 class="section__title hidden">De Letterdoos online game</h2>
 
       <article class="section__article">
         <h3 class="article__title hidden">Stream</h3>
 
         <div class="wordGame topblock">
-          <div class="informationblock video__auteur">
+          <div class="informationblock live__footage">
             <p>LIVE</p>
             <p>op het festival</p>
           </div>
@@ -74,50 +66,52 @@
         </div>
       </article>
 
-      <article class="section__article">
-        <button>Terug naar home</button>
+      <article class="section__article article__forms">
+        <a class="link buttonlink" href="#intro"><button class="button">Terug naar home</button></a>
         <h3 clas="article__title">Bespeel De Letterdoos</h3>
 
         <div class="controls">
-          <button class="button smallbutton"><a class="link buttonlink" href="">Schud De Letterdoos</a></button>
-          <button class="button smallbutton"><a class="link buttonlink" href="">Stuur een hartje</a></button>
-          <button class="button smallbutton"><a class="link buttonlink" href="">Zeg hallo!</a></button>
+          <div>
+            <button id="interactionbutton" class="button smallbutton">Zeg hallo!</button>
+            <button id="interactionbutton" class="button smallbutton">Stuur een hartje</button>
+          </div>
+          <button id="interactionbutton" class="button smallbutton">Schud De Letterdoos</button>
        </div>
 
         <div class="memootje">
 
         <div class="introForm form-0">
           <p>Een auteur heeft iets achtergelaten voor jou</p>
-          <button class="btn-next primbutton">volgende</button>
+          <button class="btn-next button primbutton">volgende</button>
         </div>
         <form class="wordForm form-1">
 
           Wat betekent verdwalen voor jou?<input type="text" id="enteredWord" class="enteredWord" name="enteredWord">
           <input id="sumbitwordbutton" class="button bigbutton" type="submit" value=" VERSTUUR">
-          <button class="btn-next primbutton">volgende</button>
+          <button class="btn-next button primbutton">volgende</button>
         </form>
 
         <form class="feelingsForm form-2">
 
           Hoe voel je je?
           <label for=""></label>
-          Blij
+          gelukzalig
           <input class="feelingOption" type="radio" name="emotie" value="blij" id="">
-          Blij
+          somber
           <input class="feelingOption" type="radio" name="emotie" value="blij" id="">
-          Blij
+          giechelig
           <input class="feelingOption" type="radio" name="emotie" value="blij" id="">
-          Blij
+          afgemat
           <input class="feelingOption" type="radio" name="emotie" value="blij" id="">
           <input id="sumbitwordbutton" class="button bigbutton" type="submit" value="VERSTUUR">
-          <button class="btn-next">volgende</button>
+          <button class="btn-next button primbutton">volgende</button>
         </form>
 
         <form class="challengeForm form-3">
 
           Challenge<input type="text" id="enteredWord" class="enteredWord" name="enteredWord">
           <input id="sumbitwordbutton" class="button bigbutton" type="submit" value="VERSTUUR">
-          <button class="btn-next">volgende</button>
+          <button class="btn-next button primbutton">volgende</button>
         </form>
 
         <div class="haikuForm form-4">
@@ -125,13 +119,13 @@
         </div>
 
       </div>
-      <button>Meer over de installatie</button>
+      <a class="link buttonlink" href="#instalatieinfo"><button class="button">Meer over de installatie</button></a>
       </article>
 
     </section>
 
 
-    <section class="onepager__section">
+    <section id="instalatieinfo" class="onepager__section">
       <h2 class="section__title">Meer informatie over de installatie</h2>
       <article>
         <h3>Stap in de Letterdoos</h3>

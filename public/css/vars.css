@@ -1,4 +1,8 @@
 :root {
-  --color: rgb(89, 0, 255);
-  --backgroundColor: #faf5ef;
+  --orange: #ec9553;
+  --green : #32b099;
+  --yellow: #f3d268;
+  --blue: #1e2d7d;
+  --black: #1f1b27;
+  --white: #faf5ef;
 }
