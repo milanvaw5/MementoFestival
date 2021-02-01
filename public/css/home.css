@@ -2,6 +2,9 @@
 .intro {
   margin: 20%;
   height: 100%;
+  background-image: url('../assets/img/blobs/greenblob.png'), url('../assets/img/blobs/blueblob.png');
+  background-repeat: no-repeat;
+  background-position: top right, bottom center;
 }
 
 .onepager__section {
@@ -11,6 +14,8 @@
   align-items: center;
   align-content: center;
   height: 100vh;
+  /*position: absolute;*/
+  z-index: 1;
 }
 
 .section__article {
@@ -33,7 +38,7 @@
 }
 
 p {
-  line-height: 1.3rem;
+  line-height: 1.6rem;
 }
 
 .intro__top {
@@ -56,23 +61,38 @@ p {
   z-index: 1;
   color: var(--white);
   background-color: var(--black);
-  width: 8rem;
+  width: 11rem;
   height: 3rem;
   padding: 1rem;
   display: grid;
-  grid-template-columns: 1f;
+  grid-template-columns: 1fr;
   justify-content: center;
   align-items: center;
   align-content: center;
 }
 
 .video__auteur {
-  top: 5rem;
-  right: 5rem;
+  top: 5vh;
+  right: 36vw;
+}
+
+.live__footage {
+  top: 105vh;
+  left: 5vw;
+}
+
+.video__auteur__name {
+  text-transform: uppercase;
+  font-size: 1rem;
 }
 
 .center {
-  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
 }
 
 .logo {
@@ -84,10 +104,75 @@ p {
 }
 
 .article__forms {
-  /*min-width: 60rem;*/
+  background-image: url('../assets/img/blobs/lines.png');
+  background-repeat: no-repeat;
+  /*background-size: cover;*/
+  background-position: top right;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 1fr 2fr 4fr;
 }
 
 .controls {
   display: grid;
   grid-template-rows: 1fr 1fr;
+}
+
+.blobs {
+  z-index: -1;
+}
+
+.bottomblock {
+  width: 70vw;
+  height: 100vh;
+  left:0;
+}
+
+.title {
+  display: block;
+  font-size: 1.8rem;
+  font-family: GT Pressura Pro Bold, Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+}
+
+.live__footage__indicationblock {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  justify-items: start;
+}
+
+.bol {
+  padding: 0 .4rem 0 0;
+}
+
+.form__section {
+  background-color: var(--white);
+  border: .1rem solid var(--black);
+  width: 80%;
+  padding: 1.5rem;
+  top: -.1rem;
+}
+
+.memootje {
+  height: 35vh;
+}
+
+.form__section__topbuttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+}
+
+.form__section__buttons {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
 }
