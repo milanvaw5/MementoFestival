@@ -100,7 +100,7 @@ p {
 }
 
 .section__wordgame {
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 2fr;
 }
 
 .article__forms {
@@ -123,9 +123,7 @@ p {
 }
 
 .bottomblock {
-  width: 70vw;
-  height: 100vh;
-  left:0;
+  width: 100%;
 }
 
 .title {
@@ -151,9 +149,13 @@ p {
 .form__section {
   background-color: var(--white);
   border: .1rem solid var(--black);
-  width: 80%;
+  width: 24rem;
   padding: 1.5rem;
   top: -.1rem;
+}
+
+.controls {
+  height: 20vh;
 }
 
 .memootje {
@@ -175,4 +177,171 @@ p {
   justify-content: center;
   align-content: center;
   justify-items: center;
+}
+
+.hand:hover {
+  background-color: var(--green);
+  color: var(--black);
+}
+
+.hartje:hover {
+  background-color: var(--orange);
+  color: var(--black);
+}
+
+.schud:hover {
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.schud:hover::before {
+  content: url('../assets/img/schudbefwh.png');
+  position: relative;
+  padding: 0 1rem;
+}
+
+.schud:hover::after {
+  content: url('../assets/img/schudafwh.png');
+  position: relative;
+  padding: 0 1rem;
+}
+
+.hartje::before {
+  content: url('../assets/img/hartje.png');
+  position: relative;
+  padding: 0 .4rem 0 0;
+}
+
+.hand::before {
+  content: url('../assets/img/hand.png');
+  position: relative;
+  padding: 0 .4rem 0 0;
+}
+
+.schud::before {
+  content: url('../assets/img/schudbef.png');
+  position: relative;
+  padding: 0 1rem;
+}
+
+.schud::after {
+  content: url('../assets/img/schudaf.png');
+  position: relative;
+  padding: 0 1rem;
+}
+
+/*-----------------------------------------------------*/
+
+.wordForm__intro {
+  text-align: center;
+  margin: 0 1rem;
+  font-size: 1rem;
+}
+
+.wordForm__question {
+  font-weight: 800;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+}
+
+.wordForm__subinfo {
+  font-size: 1rem;
+}
+
+.enteredWord {
+  height: 2rem;
+  width: 55%;
+  border: .1rem solid var(--black);
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+
+.emotics__listitems {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.emotics__items {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.emotics__item {
+  width: 4rem;
+  height: 5rem;
+}
+
+.happy {
+  background-image: url('../assets/img/emotics/happy.png');
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+.sad {
+  background-image: url('../assets/img/emotics/sad.png');
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+.tired {
+  background-image: url('../assets/img/emotics/tired.png');
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+.quirky {
+  background-image: url('../assets/img/emotics/quirky.png');
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+.happy:hover {
+  background-image: url('../assets/img/emotics/happyco.png');
+  background-position: bottom right;
+}
+
+.sad:hover {
+  background-image: url('../assets/img/emotics/sadco.png');
+  background-position: bottom right;
+}
+
+.quirky:hover {
+  background-image: url('../assets/img/emotics/quirkyco.png');
+  background-position: bottom right;
+}
+
+.tired:hover {
+  background-image: url('../assets/img/emotics/tiredco.png');
+  background-position: bottom right;
+}
+
+/*------------------------------------------------*/
+
+.wordForm__haiku {
+  background-color: var(--black);
+  padding: 1rem 1rem;
+  font-size: 1.3rem;
+  color: var(--white);
+  margin: 1rem 0;
+  text-align: center;
+  font-style: italic;
+}
+
+.wordForm__auteur__name {
+  text-transform: capitalize;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.wordForm__auteur__socials {
+  font-size: 1rem;
+  text-align: center;
 }

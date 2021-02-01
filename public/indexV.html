@@ -79,49 +79,74 @@
         <section class="controls form__section form__section__buttons">
           <h4 class="form__title">Interacties</h3>
           <div class="form__section__topbuttons">
-            <button id="interactionbutton" class="button smallbutton">Zeg hallo!</button>
-            <button id="interactionbutton" class="button smallbutton">Stuur hartje!</button>
+            <button id="interactionbutton" class="button smallbutton hand">Zeg hallo!</button>
+            <button id="interactionbutton" class="button smallbutton hartje">Stuur hartje!</button>
           </div>
-          <button id="interactionbutton" class="button smallbutton">Schud De Letterdoos</button>
+          <button id="interactionbutton" class="button smallbutton schud">Schud De Letterdoos</button>
         </section>
 
         <section class="memootje form__section">
           <h4 class="form__title">Vragen</h3>
+
           <div class="introForm form-0">
-            <p>Een auteur heeft iets achtergelaten voor jou</p>
+            <p class="wordForm__intro">Een auteur heeft iets achtergelaten voor jou</p>
             <button class="btn-next button primbutton">Volgende</button>
           </div>
 
           <form class="wordForm form-1">
-            Wat betekent verdwalen voor jou?
+            <p class="wordForm__intro">Voltooi de drie taken om jouw persoonlijk Memootje te ontdekken</p>
+            <p class="wordForm__question">Wat betekent verdwalen voor jou?</p>
+            <p class="wordForm__subinfo">Jouw antwoord komt mee in de live letterdoos te staan!</p>
             <input type="text" id="enteredWord" class="enteredWord" name="enteredWord">
             <input id="sumbitwordbutton" class="button bigbutton" type="submit" value=" VERSTUUR">
-            <button class="btn-next button primbutton">Volgende</button>
+            <button class="btn-next button">Volgende</button>
           </form>
 
           <form class="feelingsForm form-2">
-            Hoe voel je je?
+            <p class="wordForm__intro">Voltooi de drie taken om jouw persoonlijk Memootje te ontdekken</p>
+            <p class="wordForm__question">Hoe voel jij je vandaag?</p>
             <label for=""></label>
-            gelukzalig
-            <input class="feelingOption" type="radio" name="emotie" value="blij" id="">
-            somber
-            <input class="feelingOption" type="radio" name="emotie" value="blij" id="">
-            giechelig
-            <input class="feelingOption" type="radio" name="emotie" value="blij" id="">
-            afgemat
-            <input class="feelingOption" type="radio" name="emotie" value="blij" id="">
+
+          <div class="emotics__listitems">
+            <div class="emotics__items">
+              <div class="emotics__item happy"></div>
+              gelukzalig
+              <input class="feelingOption" type="radio" name="emotie" value="gelukzalig" id="">
+            </div>
+            <div class="emotics__items">
+              <div class="emotics__item sad"></div>
+              somber
+              <input class="feelingOption" type="radio" name="emotie" value="somber" id="">
+            </div>
+            <div class="emotics__items">
+              <div class="emotics__item quirky"></div>
+              giechelig
+              <input class="feelingOption" type="radio" name="emotie" value="giechelig" id="">
+            </div>
+            <div class="emotics__items">
+              <div class="emotics__item tired"></div>
+              afgemat
+              <input class="feelingOption" type="radio" name="emotie" value="afgemat" id="">
+            </div>
+          </div>
+
             <input id="sumbitwordbutton" class="button bigbutton" type="submit" value="VERSTUUR">
-            <button class="btn-next button primbutton">Volgende</button>
+            <button class="btn-next button">Volgende</button>
           </form>
 
           <form class="challengeForm form-3">
-            Challenge<input type="text" id="enteredWord" class="enteredWord" name="enteredWord">
+            <p class="wordForm__intro">Voltooi de drie taken om jouw persoonlijk Memootje te ontdekken</p>
+            <p class="wordForm__question">Spel het woord door de juiste letters aan te klikken in de letterdoos.</p>
+            <input type="text" id="enteredWord" class="enteredWord" name="enteredWord">
             <input id="sumbitwordbutton" class="button bigbutton" type="submit" value="VERSTUUR">
-            <button class="btn-next button primbutton">Volgende</button>
+            <button class="btn-next button">Volgende</button>
           </form>
 
           <div class="haikuForm form-4">
-            <p class="haiku">hier komt haiku</p>
+            <p class="wordForm__question">JOUW MEMOOTJE!</p>
+            <p class="wordForm__haiku haiku">hier komt haiku</p>
+            <p class="wordForm__auteur__name">Alice Boudry</p>
+            <p class="wordForm__auteur__socials">@hihelloalice</p>
           </div>
         </section>
      </article>
