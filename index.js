@@ -8,12 +8,16 @@ const io = require('socket.io')(server);
 
 let words = [];
 let admin;
+let livePing;
 io.on('connection', socket => {
   console.log('Socket connected', socket.id);
 
   socket.on('admin', () => {
     admin = socket.id;
     console.log(`admin: ${socket.id}`);
+    livePing = setInterval(() => {
+      io.sockets.emit('live');
+    }, 100);
   });
   
   socket.on('message', message => {
@@ -44,7 +48,10 @@ io.on('connection', socket => {
 
   socket.on('disconnect', function () {
     if(socket.id === admin){
+      admin = "";
       words = [];
+      clearInterval(livePing);
+      io.sockets.emit(`notLive`);
     }
     
 });
@@ -55,6 +62,7 @@ app.use(express.static('public'));
 
 server.listen(port, () => {
  console.log(`App listening on port ${port}!`);
+
 
 
 });

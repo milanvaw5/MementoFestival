@@ -370,6 +370,11 @@ export default class AdminScene extends Phaser.Scene {
     this.load.spritesheet('y', 'assets/img/alphabet/y.png', { frameWidth: 40, frameHeight: 73 });
     this.load.spritesheet('z', 'assets/img/alphabet/z.png', { frameWidth: 40, frameHeight: 73 });
 
+    this.load.image('somber', 'assets/img/emotics/sadco.png');
+    this.load.image('happy', 'assets/img/emotics/happyco.png');
+    this.load.image('quirky', 'assets/img/emotics/quirkyco.png');
+    this.load.image('tired', 'assets/img/emotics/tiredco.png');
+
     this.load.spritesheet('heart', 'assets/img/interactions/heart.png', { frameWidth: 70, frameHeight: 70 });
     this.load.spritesheet('wave', 'assets/img/interactions/wave.png', { frameWidth: 70, frameHeight: 70 });
 
@@ -637,6 +642,19 @@ export default class AdminScene extends Phaser.Scene {
         console.log(words);
         readWord = message;
         this.spawnWord();
+      });
+
+      socket.on('selectedFeeling', selectedFeeling => {
+        console.log(selectedFeeling)
+        let fallPosition = Phaser.Math.Between(20, this.cameras.main.width);
+        switch(selectedFeeling){
+          case "somber": this.feeling = this.matter.add.sprite(fallPosition, 0, 'somber', 0, {restitution: .5});break;
+          case "giechelig": this.feeling = this.matter.add.sprite(fallPosition, 0, 'quirky', 0, {restitution: .5});break;
+          case "gelukzalig": this.feeling = this.matter.add.sprite(fallPosition, 0, 'happy', 0, {restitution: .5});break;
+          case "afgemat": this.feeling = this.matter.add.sprite(fallPosition, 0, 'tired', 0, {restitution: .5});break;
+
+        }
+
       });
 
     };

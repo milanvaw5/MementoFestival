@@ -8,8 +8,11 @@ let split = [];
 let letters = [];
 let widthDivScreen = document.querySelector(`.bottomblock`).style.width;
 let spacebetween = 60;
+let isLive = false;
+let $liveTitle = document.querySelector(`.live__footage__indication`);
+let $liveSub = document.querySelector(`.live__footage__subindication`);
+let $liveDot = document.querySelector(`.bol`);
 
-let clickedLetter = "";
 
 let jointPositionsGebruikers = {
   leftWristPos: {x:1, y:1},
@@ -100,6 +103,10 @@ export default class VisitorScene extends Phaser.Scene {
     this.load.image('x', 'assets/img/alphabet/x.png');
     this.load.image('y', 'assets/img/alphabet/y.png');
     this.load.image('z', 'assets/img/alphabet/z.png');
+    this.load.image('somber', 'assets/img/emotics/sadco.png');
+    this.load.image('happy', 'assets/img/emotics/happyco.png');
+    this.load.image('quirky', 'assets/img/emotics/quirkyco.png');
+    this.load.image('tired', 'assets/img/emotics/tiredco.png');
 
   }
  
@@ -228,6 +235,16 @@ this.scale.on('resize', this.resize, this);
     this.rightAnkleAvatar.x = jointPositionsGebruikers.rightAnklePos.x;
     this.rightAnkleAvatar.y = jointPositionsGebruikers.rightAnklePos.y;
 
+
+    if(isLive){
+      $liveTitle.textContent = 'live';
+      $liveSub.textContent = 'op het festival';
+      $liveDot.style.display = 'block';
+    }else{
+      $liveTitle.textContent = 'offline';
+      $liveSub.textContent = 'tot later';
+      $liveDot.style.display = 'none';
+    }
   };
 
 
@@ -257,7 +274,7 @@ this.scale.on('resize', this.resize, this);
 
   onClick(l){
     console.log(l.texture.key);
-    
+
   }
 
     //de timer is nul dus word een auteurinput gedropt en daarna de timer gereset
@@ -304,10 +321,26 @@ this.scale.on('resize', this.resize, this);
         this.readInWord();
 
       });
+      socket.on('live', () => {
+
+        isLive = true;
+
+      });
+      socket.on('notLive', () => {
+  
+        isLive = false;
+
+      });
       socket.on('selectedFeeling', selectedFeeling => {
         console.log(selectedFeeling)
-        let fallPosition = Phaser.Math.Between(20, widthDivScreen / 4);
-        this.feeling = this.matter.add.sprite(fallPosition, 0, 'test', 0, {restitution: .5});
+        let fallPosition = Phaser.Math.Between(20, this.cameras.main.width);
+        switch(selectedFeeling){
+          case "somber": this.feeling = this.matter.add.sprite(fallPosition, 0, 'somber', 0, {restitution: .5});break;
+          case "giechelig": this.feeling = this.matter.add.sprite(fallPosition, 0, 'quirky', 0, {restitution: .5});break;
+          case "gelukzalig": this.feeling = this.matter.add.sprite(fallPosition, 0, 'happy', 0, {restitution: .5});break;
+          case "afgemat": this.feeling = this.matter.add.sprite(fallPosition, 0, 'tired', 0, {restitution: .5});break;
+
+        }
 
       });
       socket.on('points', jointPositions => {

@@ -1,4 +1,17 @@
 /* another css file*/
+.snapContainer {
+  height: 100vh;
+  overflow: scroll;
+  scroll-snap-type: mandatory;
+  scroll-snap-points-y: repeat(100vh);
+  scroll-snap-type: y mandatory;
+
+}
+.scrollSnap {
+  scroll-snap-align: start;
+}
+
+
 .intro {
   margin: 20%;
   height: 100%;
