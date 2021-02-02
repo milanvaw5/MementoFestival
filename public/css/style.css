@@ -16,9 +16,14 @@ body {
     max-width: 100vw;
     max-height: 100vh;
     background-color: var(--white);
+    font-family: sofia-pro, sans-serif, Arial, Helvetica, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--black);
 }
 
-.section__title, .article__title , .section-admin__title{
+.section__title, .article__title , .section-admin__title, .form__title {
     display: none;
 }
 
@@ -34,48 +39,48 @@ body {
   font-size: 0.8rem;
 }
 
-
-
-
-
 .button {
-  padding: 1rem 2rem;
-  margin: 1rem 0 2rem;
+  height: 3.5rem;
+  padding: 0 1.2rem;
+  margin: 1rem .5rem 2rem;
   font-weight: 700;
   border: 0.1rem solid var(--black);
   color: var(--black);
   background-color: var(--white);
   cursor: pointer;
-  display: inline-block;
+  display: block;
+
   letter-spacing: 0.075em;
   position: relative;
   align-self: center;
   z-index: 1;
-  box-shadow: .5rem 1rem var(--white);
+  box-shadow: .5rem 1rem var(--black);
   border-image-slice: 1 1 0 0;
   transform: .5s;
-  font-size: 0.8rem;
+  font-size: 1rem;
+  left: -1rem;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 0;
 }
 
 .button:hover {
   cursor: pointer;
-  right: -1rem;
-  bottom: -.5rem;
+  left: .5rem;
+  bottom: -1rem;
   box-shadow: none;
-  background-color: var(--orange);
-  color: var(--black);
 }
 
 .primbutton {
   background-color: var(--black);
-  box-shadow: .5rem 1rem var(--black);
+  color: var(--white);
+}
+
+.primbutton:hover {
+  background-color: var(--black);
   color: var(--white);
 }
 
 .prim {
   color: var(--white);
-}
-
-.button:hover .prim {
-  color: var(--black);
 }
