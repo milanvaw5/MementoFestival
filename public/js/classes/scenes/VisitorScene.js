@@ -9,6 +9,8 @@ let letters = [];
 let widthDivScreen = document.querySelector(`.bottomblock`).style.width;
 let spacebetween = 60;
 
+let clickedLetter = "";
+
 let jointPositionsGebruikers = {
   leftWristPos: {x:1, y:1},
   rightWristPos: {x:1, y:1},
@@ -72,35 +74,35 @@ export default class VisitorScene extends Phaser.Scene {
     //this.load.image('backgroundimage', 'assets/bimg.jpg');
     //this.load.image('d', 'assets/ball.png');
     this.load.image('test', 'assets/test.png');
-    this.load.spritesheet('a', 'assets/img/alphabet/a.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('b', 'assets/img/alphabet/b.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('c', 'assets/img/alphabet/c.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('d', 'assets/img/alphabet/d.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('e', 'assets/img/alphabet/e.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('f', 'assets/img/alphabet/f.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('g', 'assets/img/alphabet/g.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('h', 'assets/img/alphabet/h.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('i', 'assets/img/alphabet/i.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('j', 'assets/img/alphabet/j.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('k', 'assets/img/alphabet/k.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('l', 'assets/img/alphabet/l.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('m', 'assets/img/alphabet/m.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('n', 'assets/img/alphabet/n.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('o', 'assets/img/alphabet/o.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('p', 'assets/img/alphabet/p.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('q', 'assets/img/alphabet/q.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('r', 'assets/img/alphabet/r.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('s', 'assets/img/alphabet/s.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('t', 'assets/img/alphabet/t.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('u', 'assets/img/alphabet/u.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('v', 'assets/img/alphabet/v.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('w', 'assets/img/alphabet/w.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('x', 'assets/img/alphabet/x.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('y', 'assets/img/alphabet/y.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('z', 'assets/img/alphabet/z.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.image('a', 'assets/img/alphabet/a.png');
+    this.load.image('b', 'assets/img/alphabet/b.png');
+    this.load.image('c', 'assets/img/alphabet/c.png');
+    this.load.image('d', 'assets/img/alphabet/d.png');
+    this.load.image('e', 'assets/img/alphabet/e.png');
+    this.load.image('f', 'assets/img/alphabet/f.png');
+    this.load.image('g', 'assets/img/alphabet/g.png');
+    this.load.image('h', 'assets/img/alphabet/h.png');
+    this.load.image('i', 'assets/img/alphabet/i.png');
+    this.load.image('j', 'assets/img/alphabet/j.png');
+    this.load.image('k', 'assets/img/alphabet/k.png');
+    this.load.image('l', 'assets/img/alphabet/l.png');
+    this.load.image('m', 'assets/img/alphabet/m.png');
+    this.load.image('n', 'assets/img/alphabet/n.png');
+    this.load.image('o', 'assets/img/alphabet/o.png');
+    this.load.image('p', 'assets/img/alphabet/p.png');
+    this.load.image('q', 'assets/img/alphabet/q.png');
+    this.load.image('r', 'assets/img/alphabet/r.png');
+    this.load.image('s', 'assets/img/alphabet/s.png');
+    this.load.image('t', 'assets/img/alphabet/t.png');
+    this.load.image('u', 'assets/img/alphabet/u.png');
+    this.load.image('v', 'assets/img/alphabet/v.png');
+    this.load.image('w', 'assets/img/alphabet/w.png');
+    this.load.image('x', 'assets/img/alphabet/x.png');
+    this.load.image('y', 'assets/img/alphabet/y.png');
+    this.load.image('z', 'assets/img/alphabet/z.png');
 
   }
-
+ 
   create(){
     console.log(`CREATE`);
 
@@ -123,13 +125,23 @@ export default class VisitorScene extends Phaser.Scene {
     this.leftAnkleAvatar = this.matter.add.image(jointPositionsGebruikers.leftAnklePos.x, jointPositionsGebruikers.leftAnklePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
     this.rightAnkleAvatar = this.matter.add.image(jointPositionsGebruikers.rightAnklePos.x, jointPositionsGebruikers.rightAnklePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
 
+    this.pointer = this.input.activePointer;
 
+    
     this.spawnLetters();
-
+this.scale.on('resize', this.resize, this);
     //timer = setTimeout(this.readInAuteurInput(), 50000);
   }
 
+  resize(){
+   
+  }
+
+
   update(){
+    
+    
+
     //bij een bepaald aantal letters op het scherm - zullen er een hoeveelheid verdwijnen,
     //random gekozen om zo nieuwe woorden en mysterie te creëren
     if (letters.length === 20) {
@@ -140,16 +152,19 @@ export default class VisitorScene extends Phaser.Scene {
       }
       console.log(letters);
     }
+   
 
     jointPositionsGebruikers.leftWristPos.x += ( jointPositionsGebruikersTarget.leftWristPosTarget.x - jointPositionsGebruikers.leftWristPos.x ) / 10;
     jointPositionsGebruikers.leftWristPos.y += ( jointPositionsGebruikersTarget.leftWristPosTarget.y - jointPositionsGebruikers.leftWristPos.y ) / 10;
     this.leftWristAvatar.x = jointPositionsGebruikers.leftWristPos.x;
     this.leftWristAvatar.y = jointPositionsGebruikers.leftWristPos.y;
 
+
     jointPositionsGebruikers.leftEyePos.x += ( jointPositionsGebruikersTarget.leftEyePosTarget.x - jointPositionsGebruikers.leftEyePos.x ) / 10;
     jointPositionsGebruikers.leftEyePos.y += ( jointPositionsGebruikersTarget.leftEyePosTarget.y - jointPositionsGebruikers.leftEyePos.y ) / 10;
     this.leftEyeAvatar.x = jointPositionsGebruikers.leftEyePos.x;
     this.leftEyeAvatar.y = jointPositionsGebruikers.leftEyePos.y;
+
 
     jointPositionsGebruikers.leftShoulderPos.x += ( jointPositionsGebruikersTarget.leftShoulderPosTarget.x - jointPositionsGebruikers.leftShoulderPos.x ) / 10;
     jointPositionsGebruikers.leftShoulderPos.y += ( jointPositionsGebruikersTarget.leftShoulderPosTarget.y - jointPositionsGebruikers.leftShoulderPos.y ) / 10;
@@ -212,35 +227,7 @@ export default class VisitorScene extends Phaser.Scene {
     jointPositionsGebruikers.rightAnklePos.y += ( jointPositionsGebruikersTarget.rightAnklePosTarget.y - jointPositionsGebruikers.rightAnklePos.y ) / 10;
     this.rightAnkleAvatar.x = jointPositionsGebruikers.rightAnklePos.x;
     this.rightAnkleAvatar.y = jointPositionsGebruikers.rightAnklePos.y;
-    //this.leftWristAvatar.y = jointPositionsGebruikers.leftWristPos.y + 200;
-    //this.leftEyeAvatar.x = jointPositionsGebruikers.leftEyePos.x;
-    //this.leftEyeAvatar.y = jointPositionsGebruikers.leftEyePos.y + 200;
-    //this.leftShoulderAvatar.x = jointPositionsGebruikers.leftShoulderPos.x;
-    //this.leftShoulderAvatar.y = jointPositionsGebruikers.leftShoulderPos.y + 200;
-    //this.leftElbowAvatar.x = jointPositionsGebruikers.leftElbowPos.x;
-    //this.leftElbowAvatar.y = jointPositionsGebruikers.leftElbowPos.y + 200;
-    //this.leftHipAvatar.x = jointPositionsGebruikers.leftHipPos.x;
-    //this.leftHipAvatar.y = jointPositionsGebruikers.leftHipPos.y + 200;
-    //this.leftKneeAvatar.x = jointPositionsGebruikers.leftKneePos.x;
-    //this.leftKneeAvatar.y = jointPositionsGebruikers.leftKneePos.y + 200;
-    //this.leftAnkleAvatar.x = jointPositionsGebruikers.leftAnklePos.x;
-    //this.leftAnkleAvatar.y = jointPositionsGebruikers.leftAnklePos.y + 200;
-//
-    //this.rightWristAvatar.x = jointPositionsGebruikers.rightWristPos.x;
-    //this.rightWristAvatar.y = jointPositionsGebruikers.rightWristPos.y + 200;
-    //this.rightEyeAvatar.x = jointPositionsGebruikers.rightEyePos.x;
-    //this.rightEyeAvatar.y = jointPositionsGebruikers.rightEyePos.y + 200;
-    //this.rightShoulderAvatar.x = jointPositionsGebruikers.rightShoulderPos.x;
-    //this.rightShoulderAvatar.y = jointPositionsGebruikers.rightShoulderPos.y + 200;
-    //this.rightElbowAvatar.x = jointPositionsGebruikers.rightElbowPos.x;
-    //this.rightElbowAvatar.y = jointPositionsGebruikers.rightElbowPos.y + 200;
-    //this.rightHipAvatar.x = jointPositionsGebruikers.rightHipPos.x;
-    //this.rightHipAvatar.y = jointPositionsGebruikers.rightHipPos.y + 200;
-    //this.rightKneeAvatar.x = jointPositionsGebruikers.rightKneePos.x;
-    //this.rightKneeAvatar.y = jointPositionsGebruikers.rightKneePos.y + 200;
-    //this.rightAnkleAvatar.x = jointPositionsGebruikers.rightAnklePos.x;
-    //this.rightAnkleAvatar.y = jointPositionsGebruikers.rightAnklePos.y + 200;
-//
+
   };
 
 
@@ -249,17 +236,29 @@ export default class VisitorScene extends Phaser.Scene {
 
     let fallPosition = Phaser.Math.Between(60, widthDivScreen / 4);
     this.splitWord();
-
+ 
     for (letter = 0; letter < split.length; letter++)
     {
+
+ 
       console.log('spawnWord: ' + split[letter]);
-      split[letter] = this.matter.add.sprite(fallPosition, 0, split[letter], 0, {restitution: .5});
+      const l = this.matter.add.sprite(fallPosition, 0,  split[letter], 0, {restitution: .5});
+    
+      l.setInteractive({useHandCursor: true}).on('pointerdown', () => this.onClick(l));
+
+ 
       fallPosition = fallPosition + spacebetween;
-      letters.push(split[letter]);
+
+      letters.push(l);
       //console.log(letters);
     }
 
   };
+
+  onClick(l){
+    console.log(l.texture.key);
+    
+  }
 
     //de timer is nul dus word een auteurinput gedropt en daarna de timer gereset
     readInAuteurInput() {
@@ -313,60 +312,54 @@ export default class VisitorScene extends Phaser.Scene {
       });
       socket.on('points', jointPositions => {
 
-        jointPositionsGebruikersTarget.leftWristPosTarget.x = jointPositions.leftWristPos.x;
-        jointPositionsGebruikersTarget.leftWristPosTarget.y = jointPositions.leftWristPos.y;
+        jointPositionsGebruikersTarget.leftEyePosTarget.x = this.cameras.main.width * jointPositions.leftEyePos.x;
+        jointPositionsGebruikersTarget.leftEyePosTarget.y = this.cameras.main.height * jointPositions.leftEyePos.y;
 
-        jointPositionsGebruikersTarget.leftEyePosTarget.x = jointPositions.leftEyePos.x;
-        jointPositionsGebruikersTarget.leftEyePosTarget.y = jointPositions.leftEyePos.y;
+        jointPositionsGebruikersTarget.rightEyePosTarget.x =  this.cameras.main.width * jointPositions.rightEyePos.x;
+        jointPositionsGebruikersTarget.rightEyePosTarget.y = this.cameras.main.height * jointPositions.rightEyePos.y;
 
-        jointPositionsGebruikersTarget.leftShoulderPosTarget.x = jointPositions.leftShoulderPos.x;
-        jointPositionsGebruikersTarget.leftShoulderPosTarget.y = jointPositions.leftShoulderPos.y;
+        jointPositionsGebruikersTarget.leftWristPosTarget.x = this.cameras.main.width * jointPositions.leftWristPos.x;
+        jointPositionsGebruikersTarget.leftWristPosTarget.y = this.cameras.main.height * jointPositions.leftWristPos.y;
 
-        jointPositionsGebruikersTarget.leftElbowPosTarget.x = jointPositions.leftElbowPos.x;
-        jointPositionsGebruikersTarget.leftElbowPosTarget.y = jointPositions.leftElbowPos.y;
-
-        jointPositionsGebruikersTarget.leftHipPosTarget.x = jointPositions.leftHipPos.x;
-        jointPositionsGebruikersTarget.leftHipPosTarget.y = jointPositions.leftHipPos.y;
-
-        jointPositionsGebruikersTarget.leftKneePosTarget.x = jointPositions.leftKneePos.x;
-        jointPositionsGebruikersTarget.leftKneePosTarget.y = jointPositions.leftKneePos.y;
-
-        jointPositionsGebruikersTarget.leftAnklePosTarget.x = jointPositions.leftAnklePos.x;
-        jointPositionsGebruikersTarget.leftAnklePosTarget.y = jointPositions.leftAnklePos.y;
+        jointPositionsGebruikersTarget.rightWristPosTarget.x =  this.cameras.main.width * jointPositions.rightWristPos.x;
+        jointPositionsGebruikersTarget.rightWristPosTarget.y = this.cameras.main.height * jointPositions.rightWristPos.y;
 
 
-        jointPositionsGebruikersTarget.rightWristPosTarget.x = jointPositions.rightWristPos.x;
-        jointPositionsGebruikersTarget.rightWristPosTarget.y = jointPositions.rightWristPos.y;
+        jointPositionsGebruikersTarget.leftShoulderPosTarget.x = this.cameras.main.width * jointPositions.leftShoulderPos.x;
+        jointPositionsGebruikersTarget.leftShoulderPosTarget.y = this.cameras.main.height * jointPositions.leftShoulderPos.y;
 
-        jointPositionsGebruikersTarget.rightEyePosTarget.x = jointPositions.rightEyePos.x;
-        jointPositionsGebruikersTarget.rightEyePosTarget.y = jointPositions.rightEyePos.y;
+        jointPositionsGebruikersTarget.rightShoulderPosTarget.x =  this.cameras.main.width * jointPositions.rightShoulderPos.x;
+        jointPositionsGebruikersTarget.rightShoulderPosTarget.y = this.cameras.main.height * jointPositions.rightShoulderPos.y;
 
-        jointPositionsGebruikersTarget.rightShoulderPosTarget.x = jointPositions.rightShoulderPos.x;
-        jointPositionsGebruikersTarget.rightShoulderPosTarget.y = jointPositions.rightShoulderPos.y;
 
-        jointPositionsGebruikersTarget.rightElbowPosTarget.x = jointPositions.rightElbowPos.x;
-        jointPositionsGebruikersTarget.rightElbowPosTarget.y = jointPositions.rightElbowPos.y;
+        jointPositionsGebruikersTarget.leftElbowPosTarget.x = this.cameras.main.width * jointPositions.leftElbowPos.x;
+        jointPositionsGebruikersTarget.leftElbowPosTarget.y = this.cameras.main.height * jointPositions.leftElbowPos.y;
 
-        jointPositionsGebruikersTarget.rightHipPosTarget.x = jointPositions.rightHipPos.x;
-        jointPositionsGebruikersTarget.rightHipPosTarget.y = jointPositions.rightHipPos.y;
+        jointPositionsGebruikersTarget.rightElbowPosTarget.x =  this.cameras.main.width * jointPositions.rightElbowPos.x;
+        jointPositionsGebruikersTarget.rightElbowPosTarget.y = this.cameras.main.height * jointPositions.rightElbowPos.y;
+    
 
-        jointPositionsGebruikersTarget.rightKneePosTarget.x = jointPositions.rightKneePos.x;
-        jointPositionsGebruikersTarget.rightKneePosTarget.y = jointPositions.rightKneePos.y;
+        jointPositionsGebruikersTarget.leftHipPosTarget.x = this.cameras.main.width * jointPositions.leftHipPos.x;
+        jointPositionsGebruikersTarget.leftHipPosTarget.y = this.cameras.main.height * jointPositions.leftHipPos.y;
 
-        jointPositionsGebruikersTarget.rightAnklePosTarget.x = jointPositions.rightAnklePos.x;
-        jointPositionsGebruikersTarget.rightAnklePosTarget.y = jointPositions.rightAnklePos.y;
+        jointPositionsGebruikersTarget.rightHipPosTarget.x =  this.cameras.main.width * jointPositions.rightHipPos.x;
+        jointPositionsGebruikersTarget.rightHipPosTarget.y = this.cameras.main.height * jointPositions.rightHipPos.y;
 
+
+        jointPositionsGebruikersTarget.leftKneePosTarget.x = this.cameras.main.width * jointPositions.leftKneePos.x;
+        jointPositionsGebruikersTarget.leftKneePosTarget.y = this.cameras.main.height * jointPositions.leftKneePos.y;
+
+        jointPositionsGebruikersTarget.rightKneePosTarget.x =  this.cameras.main.width * jointPositions.rightKneePos.x;
+        jointPositionsGebruikersTarget.rightKneePosTarget.y = this.cameras.main.height * jointPositions.rightKneePos.y;
+
+
+        jointPositionsGebruikersTarget.leftAnklePosTarget.x = this.cameras.main.width * jointPositions.leftAnklePos.x;
+        jointPositionsGebruikersTarget.leftAnklePosTarget.y = this.cameras.main.height * jointPositions.leftAnklePos.y;
+
+        jointPositionsGebruikersTarget.rightAnklePosTarget.x =  this.cameras.main.width * jointPositions.rightAnklePos.x;
+        jointPositionsGebruikersTarget.rightAnklePosTarget.y = this.cameras.main.height * jointPositions.rightAnklePos.y;
       });
-      /*socket.on('messages', messages => {
-        letters = letters.push(woordje);
-        console.log(letters);
-        messages = letters;
-      });
-      /*socket.on('points', points => {
-        letters = letters.push(woordje);
-        console.log(letters);
-        messages = letters;
-      });*/
+  
       if($wordForm){
         $wordForm.addEventListener('submit', e => this.handleSubmitMessage(e));
       }
@@ -404,6 +397,9 @@ export default class VisitorScene extends Phaser.Scene {
     {
       console.log('spawnLetters: ' + letters[startOffLetters]);
       letters[startOffLetters] = this.matter.add.sprite(fallPosition, 0, letters[startOffLetters], 0, {restitution: .5});
+
+
+     
       fallPosition = fallPosition + spacebetween;
       console.log(fallPosition);
     }

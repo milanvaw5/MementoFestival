@@ -6,12 +6,13 @@
     background-color: var(--white);
   }
 
-canvas {
+  canvas {
     grid-area: overlap;
     z-index: 1;
     background-color: var(--white);
 }
 .webcam {
+    display: none;
     grid-area: overlap;
     z-index: 0;
 }

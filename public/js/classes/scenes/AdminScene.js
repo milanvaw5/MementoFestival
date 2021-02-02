@@ -10,6 +10,8 @@ let letters = [];
 let widthDivScreen = document.querySelector('.bottomblock').style.width;
 let spacebetween = 200;
 let socket; // will be assigned a value later
+let percentageX;
+let percentageY;
 
 /*
 let auteurInput = ['Verloren','hinkel ik','over de sproeten op mijn vingers',
@@ -18,6 +20,40 @@ let auteurInput = ['Verloren','hinkel ik','over de sproeten op mijn vingers',
 'Onontdekt','en zorgeloos','dolend door mijn eigen hoofd'];*/
 
 let auteurInput = ['verloren','hinkelik','overdesproeten','opmijnvingers'];
+
+let jointPositionsWebcamPercentage = {
+  leftWristPos: {x:1, y:1},
+  rightWristPos: {x:1, y:1},
+  leftEyePos: {x:1, y:1},
+  rightEyePos: {x:1, y:1},
+  leftShoulderPos: {x:1, y:1},
+  rightShoulderPos: {x:1, y:1},
+  leftElbowPos: {x:1, y:1},
+  rightElbowPos: {x:1, y:1},
+  leftKneePos: {x:1, y:1},
+  rightKneePos: {x:1, y:1},
+  leftHipPos: {x:1, y:1},
+  rightHipPos: {x:1, y:1},
+  leftAnklePos: {x:1, y:1},
+  rightAnklePos: {x:1, y:1}
+}
+
+let jointPositionsTenserflow = {
+  leftWristPos: {x:1, y:1},
+  rightWristPos: {x:1, y:1},
+  leftEyePos: {x:1, y:1},
+  rightEyePos: {x:1, y:1},
+  leftShoulderPos: {x:1, y:1},
+  rightShoulderPos: {x:1, y:1},
+  leftElbowPos: {x:1, y:1},
+  rightElbowPos: {x:1, y:1},
+  leftKneePos: {x:1, y:1},
+  rightKneePos: {x:1, y:1},
+  leftHipPos: {x:1, y:1},
+  rightHipPos: {x:1, y:1},
+  leftAnklePos: {x:1, y:1},
+  rightAnklePos: {x:1, y:1}
+}
 
 let jointPositions = {
   leftWristPos: {x:1, y:1},
@@ -52,11 +88,11 @@ let jointPositionsTarget = {
   leftAnklePosTarget: {x:1, y:1},
   rightAnklePosTarget: {x:1, y:1}
 }
-
+const videoWidth = 1280;
+const videoHeight = 760;
 
 {
-  const videoWidth = 1280;
-  const videoHeight = 760;
+
   const colorRight = "red";
   const colorLeft = "black";
   // We create an object with the parameters that we want for the model.
@@ -154,77 +190,85 @@ function drawKeypoints(keypoints, minConfidence, scale = 1) {
 
   if (leftWrist.score > minConfidence) {
       //const {y, x} = leftWrist.position;
-      jointPositionsTarget.leftWristPosTarget = leftWrist.position;
+      jointPositionsTenserflow.leftWristPos = leftWrist.position;
+    
       //drawPoint(ctx, y * scale, x * scale, 10, colorLeft);
   }
 
   if (rightWrist.score > minConfidence) {
       //const {y, x} = rightWrist.position;
-      jointPositionsTarget.rightWristPosTarget = rightWrist.position;
+      jointPositionsTenserflow.rightWristPos = rightWrist.position;
       //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
 
   if (rightEye.score > minConfidence) {
+
     //const {y, x} = rightEye.position;
-    jointPositionsTarget.rightEyePosTarget = rightEye.position;
+    jointPositionsTenserflow.rightEyePos = rightEye.position;
+   
     //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (leftEye.score > minConfidence) {
     //const {y, x} = leftEye.position;
-    jointPositionsTarget.leftEyePosTarget = leftEye.position;
+     jointPositionsTenserflow.leftEyePos = leftEye.position;
     //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (leftShoulder.score > minConfidence) {
     //const {y, x} = leftShoulder.position;
-    jointPositionsTarget.leftShoulderPosTarget = leftShoulder.position;
+    jointPositionsTenserflow.leftShoulderPos = leftShoulder.position;
    // drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (rightShoulder.score > minConfidence) {
     //const {y, x} = rightShoulder.position;
-    jointPositionsTarget.rightShoulderPosTarget = rightShoulder.position;
+    jointPositionsTenserflow.rightShoulderPos = rightShoulder.position;
     //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (leftElbow.score > minConfidence) {
     //const {y, x} = leftElbow.position;
-    jointPositionsTarget.leftElbowPosTarget = leftElbow.position;
+    jointPositionsTenserflow.leftElbowPos = leftElbow.position;
     //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (rightElbow.score > minConfidence) {
     //const {y, x} = rightElbow.position;
-    jointPositionsTarget.rightElbowPosTarget = rightElbow.position;
+    jointPositionsTenserflow.rightElbowPos = rightElbow.position;
     //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (leftHip.score > minConfidence) {
     //const {y, x} = leftHip.position;
-    jointPositionsTarget.leftHipPosTarget = leftHip.position;
+    jointPositionsTenserflow.leftHipPos = leftHip.position;
     //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (rightHip.score > minConfidence) {
     //const {y, x} = rightHip.position;
-    jointPositionsTarget.rightHipPosTarget = rightHip.position;
+    jointPositionsTenserflow.rightHipPos = rightHip.position;
     //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (leftKnee.score > minConfidence) {
     //const {y, x} = leftKnee.position;
-    jointPositionsTarget.leftKneePosTarget = leftKnee.position;
+    jointPositionsTenserflow.leftKneePos = leftKnee.position;
     //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (rightKnee.score > minConfidence) {
     //const {y, x} = rightKnee.position;
-    jointPositionsTarget.rightKneePosTarget = rightKnee.position;
+    jointPositionsTenserflow.rightKneePos = rightKnee.position;
     //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (leftAnkle.score > minConfidence) {
     //const {y, x} = leftAnkle.position;
-    jointPositionsTarget.leftAnklePosTarget = leftAnkle.position;
+    jointPositionsTenserflow.leftAnklePos = leftAnkle.position;
     //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (rightAnkle.score > minConfidence) {
     //const {y, x} = rightAnkle.position;
-    jointPositionsTarget.rightAnklePosTarget = rightAnkle.position;
+  
+    jointPositionsTenserflow.rightAnklePos = rightAnkle.position;
+
+    
     //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
 }
+
+
 
 
 /*function drawPoint(ctx, y, x, r, color) {
@@ -352,20 +396,22 @@ export default class AdminScene extends Phaser.Scene {
     this.leftAnkleAvatar = this.matter.add.image(jointPositions.leftAnklePos.x, jointPositions.leftAnklePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
     this.rightAnkleAvatar = this.matter.add.image(jointPositions.rightAnklePos.x, jointPositions.rightAnklePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
 
-
+  
+ 
     this.spawnLetters();
     // emit only 10 times per second
     this.time.addEvent({ delay: 100, callback: this.onEvent, callbackScope: this, loop: true });
   }
 
   onEvent(){
-    socket.emit('points', jointPositions);
+   //socket.emit('points', jointPositions);
+    socket.emit('points', jointPositionsWebcamPercentage);
   }
 
   update(){
     //bij een bepaald aantal letters op het scherm - zullen er een hoeveelheid verdwijnen,
     //random gekozen om zo nieuwe woorden en mysterie te creëren
-    if (letters.length === 20) {
+    if (letters.length >= 20) {
       for (let numberOfRemoveletters = 10; numberOfRemoveletters>0; numberOfRemoveletters--){
         for(let removeletters = letters.length-1; removeletters >= 0; removeletters--){
           array.splice(Math.floor(Math.random()*removeletters.length), 1);
@@ -373,36 +419,69 @@ export default class AdminScene extends Phaser.Scene {
       }
     }
 
+   
+  // this.calcPercentage();
+    
+    
+    jointPositionsWebcamPercentage.leftWristPos.x = (jointPositionsTenserflow.leftWristPos.x / videoWidth);
+    jointPositionsWebcamPercentage.leftWristPos.y = (jointPositionsTenserflow.leftWristPos.y / videoHeight);
+    jointPositionsTarget.leftWristPosTarget.x = (this.cameras.main.width * jointPositionsWebcamPercentage.leftWristPos.x);
+    jointPositionsTarget.leftWristPosTarget.y = (this.cameras.main.height * jointPositionsWebcamPercentage.leftWristPos.y);
     jointPositions.leftWristPos.x += ( jointPositionsTarget.leftWristPosTarget.x - jointPositions.leftWristPos.x ) / fpsFactor;
     jointPositions.leftWristPos.y += ( jointPositionsTarget.leftWristPosTarget.y - jointPositions.leftWristPos.y ) / fpsFactor;
     this.leftWristAvatar.x = jointPositions.leftWristPos.x;
     this.leftWristAvatar.y = jointPositions.leftWristPos.y;
 
+    jointPositionsWebcamPercentage.leftEyePos.x = (jointPositionsTenserflow.leftEyePos.x / videoWidth);
+    jointPositionsWebcamPercentage.leftEyePos.y = (jointPositionsTenserflow.leftEyePos.y / videoHeight);
+    jointPositionsTarget.leftEyePosTarget.x = (this.cameras.main.width * jointPositionsWebcamPercentage.leftEyePos.x);
+    jointPositionsTarget.leftEyePosTarget.y = (this.cameras.main.height * jointPositionsWebcamPercentage.leftEyePos.y);
     jointPositions.leftEyePos.x += ( jointPositionsTarget.leftEyePosTarget.x - jointPositions.leftEyePos.x ) / fpsFactor;
     jointPositions.leftEyePos.y += ( jointPositionsTarget.leftEyePosTarget.y - jointPositions.leftEyePos.y ) / fpsFactor;
     this.leftEyeAvatar.x = jointPositions.leftEyePos.x;
     this.leftEyeAvatar.y = jointPositions.leftEyePos.y;
 
+    jointPositionsWebcamPercentage.leftShoulderPos.x = (jointPositionsTenserflow.leftShoulderPos.x / videoWidth);
+    jointPositionsWebcamPercentage.leftShoulderPos.y = (jointPositionsTenserflow.leftShoulderPos.y / videoHeight);
+    jointPositionsTarget.leftShoulderPosTarget.x = (this.cameras.main.width * jointPositionsWebcamPercentage.leftShoulderPos.x);
+    jointPositionsTarget.leftShoulderPosTarget.y = (this.cameras.main.height * jointPositionsWebcamPercentage.leftShoulderPos.y);
     jointPositions.leftShoulderPos.x += ( jointPositionsTarget.leftShoulderPosTarget.x - jointPositions.leftShoulderPos.x ) / fpsFactor;
     jointPositions.leftShoulderPos.y += ( jointPositionsTarget.leftShoulderPosTarget.y - jointPositions.leftShoulderPos.y ) / fpsFactor;
     this.leftShoulderAvatar.x = jointPositions.leftShoulderPos.x;
     this.leftShoulderAvatar.y = jointPositions.leftShoulderPos.y;
 
+    jointPositionsWebcamPercentage.leftElbowPos.x = (jointPositionsTenserflow.leftElbowPos.x / videoWidth);
+    jointPositionsWebcamPercentage.leftElbowPos.y = (jointPositionsTenserflow.leftElbowPos.y / videoHeight);
+    jointPositionsTarget.leftElbowPosTarget.x = (this.cameras.main.width * jointPositionsWebcamPercentage.leftElbowPos.x);
+    jointPositionsTarget.leftElbowPosTarget.y = (this.cameras.main.height * jointPositionsWebcamPercentage.leftElbowPos.y);
     jointPositions.leftElbowPos.x += ( jointPositionsTarget.leftElbowPosTarget.x - jointPositions.leftElbowPos.x ) / fpsFactor;
     jointPositions.leftElbowPos.y += ( jointPositionsTarget.leftElbowPosTarget.y - jointPositions.leftElbowPos.y ) / fpsFactor;
     this.leftElbowAvatar.x = jointPositions.leftElbowPos.x;
     this.leftElbowAvatar.y = jointPositions.leftElbowPos.y;
 
+
+    jointPositionsWebcamPercentage.leftHipPos.x = (jointPositionsTenserflow.leftHipPos.x / videoWidth);
+    jointPositionsWebcamPercentage.leftHipPos.y = (jointPositionsTenserflow.leftHipPos.y / videoHeight);
+    jointPositionsTarget.leftHipPosTarget.x = (this.cameras.main.width * jointPositionsWebcamPercentage.leftHipPos.x);
+    jointPositionsTarget.leftHipPosTarget.y = (this.cameras.main.height * jointPositionsWebcamPercentage.leftHipPos.y);
     jointPositions.leftHipPos.x += ( jointPositionsTarget.leftHipPosTarget.x - jointPositions.leftHipPos.x ) / fpsFactor;
     jointPositions.leftHipPos.y += ( jointPositionsTarget.leftHipPosTarget.y - jointPositions.leftHipPos.y ) / fpsFactor;
     this.leftHipAvatar.x = jointPositions.leftHipPos.x;
     this.leftHipAvatar.y = jointPositions.leftHipPos.y;
 
+    jointPositionsWebcamPercentage.leftKneePos.x = (jointPositionsTenserflow.leftKneePos.x / videoWidth);
+    jointPositionsWebcamPercentage.leftKneePos.y = (jointPositionsTenserflow.leftKneePos.y / videoHeight);
+    jointPositionsTarget.leftKneePosTarget.x = (this.cameras.main.width * jointPositionsWebcamPercentage.leftKneePos.x);
+    jointPositionsTarget.leftKneePosTarget.y = (this.cameras.main.height * jointPositionsWebcamPercentage.leftKneePos.y);
     jointPositions.leftKneePos.x += ( jointPositionsTarget.leftKneePosTarget.x - jointPositions.leftKneePos.x ) / fpsFactor;
     jointPositions.leftKneePos.y += ( jointPositionsTarget.leftKneePosTarget.y - jointPositions.leftKneePos.y ) / fpsFactor;
     this.leftKneeAvatar.x = jointPositions.leftKneePos.x;
     this.leftKneeAvatar.y = jointPositions.leftKneePos.y;
 
+    jointPositionsWebcamPercentage.leftAnklePos.x = (jointPositionsTenserflow.leftAnklePos.x / videoWidth);
+    jointPositionsWebcamPercentage.leftAnklePos.y = (jointPositionsTenserflow.leftAnklePos.y / videoHeight);
+    jointPositionsTarget.leftAnklePosTarget.x = (this.cameras.main.width * jointPositionsWebcamPercentage.leftAnklePos.x);
+    jointPositionsTarget.leftAnklePosTarget.y = (this.cameras.main.height * jointPositionsWebcamPercentage.leftAnklePos.y);
     jointPositions.leftAnklePos.x += ( jointPositionsTarget.leftAnklePosTarget.x - jointPositions.leftAnklePos.x ) / fpsFactor;
     jointPositions.leftAnklePos.y += ( jointPositionsTarget.leftAnklePosTarget.y - jointPositions.leftAnklePos.y ) / fpsFactor;
     this.leftAnkleAvatar.x = jointPositions.leftAnklePos.x;
@@ -410,72 +489,79 @@ export default class AdminScene extends Phaser.Scene {
 
 
 
+    jointPositionsWebcamPercentage.rightWristPos.x = (jointPositionsTenserflow.rightWristPos.x / videoWidth);
+    jointPositionsWebcamPercentage.rightWristPos.y = (jointPositionsTenserflow.rightWristPos.y / videoHeight);
+    jointPositionsTarget.rightWristPosTarget.x = (this.cameras.main.width * jointPositionsWebcamPercentage.rightWristPos.x);
+    jointPositionsTarget.rightWristPosTarget.y = (this.cameras.main.height * jointPositionsWebcamPercentage.rightWristPos.y);
     jointPositions.rightWristPos.x += ( jointPositionsTarget.rightWristPosTarget.x - jointPositions.rightWristPos.x ) / fpsFactor;
     jointPositions.rightWristPos.y += ( jointPositionsTarget.rightWristPosTarget.y - jointPositions.rightWristPos.y ) / fpsFactor;
     this.rightWristAvatar.x = jointPositions.rightWristPos.x;
     this.rightWristAvatar.y = jointPositions.rightWristPos.y;
 
+
+    jointPositionsWebcamPercentage.rightEyePos.x = (jointPositionsTenserflow.rightEyePos.x / videoWidth);
+    jointPositionsWebcamPercentage.rightEyePos.y = (jointPositionsTenserflow.rightEyePos.y / videoHeight);
+    jointPositionsTarget.rightEyePosTarget.x = (this.cameras.main.width * jointPositionsWebcamPercentage.rightEyePos.x);
+    jointPositionsTarget.rightEyePosTarget.y = (this.cameras.main.height * jointPositionsWebcamPercentage.rightEyePos.y);
     jointPositions.rightEyePos.x += ( jointPositionsTarget.rightEyePosTarget.x - jointPositions.rightEyePos.x ) / fpsFactor;
     jointPositions.rightEyePos.y += ( jointPositionsTarget.rightEyePosTarget.y - jointPositions.rightEyePos.y ) / fpsFactor;
     this.rightEyeAvatar.x = jointPositions.rightEyePos.x;
     this.rightEyeAvatar.y = jointPositions.rightEyePos.y;
 
+
+    jointPositionsWebcamPercentage.rightShoulderPos.x = (jointPositionsTenserflow.rightShoulderPos.x / videoWidth);
+    jointPositionsWebcamPercentage.rightShoulderPos.y = (jointPositionsTenserflow.rightShoulderPos.y / videoHeight);
+    jointPositionsTarget.rightShoulderPosTarget.x = (this.cameras.main.width * jointPositionsWebcamPercentage.rightShoulderPos.x);
+    jointPositionsTarget.rightShoulderPosTarget.y = (this.cameras.main.height * jointPositionsWebcamPercentage.rightShoulderPos.y);
     jointPositions.rightShoulderPos.x += ( jointPositionsTarget.rightShoulderPosTarget.x - jointPositions.rightShoulderPos.x ) / fpsFactor;
     jointPositions.rightShoulderPos.y += ( jointPositionsTarget.rightShoulderPosTarget.y - jointPositions.rightShoulderPos.y ) / fpsFactor;
     this.rightShoulderAvatar.x = jointPositions.rightShoulderPos.x;
     this.rightShoulderAvatar.y = jointPositions.rightShoulderPos.y;
 
+
+    jointPositionsWebcamPercentage.rightElbowPos.x = (jointPositionsTenserflow.rightElbowPos.x / videoWidth);
+    jointPositionsWebcamPercentage.rightElbowPos.y = (jointPositionsTenserflow.rightElbowPos.y / videoHeight);
+    jointPositionsTarget.rightElbowPosTarget.x = (this.cameras.main.width * jointPositionsWebcamPercentage.rightElbowPos.x);
+    jointPositionsTarget.rightElbowPosTarget.y = (this.cameras.main.height * jointPositionsWebcamPercentage.rightElbowPos.y);
     jointPositions.rightElbowPos.x += ( jointPositionsTarget.rightElbowPosTarget.x - jointPositions.rightElbowPos.x ) / fpsFactor;
     jointPositions.rightElbowPos.y += ( jointPositionsTarget.rightElbowPosTarget.y - jointPositions.rightElbowPos.y ) / fpsFactor;
     this.rightElbowAvatar.x = jointPositions.rightElbowPos.x;
     this.rightElbowAvatar.y = jointPositions.rightElbowPos.y;
 
+
+    jointPositionsWebcamPercentage.rightHipPos.x = (jointPositionsTenserflow.rightHipPos.x / videoWidth);
+    jointPositionsWebcamPercentage.rightHipPos.y = (jointPositionsTenserflow.rightHipPos.y / videoHeight);
+    jointPositionsTarget.rightHipPosTarget.x = (this.cameras.main.width * jointPositionsWebcamPercentage.rightHipPos.x);
+    jointPositionsTarget.rightHipPosTarget.y = (this.cameras.main.height * jointPositionsWebcamPercentage.rightHipPos.y);
     jointPositions.rightHipPos.x += ( jointPositionsTarget.rightHipPosTarget.x - jointPositions.rightHipPos.x ) / fpsFactor;
     jointPositions.rightHipPos.y += ( jointPositionsTarget.rightHipPosTarget.y - jointPositions.rightHipPos.y ) / fpsFactor;
     this.rightHipAvatar.x = jointPositions.rightHipPos.x;
     this.rightHipAvatar.y = jointPositions.rightHipPos.y;
 
+
+    jointPositionsWebcamPercentage.rightKneePos.x = (jointPositionsTenserflow.rightKneePos.x / videoWidth);
+    jointPositionsWebcamPercentage.rightKneePos.y = (jointPositionsTenserflow.rightKneePos.y / videoHeight);
+    jointPositionsTarget.rightKneePosTarget.x = (this.cameras.main.width * jointPositionsWebcamPercentage.rightKneePos.x);
+    jointPositionsTarget.rightKneePosTarget.y = (this.cameras.main.height * jointPositionsWebcamPercentage.rightKneePos.y);
     jointPositions.rightKneePos.x += ( jointPositionsTarget.rightKneePosTarget.x - jointPositions.rightKneePos.x ) / fpsFactor;
     jointPositions.rightKneePos.y += ( jointPositionsTarget.rightKneePosTarget.y - jointPositions.rightKneePos.y ) / fpsFactor;
     this.rightKneeAvatar.x = jointPositions.rightKneePos.x;
     this.rightKneeAvatar.y = jointPositions.rightKneePos.y;
 
+
+    jointPositionsWebcamPercentage.rightAnklePos.x = (jointPositionsTenserflow.rightAnklePos.x / videoWidth);
+    jointPositionsWebcamPercentage.rightAnklePos.y = (jointPositionsTenserflow.rightAnklePos.y / videoHeight);
+    jointPositionsTarget.rightAnklePosTarget.x = (this.cameras.main.width * jointPositionsWebcamPercentage.rightAnklePos.x);
+    jointPositionsTarget.rightAnklePosTarget.y = (this.cameras.main.height * jointPositionsWebcamPercentage.rightAnklePos.y);
     jointPositions.rightAnklePos.x += ( jointPositionsTarget.rightAnklePosTarget.x - jointPositions.rightAnklePos.x ) / fpsFactor;
     jointPositions.rightAnklePos.y += ( jointPositionsTarget.rightAnklePosTarget.y - jointPositions.rightAnklePos.y ) / fpsFactor;
     this.rightAnkleAvatar.x = jointPositions.rightAnklePos.x;
     this.rightAnkleAvatar.y = jointPositions.rightAnklePos.y;
 
-    /*this.leftWristAvatar.x = jointPositions.leftWristPos.x;
-    this.leftWristAvatar.y = jointPositions.leftWristPos.y + 200;
-    this.leftEyeAvatar.x = jointPositions.leftEyePos.x;
-    this.leftEyeAvatar.y = jointPositions.leftEyePos.y + 200;
-    this.leftShoulderAvatar.x = jointPositions.leftShoulderPos.x;
-    this.leftShoulderAvatar.y = jointPositions.leftShoulderPos.y + 200;
-    this.leftElbowAvatar.x = jointPositions.leftElbowPos.x;
-    this.leftElbowAvatar.y = jointPositions.leftElbowPos.y + 200;
-    this.leftHipAvatar.x = jointPositions.leftHipPos.x;
-    this.leftHipAvatar.y = jointPositions.leftHipPos.y + 200;
-    this.leftKneeAvatar.x = jointPositions.leftKneePos.x;
-    this.leftKneeAvatar.y = jointPositions.leftKneePos.y + 200;
-    this.leftAnkleAvatar.x = jointPositions.leftAnklePos.x;
-    this.leftAnkleAvatar.y = jointPositions.leftAnklePos.y + 200;
-
-    this.rightWristAvatar.x = jointPositions.rightWristPos.x;
-    this.rightWristAvatar.y = jointPositions.rightWristPos.y + 200;
-    this.rightEyeAvatar.x = jointPositions.rightEyePos.x;
-    this.rightEyeAvatar.y = jointPositions.rightEyePos.y + 200;
-    this.rightShoulderAvatar.x = jointPositions.rightShoulderPos.x;
-    this.rightShoulderAvatar.y = jointPositions.rightShoulderPos.y + 200;
-    this.rightElbowAvatar.x = jointPositions.rightElbowPos.x;
-    this.rightElbowAvatar.y = jointPositions.rightElbowPos.y + 200;
-    this.rightHipAvatar.x = jointPositions.rightHipPos.x;
-    this.rightHipAvatar.y = jointPositions.rightHipPos.y + 200;
-    this.rightKneeAvatar.x = jointPositions.rightKneePos.x;
-    this.rightKneeAvatar.y = jointPositions.rightKneePos.y + 200;
-    this.rightAnkleAvatar.x = jointPositions.rightAnklePos.x;
-    this.rightAnkleAvatar.y = jointPositions.rightAnklePos.y + 200;*/
+    
 
   };
+
 
   spawnLetters() {
 
@@ -503,7 +589,7 @@ export default class AdminScene extends Phaser.Scene {
       split[letter] = this.matter.add.sprite(fallPosition, 0, split[letter], 0, {restitution: .5});
       fallPosition = fallPosition + spacebetween;
       letters.push(split[letter]);
-      console.log(letters);
+    
     }
 
   };
@@ -540,7 +626,9 @@ export default class AdminScene extends Phaser.Scene {
     makeConnectionAdmin() {
       socket = io.connect('/');
       socket.on('connect', () => {
+    
         console.log(`Admin connected: ${socket.id}`);
+        socket.emit('admin');
       });
       socket.on('message', message => {
         console.log(`Received message: ${message}`);

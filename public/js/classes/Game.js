@@ -4,11 +4,12 @@ export default class Game extends Phaser.Game {
 
   constructor(){
     let config = {
+      //type: Phaser.AUTO,
       scale: {
         mode: Phaser.Scale.FIT,
         parent: 'bottomblock',
-        width: 800,
-        height: 600
+        width: '100%',
+        height: '100%'
     },
      // type: Phaser.AUTO,
     //  parent: 'bottomblock',

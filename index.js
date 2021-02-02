@@ -7,8 +7,14 @@ const io = require('socket.io')(server);
 
 
 let words = [];
+let admin;
 io.on('connection', socket => {
   console.log('Socket connected', socket.id);
+
+  socket.on('admin', () => {
+    admin = socket.id;
+    console.log(`admin: ${socket.id}`);
+  });
   
   socket.on('message', message => {
     console.log(message);
@@ -32,9 +38,16 @@ io.on('connection', socket => {
   
 
   socket.on('points', jointPositions => {
-    console.log(jointPositions);
+    //console.log(jointPositions);
     io.sockets.emit(`points`, jointPositions);
   });
+
+  socket.on('disconnect', function () {
+    if(socket.id === admin){
+      words = [];
+    }
+    
+});
 
 });
 
