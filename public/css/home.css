@@ -13,7 +13,8 @@
 
 
 .intro {
-  margin: 20%;
+  margin-left: 10vw;
+  width: 30vw;
   height: 100%;
   background-image: url('../assets/img/blobs/greenblob.png'), url('../assets/img/blobs/blueblob.png');
   background-repeat: no-repeat;
@@ -52,6 +53,7 @@
 
 p {
   line-height: 1.6rem;
+  margin-top: .5rem;
 }
 
 .intro__top {
@@ -84,11 +86,6 @@ p {
   align-content: center;
 }
 
-.video__auteur {
-  top: 5vh;
-  right: 36vw;
-}
-
 .live__footage {
   top: 105vh;
   left: 5vw;
@@ -110,6 +107,7 @@ p {
 
 .logo {
   margin: 2rem 0;
+  max-width: 25vw;
 }
 
 .section__wordgame {
@@ -136,7 +134,7 @@ p {
 }
 
 .bottomblock {
-  width: 100%;
+  height: 100vh;
 }
 
 .title {
@@ -357,4 +355,216 @@ p {
 .wordForm__auteur__socials {
   font-size: 1rem;
   text-align: center;
+}
+
+.article__wordgame {
+  height: 100vh;
+  width: 100%;
+}
+
+/*------------------------------------*/
+
+.section__information {
+  background-image: url('../assets/img/blobs/greencloud.png');
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+.information__parts {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-content: space-between;
+  align-content: space-between;
+  align-items: flex-start;
+  justify-items: start;
+  margin-left: 15vw;
+  width: 30vw;
+  height: 80vh;
+}
+
+.praktisch {
+  margin-right: 15vw;
+  height: 80vh;
+  width: 30vw;
+  align-items: flex-start;
+  justify-items: start;
+  padding: 1rem;
+  background-image: url('../assets/img/blobs/stipjes.png');
+  background-repeat: no-repeat;
+}
+
+.praktisch__items {
+
+}
+
+.praktisch__time {
+  background-color: var(--black);
+  margin: .5rem 0;
+  padding: .4rem .4rem .6rem;
+  color: var(--white);
+}
+
+.praktisch__travelitem {
+  margin: .5rem 0;
+  font-size: 1.1rem;
+  width: 25vw;
+}
+
+.wandelapp__section {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  justify-content: space-around;
+  align-content: space-around;
+  align-items: center;
+  justify-items: center;
+  margin: 2rem 0;
+  font-size: 1.1rem;
+}
+
+.wandelapplink {
+  color: var(--black);
+  font-weight: 300;
+  text-decoration: underline;
+  font-size: 1rem;
+}
+
+.subtitle {
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+/*-----------------------------*/
+
+.information__blocks {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.information__block {
+  display: grid;
+  grid-template-rows: 1fr;
+  justify-content: center;
+  align-content: space-around;
+  align-items: center;
+  justify-items: center;
+}
+
+.information__block__partleft {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: flex-start;
+  align-content: space-around;
+  align-items: flex-start;
+  justify-items: flex-start;
+  margin: 0 1rem 0 15vw;
+}
+
+.information__block__partright {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: flex-start;
+  align-content: space-around;
+  align-items: flex-start;
+  justify-items: flex-start;
+  margin: 5rem 15vw 5rem 1rem;
+}
+
+.buttons__box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+/*******************************/
+
+.footer {
+  height: 50vh;
+  background-color: var(--black);
+  color: var(--white);
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.footer__information {
+  display: grid;
+  grid-template-rows: 1.1fr 1fr 1fr 1fr;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+  font-size: 1.1rem;
+  margin-right: 15vw;
+}
+
+.footer__links {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.footer__link {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 800;
+  margin: 0 .5rem;
+}
+
+.footer__projectbetrokkenen {
+  font-size: .9rem;
+}
+
+.footer__mementoinfo {
+  max-width: 40vw;
+  text-align: center;
+}
+
+.mementologo {
+  margin: 5vw;
+}
+
+.trein::before {
+  background-image: url('../assets/img/icons/trein.png');
+  background-repeat: no-repeat;
+  background-size: .8rem .9rem;
+  display: inline-block;
+  width: .8rem;
+  height: .9rem;
+  content:"";
+  padding-right: .5rem;
+}
+
+.parking::before {
+  background-image: url('../assets/img/icons/parking.png');
+  background-repeat: no-repeat;
+  background-size: .8rem .9rem;
+  display: inline-block;
+  width: .8rem;
+  height: .9rem;
+  content:"";
+  padding-right: .5rem;
+}
+
+.fiets::before {
+  background-image: url('../assets/img/icons/bike.png');
+  background-repeat: no-repeat;
+  background-size: 1rem .9rem;
+  display: inline-block;
+  width: 1rem;
+  height: .9rem;
+  content:"";
+  padding-right: .5rem;
 }
