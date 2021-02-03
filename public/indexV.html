@@ -93,7 +93,8 @@
             <p class="wordForm__intro">Voltooi de drie taken om jouw persoonlijk Memootje te ontdekken</p>
             <p class="wordForm__question">Wat betekent verdwalen voor jou?</p>
             <p class="wordForm__subinfo">Jouw antwoord komt mee in de live letterdoos te staan!</p>
-            <input type="text" id="enteredWord" class="enteredWord" name="enteredWord">
+            <span class="error"></span>
+            <input type="text" id="enteredWord" class="enteredWord" name="enteredWord" minlength="2" maxlength="20" required>
             <input id="sumbitwordbutton" class="button bigbutton" type="submit" value=" VERSTUUR">
             <button class="btn-next button">Volgende</button>
           </form>
@@ -101,29 +102,45 @@
           <form class="feelingsForm form-2">
             <p class="wordForm__intro">Voltooi de drie taken om jouw persoonlijk Memootje te ontdekken</p>
             <p class="wordForm__question">Hoe voel jij je vandaag?</p>
-            <label for=""></label>
+            <span class="error"></span>
+          
 
           <div class="emotics__listitems">
+            <label>
+              gelukzalig
             <div class="emotics__items">
               <div class="emotics__item happy"></div>
-              gelukzalig
-              <input class="feelingOption" type="radio" name="emotie" value="gelukzalig" id="">
+              <input class="feelingOption" type="radio" name="emotie" value="happy" id="" required>
             </div>
+           
+          </label>
+          <label>
+            somber
             <div class="emotics__items">
               <div class="emotics__item sad"></div>
-              somber
-              <input class="feelingOption" type="radio" name="emotie" value="somber" id="">
+           
+              <input class="feelingOption" type="radio" name="emotie" value="somber" id="" required>
             </div>
+            
+          </label>
+          <label>
+            giechelig
             <div class="emotics__items">
               <div class="emotics__item quirky"></div>
-              giechelig
-              <input class="feelingOption" type="radio" name="emotie" value="giechelig" id="">
+              
+              <input class="feelingOption" type="radio" name="emotie" value="giechelig" id="" required>
             </div>
+            
+          </label>
+          <label>
+            afgemat
             <div class="emotics__items">
               <div class="emotics__item tired"></div>
-              afgemat
-              <input class="feelingOption" type="radio" name="emotie" value="afgemat" id="">
+              
+              <input class="feelingOption" type="radio" name="emotie" value="afgemat" id="" required>
             </div>
+           
+          </label>
           </div>
 
             <input id="sumbitwordbutton" class="button bigbutton" type="submit" value="VERSTUUR">
@@ -245,5 +262,7 @@
   <script type="module" src="js/script.js"></script>
   <script type= "module" src="js/helpers/randomVideo.js"></script>
   <script type= "module" src="js/helpers/formHandler.js"></script>
+  <script type="application/json" src="assets/data/memootjes.json"></script>
+
   <!--<script type= "module" src="js/helpers/scroll.js"></script>-->
 </html>

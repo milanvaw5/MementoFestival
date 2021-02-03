@@ -12,7 +12,7 @@ export default class Game extends Phaser.Game {
         height: '100%'
     },
      // type: Phaser.AUTO,
-    //  parent: 'bottomblock',
+
       physics: {
         default: 'matter',
         matter: {
@@ -25,7 +25,7 @@ export default class Game extends Phaser.Game {
         },
        
       },
-     // transparent: true,
+      transparent: true,
       input: {
         keyboard: {
             target: window

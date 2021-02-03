@@ -15,9 +15,53 @@ let $liveSub = document.querySelector(`.live__footage__subindication`);
 let $liveDot = document.querySelector(`.bol`);
 const $btnSchud = document.querySelector(`.schud`);
 const $btnHartje = document.querySelector(`.hartje`);
+let selectedFeeling;
+let memootjesEmotion = [];
+const rand = Math.floor(Math.random(1)*2);
+         console.log(rand)
+const memootjesss = {
+  0:{
+  id: "7c30384d-7010-4074-ad8c-5138945f8c07",
+  text: "Spoel je rimpels weg, kam het verdriet uit je haren. Ze zijn geen deel van jou, ze reizen alleen maar even mee.",
+  author: "Alice Boudrey",
+  stageName: "",
+  linkPlacehodler: "@hihelloalice",
+  link: "https://www.instagram.com/hihelloalice/",
+  forEmotions: ["somber", "blij"]
+},
+1:{
+  text: "En het voelt als thuiskomen.",
+  author: "Alice Boudrey",
+  stageName: "",
+  linkPlacehodler: "@oonaloncke",
+  link: "https://www.instagram.com/oonaloncke/",
+  forEmotions: "somber"
+},
+}
+
+const memootjes = [
+  {
+  id: "7c30384d-7010-4074-ad8c-5138945f8c07",
+  text: "Spoel je rimpels weg, kam het verdriet uit je haren. Ze zijn geen deel van jou, ze reizen alleen maar even mee.",
+  author: "Alice Boudrey",
+  stageName: "",
+  linkPlacehodler: "@hihelloalice",
+  link: "https://www.instagram.com/hihelloalice/",
+  forEmotions: ["somber", "blij"]
+},
+{
+  text: "En het voelt als thuiskomen.",
+  author: "Alice Boudrey",
+  stageName: "",
+  linkPlacehodler: "@oonaloncke",
+  link: "https://www.instagram.com/oonaloncke/",
+  forEmotions: "somber"
+},
+]
 
 
 let jointPositionsGebruikers = {
+  nosePos: {x:1, y:1},
   leftWristPos: {x:1, y:1},
   rightWristPos: {x:1, y:1},
   leftEyePos: {x:1, y:1},
@@ -34,6 +78,7 @@ let jointPositionsGebruikers = {
   rightAnklePos: {x:1, y:1}
 }
 let jointPositionsGebruikersTarget = {
+  nosePosTarget: {x:1, y:1},
   leftWristPosTarget: {x:1, y:1},
   rightWristPosTarget: {x:1, y:1},
   leftEyePosTarget: {x:1, y:1},
@@ -65,6 +110,8 @@ const $challengeForm = document.querySelector(`.challengeForm`);
 const $msgInput = document.getElementById('enteredWord');
 const $feelingOptions = document.querySelectorAll(`.feelingOption`);
 
+const $haiku = document.querySelector(`.haiku`);
+
 
 let socket; // will be assigned a value later
 export default class VisitorScene extends Phaser.Scene {
@@ -80,7 +127,14 @@ export default class VisitorScene extends Phaser.Scene {
     //this.load.image('backgroundimage', 'assets/bimg.jpg');
     //this.load.image('d', 'assets/ball.png');
     this.load.image('test', 'assets/test.png');
-    this.load.image('a', 'assets/img/alphabet/A.png');
+    this.load.image('head', 'assets/img/avatar/avatarGreen/x1/headGreen.png');
+    this.load.image('footLeft', 'assets/img/avatar/avatarGreen/x1/footLeftGreen.png');
+    this.load.image('footRight', 'assets/img/avatar/avatarGreen/x1/footRightGreen.png');
+    this.load.image('handLeft', 'assets/img/avatar/avatarGreen/x1/handLeftGreen.png');
+    this.load.image('handRight', 'assets/img/avatar/avatarGreen/x1/handRightGreen.png');
+    this.load.image('body', 'assets/img/avatar/avatarGreen/x1/bodyGreen.png');
+    this.load.image('a', 'assets/img/alphabet/a.png');
+    this.load.image('a', 'assets/img/alphabet/a.png');
     this.load.image('b', 'assets/img/alphabet/B.png');
     this.load.image('c', 'assets/img/alphabet/C.png');
     this.load.image('d', 'assets/img/alphabet/D.png');
@@ -116,14 +170,16 @@ export default class VisitorScene extends Phaser.Scene {
   create(){
     console.log(`CREATE`);
 
-    this.cameras.main.setBackgroundColor('rgba(0, 0, 0, 0)');
+    //this.cameras.main.setBackgroundColor('rgba(0, 0, 0, 0)');
     this.makeConnection();
 
     //this.initMap();
     //backgroundimage = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'backgroundimage');
 
-    this.leftWristAvatar = this.matter.add.image(jointPositionsGebruikers.leftWristPos.x, jointPositionsGebruikers.leftWristPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
-    this.rightWristAvatar = this.matter.add.image(jointPositionsGebruikers.rightWristPos.x, jointPositionsGebruikers.rightWristPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
+    this.noseAvatar = this.matter.add.image(jointPositionsGebruikers.nosePos.x, jointPositionsGebruikers.nosePos.y, 'head', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
+    this.bodyAvater = this.matter.add.image(jointPositionsGebruikers.nosePos.x, jointPositionsGebruikers.nosePos.y, 'body', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1}).setScale(.8);
+    this.leftWristAvatar = this.matter.add.image(jointPositionsGebruikers.leftWristPos.x, jointPositionsGebruikers.leftWristPos.y, 'handLeft', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
+    this.rightWristAvatar = this.matter.add.image(jointPositionsGebruikers.rightWristPos.x, jointPositionsGebruikers.rightWristPos.y, 'handRight', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
     this.leftEyeAvatar = this.matter.add.image(jointPositionsGebruikers.leftEyePos.x, jointPositionsGebruikers.leftEyePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
     this.rightEyeAvatar = this.matter.add.image(jointPositionsGebruikers.rightEyePos.x, jointPositionsGebruikers.rightEyePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
     this.leftShoulderAvatar = this.matter.add.image(jointPositionsGebruikers.leftShoulderPos.x, jointPositionsGebruikers.leftShoulderPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
@@ -134,8 +190,8 @@ export default class VisitorScene extends Phaser.Scene {
     this.rightHipAvatar = this.matter.add.image(jointPositionsGebruikers.rightHipPos.x, jointPositionsGebruikers.rightHipPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
     this.leftKneeAvatar = this.matter.add.image(jointPositionsGebruikers.leftKneePos.x, jointPositionsGebruikers.leftKneePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
     this.rightKneeAvatar = this.matter.add.image(jointPositionsGebruikers.rightKneePos.x, jointPositionsGebruikers.rightKneePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
-    this.leftAnkleAvatar = this.matter.add.image(jointPositionsGebruikers.leftAnklePos.x, jointPositionsGebruikers.leftAnklePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
-    this.rightAnkleAvatar = this.matter.add.image(jointPositionsGebruikers.rightAnklePos.x, jointPositionsGebruikers.rightAnklePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
+    this.leftAnkleAvatar = this.matter.add.image(jointPositionsGebruikers.leftAnklePos.x, jointPositionsGebruikers.leftAnklePos.y, 'footLeft', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
+    this.rightAnkleAvatar = this.matter.add.image(jointPositionsGebruikers.rightAnklePos.x, jointPositionsGebruikers.rightAnklePos.y, 'footRight', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
 
     this.pointer = this.input.activePointer;
     //this.input.mouse.onMouseWheel.preventDefault = false
@@ -150,7 +206,7 @@ export default class VisitorScene extends Phaser.Scene {
 
 
     this.spawnLetters();
-this.scale.on('resize', this.resize, this);
+    this.scale.on('resize', this.resize, this);
     //timer = setTimeout(this.readInAuteurInput(), 50000);
   }
 
@@ -171,7 +227,13 @@ this.scale.on('resize', this.resize, this);
       }
       console.log(letters);
     }
-
+    jointPositionsGebruikers.nosePos.x += ( jointPositionsGebruikersTarget.nosePosTarget.x - jointPositionsGebruikers.nosePos.x ) / 10;
+    jointPositionsGebruikers.nosePos.y += ( jointPositionsGebruikersTarget.nosePosTarget.y - jointPositionsGebruikers.nosePos.y ) / 10;
+    this.noseAvatar.x = jointPositionsGebruikers.nosePos.x;
+    this.noseAvatar.y = jointPositionsGebruikers.nosePos.y;
+    this.bodyAvater.x = jointPositionsGebruikers.nosePos.x;
+    this.bodyAvater.y = jointPositionsGebruikers.nosePos.y + 300;
+    
 
     jointPositionsGebruikers.leftWristPos.x += ( jointPositionsGebruikersTarget.leftWristPosTarget.x - jointPositionsGebruikers.leftWristPos.x ) / 10;
     jointPositionsGebruikers.leftWristPos.y += ( jointPositionsGebruikersTarget.leftWristPosTarget.y - jointPositionsGebruikers.leftWristPos.y ) / 10;
@@ -248,7 +310,7 @@ this.scale.on('resize', this.resize, this);
     this.rightAnkleAvatar.y = jointPositionsGebruikers.rightAnklePos.y;
 
 
-    if(isLive){
+    /*if(isLive){
       if($liveTitle.textContent === 'live'){
 
       }else{
@@ -258,10 +320,10 @@ this.scale.on('resize', this.resize, this);
       }
 
     }else{
-      $liveTitle.textContent = 'offline';
-      $liveSub.textContent = 'tot later';
-      $liveDot.style.display = 'none';
-    }
+       $liveTitle.textContent = 'offline';
+       $liveSub.textContent = 'tot later';
+       $liveDot.style.display = 'none';
+    }*/
   };
 
 
@@ -359,7 +421,7 @@ this.scale.on('resize', this.resize, this);
       });
       socket.on('selectedFeeling', selectedFeeling => {
         console.log(selectedFeeling)
-        let fallPosition = Phaser.Math.Between(20, this.cameras.main.width);
+        let fallPosition = Phaser.Math.Between(60, this.cameras.main.width);
         switch(selectedFeeling){
           case "somber": this.feeling = this.matter.add.sprite(fallPosition, 0, 'somber', 0, {restitution: .5});break;
           case "giechelig": this.feeling = this.matter.add.sprite(fallPosition, 0, 'quirky', 0, {restitution: .5});break;
@@ -370,6 +432,9 @@ this.scale.on('resize', this.resize, this);
 
       });
       socket.on('points', jointPositions => {
+
+        jointPositionsGebruikersTarget.nosePosTarget.x = this.cameras.main.width * jointPositions.nosePos.x;
+        jointPositionsGebruikersTarget.nosePosTarget.y = this.cameras.main.height * jointPositions.nosePos.y;
 
         jointPositionsGebruikersTarget.leftEyePosTarget.x = this.cameras.main.width * jointPositions.leftEyePos.x;
         jointPositionsGebruikersTarget.leftEyePosTarget.y = this.cameras.main.height * jointPositions.leftEyePos.y;
@@ -419,11 +484,21 @@ this.scale.on('resize', this.resize, this);
         jointPositionsGebruikersTarget.rightAnklePosTarget.y = this.cameras.main.height * jointPositions.rightAnklePos.y;
       });
 
+       
+
       if($wordForm){
+        $wordForm.noValidate = true;
+        console.log("wordform")
+        const $enteredWord = $wordForm.querySelector(`.enteredWord`);
         $wordForm.addEventListener('submit', e => this.handleSubmitMessage(e));
+        $enteredWord.addEventListener('input', e => this.handeInputField(e, $wordForm))
       }
       if($feelingsForm){
+        $feelingsForm.noValidate = true;
         $feelingsForm.addEventListener('submit', e => this.handleSubmitFeeling(e));
+        $feelingOptions.forEach(field => {
+          field.addEventListener('input', e => this.handeInputField(e, $feelingsForm))
+        });
       }
       if($btnSchud){
         $btnSchud.addEventListener('click', e => this.handleClickSchud(e));
@@ -434,8 +509,68 @@ this.scale.on('resize', this.resize, this);
 
     };
 
+   
+
+    showValidationInfo($field) {
+      let message;
+      if ($field.validity.valueMissing) {
+        message = `Je moet een woord ingeven om door te gaan`;
+      }
+      if ($field.validity.typeMismatch) {
+        message = `Type not right`;
+      }
+      if ($field.validity.rangeOverflow) {
+        const max = $field.getAttribute(`max`);
+        message = `Too big, max ${max}`;
+      }
+      if ($field.validity.rangeUnderflow) {
+        const min = $field.getAttribute(`min`);
+        message = `Too small, min ${min}`;
+      }
+      if ($field.validity.tooShort) {
+        message = `Het woord moet minimum 2 characters bevatten`;
+      }
+      if ($field.validity.tooLong) {
+        message = `Het woord mag maximaal 20 characters bevatten`;
+      }
+      if (message) {
+        $field.parentElement.querySelector(`.error`).textContent = message;
+      }
+      console.log(message)
+    };
+
+    handeInputField(e, form){
+      const field = e.currentTarget;
+      if (!form.checkValidity()) {
+        this.showValidationInfo(field);
+       } else {
+         form.querySelector(`.error`).textContent = "";
+       // field.parentElement.querySelector(`.error`).textContent = ""
+       }
+        /*
+       if(form === $feelingsForm){
+         const pic = field.parentElement.querySelector(`.${field.value}`)
+         pic.style.backgroundImage = 'url(../assets/img/emotics/happyco.png)';
+         pic.style. backgroundPosition = 'bottom right';
+       }
+       */
+
+    }
+
     handleSubmitMessage = e => {
        e.preventDefault();
+       if (!$wordForm.checkValidity()) {
+
+       const field = $wordForm.querySelector(`.enteredWord`);
+        
+       this.showValidationInfo(field)
+  
+       // $wordForm.querySelector(`.error`).innerHTML = `Some errors occured`;
+      } else {
+        
+        console.log(`Form is valid => submit form`);
+      }
+
        socket.emit('message', $msgInput.value);
        //socket.emit('messages', messages);
        //socket.emit('points', points);
@@ -443,13 +578,56 @@ this.scale.on('resize', this.resize, this);
     }
     handleSubmitFeeling = e => {
       e.preventDefault();
-      console.log("clickede")
-      let selectedFeeling;
-      $feelingOptions.forEach(option => {
-        if(option.checked){
-          selectedFeeling = option.value;
-        }
-      });
+      if (!$feelingsForm.checkValidity()) {
+
+       // const field = $feelingsForm.querySelector(`.feelingOption`);
+         
+       // this.showValidationInfo(field)
+        $feelingsForm.querySelector(`.error`).innerHTML = `Selecteer één emotie om verder te gaan`;
+        console.log("error feeeling")
+        // $wordForm.querySelector(`.error`).innerHTML = `Some errors occured`;
+       } else {
+       
+        $feelingOptions.forEach(option => {
+          if(option.checked){
+            selectedFeeling = option.value;
+          }
+        });
+        memootjes.forEach(memootje => {
+      
+          if(Array.isArray(memootje.forEmotions)){
+            memootje.forEmotions.forEach(forEmotion => {
+              console.log("normaal 2x")
+              console.log(forEmotion)
+              console.log(selectedFeeling)
+               if(forEmotion === selectedFeeling){
+                 console.log(forEmotion)
+                 memootjesEmotion.push(memootje);
+               }
+            });
+          }else{
+
+            if(memootje.forEmotions === selectedFeeling){
+              memootjesEmotion.push(memootje);
+            }
+          }
+          
+         
+         });
+         console.log(memootjesEmotion)
+         let rand = Math.floor(Math.random(memootjesEmotion.length)*2);
+         if(rand !== 0){
+           rand = rand - 1;
+         }
+         console.log(rand)
+         console.log(memootjesEmotion.length)
+         console.log($haiku)
+         document.querySelector(`.schud`).textContent = memootjesEmotion[rand].text;
+        // $haiku.textContent = memootjesEmotion[rand].text;
+         console.log(`Form is valid => submit form`);
+       }
+     
+    
       socket.emit('feeling', selectedFeeling);
    }
 
