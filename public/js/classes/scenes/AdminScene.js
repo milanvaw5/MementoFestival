@@ -591,9 +591,9 @@ export default class AdminScene extends Phaser.Scene {
     for (letter = 0; letter < split.length; letter++)
     {
       console.log('spawnWord: ' + split[letter]);
-      split[letter] = this.matter.add.sprite(fallPosition, 0, split[letter], 0, {restitution: .5});
+      const l = this.matter.add.sprite(fallPosition, 0, split[letter], 0, {restitution: .5});
       fallPosition = fallPosition + spacebetween;
-      letters.push(split[letter]);
+      letters.push(l);
     
     }
 
@@ -624,7 +624,7 @@ export default class AdminScene extends Phaser.Scene {
       split = lowercase.split('');
       split = readWord.split('');
       console.log('splitWord: ' + split);
-      letters.push(split);
+      //letters.push(split);
     };
 
 
@@ -642,6 +642,14 @@ export default class AdminScene extends Phaser.Scene {
         console.log(words);
         readWord = message;
         this.spawnWord();
+      });
+
+      socket.on('shakeAll', () => {
+
+        letters.forEach(letter => {
+          letter.setVelocity(20, 30)
+        })
+
       });
 
       socket.on('selectedFeeling', selectedFeeling => {
