@@ -28,7 +28,6 @@
   align-items: center;
   align-content: center;
   height: 100vh;
-  /*position: absolute;*/
   z-index: 1;
 }
 
@@ -72,7 +71,6 @@ p {
 }
 
 .informationblock {
-  position: absolute;
   z-index: 1;
   color: var(--white);
   background-color: var(--black);
@@ -431,6 +429,12 @@ p {
 .subtitle {
   font-size: 1.4rem;
   font-weight: 800;
+}
+
+.map {
+  display: block;
+  height: 100rem;
+  width: 100rem;
 }
 
 /*-----------------------------*/
