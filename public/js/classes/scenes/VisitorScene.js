@@ -80,32 +80,32 @@ export default class VisitorScene extends Phaser.Scene {
     //this.load.image('backgroundimage', 'assets/bimg.jpg');
     //this.load.image('d', 'assets/ball.png');
     this.load.image('test', 'assets/test.png');
-    this.load.image('a', 'assets/img/alphabet/a.png');
-    this.load.image('b', 'assets/img/alphabet/b.png');
-    this.load.image('c', 'assets/img/alphabet/c.png');
-    this.load.image('d', 'assets/img/alphabet/d.png');
-    this.load.image('e', 'assets/img/alphabet/e.png');
-    this.load.image('f', 'assets/img/alphabet/f.png');
-    this.load.image('g', 'assets/img/alphabet/g.png');
-    this.load.image('h', 'assets/img/alphabet/h.png');
-    this.load.image('i', 'assets/img/alphabet/i.png');
-    this.load.image('j', 'assets/img/alphabet/j.png');
-    this.load.image('k', 'assets/img/alphabet/k.png');
-    this.load.image('l', 'assets/img/alphabet/l.png');
-    this.load.image('m', 'assets/img/alphabet/m.png');
-    this.load.image('n', 'assets/img/alphabet/n.png');
-    this.load.image('o', 'assets/img/alphabet/o.png');
-    this.load.image('p', 'assets/img/alphabet/p.png');
-    this.load.image('q', 'assets/img/alphabet/q.png');
-    this.load.image('r', 'assets/img/alphabet/r.png');
-    this.load.image('s', 'assets/img/alphabet/s.png');
-    this.load.image('t', 'assets/img/alphabet/t.png');
-    this.load.image('u', 'assets/img/alphabet/u.png');
-    this.load.image('v', 'assets/img/alphabet/v.png');
-    this.load.image('w', 'assets/img/alphabet/w.png');
-    this.load.image('x', 'assets/img/alphabet/x.png');
-    this.load.image('y', 'assets/img/alphabet/y.png');
-    this.load.image('z', 'assets/img/alphabet/z.png');
+    this.load.image('a', 'assets/img/alphabet/A.png');
+    this.load.image('b', 'assets/img/alphabet/B.png');
+    this.load.image('c', 'assets/img/alphabet/C.png');
+    this.load.image('d', 'assets/img/alphabet/D.png');
+    this.load.image('e', 'assets/img/alphabet/E.png');
+    this.load.image('f', 'assets/img/alphabet/F.png');
+    this.load.image('g', 'assets/img/alphabet/G.png');
+    this.load.image('h', 'assets/img/alphabet/H.png');
+    this.load.image('i', 'assets/img/alphabet/I.png');
+    this.load.image('j', 'assets/img/alphabet/J.png');
+    this.load.image('k', 'assets/img/alphabet/K.png');
+    this.load.image('l', 'assets/img/alphabet/L.png');
+    this.load.image('m', 'assets/img/alphabet/M.png');
+    this.load.image('n', 'assets/img/alphabet/N.png');
+    this.load.image('o', 'assets/img/alphabet/O.png');
+    this.load.image('p', 'assets/img/alphabet/P.png');
+    this.load.image('q', 'assets/img/alphabet/Q.png');
+    this.load.image('r', 'assets/img/alphabet/R.png');
+    this.load.image('s', 'assets/img/alphabet/S.png');
+    this.load.image('t', 'assets/img/alphabet/T.png');
+    this.load.image('u', 'assets/img/alphabet/U.png');
+    this.load.image('v', 'assets/img/alphabet/V.png');
+    this.load.image('w', 'assets/img/alphabet/W.png');
+    this.load.image('x', 'assets/img/alphabet/X.png');
+    this.load.image('y', 'assets/img/alphabet/Y.png');
+    this.load.image('z', 'assets/img/alphabet/Z.png');
     this.load.image('somber', 'assets/img/emotics/sadco.png');
     this.load.image('happy', 'assets/img/emotics/happyco.png');
     this.load.image('quirky', 'assets/img/emotics/quirkyco.png');
@@ -142,7 +142,13 @@ export default class VisitorScene extends Phaser.Scene {
 
 
 
+<<<<<<< HEAD
    
+=======
+    this.input.on('wheel', function(pointer, dx, dy, dz, event){
+      console.log(event)
+    });
+>>>>>>> 4cd8408d3acb283ede81bc6cd3191bbfd1140909
 
 
     this.group1 = this.matter.world.nextGroup();
@@ -256,7 +262,7 @@ this.scale.on('resize', this.resize, this);
         $liveSub.textContent = 'op het festival';
         $liveDot.style.display = 'block';
       }
-   
+
     }else{
       $liveTitle.textContent = 'offline';
       $liveSub.textContent = 'tot later';
@@ -279,10 +285,10 @@ this.scale.on('resize', this.resize, this);
       const l = this.matter.add.sprite(fallPosition, 0,  split[letter], 0, {restitution: .5});
 
       l.setInteractive({useHandCursor: true}).on('pointerdown', () => this.onClick(l));
-     
+
       l.setCollisionGroup(this.group1)
      // l.setCollidesWith(0)
- 
+
       fallPosition = fallPosition + spacebetween;
 
       letters.push(l);
@@ -351,7 +357,7 @@ this.scale.on('resize', this.resize, this);
 
       });
       socket.on('shakeAll', () => {
-  
+
         letters.forEach(letter => {
           letter.setVelocity(20, 30)
         })
@@ -457,8 +463,8 @@ this.scale.on('resize', this.resize, this);
     socket.emit('schud');
     console.log('schud')
     console.log(letters)
-   
-   
+
+
    }
 
    handleClickHartje = e => {
@@ -471,7 +477,7 @@ this.scale.on('resize', this.resize, this);
     hartjes.push(hartje);
     console.log(this.group1)
     console.log(this.group2)
-   
+
    }
 
 
