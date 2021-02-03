@@ -142,13 +142,7 @@ export default class VisitorScene extends Phaser.Scene {
 
 
 
-<<<<<<< HEAD
    
-=======
-    this.input.on('wheel', function(pointer, dx, dy, dz, event){
-      console.log(event)
-    });
->>>>>>> 4cd8408d3acb283ede81bc6cd3191bbfd1140909
 
 
     this.group1 = this.matter.world.nextGroup();
