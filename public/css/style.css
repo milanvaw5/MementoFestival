@@ -43,9 +43,10 @@ body {
 }
 
 .button {
-  height: 3.5rem;
+  min-height: 3.5rem;
+  max-height: 4rem;
   padding: 0 1.2rem;
-  margin: 1rem .5rem 2rem;
+  margin: 1rem .5rem 1.5rem;
   font-weight: 700;
   border: 0.1rem solid var(--black);
   color: var(--black);
@@ -56,7 +57,6 @@ body {
   letter-spacing: 0.075em;
   position: relative;
   align-self: center;
-  z-index: 1;
   box-shadow: .5rem 1rem var(--black);
   border-image-slice: 1 1 0 0;
   transform: .5s;
@@ -86,4 +86,20 @@ body {
 
 .prim {
   color: var(--white);
+}
+
+@media only screen and (max-width: 1200px) {
+
+  body {
+    font-size: 1rem;
+}
+
+  .button {
+    min-height: 2.5rem;
+    max-height: 3rem;
+    box-shadow: .5rem 1rem var(--black);
+    border-image-slice: 1 1 0 0;
+    font-size: .7rem;
+  }
+
 }
