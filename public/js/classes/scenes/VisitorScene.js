@@ -109,12 +109,14 @@ export default class VisitorScene extends Phaser.Scene {
     this.load.image('tired', 'assets/img/emotics/tiredco.png');
 
   }
- 
+
   create(){
     console.log(`CREATE`);
 
 
     this.makeConnection();
+
+    //this.initMap();
     //backgroundimage = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'backgroundimage');
 
     this.leftWristAvatar = this.matter.add.image(jointPositionsGebruikers.leftWristPos.x, jointPositionsGebruikers.leftWristPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
@@ -134,20 +136,20 @@ export default class VisitorScene extends Phaser.Scene {
 
     this.pointer = this.input.activePointer;
 
-    
+
     this.spawnLetters();
 this.scale.on('resize', this.resize, this);
     //timer = setTimeout(this.readInAuteurInput(), 50000);
   }
 
   resize(){
-   
+
   }
 
 
   update(){
-    
-    
+
+
 
     //bij een bepaald aantal letters op het scherm - zullen er een hoeveelheid verdwijnen,
     //random gekozen om zo nieuwe woorden en mysterie te creëren
@@ -159,7 +161,7 @@ this.scale.on('resize', this.resize, this);
       }
       console.log(letters);
     }
-   
+
 
     jointPositionsGebruikers.leftWristPos.x += ( jointPositionsGebruikersTarget.leftWristPosTarget.x - jointPositionsGebruikers.leftWristPos.x ) / 10;
     jointPositionsGebruikers.leftWristPos.y += ( jointPositionsGebruikersTarget.leftWristPosTarget.y - jointPositionsGebruikers.leftWristPos.y ) / 10;
@@ -253,17 +255,17 @@ this.scale.on('resize', this.resize, this);
 
     let fallPosition = Phaser.Math.Between(60, widthDivScreen / 4);
     this.splitWord();
- 
+
     for (letter = 0; letter < split.length; letter++)
     {
 
- 
+
       console.log('spawnWord: ' + split[letter]);
       const l = this.matter.add.sprite(fallPosition, 0,  split[letter], 0, {restitution: .5});
-    
+
       l.setInteractive({useHandCursor: true}).on('pointerdown', () => this.onClick(l));
 
- 
+
       fallPosition = fallPosition + spacebetween;
 
       letters.push(l);
@@ -327,7 +329,7 @@ this.scale.on('resize', this.resize, this);
 
       });
       socket.on('notLive', () => {
-  
+
         isLive = false;
 
       });
@@ -370,7 +372,7 @@ this.scale.on('resize', this.resize, this);
 
         jointPositionsGebruikersTarget.rightElbowPosTarget.x =  this.cameras.main.width * jointPositions.rightElbowPos.x;
         jointPositionsGebruikersTarget.rightElbowPosTarget.y = this.cameras.main.height * jointPositions.rightElbowPos.y;
-    
+
 
         jointPositionsGebruikersTarget.leftHipPosTarget.x = this.cameras.main.width * jointPositions.leftHipPos.x;
         jointPositionsGebruikersTarget.leftHipPosTarget.y = this.cameras.main.height * jointPositions.leftHipPos.y;
@@ -392,7 +394,7 @@ this.scale.on('resize', this.resize, this);
         jointPositionsGebruikersTarget.rightAnklePosTarget.x =  this.cameras.main.width * jointPositions.rightAnklePos.x;
         jointPositionsGebruikersTarget.rightAnklePosTarget.y = this.cameras.main.height * jointPositions.rightAnklePos.y;
       });
-  
+
       if($wordForm){
         $wordForm.addEventListener('submit', e => this.handleSubmitMessage(e));
       }
@@ -432,7 +434,7 @@ this.scale.on('resize', this.resize, this);
       letters[startOffLetters] = this.matter.add.sprite(fallPosition, 0, letters[startOffLetters], 0, {restitution: .5});
 
 
-     
+
       fallPosition = fallPosition + spacebetween;
       console.log(fallPosition);
     }
@@ -451,9 +453,25 @@ this.scale.on('resize', this.resize, this);
     }
     else {
       console.log('niks ingegeven');
-      
+
     }
   };
-
+/*
+   // Initialize and add the map
+   initMap() {
+    // The location of Uluru
+    const uluru = { lat: 50.829, lng: 3.271 };
+    // The map, centered at Uluru
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 4,
+      center: uluru,
+    });
+    // The marker, positioned at Uluru
+    const marker = new google.maps.Marker({
+      position: uluru,
+      map: map,
+    });
+  }
+*/
 
 }

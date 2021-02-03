@@ -51,7 +51,7 @@
       <article class="section__article article__wordgame">
         <h3 class="article__title hidden">Stream</h3>
 
-        <div class="wordGame topblock informationblock live__footage">
+        <div class="wordGame informationblock live__footage">
           <div class="live__footage__indicationblock">
             <img class="bol" alt="bol" src="assets/img/bol.png">
             <p class="live__footage__indication title">LIVE</p>
@@ -176,11 +176,11 @@
           <li class="praktisch__location">8500 Kortrijk, Houtmarkt 54 </li>
         </ul>
 
-        <img class="loactionimg" alt="locationmap" src="">
+        <div class="map" id="map"></div>
 
         <ul class="praktisch__travelitems">
           <li class="praktisch__travelitem trein">11 min wandellen van Station Kortrijk (900m)</li>
-          <li class="praktisch__travelitem parking">Parking houtmarkt tegen betaling</li>
+          <li class="praktisch__travelitem parking">Parking Houtmarkt tegen betaling</li>
           <li class="praktisch__travelitem fiets">Fietsenstalling voorzien</li>
         </ul>
       </article>
@@ -234,6 +234,11 @@
     </footer>
 
   </body>
+ <!--
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=50.82940673828125,3.271177291870117&callback=initMap">
+</script>
+ -->
   <script src="js/vendors/phaser.min.js"></script>
   <script src="js/vendors/matter.js"></script>
   <script src="/socket.io/socket.io.js"></script>
