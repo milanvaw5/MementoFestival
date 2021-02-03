@@ -263,7 +263,7 @@ p {
   font-size: 1rem;
 }
 
-.enteredWord {
+.inputfield {
   height: 2rem;
   width: 55%;
   border: .1rem solid var(--black);
