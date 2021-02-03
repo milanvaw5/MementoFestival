@@ -6,7 +6,7 @@ export default class Game extends Phaser.Game {
     let config = {
       //type: Phaser.AUTO,
       scale: {
-        mode: Phaser.Scale.RESIZE,
+        mode: Phaser.Scale.FIT,
         parent: 'bottomblock',
         width: '100%',
         height: '100%'
@@ -25,7 +25,7 @@ export default class Game extends Phaser.Game {
         },
        
       },
-      transparent: true,
+     // transparent: true,
       input: {
         keyboard: {
             target: window
