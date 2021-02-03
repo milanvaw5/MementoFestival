@@ -136,6 +136,14 @@ export default class VisitorScene extends Phaser.Scene {
     this.rightAnkleAvatar = this.matter.add.image(jointPositionsGebruikers.rightAnklePos.x, jointPositionsGebruikers.rightAnklePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
 
     this.pointer = this.input.activePointer;
+    this.input.mouse.onMouseWheel.preventDefault = false
+
+
+
+    this.input.on('wheel', function(pointer, dx, dy, dz, event){ 
+      console.log(event)
+    });
+
 
     this.group1 = this.matter.world.nextGroup();
     this.group2 = this.matter.world.nextGroup(true);
@@ -274,6 +282,7 @@ this.scale.on('resize', this.resize, this);
       const l = this.matter.add.sprite(fallPosition, 0,  split[letter], 0, {restitution: .5});
     
       l.setInteractive({useHandCursor: true}).on('pointerdown', () => this.onClick(l));
+     
       l.setCollisionGroup(this.group1)
      // l.setCollidesWith(0)
  
