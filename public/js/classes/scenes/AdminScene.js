@@ -191,7 +191,7 @@ function drawKeypoints(keypoints, minConfidence, scale = 1) {
   if (leftWrist.score > minConfidence) {
       //const {y, x} = leftWrist.position;
       jointPositionsTenserflow.leftWristPos = leftWrist.position;
-    
+
       //drawPoint(ctx, y * scale, x * scale, 10, colorLeft);
   }
 
@@ -205,7 +205,7 @@ function drawKeypoints(keypoints, minConfidence, scale = 1) {
 
     //const {y, x} = rightEye.position;
     jointPositionsTenserflow.rightEyePos = rightEye.position;
-   
+
     //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
   if (leftEye.score > minConfidence) {
@@ -260,10 +260,10 @@ function drawKeypoints(keypoints, minConfidence, scale = 1) {
   }
   if (rightAnkle.score > minConfidence) {
     //const {y, x} = rightAnkle.position;
-  
+
     jointPositionsTenserflow.rightAnklePos = rightAnkle.position;
 
-    
+
     //drawPoint(ctx, y * scale, x * scale, 10, colorRight);
   }
 }
@@ -343,32 +343,32 @@ export default class AdminScene extends Phaser.Scene {
     //this.load.image('backgroundimage', 'assets/bimg.jpg');
     //this.load.image('d', 'assets/ball.png');
     this.load.image('test', 'assets/test.png');
-    this.load.spritesheet('a', 'assets/img/alphabet/a.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('b', 'assets/img/alphabet/b.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('c', 'assets/img/alphabet/c.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('d', 'assets/img/alphabet/d.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('e', 'assets/img/alphabet/e.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('f', 'assets/img/alphabet/f.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('g', 'assets/img/alphabet/g.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('h', 'assets/img/alphabet/h.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('i', 'assets/img/alphabet/i.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('j', 'assets/img/alphabet/j.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('k', 'assets/img/alphabet/k.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('l', 'assets/img/alphabet/l.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('m', 'assets/img/alphabet/m.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('n', 'assets/img/alphabet/n.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('o', 'assets/img/alphabet/o.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('p', 'assets/img/alphabet/p.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('q', 'assets/img/alphabet/q.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('r', 'assets/img/alphabet/r.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('s', 'assets/img/alphabet/s.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('t', 'assets/img/alphabet/t.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('u', 'assets/img/alphabet/u.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('v', 'assets/img/alphabet/v.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('w', 'assets/img/alphabet/w.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('x', 'assets/img/alphabet/x.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('y', 'assets/img/alphabet/y.png', { frameWidth: 40, frameHeight: 73 });
-    this.load.spritesheet('z', 'assets/img/alphabet/z.png', { frameWidth: 40, frameHeight: 73 });
+    this.load.image('a', 'assets/img/alphabet/A.png');
+    this.load.image('b', 'assets/img/alphabet/B.png');
+    this.load.image('c', 'assets/img/alphabet/C.png');
+    this.load.image('d', 'assets/img/alphabet/D.png');
+    this.load.image('e', 'assets/img/alphabet/E.png');
+    this.load.image('f', 'assets/img/alphabet/F.png');
+    this.load.image('g', 'assets/img/alphabet/G.png');
+    this.load.image('h', 'assets/img/alphabet/H.png');
+    this.load.image('i', 'assets/img/alphabet/I.png');
+    this.load.image('j', 'assets/img/alphabet/J.png');
+    this.load.image('k', 'assets/img/alphabet/K.png');
+    this.load.image('l', 'assets/img/alphabet/L.png');
+    this.load.image('m', 'assets/img/alphabet/M.png');
+    this.load.image('n', 'assets/img/alphabet/N.png');
+    this.load.image('o', 'assets/img/alphabet/O.png');
+    this.load.image('p', 'assets/img/alphabet/P.png');
+    this.load.image('q', 'assets/img/alphabet/Q.png');
+    this.load.image('r', 'assets/img/alphabet/R.png');
+    this.load.image('s', 'assets/img/alphabet/S.png');
+    this.load.image('t', 'assets/img/alphabet/T.png');
+    this.load.image('u', 'assets/img/alphabet/U.png');
+    this.load.image('v', 'assets/img/alphabet/V.png');
+    this.load.image('w', 'assets/img/alphabet/W.png');
+    this.load.image('x', 'assets/img/alphabet/X.png');
+    this.load.image('y', 'assets/img/alphabet/Y.png');
+    this.load.image('z', 'assets/img/alphabet/Z.png');
 
     this.load.image('somber', 'assets/img/emotics/sadco.png');
     this.load.image('happy', 'assets/img/emotics/happyco.png');
@@ -401,8 +401,8 @@ export default class AdminScene extends Phaser.Scene {
     this.leftAnkleAvatar = this.matter.add.image(jointPositions.leftAnklePos.x, jointPositions.leftAnklePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
     this.rightAnkleAvatar = this.matter.add.image(jointPositions.rightAnklePos.x, jointPositions.rightAnklePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
 
-  
- 
+
+
     this.spawnLetters();
     // emit only 10 times per second
     this.time.addEvent({ delay: 100, callback: this.onEvent, callbackScope: this, loop: true });
@@ -424,10 +424,10 @@ export default class AdminScene extends Phaser.Scene {
       }
     }
 
-   
+
   // this.calcPercentage();
-    
-    
+
+
     jointPositionsWebcamPercentage.leftWristPos.x = (jointPositionsTenserflow.leftWristPos.x / videoWidth);
     jointPositionsWebcamPercentage.leftWristPos.y = (jointPositionsTenserflow.leftWristPos.y / videoHeight);
     jointPositionsTarget.leftWristPosTarget.x = (this.cameras.main.width * jointPositionsWebcamPercentage.leftWristPos.x);
@@ -563,7 +563,7 @@ export default class AdminScene extends Phaser.Scene {
     this.rightAnkleAvatar.x = jointPositions.rightAnklePos.x;
     this.rightAnkleAvatar.y = jointPositions.rightAnklePos.y;
 
-    
+
 
   };
 
@@ -594,7 +594,7 @@ export default class AdminScene extends Phaser.Scene {
       const l = this.matter.add.sprite(fallPosition, 0, split[letter], 0, {restitution: .5});
       fallPosition = fallPosition + spacebetween;
       letters.push(l);
-    
+
     }
 
   };
@@ -631,7 +631,7 @@ export default class AdminScene extends Phaser.Scene {
     makeConnectionAdmin() {
       socket = io.connect('/');
       socket.on('connect', () => {
-    
+
         console.log(`Admin connected: ${socket.id}`);
         socket.emit('admin');
       });
