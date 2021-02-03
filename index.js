@@ -29,6 +29,12 @@ io.on('connection', socket => {
     
   });
 
+  socket.on('schud', () => {
+
+    io.sockets.emit(`shakeAll`);
+    
+  });
+
   socket.on('feeling', selectedFeeling => {
     console.log(selectedFeeling);
     io.sockets.emit(`selectedFeeling`, selectedFeeling);

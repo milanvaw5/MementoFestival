@@ -6,12 +6,15 @@ let lowercase;
 let readWord = 'abcde';
 let split = [];
 let letters = [];
+let hartjes = [];
 let widthDivScreen = document.querySelector(`.bottomblock`).style.width;
 let spacebetween = 60;
 let isLive = false;
 let $liveTitle = document.querySelector(`.live__footage__indication`);
 let $liveSub = document.querySelector(`.live__footage__subindication`);
 let $liveDot = document.querySelector(`.bol`);
+const $btnSchud = document.querySelector(`.schud`);
+const $btnHartje = document.querySelector(`.hartje`);
 
 
 let jointPositionsGebruikers = {
@@ -113,7 +116,7 @@ export default class VisitorScene extends Phaser.Scene {
   create(){
     console.log(`CREATE`);
 
-
+    this.cameras.main.setBackgroundColor('rgba(0, 0, 0, 0)');
     this.makeConnection();
     //backgroundimage = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'backgroundimage');
 
@@ -134,7 +137,10 @@ export default class VisitorScene extends Phaser.Scene {
 
     this.pointer = this.input.activePointer;
 
-    
+    this.group1 = this.matter.world.nextGroup();
+    this.group2 = this.matter.world.nextGroup(true);
+
+
     this.spawnLetters();
 this.scale.on('resize', this.resize, this);
     //timer = setTimeout(this.readInAuteurInput(), 50000);
@@ -147,6 +153,7 @@ this.scale.on('resize', this.resize, this);
 
   update(){
     
+   
     
 
     //bij een bepaald aantal letters op het scherm - zullen er een hoeveelheid verdwijnen,
@@ -237,9 +244,14 @@ this.scale.on('resize', this.resize, this);
 
 
     if(isLive){
-      $liveTitle.textContent = 'live';
-      $liveSub.textContent = 'op het festival';
-      $liveDot.style.display = 'block';
+      if($liveTitle.textContent === 'live'){
+
+      }else{
+        $liveTitle.textContent = 'live';
+        $liveSub.textContent = 'op het festival';
+        $liveDot.style.display = 'block';
+      }
+   
     }else{
       $liveTitle.textContent = 'offline';
       $liveSub.textContent = 'tot later';
@@ -262,7 +274,8 @@ this.scale.on('resize', this.resize, this);
       const l = this.matter.add.sprite(fallPosition, 0,  split[letter], 0, {restitution: .5});
     
       l.setInteractive({useHandCursor: true}).on('pointerdown', () => this.onClick(l));
-
+      l.setCollisionGroup(this.group1)
+     // l.setCollidesWith(0)
  
       fallPosition = fallPosition + spacebetween;
 
@@ -298,7 +311,7 @@ this.scale.on('resize', this.resize, this);
       lowercase = lowercase.replace(/\s/g, '');
       split = lowercase.split('');
       console.log('splitWord: ' + split);
-      letters.push(split);
+    //  letters.push(split);
     };
 
 
@@ -329,6 +342,13 @@ this.scale.on('resize', this.resize, this);
       socket.on('notLive', () => {
   
         isLive = false;
+
+      });
+      socket.on('shakeAll', () => {
+  
+        letters.forEach(letter => {
+          letter.setVelocity(20, 30)
+        })
 
       });
       socket.on('selectedFeeling', selectedFeeling => {
@@ -399,6 +419,12 @@ this.scale.on('resize', this.resize, this);
       if($feelingsForm){
         $feelingsForm.addEventListener('submit', e => this.handleSubmitFeeling(e));
       }
+      if($btnSchud){
+        $btnSchud.addEventListener('click', e => this.handleClickSchud(e));
+      }
+      if($btnHartje){
+        $btnHartje.addEventListener('click', e => this.handleClickHartje(e));
+      }
 
     };
 
@@ -419,6 +445,27 @@ this.scale.on('resize', this.resize, this);
         }
       });
       socket.emit('feeling', selectedFeeling);
+   }
+
+   handleClickSchud = e => {
+    socket.emit('schud');
+    console.log('schud')
+    console.log(letters)
+   
+   
+   }
+
+   handleClickHartje = e => {
+    socket.emit('hartje');
+    console.log('hartje')
+    const hartje = this.matter.add.sprite(200, this.cameras.main.height, 'tired', 0, {restitution: .5, ignoreGravity: true});
+    hartje.setCollisionGroup(this.group2)
+    hartje.setCollidesWith(0)
+    hartje.setVelocityY(-20);
+    hartjes.push(hartje);
+    console.log(this.group1)
+    console.log(this.group2)
+   
    }
 
 
