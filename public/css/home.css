@@ -5,12 +5,11 @@
   scroll-snap-type: mandatory;
   scroll-snap-points-y: repeat(100vh);
   scroll-snap-type: y mandatory;
-
 }
+
 .scrollSnap {
   scroll-snap-align: start;
 }
-
 
 .intro {
   margin-left: 10vw;
@@ -527,6 +526,8 @@ p {
   align-items: center;
   justify-items: center;
   text-align: center;
+  text-decoration: underline;
+  margin-top: 3rem;
 }
 
 .footer__link {
@@ -584,100 +585,6 @@ p {
 }
 
 
-@media only screen and (max-width: 800px) {
-
-  .videos {
-    display: none;
-  }
-
-  .onepager__section {
-    grid-template-columns: 1fr;
-  }
-
-  .intro, .textparagraph, .information__parts {
-    margin-left: 5vw;
-    width: 90vw;
-  }
-
-  .logo {
-    max-width: 60vw;
-  }
-
-  .onepager__section {
-    margin-bottom: 1rem;
-  }
-
-  .section__information {
-    display: grid;
-    grid-template-rows: .1fr 1fr 1fr;
-  }
-
-  .blob {
-    display: none;
-  }
-
-  .information__block__partleft, .information__block__partright {
-    margin: 1rem 5vw 0 5vw;
-  }
-
-  .section__wordgame {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    justify-items: center;
-  }
-
-  .title {
-    font-size: 1.2rem;
-  }
-
-  .praktisch {
-    margin: 1rem 10vw 4rem;
-    height: 70vh;
-    width: 80vw;
-  }
-
-  .information__parts {
-    margin: 1rem 10vw 4rem;
-    width: 80vw;
-    height: 50vh;
-  }
-
-  .mementologo {
-    margin: 5vw;
-    width: 70%;
-    height: 70%;
-  }
-
-  .footer__information {
-    max-width: 70vw;
-    margin-right: 10vw;
-    text-align: center;
-  }
-
-  .section__information {
-    background-position: center center;
-  }
-
-  /*.schud:hover::before, .schud:hover::after, .hartje::before, .hand::before, .schud::before, .schud::after {
-    content: '';
-    padding: 0;
-  }*/
-
-  .form__section__topbuttons {
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr;
-  }
-
-  .information__block {
-    margin: 5rem;
-  }
-
-}
-
-
 @media only screen and (max-width: 1200px) {
 
   .intro, .textparagraph, .information__parts {
@@ -716,4 +623,189 @@ p {
   .title  {
     font-size: 1.4rem;
   }
+
+}
+
+
+
+@media only screen and (max-width: 800px) {
+
+  .videos {
+    display: none;
+  }
+
+  .onepager__section {
+    grid-template-columns: 1fr;
+  }
+
+  .intro, .textparagraph, .information__parts {
+    margin-left: 5vw;
+    width: 90vw;
+  }
+
+  .logo {
+    max-width: 60vw;
+  }
+
+  .onepager__section {
+    margin-bottom: 1rem;
+  }
+
+  .section__information {
+    display: grid;
+    grid-template-rows: .1fr 1fr 1fr;
+  }
+
+  .blob {
+    display: none;
+  }
+
+  .information__blocks {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    justify-content: space-around;
+    align-content: space-around;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .information__block__partleft, .information__block__partright {
+    margin: 1rem 5vw 0 5vw;
+  }
+
+  .section__wordgame {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .praktisch {
+    margin: 1rem 10vw 16rem;
+    height: 70vh;
+    width: 80vw;
+  }
+
+  .information__parts {
+    margin: 1rem 10vw 4rem;
+    width: 80vw;
+    height: 50vh;
+  }
+
+  .mementologo {
+    margin: 5vw;
+    width: 70%;
+    height: 70%;
+  }
+
+  .footer {
+    height: 70vh;
+  }
+
+  .footer__information {
+    max-width: 70vw;
+    margin-right: 10vw;
+    text-align: center;
+  }
+
+  .section__information {
+    background-position: center center;
+  }
+
+  .form__section__topbuttons {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
+
+  .article__forms {
+    display: none;
+  }
+
+}
+
+
+/****************************************************/
+
+
+
+@media only screen and (max-width: 700px) {
+
+  .praktisch {
+    margin: 1rem 10vw 4rem;
+    height: 20rem;
+    width: 80vw;
+  }
+
+  .map {
+    display: none;
+  }
+
+  .footer__links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .information__parts {
+    height: 100%;
+  }
+
+  .praktisch {
+    height: 100%;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 500px) {
+
+  .section__information {
+    height: 200vh;
+  }
+
+  .map {
+    display: none;
+  }
+
+  .footer {
+    height: 100vh;
+    grid-template-columns: 1fr;
+  }
+
+  .information__parts {
+    height: 100%;
+  }
+
+  .praktisch {
+    height: 100%;
+  }
+
+  .mementologo {
+    display: none;
+  }
+
+  .footer__information {
+    margin: 5rem 1rem 1rem;
+    max-width: 90vw;
+  }
+
 }
