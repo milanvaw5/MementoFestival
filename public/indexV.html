@@ -85,7 +85,8 @@
           <h4 class="form__title">Vragen</h3>
 
           <div class="introForm form-0">
-            <p class="wordForm__intro">Een auteur heeft iets achtergelaten voor jou</p>
+            <p class="wordForm__question__expl__title">Ontdek je memootje!</p>
+            <p class="wordForm__intro">Een auteur heeft iets achtergelaten voor jou...</p>
             <button class="btn-next btn-ontdek button primbutton">Volgende</button>
           </div>
 
@@ -99,16 +100,17 @@
           </div>
 
           <form class="wordForm form-1">
-            <p class="wordForm__intro">Voltooi de drie taken om jouw persoonlijk Memootje te ontdekken</p>
-            <div>
+            <p class="wordForm__intro">Voltooi de drie taken om jouw persoonlijk Memootje te ontdekken.</p>
+            <div class="questionbox">
               <p class="wordForm__question">Wat betekent verdwalen voor jou?</p>
               <img class="questionmark" alt="v" src="assets/img/icons/questionmark.svg">
             </div>
             <p class="wordForm__subinfo">Jouw antwoord komt mee in de live letterdoos te staan!</p>
             <span class="error"></span>
-            <input type="text" id="enteredWord" class="enteredWord inputfield" name="enteredWord" minlength="2" maxlength="20" required>
-            <input id="sumbitwordbutton" class="button bigbutton" type="submit" value=" VERSTUUR">
-      
+            <div class="wrapper">
+              <input type="text" id="enteredWord" class="enteredWord inputfield" name="enteredWord" minlength="2" maxlength="20" required>
+              <input id="sumbitwordbutton" class="verstuurbutton" type="submit" value="VERSTUUR">
+            </div>
           </form>
 
           <div class="wordForm__question__expl" id="qemotic">
@@ -122,7 +124,7 @@
 
           <form class="feelingsForm form-2">
             <p class="wordForm__intro">Voltooi de drie taken om jouw persoonlijk Memootje te ontdekken</p>
-            <div>
+            <div class="questionbox">
               <p class="wordForm__question">Hoe voel jij je vandaag?</p>
              <img class="questionmark" alt="v" src="assets/img/icons/questionmark.svg">
             </div>
@@ -165,7 +167,7 @@
           </label>
           </div>
 
-            <input id="sumbitwordbutton" class="button bigbutton" type="submit" value="VERSTUUR">
+            <input id="sumbitwordbutton" class="verstuurbutton" type="submit" value="VERSTUUR">
             <button class="btn-next btn-next--emotion volgendebutton">Volgende</button>
           </form>
 
@@ -180,14 +182,14 @@
 
           <form class="challengeForm form-3">
             <p class="wordForm__intro">Voltooi de drie taken om jouw persoonlijk Memootje te ontdekken</p>
-            <div>
+            <div class="questionbox">
               <p class="wordForm__question">Spel het woord door de juiste letters aan te klikken in de letterdoos.</p>
               <img class="questionmark" alt="v" src="assets/img/icons/questionmark.svg">
             </div>
 
             <div class="wordForm__challenge"></div>
-        
-            
+
+
           </form>
 
           <div class="haikuForm form-4">
@@ -228,7 +230,7 @@
           <li class="praktisch__location">8500 Kortrijk, Astridpark 54 </li>
         </ul>
 
-        
+
         <!-- creëert een hoop warnings CSP, maar mogen gegenegeerd worden: https://www.reddit.com/r/firefox/comments/fpptyj/firefox_content_security_policy_console_output/-->
         <iframe style="width:100%;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2519.8195234390837!2d3.255779815752779!3d50.83450676749796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c33afa5a73961b%3A0x20cef998adf3063e!2sAstridpark%2C%208500%20Kortrijk!5e0!3m2!1snl!2sbe!4v1612431641477!5m2!1snl!2sbe" width="300" height="200" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
       </div>

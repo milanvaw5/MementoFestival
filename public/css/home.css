@@ -257,6 +257,36 @@ p {
 
 /*-----------------------------------------------------*/
 
+.introForm {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 2fr 1fr 4fr;
+  justify-content: space-around;
+  align-items: center;
+  justify-items: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+}
+
+.questionbox {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  justify-items: center;
+}
+
+.questionmark {
+  margin: 1rem;
+}
+
 .wordForm__intro {
   text-align: center;
   margin: 0 1rem;

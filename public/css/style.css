@@ -117,10 +117,9 @@ body {
   color: var(--white);
 }
 
-.volgendebutton {
+.verstuurbutton {
   min-height: 3.5rem;
   max-height: 4rem;
-  padding: 0 1.2rem;
   margin: 1rem .5rem 1.5rem;
   font-weight: 700;
   color: var(--black);
@@ -137,7 +136,7 @@ body {
     display: none;
 }
 
-.volgendebutton::after {
+.verstuurbutton::after {
   background-image: url('../assets/img/icons/arrownext.svg');
   background-repeat: no-repeat;
   background-size: 1rem 1.3rem;
@@ -146,6 +145,13 @@ body {
   height: 1rem;
   content:"";
   padding: 0rem 1rem;
+}
+
+.error {
+  color: var(--orange);
+  margin: .4rem 0;
+  padding: .4rem;
+  font-size: .8rem;
 }
 
 @media only screen and (max-width: 1200px) {
