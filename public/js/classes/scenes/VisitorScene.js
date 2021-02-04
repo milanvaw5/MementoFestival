@@ -17,35 +17,14 @@ const $btnSchud = document.querySelector(`.schud`);
 const $btnHartje = document.querySelector(`.hartje`);
 let selectedFeeling;
 let memootjesEmotion = [];
-const rand = Math.floor(Math.random(1)*2);
-         console.log(rand)
-const memootjesss = {
-  0:{
-  id: "7c30384d-7010-4074-ad8c-5138945f8c07",
-  text: "Spoel je rimpels weg, kam het verdriet uit je haren. Ze zijn geen deel van jou, ze reizen alleen maar even mee.",
-  author: "Alice Boudrey",
-  stageName: "",
-  linkPlacehodler: "@hihelloalice",
-  link: "https://www.instagram.com/hihelloalice/",
-  forEmotions: ["somber", "blij"]
-},
-1:{
-  text: "En het voelt als thuiskomen.",
-  author: "Alice Boudrey",
-  stageName: "",
-  linkPlacehodler: "@oonaloncke",
-  link: "https://www.instagram.com/oonaloncke/",
-  forEmotions: "somber"
-},
-}
+
 
 const memootjes = [
   {
-  id: "7c30384d-7010-4074-ad8c-5138945f8c07",
   text: "Spoel je rimpels weg, kam het verdriet uit je haren. Ze zijn geen deel van jou, ze reizen alleen maar even mee.",
   author: "Alice Boudrey",
   stageName: "",
-  linkPlacehodler: "@hihelloalice",
+  linkText: "@hihelloalice",
   link: "https://www.instagram.com/hihelloalice/",
   forEmotions: ["somber", "blij"]
 },
@@ -53,7 +32,7 @@ const memootjes = [
   text: "En het voelt als thuiskomen.",
   author: "Alice Boudrey",
   stageName: "",
-  linkPlacehodler: "@oonaloncke",
+  linkText: "@oonaloncke",
   link: "https://www.instagram.com/oonaloncke/",
   forEmotions: "somber"
 },
@@ -111,6 +90,8 @@ const $msgInput = document.getElementById('enteredWord');
 const $feelingOptions = document.querySelectorAll(`.feelingOption`);
 
 const $haiku = document.querySelector(`.haiku`);
+const $auteurName = document.querySelector(`.wordForm__auteur__name`);
+const $auteurSocials = document.querySelector(`.wordForm__auteur__socials`);
 
 
 let socket; // will be assigned a value later
@@ -622,8 +603,11 @@ export default class VisitorScene extends Phaser.Scene {
          console.log(rand)
          console.log(memootjesEmotion.length)
          console.log($haiku)
-         //document.querySelector(`.schud`).textContent = memootjesEmotion[rand].text;
+
          $haiku.textContent = memootjesEmotion[rand].text;
+         $auteurName.textContent = memootjesEmotion[rand].author;
+         $auteurSocials.innerHTML = memootjesEmotion[rand].linkText;
+         $auteurSocials.href = memootjesEmotion[rand].link;
          console.log(`Form is valid => submit form`);
        }
      
