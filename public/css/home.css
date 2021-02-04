@@ -346,14 +346,16 @@ p {
 
 .emotics__label {
   cursor: pointer;
+  text-align: center;
 }
 
 .feelingOption {
   display: none;
 }
 
-.feelingOption:checked .happy {
-  background-image: url('../assets/img/emotics/happy.svg');
+.feelingOption:checked ~ .emotics__label {
+  color: red;
+  background-image: url('../assets/img/emotics/happyco.svg');
   background-repeat: no-repeat;
   background-position: bottom;
 }
@@ -700,7 +702,7 @@ p {
 
 @media only screen and (max-width: 1200px) {
 
-  .emotics__item {
+  .emotics__label {
     font-size: .7rem;
   }
 
@@ -752,6 +754,11 @@ p {
 
   .title  {
     font-size: 1.4rem;
+  }
+
+  .hand::before, .hartje::before, .schud::before , .schud::after, .blauw:hover .schud::after, .blauw:hover .schud::before, .hand:hover::before {
+    content: '';
+    padding: 0;
   }
 
 }
