@@ -287,10 +287,15 @@ p {
   margin: 1rem;
 }
 
-.wordForm__intro {
+.wordForm__intro, .wordForm__countdown {
   text-align: center;
-  margin: 0 1rem;
+  margin: 0 2rem;
   font-size: 1rem;
+  font-weight: 400;
+}
+
+.wordForm__countdown {
+  font-weight: 700;
 }
 
 .wordForm__question__expl {
@@ -458,6 +463,9 @@ p {
 .wordForm__auteur__socials {
   font-size: 1rem;
   text-align: center;
+  margin: 0 auto;
+  color: var(--blue);
+  text-decoration: underline;
 }
 
 .article__wordgame {
