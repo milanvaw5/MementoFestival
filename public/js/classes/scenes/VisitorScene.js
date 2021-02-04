@@ -105,7 +105,7 @@ if($wordForm){
 const $msgInput = document.getElementById('enteredWord');
 const $feelingOptions = document.querySelectorAll(`.feelingOption`);
 
-const $haiku = document.querySelector(`.haiku`);
+const $haiku = document.querySelector(`.wordForm__haiku`);
 const $auteurName = document.querySelector(`.wordForm__auteur__name`);
 const $auteurSocials = document.querySelector(`.wordForm__auteur__socials`);
 
@@ -379,6 +379,7 @@ handleLetterArrays(l){
     let foundLetter = document.querySelector(`.challengeLetter--${l.texture.key}`);
     console.log(l.texture.key);
     foundLetter.src = `assets/img/alphabet/x0.5/${l.texture.key}.png`;
+    foundLetter.classList.add(`letter`)
     foundLetter.classList.add(`foundLetter--${l.texture.key}`)
     foundLetter.classList.remove(`challengeLetter--${l.texture.key}`)
     console.log(l.texture.key);
@@ -528,7 +529,7 @@ handleLetterArrays(l){
         $feelingOptions.forEach(field => {
           field.addEventListener('input', e => this.handeInputField(e, $feelingsForm))
         });
-        document.querySelector(`.btn-next--emotion`).addEventListener('click', e => this.handleClickNextEmotion(e))
+        //document.querySelector(`.btn-next--emotion`).addEventListener('click', e => this.handleClickNextEmotion(e))
       }
       if($btnSchud){
         $btnSchud.addEventListener('click', e => this.handleClickSchud(e));
@@ -567,7 +568,7 @@ handleLetterArrays(l){
         message = `Het woord mag maximaal 20 characters bevatten`;
       }
       if (message) {
-        $field.parentElement.querySelector(`.error`).textContent = message;
+        $field.parentElement.parentElement.querySelector(`.error`).textContent = message;
       }
       console.log(message)
     };
@@ -649,9 +650,15 @@ handleLetterArrays(l){
          
          });
 
+         let rand;
+         if(memootjesEmotion.length === 1){
+          rand = 0;
+         }else{
+          rand = Math.floor(Math.random(memootjesEmotion.length - 1)*2);
+         }
  
-      
-         let rand = Math.floor(Math.random(memootjesEmotion.length)*2);
+  
+         console.log(rand);
        
          $haiku.textContent = memootjesEmotion[rand].text;
          $auteurName.textContent = memootjesEmotion[rand].author;
@@ -666,6 +673,7 @@ handleLetterArrays(l){
           challengeword.forEach(letter => {
             lostLetters.push(letter);
             const letterImg = document.createElement('img');
+            letterImg.classList.add(`letter`);
             letterImg.classList.add(`challengeLetter--${letter}`)
             letterImg.src = `assets/img/alphabet/x0.5/noFill/${letter}.png`;
             $challengeWord.appendChild(letterImg);
