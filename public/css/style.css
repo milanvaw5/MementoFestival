@@ -142,7 +142,7 @@ body {
   display: inline-block;
   width: 1.3rem;
   height: 1rem;
-  content:"";
+  content: '';
   padding: 0rem 1rem;
 }
 
