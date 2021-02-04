@@ -93,10 +93,13 @@ const $wordForm = document.querySelector(`.wordForm`);
 const $feelingsForm = document.querySelector(`.feelingsForm`);
 const $challengeForm = document.querySelector(`.challengeForm`);
 const $haikuForm = document.querySelector(`.haikuForm`);
-$wordForm.style.display = `none`;
-$feelingsForm.style.display = `none`;
-$challengeForm.style.display = `none`;
-$haikuForm.style.display = `none`;
+if($wordForm){
+  $wordForm.style.display = `none`;
+  $feelingsForm.style.display = `none`;
+  $challengeForm.style.display = `none`;
+  $haikuForm.style.display = `none`;
+}
+
 
 const $msgInput = document.getElementById('enteredWord');
 const $feelingOptions = document.querySelectorAll(`.feelingOption`);
