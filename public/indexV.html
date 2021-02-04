@@ -89,9 +89,21 @@
             <button class="btn-next button primbutton">Volgende</button>
           </div>
 
+          <div class="wordForm__question__expl qwoord">
+            <p class="wordForm__question__expl__title">
+              Het thema van het festival is dit jaar “verdwalen”. Wij vroegen ons af wat verdwalen betekent voor jou.
+            </p>
+            <p class="wordForm__question__expl__subtitle">
+              Scroll naar beneden om meer te weten te komen over het festival en de installatie.
+            </p>
+          </div>
+
           <form class="wordForm form-1">
             <p class="wordForm__intro">Voltooi de drie taken om jouw persoonlijk Memootje te ontdekken</p>
-            <p class="wordForm__question">Wat betekent verdwalen voor jou?</p>
+            <div>
+              <p class="wordForm__question">Wat betekent verdwalen voor jou?</p>
+              <img class="questionmark" alt="v" src="assets/img/icons/questionmark.svg">
+            </div>
             <p class="wordForm__subinfo">Jouw antwoord komt mee in de live letterdoos te staan!</p>
             <span class="error"></span>
             <input type="text" id="enteredWord" class="enteredWord inputfield" name="enteredWord" minlength="2" maxlength="20" required>
@@ -99,9 +111,22 @@
             <button class="btn-next volgendebutton">Volgende</button>
           </form>
 
+          <div class="wordForm__question__expl" id="qemotic">
+            <p class="wordForm__question__expl__title">
+              Kortrijk als community staat voor ons vooraan in de lijst.****
+            </p>
+            <p class="wordForm__question__expl__subtitle">
+              Laat de mensen op het festival weten hoe je je voelt. De emotie die jij kiest zal mee in de letterdoos vallen.
+            </p>
+          </div>
+
           <form class="feelingsForm form-2">
             <p class="wordForm__intro">Voltooi de drie taken om jouw persoonlijk Memootje te ontdekken</p>
-            <p class="wordForm__question">Hoe voel jij je vandaag?</p>
+            <div>
+              <p class="wordForm__question">Hoe voel jij je vandaag?</p>
+             <img class="questionmark" alt="v" src="assets/img/icons/questionmark.svg">
+            </div>
+
             <span class="error"></span>
 
 
@@ -118,7 +143,6 @@
             somber
             <div class="emotics__items">
               <div class="emotics__item sad"></div>
-
               <input class="feelingOption" type="radio" name="emotie" value="somber" id="" required>
             </div>
 
@@ -126,9 +150,9 @@
           <label>
             giechelig
             <div class="emotics__items">
-              <div class="emotics__item quirky"></div>
-
-              <input class="feelingOption" type="radio" name="emotie" value="giechelig" id="" required>
+              <label for="giechelig" class="emotics__item quirky">
+                <input class="feelingOption" type="radio" name="emotie" value="giechelig" id="" required>
+              </label>
             </div>
 
           </label>
@@ -136,7 +160,6 @@
             afgemat
             <div class="emotics__items">
               <div class="emotics__item tired"></div>
-
               <input class="feelingOption" type="radio" name="emotie" value="afgemat" id="" required>
             </div>
 
@@ -147,9 +170,22 @@
             <button class="btn-next volgendebutton">Volgende</button>
           </form>
 
+          <div class="wordForm__question__expl" id="qklikword">
+            <p class="wordForm__question__expl__title">
+              Een kleine challenge voor jouw prijs.
+            </p>
+            <p class="wordForm__question__expl__subtitle">
+              Neem interactie met de letterdoos en klik op de juiste letters om jouw memootje te ontvangen.
+            </p>
+          </div>
+
           <form class="challengeForm form-3">
             <p class="wordForm__intro">Voltooi de drie taken om jouw persoonlijk Memootje te ontdekken</p>
-            <p class="wordForm__question">Spel het woord door de juiste letters aan te klikken in de letterdoos.</p>
+            <div>
+              <p class="wordForm__question">Spel het woord door de juiste letters aan te klikken in de letterdoos.</p>
+              <img class="questionmark" alt="v" src="assets/img/icons/questionmark.svg">
+            </div>
+
             <input type="text" id="enteredWord" class="enteredWord" name="enteredWord">
             <input id="sumbitwordbutton" class="button bigbutton" type="submit" value="VERSTUUR">
             <button class="btn-next volgendebutton">Volgende</button>
