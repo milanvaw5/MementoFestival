@@ -263,10 +263,32 @@ p {
   font-size: 1rem;
 }
 
+.wordForm__question__expl {
+  display: none;
+  background-color: var(--black);
+  color: var(--white);
+  padding: 1rem;
+  top: 35vh;
+  right: 25vw;
+  z-index: 3;
+  position: absolute;
+  width: 30vw;
+  height: 20vh;
+}
+
+.wordForm__question__expl__title {
+  font-weight: 800;
+}
+
+.wordForm__question__expl__subtitle {
+  font-size: 1rem;
+}
+
 .wordForm__question {
   font-weight: 800;
   font-size: 1.2rem;
   margin-top: 2rem;
+  margin-bottom: .2rem;
 }
 
 .wordForm__subinfo {
