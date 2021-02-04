@@ -19,6 +19,7 @@ let selectedFeeling;
 let memootjesEmotion = [];
 let lostLetters = [];
 let foundLetters = [];
+let isClickable = false;
 
 
 
@@ -352,7 +353,7 @@ export default class VisitorScene extends Phaser.Scene {
   };
 
   onClick(l){
- 
+ if(isClickable){
     if(lostLetters.length <= 1){
       this.handleLetterArrays(l);
       $challengeForm.style.display = "none";
@@ -360,6 +361,7 @@ export default class VisitorScene extends Phaser.Scene {
 
     }else{
       this.handleLetterArrays(l);
+    }
     }
   }
 
@@ -450,7 +452,7 @@ handleLetterArrays(l){
         switch(selectedFeeling){
           case "somber": this.feeling = this.matter.add.sprite(fallPosition, 0, 'somber', 0, {restitution: .5});break;
           case "giechelig": this.feeling = this.matter.add.sprite(fallPosition, 0, 'quirky', 0, {restitution: .5});break;
-          case "gelukzalig": this.feeling = this.matter.add.sprite(fallPosition, 0, 'happy', 0, {restitution: .5});break;
+          case "blij": this.feeling = this.matter.add.sprite(fallPosition, 0, 'happy', 0, {restitution: .5});break;
           case "afgemat": this.feeling = this.matter.add.sprite(fallPosition, 0, 'tired', 0, {restitution: .5});break;
 
         }
@@ -619,6 +621,7 @@ handleLetterArrays(l){
         $feelingsForm.querySelector(`.error`).innerHTML = `Selecteer één emotie om verder te gaan`;
       
        } else {
+        isClickable = true;
         $feelingsForm.style.display = "none";
         $challengeForm.style.display = "block";
         $feelingOptions.forEach(option => {
@@ -645,12 +648,11 @@ handleLetterArrays(l){
           
          
          });
+
+ 
       
          let rand = Math.floor(Math.random(memootjesEmotion.length)*2);
-         if(rand !== 0){
-           rand = rand - 1;
-         }
-  
+       
          $haiku.textContent = memootjesEmotion[rand].text;
          $auteurName.textContent = memootjesEmotion[rand].author;
          $auteurSocials.innerHTML = memootjesEmotion[rand].linkText;
