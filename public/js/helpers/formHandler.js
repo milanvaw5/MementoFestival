@@ -22,7 +22,7 @@
         document.querySelector(`.btn-next`).innerHTML = `&#10132; ${currentForm}/8`;
         document.querySelector(`.form-${currentForm}`).style.display = `block`;
         if(currentForm === 4){
-            $haiku.textContent = haikus[0];
+           // $haiku.textContent = haikus[0];
         }
            
        // hidePrev();

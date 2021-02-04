@@ -622,8 +622,8 @@ export default class VisitorScene extends Phaser.Scene {
          console.log(rand)
          console.log(memootjesEmotion.length)
          console.log($haiku)
-         document.querySelector(`.schud`).textContent = memootjesEmotion[rand].text;
-        // $haiku.textContent = memootjesEmotion[rand].text;
+         //document.querySelector(`.schud`).textContent = memootjesEmotion[rand].text;
+         $haiku.textContent = memootjesEmotion[rand].text;
          console.log(`Form is valid => submit form`);
        }
      
