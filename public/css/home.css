@@ -18,6 +18,7 @@
   background-image: url('../assets/img/blobs/greenblob.png'), url('../assets/img/blobs/blueblob.png');
   background-repeat: no-repeat;
   background-position: top right, bottom center;
+  z-index: -3rem;
 }
 
 .onepager__section {
@@ -125,6 +126,7 @@ p {
   align-content: center;
   align-items: center;
   justify-items: center;
+  z-index: 0;
 }
 
 .controls {
@@ -167,6 +169,7 @@ p {
   width: 25vw;
   padding: 1.5rem;
   top: -.1rem;
+  z-index: -2;
 }
 
 .controls {
@@ -194,53 +197,60 @@ p {
   justify-items: center;
 }
 
-.hand:hover {
+.groen:hover {
   background-color: var(--green);
   color: var(--black);
 }
 
-.hartje:hover {
+.orangje:hover {
   background-color: var(--orange);
   color: var(--black);
 }
 
-.schud:hover {
+.blauw:hover {
   background-color: var(--blue);
   color: var(--white);
 }
 
-.schud:hover::before {
-  content: url('../assets/img/schudbefwh.png');
+.blauw:hover .schud::before {
+  content: url('../assets/img/interactions/schudbfwh.svg');
   position: relative;
   padding: 0 1rem;
 }
 
-.schud:hover::after {
-  content: url('../assets/img/schudafwh.png');
+.hand:hover::before {
+  content: url('../assets/img/interactions/wave.svg');
+  position: relative;
+  padding: 0 .4rem 0 0;
+  transform: rotate(30deg);
+}
+
+.blauw:hover .schud::after {
+  content: url('../assets/img/interactions/schudafwh.svg');
   position: relative;
   padding: 0 1rem;
 }
 
 .hartje::before {
-  content: url('../assets/img/hartje.png');
+  content: url('../assets/img/interactions/heart.svg');
   position: relative;
   padding: 0 .4rem 0 0;
 }
 
 .hand::before {
-  content: url('../assets/img/hand.png');
+  content: url('../assets/img/interactions/wave.svg');
   position: relative;
   padding: 0 .4rem 0 0;
 }
 
 .schud::before {
-  content: url('../assets/img/schudbef.png');
+  content: url('../assets/img/interactions/schudbf.svg');
   position: relative;
   padding: 0 1rem;
 }
 
 .schud::after {
-  content: url('../assets/img/schudaf.png');
+  content: url('../assets/img/interactions/schudaf.svg');
   position: relative;
   padding: 0 1rem;
 }
@@ -269,6 +279,7 @@ p {
   border: .1rem solid var(--black);
   margin-right: 1rem;
   font-size: 1.2rem;
+  margin-top: .5rem;
 }
 
 .emotics__listitems {
@@ -295,25 +306,25 @@ p {
 }
 
 .happy {
-  background-image: url('../assets/img/emotics/happy.png');
+  background-image: url('../assets/img/emotics/happy.svg');
   background-repeat: no-repeat;
   background-position: bottom;
 }
 
 .sad {
-  background-image: url('../assets/img/emotics/sad.png');
+  background-image: url('../assets/img/emotics/sad.svg');
   background-repeat: no-repeat;
   background-position: bottom;
 }
 
 .tired {
-  background-image: url('../assets/img/emotics/tired.png');
+  background-image: url('../assets/img/emotics/tired.svg');
   background-repeat: no-repeat;
   background-position: bottom;
 }
 
 .quirky {
-  background-image: url('../assets/img/emotics/quirky.png');
+  background-image: url('../assets/img/emotics/quirky.svg');
   background-repeat: no-repeat;
   background-position: bottom;
 }
@@ -334,6 +345,28 @@ p {
 }
 
 .tired:hover {
+  background-image: url('../assets/img/emotics/tiredco.png');
+  background-position: bottom right;
+}
+
+
+
+.happy:active {
+  background-image: url('../assets/img/emotics/happyco.png');
+  background-position: bottom right;
+}
+
+.sad:active {
+  background-image: url('../assets/img/emotics/sadco.png');
+  background-position: bottom right;
+}
+
+.quirky:active {
+  background-image: url('../assets/img/emotics/quirkyco.png');
+  background-position: bottom right;
+}
+
+.tired:active {
   background-image: url('../assets/img/emotics/tiredco.png');
   background-position: bottom right;
 }
@@ -395,6 +428,7 @@ p {
   padding: 1rem;
   background-image: url('../assets/img/blobs/stipjes.png');
   background-repeat: no-repeat;
+  z-index: 0;
 }
 
 .praktisch__items {
