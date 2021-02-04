@@ -86,7 +86,7 @@
 
           <div class="introForm form-0">
             <p class="wordForm__intro">Een auteur heeft iets achtergelaten voor jou</p>
-            <button class="btn-next button primbutton">Volgende</button>
+            <button class="btn-next btn-ontdek button primbutton">Volgende</button>
           </div>
 
           <div class="wordForm__question__expl qwoord">
@@ -108,7 +108,7 @@
             <span class="error"></span>
             <input type="text" id="enteredWord" class="enteredWord inputfield" name="enteredWord" minlength="2" maxlength="20" required>
             <input id="sumbitwordbutton" class="button bigbutton" type="submit" value=" VERSTUUR">
-            <button class="btn-next volgendebutton">Volgende</button>
+      
           </form>
 
           <div class="wordForm__question__expl" id="qemotic">
@@ -166,7 +166,7 @@
           </div>
 
             <input id="sumbitwordbutton" class="button bigbutton" type="submit" value="VERSTUUR">
-            <button class="btn-next volgendebutton">Volgende</button>
+            <button class="btn-next btn-next--emotion volgendebutton">Volgende</button>
           </form>
 
           <div class="wordForm__question__expl" id="qklikword">
@@ -185,9 +185,9 @@
               <img class="questionmark" alt="v" src="assets/img/icons/questionmark.svg">
             </div>
 
-            <input type="text" id="enteredWord" class="enteredWord" name="enteredWord">
-            <input id="sumbitwordbutton" class="button bigbutton" type="submit" value="VERSTUUR">
-            <button class="btn-next volgendebutton">Volgende</button>
+            <div class="wordForm__challenge"></div>
+        
+            
           </form>
 
           <div class="haikuForm form-4">
@@ -228,12 +228,12 @@
           <li class="praktisch__location">8500 Kortrijk, Astridpark 54 </li>
         </ul>
 
-        <div class="map" id="map">
-        <!-- creëert een hoop warnings CSP-->
+        
+        <!-- creëert een hoop warnings CSP, maar mogen gegenegeerd worden: https://www.reddit.com/r/firefox/comments/fpptyj/firefox_content_security_policy_console_output/-->
         <iframe style="width:100%;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2519.8195234390837!2d3.255779815752779!3d50.83450676749796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c33afa5a73961b%3A0x20cef998adf3063e!2sAstridpark%2C%208500%20Kortrijk!5e0!3m2!1snl!2sbe!4v1612431641477!5m2!1snl!2sbe" width="300" height="200" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
       </div>
         <ul class="praktisch__travelitems">
-          <li class="praktisch__travelitem trein">15 min wandellen van Station Kortrijk (1,5km)</li>
+          <li class="praktisch__travelitem trein">15 min wandelen van Station Kortrijk (1,5km)</li>
           <li class="praktisch__travelitem parking">Parking Budabrug of Broeltorens tegen betaling</li>
           <li class="praktisch__travelitem fiets">Fietsenstalling voorzien</li>
         </ul>
@@ -298,7 +298,7 @@
   <script src="/socket.io/socket.io.js"></script>
   <script type="module" src="js/script.js"></script>
   <script type= "module" src="js/helpers/randomVideo.js"></script>
-  <script type= "module" src="js/helpers/formHandler.js"></script>
+  <!--<script type= "module" src="js/helpers/formHandler.js"></script>-->
   <!--<script type="application/json" src="assets/data/memootjes.json"></script>-->
 
   <!--<script type= "module" src="js/helpers/scroll.js"></script>-->
