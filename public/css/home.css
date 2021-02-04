@@ -304,6 +304,20 @@ p {
   margin-top: .5rem;
 }
 
+.emotics__label {
+  cursor: pointer;
+}
+
+.feelingOption {
+  display: none;
+}
+
+.feelingOption:checked .happy {
+  background-image: url('../assets/img/emotics/happy.svg');
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
 .emotics__listitems {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
