@@ -18,6 +18,8 @@ const $btnHartje = document.querySelector(`.hartje`);
 let selectedFeeling;
 let memootjesEmotion = [];
 let lostLetters = [];
+let foundLetters = [];
+
 
 
 const memootjes = [
@@ -28,7 +30,7 @@ const memootjes = [
   linkText: "@hihelloalice",
   link: "https://www.instagram.com/hihelloalice/",
   forEmotions: ["somber", "blij"],
-  keyword: "eege"
+  keyword: "rimpels"
 },
 {
   text: "En het voelt als thuiskomen.",
@@ -85,10 +87,17 @@ let auteurInput = ['Verloren','hinkel ik','over de sproeten op mijn vingers',
 
 let auteurInput = ['verloren','hinkelik','overdesproeten','opmijnvingers'];
 
-
+const $btnOntdek = document.querySelector(`.btn-ontdek`);
+const $introForm = document.querySelector(`.introForm`);
 const $wordForm = document.querySelector(`.wordForm`);
 const $feelingsForm = document.querySelector(`.feelingsForm`);
 const $challengeForm = document.querySelector(`.challengeForm`);
+const $haikuForm = document.querySelector(`.haikuForm`);
+$wordForm.style.display = `none`;
+$feelingsForm.style.display = `none`;
+$challengeForm.style.display = `none`;
+$haikuForm.style.display = `none`;
+
 const $msgInput = document.getElementById('enteredWord');
 const $feelingOptions = document.querySelectorAll(`.feelingOption`);
 
@@ -118,33 +127,34 @@ export default class VisitorScene extends Phaser.Scene {
     this.load.image('handLeft', 'assets/img/avatar/avatarGreen/x1/handLeftGreen.png');
     this.load.image('handRight', 'assets/img/avatar/avatarGreen/x1/handRightGreen.png');
     this.load.image('body', 'assets/img/avatar/avatarGreen/x1/bodyGreen.png');
-    this.load.image('a', 'assets/img/alphabet/a.png');
-    this.load.image('a', 'assets/img/alphabet/a.png');
-    this.load.image('b', 'assets/img/alphabet/B.png');
-    this.load.image('c', 'assets/img/alphabet/C.png');
-    this.load.image('d', 'assets/img/alphabet/D.png');
-    this.load.image('e', 'assets/img/alphabet/E.png');
-    this.load.image('f', 'assets/img/alphabet/F.png');
-    this.load.image('g', 'assets/img/alphabet/G.png');
-    this.load.image('h', 'assets/img/alphabet/H.png');
-    this.load.image('i', 'assets/img/alphabet/I.png');
-    this.load.image('j', 'assets/img/alphabet/J.png');
-    this.load.image('k', 'assets/img/alphabet/K.png');
-    this.load.image('l', 'assets/img/alphabet/L.png');
-    this.load.image('m', 'assets/img/alphabet/M.png');
-    this.load.image('n', 'assets/img/alphabet/N.png');
-    this.load.image('o', 'assets/img/alphabet/O.png');
-    this.load.image('p', 'assets/img/alphabet/P.png');
-    this.load.image('q', 'assets/img/alphabet/Q.png');
-    this.load.image('r', 'assets/img/alphabet/R.png');
-    this.load.image('s', 'assets/img/alphabet/S.png');
-    this.load.image('t', 'assets/img/alphabet/T.png');
-    this.load.image('u', 'assets/img/alphabet/U.png');
-    this.load.image('v', 'assets/img/alphabet/V.png');
-    this.load.image('w', 'assets/img/alphabet/W.png');
-    this.load.image('x', 'assets/img/alphabet/X.png');
-    this.load.image('y', 'assets/img/alphabet/Y.png');
-    this.load.image('z', 'assets/img/alphabet/Z.png');
+ 
+    this.load.image('a', 'assets/img/alphabet/x0.5/a.png');
+    this.load.image('b', 'assets/img/alphabet/x0.5/b.png');
+    this.load.image('c', 'assets/img/alphabet/x0.5/c.png');
+    this.load.image('d', 'assets/img/alphabet/x0.5/d.png');
+    this.load.image('e', 'assets/img/alphabet/x0.5/e.png');
+    this.load.image('f', 'assets/img/alphabet/x0.5/f.png');
+    this.load.image('g', 'assets/img/alphabet/x0.5/g.png');
+    this.load.image('h', 'assets/img/alphabet/x0.5/h.png');
+    this.load.image('i', 'assets/img/alphabet/x0.5/i.png');
+    this.load.image('j', 'assets/img/alphabet/x0.5/j.png');
+    this.load.image('k', 'assets/img/alphabet/x0.5/k.png');
+    this.load.image('l', 'assets/img/alphabet/x0.5/l.png');
+    this.load.image('m', 'assets/img/alphabet/x0.5/m.png');
+    this.load.image('n', 'assets/img/alphabet/x0.5/n.png');
+    this.load.image('o', 'assets/img/alphabet/x0.5/o.png');
+    this.load.image('p', 'assets/img/alphabet/x0.5/p.png');
+    this.load.image('q', 'assets/img/alphabet/x0.5/q.png');
+    this.load.image('r', 'assets/img/alphabet/x0.5/r.png');
+    this.load.image('s', 'assets/img/alphabet/x0.5/s.png');
+    this.load.image('t', 'assets/img/alphabet/x0.5/t.png');
+    this.load.image('u', 'assets/img/alphabet/x0.5/u.png');
+    this.load.image('v', 'assets/img/alphabet/x0.5/v.png');
+    this.load.image('w', 'assets/img/alphabet/x0.5/w.png');
+    this.load.image('x', 'assets/img/alphabet/x0.5/x.png');
+    this.load.image('y', 'assets/img/alphabet/x0.5/y.png');
+    this.load.image('z', 'assets/img/alphabet/x0.5/z.png');
+
     this.load.image('somber', 'assets/img/emotics/sadco.png');
     this.load.image('happy', 'assets/img/emotics/happyco.png');
     this.load.image('quirky', 'assets/img/emotics/quirkyco.png');
@@ -204,7 +214,7 @@ export default class VisitorScene extends Phaser.Scene {
 
     //bij een bepaald aantal letters op het scherm - zullen er een hoeveelheid verdwijnen,
     //random gekozen om zo nieuwe woorden en mysterie te creëren
-    if (letters.length === 20) {
+    if (letters.length === 50) {
       for (let numberOfRemoveletters = 10; numberOfRemoveletters>0; numberOfRemoveletters--){
         for(let removeletters = letters.length-1; removeletters >= 0; removeletters--){
           array.splice(Math.floor(Math.random()*removeletters.length), 1);
@@ -339,18 +349,36 @@ export default class VisitorScene extends Phaser.Scene {
   };
 
   onClick(l){
-    if(lostLetters.includes(l.texture.key)){
-      console.log(l.texture.key);
-      let foundLetter = document.querySelector(`.challengeLetter--${l.texture.key}`);
-      console.log(l.texture.key);
-      foundLetter.src = "";
-      foundLetter.classList.add(`foundLetter--${l.texture.key}`)
-      foundLetter.classList.remove(`challengeLetter--${l.texture.key}`)
-      console.log(l.texture.key);
-    };
+ 
+    if(lostLetters.length <= 1){
+      this.handleLetterArrays(l);
+      $challengeForm.style.display = "none";
+      $haikuForm.style.display = "block";
 
-
+    }else{
+      this.handleLetterArrays(l);
+    }
   }
+
+handleLetterArrays(l){
+  if(lostLetters.includes(l.texture.key)){
+    console.log(l.texture.key);
+    lostLetters.forEach(lostLetter => {
+      const index = lostLetters.indexOf(lostLetter);
+      if (lostLetter == l.texture.key){
+        lostLetters.splice(index, 1);
+        console.log(lostLetters)
+      }
+    });
+    foundLetters.push(l.texture.key);
+    let foundLetter = document.querySelector(`.challengeLetter--${l.texture.key}`);
+    console.log(l.texture.key);
+    foundLetter.src = `assets/img/alphabet/x0.5/${l.texture.key}.png`;
+    foundLetter.classList.add(`foundLetter--${l.texture.key}`)
+    foundLetter.classList.remove(`challengeLetter--${l.texture.key}`)
+    console.log(l.texture.key);
+  };
+}
 
     //de timer is nul dus word een auteurinput gedropt en daarna de timer gereset
     readInAuteurInput() {
@@ -478,7 +506,9 @@ export default class VisitorScene extends Phaser.Scene {
         jointPositionsGebruikersTarget.rightAnklePosTarget.y = this.cameras.main.height * jointPositions.rightAnklePos.y;
       });
 
-       
+      if($introForm){
+        $btnOntdek.addEventListener('click', e => this.handleClickOntdek(e));
+      }
 
       if($wordForm){
         $wordForm.noValidate = true;
@@ -493,6 +523,7 @@ export default class VisitorScene extends Phaser.Scene {
         $feelingOptions.forEach(field => {
           field.addEventListener('input', e => this.handeInputField(e, $feelingsForm))
         });
+        document.querySelector(`.btn-next--emotion`).addEventListener('click', e => this.handleClickNextEmotion(e))
       }
       if($btnSchud){
         $btnSchud.addEventListener('click', e => this.handleClickSchud(e));
@@ -503,7 +534,10 @@ export default class VisitorScene extends Phaser.Scene {
 
     };
 
-   
+    handleClickOntdek(e){
+      $introForm.style.display = "none";
+      $wordForm.style.display = "block";
+    }
 
     showValidationInfo($field) {
       let message;
@@ -533,6 +567,10 @@ export default class VisitorScene extends Phaser.Scene {
       console.log(message)
     };
 
+    handleClickNextEmotion(e){
+      isClickable = true;
+    }
+
     handeInputField(e, form){
       const field = e.currentTarget;
       if (!form.checkValidity()) {
@@ -561,14 +599,16 @@ export default class VisitorScene extends Phaser.Scene {
   
        // $wordForm.querySelector(`.error`).innerHTML = `Some errors occured`;
       } else {
-        
+        $wordForm.style.display = "none";
+        $feelingsForm.style.display = "block";
+        socket.emit('message', $msgInput.value);
+        //socket.emit('messages', messages);
+        //socket.emit('points', points);
+        $msgInput.value = '';
         console.log(`Form is valid => submit form`);
       }
 
-       socket.emit('message', $msgInput.value);
-       //socket.emit('messages', messages);
-       //socket.emit('points', points);
-       $msgInput.value = '';
+     
     }
     handleSubmitFeeling = e => {
       e.preventDefault();
@@ -576,7 +616,8 @@ export default class VisitorScene extends Phaser.Scene {
         $feelingsForm.querySelector(`.error`).innerHTML = `Selecteer één emotie om verder te gaan`;
       
        } else {
-       
+        $feelingsForm.style.display = "none";
+        $challengeForm.style.display = "block";
         $feelingOptions.forEach(option => {
           if(option.checked){
             selectedFeeling = option.value;
@@ -613,22 +654,27 @@ export default class VisitorScene extends Phaser.Scene {
          $auteurSocials.href = memootjesEmotion[rand].link;
 
          const $challengeWord = document.querySelector(`.wordForm__challenge`);
-         let challengeword = memootjesEmotion[rand].keyword.toLowerCase();
+ 
+          let challengeword = memootjesEmotion[rand].keyword.toLowerCase();
       
-         challengeword = challengeword.split('');
-         challengeword.forEach(letter => {
-           lostLetters.push(letter);
-           const letterImg = document.createElement('img');
-           letterImg.classList.add(`challengeLetter--${letter}`)
-           letterImg.src = `assets/img/alphabet/${letter}.png`;
-           $challengeWord.appendChild(letterImg);
-
-         });
-  
+          challengeword = challengeword.split('');
+          challengeword.forEach(letter => {
+            lostLetters.push(letter);
+            const letterImg = document.createElement('img');
+            letterImg.classList.add(`challengeLetter--${letter}`)
+            letterImg.src = `assets/img/alphabet/x0.5/noFill/${letter}.png`;
+            $challengeWord.appendChild(letterImg);
+          });
+          socket.emit('feeling', selectedFeeling);
+          console.log(`Form is valid => submit form`);
+        
+          
+         
+        
+       
        
 
-         socket.emit('feeling', selectedFeeling);
-         console.log(`Form is valid => submit form`);
+      
        }
    }
 

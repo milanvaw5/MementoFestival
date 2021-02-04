@@ -133,6 +133,10 @@ body {
   text-decoration: underline;
 }
 
+.btn-next--challenge {
+    display: none;
+}
+
 .volgendebutton::after {
   background-image: url('../assets/img/icons/arrownext.svg');
   background-repeat: no-repeat;
