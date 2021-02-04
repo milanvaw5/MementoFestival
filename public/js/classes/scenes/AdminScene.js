@@ -347,11 +347,6 @@ export default class AdminScene extends Phaser.Scene {
     this.load.image('y', 'assets/img/alphabet/x0.5/y.png');
     this.load.image('z', 'assets/img/alphabet/x0.5/z.png');
 
-    this.load.image('somber', 'assets/img/emotics/sadco.png');
-    this.load.image('happy', 'assets/img/emotics/happyco.png');
-    this.load.image('quirky', 'assets/img/emotics/quirkyco.png');
-    this.load.image('tired', 'assets/img/emotics/tiredco.png');
-
     this.load.image('somber0', 'assets/img/letterdoos/grumpySmiley/x1/grumpyBlue.png');
     this.load.image('somber1', 'assets/img/letterdoos/grumpySmiley/x1/grumpyDark.png');
     this.load.image('somber2', 'assets/img/letterdoos/grumpySmiley/x1/grumpyGreen.png');
@@ -666,14 +661,14 @@ export default class AdminScene extends Phaser.Scene {
       });
 
       socket.on('selectedFeeling', selectedFeeling => {
-        console.log(selectedFeeling)
-        let fallPosition = Phaser.Math.Between(20, this.cameras.main.width);
+        let fallPosition = Phaser.Math.Between(60, this.cameras.main.width);
+        let rand = Math.floor(Math.random()*4);
         switch(selectedFeeling){
-          case "somber": this.feeling = this.matter.add.sprite(fallPosition, 0, 'somber', 0, {restitution: .5});break;
-          case "giechelig": this.feeling = this.matter.add.sprite(fallPosition, 0, 'quirky', 0, {restitution: .5});break;
-          case "gelukzalig": this.feeling = this.matter.add.sprite(fallPosition, 0, 'happy', 0, {restitution: .5});break;
-          case "afgemat": this.feeling = this.matter.add.sprite(fallPosition, 0, 'tired', 0, {restitution: .5});break;
-
+          case "somber": this.feeling = this.matter.add.sprite(fallPosition, 0, `somber${rand.toString()}`, 0, {restitution: .5});break;
+          case "giechelig": this.feeling = this.matter.add.sprite(fallPosition, 0, `quirky${rand.toString()}`, 0, {restitution: .5});break;
+          case "blij": this.feeling = this.matter.add.sprite(fallPosition, 0, `happy${rand.toString()}`, 0, {restitution: .5});break;
+          case "afgemat": this.feeling = this.matter.add.sprite(fallPosition, 0, `tired${rand.toString()}`, 0, {restitution: .5});break;
+  
         }
 
       });
