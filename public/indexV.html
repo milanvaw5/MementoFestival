@@ -158,8 +158,8 @@
           <div class="haikuForm form-4">
             <p class="wordForm__question">JOUW MEMOOTJE!</p>
             <p class="wordForm__haiku haiku">hier komt haiku</p>
-            <p class="wordForm__auteur__name">Alice Boudry</p>
-            <p class="wordForm__auteur__socials">@hihelloalice</p>
+            <p class="wordForm__auteur__name">hier komt auteur</p>
+            <a class="wordForm__auteur__socials" href="" target="_blank">hier komt auteur link</a>
           </div>
         </section>
      </article>
@@ -190,14 +190,15 @@
         <ul class="praktisch__items">
           <li class="praktisch__date title">18/04/2021 - 24/04/2021</li>
           <li class="praktisch__time">Elke dag van 08:00 tot 20:00</li>
-          <li class="praktisch__location">8500 Kortrijk, Houtmarkt 54 </li>
+          <li class="praktisch__location">8500 Kortrijk, Astridpark 54 </li>
         </ul>
 
         <div class="map" id="map"></div>
-
+        <!-- creëert een hoop warnings CSP-->
+        <iframe style="width:100%;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2519.8195234390837!2d3.255779815752779!3d50.83450676749796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c33afa5a73961b%3A0x20cef998adf3063e!2sAstridpark%2C%208500%20Kortrijk!5e0!3m2!1snl!2sbe!4v1612431641477!5m2!1snl!2sbe" width="300" height="200" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
         <ul class="praktisch__travelitems">
-          <li class="praktisch__travelitem trein">11 min wandellen van Station Kortrijk (900m)</li>
-          <li class="praktisch__travelitem parking">Parking Houtmarkt tegen betaling</li>
+          <li class="praktisch__travelitem trein">15 min wandellen van Station Kortrijk (1,5km)</li>
+          <li class="praktisch__travelitem parking">Parking Budabrug of Broeltorens tegen betaling</li>
           <li class="praktisch__travelitem fiets">Fietsenstalling voorzien</li>
         </ul>
       </article>
@@ -262,7 +263,7 @@
   <script type="module" src="js/script.js"></script>
   <script type= "module" src="js/helpers/randomVideo.js"></script>
   <script type= "module" src="js/helpers/formHandler.js"></script>
-  <script type="application/json" src="assets/data/memootjes.json"></script>
+  <!--<script type="application/json" src="assets/data/memootjes.json"></script>-->
 
   <!--<script type= "module" src="js/helpers/scroll.js"></script>-->
 </html>
