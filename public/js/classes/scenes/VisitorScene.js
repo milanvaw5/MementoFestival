@@ -13,8 +13,9 @@ let isLive = false;
 let $liveTitle = document.querySelector(`.live__footage__indication`);
 let $liveSub = document.querySelector(`.live__footage__subindication`);
 let $liveDot = document.querySelector(`.bol`);
-const $btnSchud = document.querySelector(`.schud`);
-const $btnHartje = document.querySelector(`.hartje`);
+const $btnHallo = document.querySelector(`.groen`);
+const $btnSchud = document.querySelector(`.blauw`);
+const $btnHartje = document.querySelector(`.orangje`);
 let selectedFeeling;
 let memootjesEmotion = [];
 let lostLetters = [];
@@ -159,10 +160,31 @@ export default class VisitorScene extends Phaser.Scene {
     this.load.image('y', 'assets/img/alphabet/x0.5/y.png');
     this.load.image('z', 'assets/img/alphabet/x0.5/z.png');
 
-    this.load.image('somber', 'assets/img/emotics/sadco.png');
-    this.load.image('happy', 'assets/img/emotics/happyco.png');
-    this.load.image('quirky', 'assets/img/emotics/quirkyco.png');
-    this.load.image('tired', 'assets/img/emotics/tiredco.png');
+    this.load.image('somber0', 'assets/img/letterdoos/grumpySmiley/x1/grumpyBlue.png');
+    this.load.image('somber1', 'assets/img/letterdoos/grumpySmiley/x1/grumpyDark.png');
+    this.load.image('somber2', 'assets/img/letterdoos/grumpySmiley/x1/grumpyGreen.png');
+    this.load.image('somber3', 'assets/img/letterdoos/grumpySmiley/x1/grumpyOrange.png');
+    this.load.image('somber4', 'assets/img/letterdoos/grumpySmiley/x1/grumpyYellow.png');
+
+    this.load.image('happy0', 'assets/img/letterdoos/smilingSmiley/x1/smilingBlue.png');
+    this.load.image('happy1', 'assets/img/letterdoos/smilingSmiley/x1/smilingDark.png');
+    this.load.image('happy2', 'assets/img/letterdoos/smilingSmiley/x1/smilingGreen.png');
+    this.load.image('happy3', 'assets/img/letterdoos/smilingSmiley/x1/smilingOrange.png');
+    this.load.image('happy4', 'assets/img/letterdoos/smilingSmiley/x1/smilingYellow.png');
+
+    this.load.image('quirky0', 'assets/img/letterdoos/smirkingSmiley/x1/smirkingBlue.png');
+    this.load.image('quirky1', 'assets/img/letterdoos/smirkingSmiley/x1/smirkingDark.png');
+    this.load.image('quirky2', 'assets/img/letterdoos/smirkingSmiley/x1/smirkingGreen.png');
+    this.load.image('quirky3', 'assets/img/letterdoos/smirkingSmiley/x1/smirkingOrange.png');
+    this.load.image('quirky4', 'assets/img/letterdoos/smirkingSmiley/x1/smirkingYellow.png');
+
+    this.load.image('tired0', 'assets/img/letterdoos/snoringSmiley/x1/snoringBlue.png');
+    this.load.image('tired1', 'assets/img/letterdoos/snoringSmiley/x1/snoringDark.png');
+    this.load.image('tired2', 'assets/img/letterdoos/snoringSmiley/x1/snoringGreen.png');
+    this.load.image('tired3', 'assets/img/letterdoos/snoringSmiley/x1/snoringOrange.png');
+    this.load.image('tired4', 'assets/img/letterdoos/snoringSmiley/x1/snoringYellow.png');
+
+ 
 
   }
 
@@ -417,11 +439,17 @@ handleLetterArrays(l){
       socket.on('connect', () => {
         console.log(`Connected: ${socket.id}`);
         socket.emit('requestWords');
+        socket.emit('requestFeelings');
       });
       socket.on('getWords', words => {
         words.forEach(word => {
           woordje = word;
           this.readInWord();
+        })
+      });
+      socket.on('getFeelings', feelings => {
+        feelings.forEach(feeling => {
+          this.createFeeling(feeling);
         })
       });
       socket.on('message', message => {
@@ -448,15 +476,7 @@ handleLetterArrays(l){
 
       });
       socket.on('selectedFeeling', selectedFeeling => {
-        console.log(selectedFeeling)
-        let fallPosition = Phaser.Math.Between(60, this.cameras.main.width);
-        switch(selectedFeeling){
-          case "somber": this.feeling = this.matter.add.sprite(fallPosition, 0, 'somber', 0, {restitution: .5});break;
-          case "giechelig": this.feeling = this.matter.add.sprite(fallPosition, 0, 'quirky', 0, {restitution: .5});break;
-          case "blij": this.feeling = this.matter.add.sprite(fallPosition, 0, 'happy', 0, {restitution: .5});break;
-          case "afgemat": this.feeling = this.matter.add.sprite(fallPosition, 0, 'tired', 0, {restitution: .5});break;
-
-        }
+        this.createFeeling(selectedFeeling);
 
       });
       socket.on('points', jointPositions => {
@@ -539,6 +559,18 @@ handleLetterArrays(l){
       }
 
     };
+
+    createFeeling(feeling){
+      let fallPosition = Phaser.Math.Between(60, this.cameras.main.width);
+      let rand = Math.floor(Math.random()*4);
+      switch(feeling){
+        case "somber": this.feeling = this.matter.add.sprite(fallPosition, 0, `somber${rand.toString()}`, 0, {restitution: .5});break;
+        case "giechelig": this.feeling = this.matter.add.sprite(fallPosition, 0, `quirky${rand.toString()}`, 0, {restitution: .5});break;
+        case "blij": this.feeling = this.matter.add.sprite(fallPosition, 0, `happy${rand.toString()}`, 0, {restitution: .5});break;
+        case "afgemat": this.feeling = this.matter.add.sprite(fallPosition, 0, `tired${rand.toString()}`, 0, {restitution: .5});break;
+
+      }
+    }
 
     handleClickOntdek(e){
       $introForm.style.display = "none";
@@ -654,7 +686,8 @@ handleLetterArrays(l){
          if(memootjesEmotion.length === 1){
           rand = 0;
          }else{
-          rand = Math.floor(Math.random(memootjesEmotion.length - 1)*2);
+          //rand = Math.floor(Math.random(memootjesEmotion.length - 1)*2);
+          rand = Math.floor(Math.random()* (memootjesEmotion.length - 1));
          }
  
   

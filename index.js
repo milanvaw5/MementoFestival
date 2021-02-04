@@ -7,6 +7,7 @@ const io = require('socket.io')(server);
 
 
 let words = [];
+let feelings = [];
 let admin;
 let livePing;
 io.on('connection', socket => {
@@ -36,14 +37,18 @@ io.on('connection', socket => {
   });
 
   socket.on('feeling', selectedFeeling => {
+    feelings.push(selectedFeeling);
     console.log(selectedFeeling);
     io.sockets.emit(`selectedFeeling`, selectedFeeling);
   });
 
   socket.on('requestWords', () => {
-    console.log(words);
     socket.emit('getWords', words);
-  })
+  });
+
+  socket.on('requestFeelings', () => {
+    socket.emit('getFeelings', feelings);
+  });
 
   
 
@@ -56,6 +61,7 @@ io.on('connection', socket => {
     if(socket.id === admin){
       admin = "";
       words = [];
+      feelings = [];
       clearInterval(livePing);
       io.sockets.emit(`notLive`);
     }

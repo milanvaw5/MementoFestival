@@ -352,6 +352,30 @@ export default class AdminScene extends Phaser.Scene {
     this.load.image('quirky', 'assets/img/emotics/quirkyco.png');
     this.load.image('tired', 'assets/img/emotics/tiredco.png');
 
+    this.load.image('somber0', 'assets/img/letterdoos/grumpySmiley/x1/grumpyBlue.png');
+    this.load.image('somber1', 'assets/img/letterdoos/grumpySmiley/x1/grumpyDark.png');
+    this.load.image('somber2', 'assets/img/letterdoos/grumpySmiley/x1/grumpyGreen.png');
+    this.load.image('somber3', 'assets/img/letterdoos/grumpySmiley/x1/grumpyOrange.png');
+    this.load.image('somber4', 'assets/img/letterdoos/grumpySmiley/x1/grumpyYellow.png');
+
+    this.load.image('happy0', 'assets/img/letterdoos/smilingSmiley/x1/smilingBlue.png');
+    this.load.image('happy1', 'assets/img/letterdoos/smilingSmiley/x1/smilingDark.png');
+    this.load.image('happy2', 'assets/img/letterdoos/smilingSmiley/x1/smilingGreen.png');
+    this.load.image('happy3', 'assets/img/letterdoos/smilingSmiley/x1/smilingOrange.png');
+    this.load.image('happy4', 'assets/img/letterdoos/smilingSmiley/x1/smilingYellow.png');
+
+    this.load.image('quirky0', 'assets/img/letterdoos/smirkingSmiley/x1/smirkingBlue.png');
+    this.load.image('quirky1', 'assets/img/letterdoos/smirkingSmiley/x1/smirkingDark.png');
+    this.load.image('quirky2', 'assets/img/letterdoos/smirkingSmiley/x1/smirkingGreen.png');
+    this.load.image('quirky3', 'assets/img/letterdoos/smirkingSmiley/x1/smirkingOrange.png');
+    this.load.image('quirky4', 'assets/img/letterdoos/smirkingSmiley/x1/smirkingYellow.png');
+
+    this.load.image('tired0', 'assets/img/letterdoos/snoringSmiley/x1/snoringBlue.png');
+    this.load.image('tired1', 'assets/img/letterdoos/snoringSmiley/x1/snoringDark.png');
+    this.load.image('tired2', 'assets/img/letterdoos/snoringSmiley/x1/snoringGreen.png');
+    this.load.image('tired3', 'assets/img/letterdoos/snoringSmiley/x1/snoringOrange.png');
+    this.load.image('tired4', 'assets/img/letterdoos/snoringSmiley/x1/snoringYellow.png');
+
     this.load.spritesheet('heart', 'assets/img/interactions/heart.png', { frameWidth: 70, frameHeight: 70 });
     this.load.spritesheet('wave', 'assets/img/interactions/wave.png', { frameWidth: 70, frameHeight: 70 });
 
