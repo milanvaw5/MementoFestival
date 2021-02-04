@@ -17,6 +17,7 @@ const $btnSchud = document.querySelector(`.schud`);
 const $btnHartje = document.querySelector(`.hartje`);
 let selectedFeeling;
 let memootjesEmotion = [];
+let lostLetters = [];
 
 
 const memootjes = [
@@ -26,7 +27,8 @@ const memootjes = [
   stageName: "",
   linkText: "@hihelloalice",
   link: "https://www.instagram.com/hihelloalice/",
-  forEmotions: ["somber", "blij"]
+  forEmotions: ["somber", "blij"],
+  keyword: "eege"
 },
 {
   text: "En het voelt als thuiskomen.",
@@ -34,7 +36,8 @@ const memootjes = [
   stageName: "",
   linkText: "@oonaloncke",
   link: "https://www.instagram.com/oonaloncke/",
-  forEmotions: "somber"
+  forEmotions: "somber",
+  keyword: "thuiskomen"
 },
 ]
 
@@ -92,6 +95,7 @@ const $feelingOptions = document.querySelectorAll(`.feelingOption`);
 const $haiku = document.querySelector(`.haiku`);
 const $auteurName = document.querySelector(`.wordForm__auteur__name`);
 const $auteurSocials = document.querySelector(`.wordForm__auteur__socials`);
+
 
 
 let socket; // will be assigned a value later
@@ -335,7 +339,16 @@ export default class VisitorScene extends Phaser.Scene {
   };
 
   onClick(l){
-    console.log(l.texture.key);
+    if(lostLetters.includes(l.texture.key)){
+      console.log(l.texture.key);
+      let foundLetter = document.querySelector(`.challengeLetter--${l.texture.key}`);
+      console.log(l.texture.key);
+      foundLetter.src = "";
+      foundLetter.classList.add(`foundLetter--${l.texture.key}`)
+      foundLetter.classList.remove(`challengeLetter--${l.texture.key}`)
+      console.log(l.texture.key);
+    };
+
 
   }
 
@@ -560,13 +573,8 @@ export default class VisitorScene extends Phaser.Scene {
     handleSubmitFeeling = e => {
       e.preventDefault();
       if (!$feelingsForm.checkValidity()) {
-
-       // const field = $feelingsForm.querySelector(`.feelingOption`);
-         
-       // this.showValidationInfo(field)
         $feelingsForm.querySelector(`.error`).innerHTML = `Selecteer één emotie om verder te gaan`;
-        console.log("error feeeling")
-        // $wordForm.querySelector(`.error`).innerHTML = `Some errors occured`;
+      
        } else {
        
         $feelingOptions.forEach(option => {
@@ -578,9 +586,7 @@ export default class VisitorScene extends Phaser.Scene {
       
           if(Array.isArray(memootje.forEmotions)){
             memootje.forEmotions.forEach(forEmotion => {
-              console.log("normaal 2x")
-              console.log(forEmotion)
-              console.log(selectedFeeling)
+        
                if(forEmotion === selectedFeeling){
                  console.log(forEmotion)
                  memootjesEmotion.push(memootje);
@@ -595,24 +601,35 @@ export default class VisitorScene extends Phaser.Scene {
           
          
          });
-         console.log(memootjesEmotion)
+      
          let rand = Math.floor(Math.random(memootjesEmotion.length)*2);
          if(rand !== 0){
            rand = rand - 1;
          }
-         console.log(rand)
-         console.log(memootjesEmotion.length)
-         console.log($haiku)
-
+  
          $haiku.textContent = memootjesEmotion[rand].text;
          $auteurName.textContent = memootjesEmotion[rand].author;
          $auteurSocials.innerHTML = memootjesEmotion[rand].linkText;
          $auteurSocials.href = memootjesEmotion[rand].link;
+
+         const $challengeWord = document.querySelector(`.wordForm__challenge`);
+         let challengeword = memootjesEmotion[rand].keyword.toLowerCase();
+      
+         challengeword = challengeword.split('');
+         challengeword.forEach(letter => {
+           lostLetters.push(letter);
+           const letterImg = document.createElement('img');
+           letterImg.classList.add(`challengeLetter--${letter}`)
+           letterImg.src = `assets/img/alphabet/${letter}.png`;
+           $challengeWord.appendChild(letterImg);
+
+         });
+  
+       
+
+         socket.emit('feeling', selectedFeeling);
          console.log(`Form is valid => submit form`);
        }
-     
-    
-      socket.emit('feeling', selectedFeeling);
    }
 
    handleClickSchud = e => {
