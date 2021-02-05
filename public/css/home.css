@@ -1,4 +1,20 @@
 /* another css file*/
+
+.popup--word {
+  padding: 1rem;
+  width: 20rem;
+  z-index: 5;
+  display: none;
+  position: absolute;
+  top: 60%;
+  right: 0;
+  background-color: var(--orange);
+}
+.popup__text {
+  font-size: .8rem;
+  width: 100%;
+}
+
 .snapContainer {
   height: 100vh;
   overflow: scroll;
@@ -112,6 +128,7 @@ p {
 
 .section__wordgame {
   grid-template-columns: 3fr 2fr;
+  position: relative;
 }
 
 .article__forms {
@@ -288,6 +305,7 @@ p {
 }
 
 .questionmark {
+  cursor: pointer;
   margin: 1rem;
 }
 
@@ -353,12 +371,13 @@ p {
   display: none;
 }
 
-.feelingOption:checked ~ .emotics__label {
+/*.feelingOption:checked ~ .emotics__label {
   color: red;
   background-image: url('../assets/img/emotics/happyco.svg');
   background-repeat: no-repeat;
   background-position: bottom;
-}
+}*/
+
 
 .emotics__listitems {
   display: grid;
@@ -383,68 +402,68 @@ p {
   height: 5rem;
 }
 
-.happy {
+.blij {
   background-image: url('../assets/img/emotics/happy.svg');
   background-repeat: no-repeat;
   background-position: bottom;
 }
 
-.sad {
+.somber {
   background-image: url('../assets/img/emotics/sad.svg');
   background-repeat: no-repeat;
   background-position: bottom;
 }
 
-.tired {
+.afgemat {
   background-image: url('../assets/img/emotics/tired.svg');
   background-repeat: no-repeat;
   background-position: bottom;
 }
 
-.quirky {
+.giechelig {
   background-image: url('../assets/img/emotics/quirky.svg');
   background-repeat: no-repeat;
   background-position: bottom;
 }
 
-.happy:hover {
+.blij:hover {
   background-image: url('../assets/img/emotics/happyco.png');
   background-position: bottom right;
 }
 
-.sad:hover {
+.somber:hover {
   background-image: url('../assets/img/emotics/sadco.png');
   background-position: bottom right;
 }
 
-.quirky:hover {
+.giechelig:hover {
   background-image: url('../assets/img/emotics/quirkyco.png');
   background-position: bottom right;
 }
 
-.tired:hover {
+.afgemat:hover {
   background-image: url('../assets/img/emotics/tiredco.png');
   background-position: bottom right;
 }
 
 
 
-.happy:active {
+.blij:active {
   background-image: url('../assets/img/emotics/happyco.png');
   background-position: bottom right;
 }
 
-.sad:active {
+.somber:active {
   background-image: url('../assets/img/emotics/sadco.png');
   background-position: bottom right;
 }
 
-.quirky:active {
+.giechelig:active {
   background-image: url('../assets/img/emotics/quirkyco.png');
   background-position: bottom right;
 }
 
-.tired:active {
+.afgemat:active {
   background-image: url('../assets/img/emotics/tiredco.png');
   background-position: bottom right;
 }

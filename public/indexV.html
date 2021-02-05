@@ -47,6 +47,9 @@
 
     <section id="wordgame" class="onepager__section section__wordgame scrollSnap">
       <h2 class="section__title hidden">De Letterdoos online game</h2>
+      <div class="popup popup--word">
+        <p class="popup__text"></p>
+      </div>
 
       <article class="section__article article__wordgame">
         <h3 class="article__title hidden">Stream</h3>
@@ -101,12 +104,14 @@
             </p>
           </div>
 
+        
           <form class="wordForm form-1">
             <p class="wordForm__intro">Voltooi de drie taken om jouw persoonlijk Memootje te ontdekken.</p>
             <p class="wordForm__countdown">1/3</p>
+            
             <div class="questionbox">
               <p class="wordForm__question">Wat betekent verdwalen voor jou?</p>
-              <img class="questionmark" alt="v" src="assets/img/icons/questionmark.svg">
+              <img class="questionmark questionmark--word" alt="vraagtekenicoontje" src="assets/img/icons/questionmark.svg">
             </div>
             <p class="wordForm__subinfo">Jouw antwoord komt mee in de live letterdoos te staan!</p>
             <span class="error"></span>
@@ -130,41 +135,37 @@
             <p class="wordForm__countdown">2/3</p>
             <div class="questionbox">
               <p class="wordForm__question">Hoe voel jij je vandaag?</p>
-             <img class="questionmark" alt="v" src="assets/img/icons/questionmark.svg">
+             
+             <img class="questionmark questionmark--feeling" alt="vraagtekenicoontje" src="assets/img/icons/questionmark.svg">
             </div>
 
             <span class="error"></span>
 
 
           <div class="emotics__listitems">
-            <label class="emotics__label">
-              gelukzalig
-            <div class="emotics__items">
-              <div class="emotics__item happy"></div>
+            <label class="emotics__label">Blij
+              <div class="emotics__items">
+              <div class="emotics__item blij"></div>
               <input class="feelingOption" type="radio" name="emotie" value="blij" id="" required>
             </div>
 
           </label>
-          <label class="emotics__label">
-            somber
+          <label class="emotics__label">Somber
             <div class="emotics__items">
-              <div class="emotics__item sad"></div>
+              <div class="emotics__item somber"></div>
               <input class="feelingOption" type="radio" name="emotie" value="somber" id="" required>
             </div>
 
           </label>
-          <label class="emotics__label">
-            giechelig
+          <label class="emotics__label">Giechelig
             <div class="emotics__items">
-              <div for="giechelig" class="emotics__item quirky"></div>
+              <div class="emotics__item giechelig"></div>
                 <input class="feelingOption" type="radio" name="emotie" value="giechelig" id="" required>
             </div>
 
           </label>
-          <label class="emotics__label">
-            afgemat
-            <div class="emotics__items">
-              <div class="emotics__item tired"></div>
+          <label class="emotics__label">Afgemat<div class="emotics__items">
+              <div class="emotics__item afgemat"></div>
               <input class="feelingOption" type="radio" name="emotie" value="afgemat" id="" required>
             </div>
 
@@ -189,7 +190,7 @@
             <p class="wordForm__countdown">3/3</p>
             <div class="questionbox">
               <p class="wordForm__question">Vervolledig het woord.</p>
-              <img class="questionmark" alt="v" src="assets/img/icons/questionmark.svg">
+              <img class="questionmark questionmark--challenge" alt="vraagtekenicoontje" src="assets/img/icons/questionmark.svg">
             </div>
             <p class="wordForm__subinfo">Klik op de letters in de letterdoos om het woord in te vullen.</p>
 
@@ -306,6 +307,8 @@
   <script src="/socket.io/socket.io.js"></script>
   <script type="module" src="js/script.js"></script>
   <script type= "module" src="js/helpers/randomVideo.js"></script>
+  <script type= "module" src="js/helpers/checked.js"></script>
+  <script type= "module" src="js/helpers/popups.js"></script>
   <!--<script type= "module" src="js/helpers/formHandler.js"></script>-->
   <!--<script type="application/json" src="assets/data/memootjes.json"></script>-->
 

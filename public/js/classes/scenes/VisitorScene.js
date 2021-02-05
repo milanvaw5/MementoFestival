@@ -681,7 +681,7 @@ handleLetterArrays(l){
           
          
          });
-
+         console.log(memootjesEmotion);
          let rand;
          if(memootjesEmotion.length === 1){
           rand = 0;
