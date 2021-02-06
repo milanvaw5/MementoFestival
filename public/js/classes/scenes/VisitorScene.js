@@ -184,6 +184,8 @@ export default class VisitorScene extends Phaser.Scene {
     this.load.image('tired3', 'assets/img/letterdoos/snoringSmiley/x1/snoringOrange.png');
     this.load.image('tired4', 'assets/img/letterdoos/snoringSmiley/x1/snoringYellow.png');
 
+    this.load.image('heart', 'assets/img/letterdoos/heart/hart.png');
+
  
 
   }
@@ -331,7 +333,7 @@ export default class VisitorScene extends Phaser.Scene {
     this.rightAnkleAvatar.y = jointPositionsGebruikers.rightAnklePos.y;
 
 
-    /*if(isLive){
+    if(isLive){
       if($liveTitle.textContent === 'live'){
 
       }else{
@@ -344,7 +346,7 @@ export default class VisitorScene extends Phaser.Scene {
        $liveTitle.textContent = 'offline';
        $liveSub.textContent = 'tot later';
        $liveDot.style.display = 'none';
-    }*/
+    }
   };
 
 
@@ -692,7 +694,15 @@ handleLetterArrays(l){
  
   
          console.log(rand);
-       
+
+         // call facebook share with data
+         /*this.shareOverrideOGMeta({
+          link: 'https://www.google.com',
+          image: 'https://www.google.com',
+          caption: 'Reference info',
+          description: memootjesEmotion[rand].text
+          });*/
+
          $haiku.textContent = memootjesEmotion[rand].text;
          $auteurName.textContent = memootjesEmotion[rand].author;
          $auteurSocials.innerHTML = memootjesEmotion[rand].linkText;
@@ -724,6 +734,26 @@ handleLetterArrays(l){
        }
    }
 
+
+ shareOverrideOGMeta(data)
+{
+	FB.ui({
+		method: 'share_open_graph',
+		action_type: 'og.likes',
+		action_properties: JSON.stringify({
+			object: {
+				'og:url': data.overrideLink,
+				'og:title': data.overrideTitle,
+				'og:description': data.overrideDescription,
+				'og:image': data.overrideImage
+			}
+		})
+	},
+	function (response) {
+	// Action after response
+	});
+}
+
    handleClickSchud = e => {
     socket.emit('schud');
     console.log('schud')
@@ -735,7 +765,7 @@ handleLetterArrays(l){
    handleClickHartje = e => {
     socket.emit('hartje');
     console.log('hartje')
-    const hartje = this.matter.add.sprite(200, this.cameras.main.height, 'tired', 0, {restitution: .5, ignoreGravity: true});
+    const hartje = this.matter.add.sprite(200, this.cameras.main.height, 'heart', 0, {restitution: .5, ignoreGravity: true});
     hartje.setCollisionGroup(this.group2)
     hartje.setCollidesWith(0)
     hartje.setVelocityY(-20);

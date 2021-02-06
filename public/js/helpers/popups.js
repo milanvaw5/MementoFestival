@@ -15,7 +15,8 @@
             }else{
                 if(isOpen !== 0){
                     console.log("windows")
-                    $popupWord.style.display = "none";
+                    $popupWord.style.animation = "disappear 1s ease";
+                    $popupWord.style.opacity = "0";
                     isOpen++; 
                 }
             }
@@ -25,28 +26,44 @@
     }
 
     const handleClickQuestionmark = e => {
+        console.log(e.currentTarget.getBoundingClientRect());
         const question = e.currentTarget.classList.value;
         let text = "";
+        const top = e.currentTarget.getBoundingClientRect().top;
+        const right = e.currentTarget.getBoundingClientRect().left;
        
 
         if(isOpen % 2 == 0){
             switch(question){
                 case "questionmark questionmark--word": 
                 text = "Het thema van het festival is dit jaar “verdwalen”. Wij vroegen ons af wat verdwalen betekent voor jou.";
+                
                 break;
                 case "questionmark questionmark--feeling": 
                 text = "Laat de mensen op het festival weten hoe je je voelt. De emotie die jij kiest zal mee in de letterdoos vallen.";
+                
                 break;
                 case "questionmark questionmark--challenge": 
                 text = "Staat jouw letter er niet bij? Dan moet je even wachten! Je kan terwijl even zwaaien of een hartje sturen.";
+                
+                case "questionmark questionmark--live": 
+                text = "Alles wat je ziet in De Letterdoos is live aan het gebeuren. Jij en de community bepalen wat er in De Letterdoos komt. ";
+               // top = 0;
+                //right = "70%";
+                
                 break;
             }
-
-
-            $popupWord.style.display = "block";
+            
+            $popupWord.style.top = `${top}px`;
+            $popupWord.style.left = `${right}px`;
+            $popupWord.style.animation = "appear 1s ease";
+            $popupWord.style.opacity = "1";
+           // $popupWord.style.display = "block";
             $popupText.textContent = text;
         }else{
-            $popupWord.style.display = "none";
+            $popupWord.style.animation = "disappear 1s ease";
+            $popupWord.style.opacity = "0";
+           // $popupWord.style.display = "none";
         }
         isOpen++;
     }
