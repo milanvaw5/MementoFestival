@@ -3,51 +3,100 @@ import AdminScene from './scenes/AdminScene.js';
 export default class Game extends Phaser.Game {
 
   constructor(){
-    let config = {
-      //type: Phaser.AUTO,
-      scale: {
-        mode: Phaser.Scale.FIT,
-        parent: 'bottomblock',
-        width: '100%',
-        height: '100%'
-    },
-     // type: Phaser.AUTO,
-
-      physics: {
-        default: 'matter',
-        matter: {
-          gravity: { y: 1 },
-          setBounds: {
-            bottom: true,
-            left: true,
-            right: true
-          }
-        },
-       
+    let config;
+    const path = window.location.pathname;
+    if(path === "/index.html" || path === "/"){
+       config = {
+        //type: Phaser.AUTO,
+        scale: {
+          mode: Phaser.Scale.FIT,
+          parent: 'bottomblock',
+          width: '100%',
+          height: '100'
       },
-      transparent: true,
-      input: {
-        keyboard: {
-            target: window
+       // type: Phaser.AUTO,
+  
+        physics: {
+          default: 'matter',
+          matter: {
+            gravity: { y: 1 },
+            setBounds: {
+              bottom: true,
+              left: true,
+              right: true
+            }
+          },
+         
         },
-        mouse: {
-            target: null,
-            capture: true,
-            preventDefaultWheel: false // IMPORTANT: let's you scroll website when cursor is on phaser canvas !
+        transparent: true,
+        input: {
+          keyboard: {
+              target: window
+          },
+          mouse: {
+              target: null,
+              capture: true,
+              preventDefaultWheel: false // IMPORTANT: let's you scroll website when cursor is on phaser canvas !
+          },
+          activePointers: 1,
+          /*touch: {
+              target: null,
+              capture: true,
+          },*/
+          smoothFactor: 0,
+          gamepad: false,
+          windowEvents: true,
+      },
+      }
+      
+    }else{
+       config = {
+        //type: Phaser.AUTO,
+        scale: {
+          mode: Phaser.Scale.FIT,
+          parent: 'bottomblock',
+          width: 800,
+          height: 800
+      },
+       // type: Phaser.AUTO,
+  
+        physics: {
+          default: 'matter',
+          matter: {
+            gravity: { y: 1 },
+            setBounds: {
+              bottom: true,
+              left: true,
+              right: true
+            }
+          },
+         
         },
-        activePointers: 1,
-        /*touch: {
-            target: null,
-            capture: true,
-        },*/
-        smoothFactor: 0,
-        gamepad: false,
-        windowEvents: true,
-    },
+        transparent: true,
+        input: {
+          keyboard: {
+              target: window
+          },
+          mouse: {
+              target: null,
+              capture: true,
+              preventDefaultWheel: false // IMPORTANT: let's you scroll website when cursor is on phaser canvas !
+          },
+          activePointers: 1,
+          /*touch: {
+              target: null,
+              capture: true,
+          },*/
+          smoothFactor: 0,
+          gamepad: false,
+          windowEvents: true,
+      },
+      }
     }
+    
     super(config);
 
-    const path = window.location.pathname;
+    
  
     if(path === "/index.html" || path === "/"){
 

@@ -7,12 +7,17 @@ let readWord;
 let split = [];
 let words = [];
 let letters = [];
-let widthDivScreen = document.querySelector('.bottomblock').style.width;
+let feelings = [];
+let hartjes = [];
+let widthDivScreen ;
+if(document.querySelector('.adminWordGame')){
+  widthDivScreen = document.querySelector('.adminWordGame').style.width;
+}
 let spacebetween = 200;
 let socket; // will be assigned a value later
 let percentageX;
 let percentageY;
-
+let handShakeId;
 /*
 let auteurInput = ['Verloren','hinkel ik','over de sproeten op mijn vingers',
 'Afgeslagen','langzaam ademend','langs mijn armen dwalend','Mijn rug','terug – gezucht –',
@@ -371,8 +376,10 @@ export default class AdminScene extends Phaser.Scene {
     this.load.image('tired3', 'assets/img/letterdoos/snoringSmiley/x1/snoringOrange.png');
     this.load.image('tired4', 'assets/img/letterdoos/snoringSmiley/x1/snoringYellow.png');
 
-    this.load.spritesheet('heart', 'assets/img/interactions/heart.png', { frameWidth: 70, frameHeight: 70 });
-    this.load.spritesheet('wave', 'assets/img/interactions/wave.png', { frameWidth: 70, frameHeight: 70 });
+    
+    this.load.image('hand', 'assets/img/letterdoos/hand/x1/handDark.png');
+    this.load.image('heart', 'assets/img/letterdoos/heart/hart.png');
+
 
   }
 
@@ -399,11 +406,44 @@ export default class AdminScene extends Phaser.Scene {
     this.leftAnkleAvatar = this.matter.add.image(jointPositions.leftAnklePos.x, jointPositions.leftAnklePos.y, 'footLeft', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
     this.rightAnkleAvatar = this.matter.add.image(jointPositions.rightAnklePos.x, jointPositions.rightAnklePos.y, 'footRight', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
 
-
+    this.group1 = this.matter.world.nextGroup();
+    this.group2 = this.matter.world.nextGroup(true);
 
     this.spawnLetters();
     // emit only 10 times per second
     this.time.addEvent({ delay: 100, callback: this.onEvent, callbackScope: this, loop: true });
+
+    this.matter.world.on('collisionstart', function (event, bodyA, bodyB) {
+      //console.log(bodyA.texture.key);
+   
+      if (event.pairs[0].bodyA.gameObject){
+        if(bodyA.gameObject.texture.key === "handLeft"){
+          if(bodyB.gameObject.texture.key === "hand"){
+            console.log(bodyA.gameObject.texture.key);
+            //bodyB.gameObject.visible = false;
+            //bodyB.gameObject.opacity = 0;
+            bodyB.gameObject.destroy();
+            this.matter.world.remove(bodyB);
+            console.log(bodyB)
+            socket.emit('handShake', handShakeId);
+           
+          }
+          
+        }
+        if(bodyA.gameObject.texture.key === "hand"){
+          if(bodyB.gameObject.texture.key === "handLeft"){
+            console.log(bodyA.gameObject.texture.key);
+            this.matter.world.remove(bodyA);
+
+          }
+          
+        }
+      //console.log(bodyA.gameObject.texture.key);
+      //console.log(bodyB.gameObject.texture.key);
+
+      }
+     
+  }, this);
   }
 
   onEvent(){
@@ -414,7 +454,7 @@ export default class AdminScene extends Phaser.Scene {
   update(){
     //bij een bepaald aantal letters op het scherm - zullen er een hoeveelheid verdwijnen,
     //random gekozen om zo nieuwe woorden en mysterie te creëren
-    if (letters.length >= 20) {
+    if (letters.length >= 50) {
       for (let numberOfRemoveletters = 10; numberOfRemoveletters>0; numberOfRemoveletters--){
         for(let removeletters = letters.length-1; removeletters >= 0; removeletters--){
           array.splice(Math.floor(Math.random()*removeletters.length), 1);
@@ -599,7 +639,7 @@ export default class AdminScene extends Phaser.Scene {
     for (letter = 0; letter < split.length; letter++)
     {
       console.log('spawnWord: ' + split[letter]);
-      const l = this.matter.add.sprite(fallPosition, 0, split[letter], 0, {restitution: .5});
+      const l = this.matter.add.sprite(fallPosition, 0, split[letter], 0, {restitution: .5, slop: 1});
       fallPosition = fallPosition + spacebetween;
       letters.push(l);
 
@@ -652,11 +692,37 @@ export default class AdminScene extends Phaser.Scene {
         this.spawnWord();
       });
 
+      socket.on('heartAll', () => {
+        console.log("hartje??")
+        const hartje = this.matter.add.sprite(200, this.cameras.main.height, 'heart', 0, {restitution: .5, ignoreGravity: true});
+        hartje.setCollisionGroup(this.group2);
+        hartje.setCollidesWith(0);
+        hartje.setVelocityY(-20);
+        hartjes.push(hartje);
+        console.log(this.group1);
+        console.log(this.group2);
+    
+       
+
+      });
+      socket.on('handAll', id => {
+        handShakeId = id;
+        const fallPositionX = Phaser.Math.Between(60, this.cameras.main.height - 60);
+        const fallPositionY = Phaser.Math.Between(60, this.cameras.main.width - 60);
+        const hand = this.matter.add.sprite(fallPositionX, fallPositionY, 'hand', 0, {restitution: .5, ignoreGravity: true});
+
+      });
+      
+
       socket.on('shakeAll', () => {
 
         letters.forEach(letter => {
           letter.setVelocity(20, 30)
-        })
+        });
+        feelings.forEach(feeling => {
+          feeling.setVelocity(20, 30)
+        });
+
 
       });
 
@@ -664,13 +730,13 @@ export default class AdminScene extends Phaser.Scene {
         let fallPosition = Phaser.Math.Between(60, this.cameras.main.width);
         let rand = Math.floor(Math.random()*4);
         switch(selectedFeeling){
-          case "somber": this.feeling = this.matter.add.sprite(fallPosition, 0, `somber${rand.toString()}`, 0, {restitution: .5});break;
-          case "giechelig": this.feeling = this.matter.add.sprite(fallPosition, 0, `quirky${rand.toString()}`, 0, {restitution: .5});break;
-          case "blij": this.feeling = this.matter.add.sprite(fallPosition, 0, `happy${rand.toString()}`, 0, {restitution: .5});break;
-          case "afgemat": this.feeling = this.matter.add.sprite(fallPosition, 0, `tired${rand.toString()}`, 0, {restitution: .5});break;
+          case "somber": this.feeling = this.matter.add.sprite(fallPosition, 0, `somber${rand.toString()}`, 0, {restitution: .5, slop: 1});break;
+          case "giechelig": this.feeling = this.matter.add.sprite(fallPosition, 0, `quirky${rand.toString()}`, 0, {restitution: .5, slop: 1});break;
+          case "blij": this.feeling = this.matter.add.sprite(fallPosition, 0, `happy${rand.toString()}`, 0, {restitution: .5, slop: 1});break;
+          case "afgemat": this.feeling = this.matter.add.sprite(fallPosition, 0, `tired${rand.toString()}`, 0, {restitution: .5, slop: 1});break;
   
         }
-
+        feelings.push(this.feeling);
       });
 
     };

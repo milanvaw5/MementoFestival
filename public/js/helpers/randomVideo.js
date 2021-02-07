@@ -1,7 +1,8 @@
 {
     let randomVideo = 0;
-    const videos = ["video0.mp4", "video2.mp4"];
+    const videos = ["video0.mp4", "video1.mp4"];
     const $video = document.querySelector(`.previewVideo`);
+  
 
     const handleEndedVideo = () => {
         randomVideo++;

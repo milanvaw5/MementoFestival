@@ -36,6 +36,24 @@ io.on('connection', socket => {
     
   });
 
+  socket.on('hartje', () => {
+
+    io.sockets.emit(`heartAll`);
+    
+  });
+
+  socket.on('hand', () => {
+    
+    io.sockets.emit(`handAll`, socket.id);
+    
+  });
+
+  socket.on('handShake', id => {
+    
+    io.sockets.to(id).emit(`handShaken`);
+    
+  });
+
   socket.on('feeling', selectedFeeling => {
     feelings.push(selectedFeeling);
     console.log(selectedFeeling);

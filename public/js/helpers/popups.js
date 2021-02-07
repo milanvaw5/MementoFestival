@@ -34,18 +34,17 @@
        
 
         if(isOpen % 2 == 0){
+            console.log(question);
             switch(question){
                 case "questionmark questionmark--word": 
                 text = "Het thema van het festival is dit jaar “verdwalen”. Wij vroegen ons af wat verdwalen betekent voor jou.";
-                
                 break;
                 case "questionmark questionmark--feeling": 
                 text = "Laat de mensen op het festival weten hoe je je voelt. De emotie die jij kiest zal mee in de letterdoos vallen.";
-                
                 break;
                 case "questionmark questionmark--challenge": 
                 text = "Staat jouw letter er niet bij? Dan moet je even wachten! Je kan terwijl even zwaaien of een hartje sturen.";
-                
+                break;
                 case "questionmark questionmark--live": 
                 text = "Alles wat je ziet in De Letterdoos is live aan het gebeuren. Jij en de community bepalen wat er in De Letterdoos komt. ";
                // top = 0;
