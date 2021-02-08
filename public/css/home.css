@@ -182,6 +182,7 @@ p {
 
 .letter {
   max-width: 2.2rem;
+  max-height: 2.8rem;
 }
 
 .form__section__topbuttons {
@@ -473,6 +474,7 @@ p {
   margin: 0 auto;
   color: var(--blue);
   text-decoration: underline;
+  width: 100%;
 }
 
 .article__wordgame {
@@ -605,6 +607,10 @@ p {
   align-content: center;
   align-items: center;
   justify-items: center;
+}
+
+.formmobile {
+  display: none;
 }
 
 /*******************************/
@@ -862,6 +868,23 @@ p {
 
   .article__forms {
     display: none;
+  }
+
+  .bottomblock {
+    height: 100vh;
+    max-width: 100vw;
+  }
+
+  .formmobile {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+    /*position: absolute;
+    z-index: 4;*/
   }
 
 }
