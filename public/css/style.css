@@ -94,26 +94,58 @@ body {
   z-index: -1;
 }
 
-.button:hover {
+/* 
+@media (hover: hover) {
+  .button:hover {
+    cursor: pointer;
+    left: .5rem;
+    bottom: -1rem;
+    box-shadow: none;
+  }
+  
+  .button:hover::after, .button:hover::before {
+    background-color: var(--white);
+  }
+  .primbutton:hover {
+    background-color: var(--black);
+    color: var(--white);
+  }
+
+  .buttonVerstuur:hover {
+    cursor: pointer;
+    left: .5rem;
+    bottom: -1rem;
+    box-shadow: none;
+  }
+  
+  .buttonVerstuur:hover::after, .buttonVerstuur:hover::before {
+    background-color: var(--white);
+    opacity: 0;
+  }
+}
+*/
+.button:active {
   cursor: pointer;
   left: .5rem;
   bottom: -1rem;
   box-shadow: none;
 }
 
-.button:hover::after, .button:hover::before {
+.button:active::after, .button:active::before {
   background-color: var(--white);
 }
+.primbutton:active {
+  background-color: var(--black);
+  color: var(--white);
+}
+
 
 .primbutton {
   background-color: var(--black);
   color: var(--white);
 }
 
-.primbutton:hover {
-  background-color: var(--black);
-  color: var(--white);
-}
+
 
 .prim {
   color: var(--white);
@@ -169,16 +201,15 @@ body {
   z-index: -1;
 }
 
-.buttonVerstuur:hover {
+.buttonVerstuur:active {
   cursor: pointer;
   left: .5rem;
   bottom: -1rem;
   box-shadow: none;
 }
 
-.buttonVerstuur:hover::after, .buttonVerstuur:hover::before {
+.buttonVerstuur:active::after, .buttonVerstuur:active::before {
   background-color: var(--white);
-  opacity: 0;
 }
 
 .primbutton {
@@ -186,10 +217,7 @@ body {
   color: var(--white);
 }
 
-.primbutton:hover {
-  background-color: var(--black);
-  color: var(--white);
-}
+
 
 .prim {
   color: var(--white);

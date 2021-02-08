@@ -721,6 +721,8 @@ handleLetterArrays(l){
 
       if($introForm){
         $btnOntdek.addEventListener('click', e => this.handleClickOntdek(e));
+        //$btnOntdek.addEventListener('touch', e => this.handleClickOntdek(e));
+        document.querySelector(`canvas`).style.height = "100vh";
       }
 
       if($wordForm){
@@ -740,12 +742,15 @@ handleLetterArrays(l){
       }
       if($btnSchud){
         $btnSchud.addEventListener('click', e => this.handleClickSchud(e));
+        //$btnSchud.addEventListener('touch', e => this.handleClickSchud(e));
       }
       if($btnHartje){
         $btnHartje.addEventListener('click', e => this.handleClickHartje(e));
+        //$btnHartje.addEventListener('touch', e => this.handleClickHartje(e));
       }
       if($btnHand){
         $btnHand.addEventListener('click', e => this.handleClickHand(e));
+        //$btnHand.addEventListener('touch', e => this.handleClickHand(e));
       }
 
     };
