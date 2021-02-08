@@ -41,7 +41,7 @@ const memootjes = [
   link: "https://www.instagram.com/hihelloalice/",
   forEmotions: ["somber", "blij"],
   keyword: "rimpels"
-},
+},/*
 {
   text: "En het voelt als thuiskomen.",
   author: "Loncke Oona",
@@ -161,7 +161,7 @@ const memootjes = [
   link: "https://www.instagram.com/tinelefebvre/",
   forEmotions: ["blij", "giechelig", "somber", "afgemat"],
   keyword: "hoop"
-},
+},*/
 
 
 ]
@@ -723,7 +723,7 @@ handleLetterArrays(l){
       if($introForm){
         $btnOntdek.addEventListener('click', e => this.handleClickOntdek(e));
         //$btnOntdek.addEventListener('touch', e => this.handleClickOntdek(e));
-        document.querySelector(`canvas`).style.height = "100vh";
+       // document.querySelector(`canvas`).style.height = "100vh";
       }
 
       if($wordForm){

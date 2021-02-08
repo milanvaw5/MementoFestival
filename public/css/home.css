@@ -57,10 +57,12 @@
   justify-self: flex-end;
 }
 
+
+
 .popup--word {
   padding: 1rem;
   width: 20rem;
-  z-index: 5;
+  /*z-index: 5;*/
   opacity: 0;
   /*display: none;*/
   position: absolute;
