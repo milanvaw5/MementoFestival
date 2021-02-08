@@ -2,22 +2,24 @@
     const $popupWord = document.querySelector(`.popup--word`);
     const $popupText = document.querySelector(`.popup__text`);
     const $questionmarks = document.querySelectorAll(`.questionmark`);
-    let isOpen = 0;
+    let isOpen = false;
 
 
     const handleClickWindow = e => {
- 
+        console.log(e.target);
         if(e.target.classList[0] !== "questionmark"){
           
-            if(isOpen % 2 == 0){
+            if(isOpen === false){
                
               
             }else{
-                if(isOpen !== 0){
+                if(isOpen === true){
                     console.log("windows")
                     $popupWord.style.animation = "disappear 1s ease";
                     $popupWord.style.opacity = "0";
-                    isOpen++; 
+                    $popupWord.style.zIndex = "0";
+                    isOpen = false;
+
                 }
             }
     
@@ -26,6 +28,7 @@
     }
 
     const handleClickQuestionmark = e => {
+        console.log(isOpen)
         console.log(e.currentTarget.getBoundingClientRect());
         const question = e.currentTarget.classList.value;
         let text = "";
@@ -33,7 +36,7 @@
         const right = e.currentTarget.getBoundingClientRect().left;
        
 
-        if(isOpen % 2 == 0){
+        if(isOpen === false){
             console.log(question);
             switch(question){
                 case "questionmark questionmark--word": 
@@ -57,22 +60,26 @@
             $popupWord.style.left = `${right}px`;
             $popupWord.style.animation = "appear 1s ease";
             $popupWord.style.opacity = "1";
+            $popupWord.style.zIndex = "5";
            // $popupWord.style.display = "block";
             $popupText.textContent = text;
+            isOpen = true;
         }else{
             $popupWord.style.animation = "disappear 1s ease";
             $popupWord.style.opacity = "0";
+            $popupWord.style.zIndex = "0";
+            isOpen = false;
            // $popupWord.style.display = "none";
         }
-        isOpen++;
+       
     }
     const init = () => {
         $questionmarks.forEach(questionmark => {
             questionmark.addEventListener('click', handleClickQuestionmark);
-            questionmark.addEventListener('touch', handleClickQuestionmark);
+            //questionmark.addEventListener('touch', handleClickQuestionmark);
         });
         window.addEventListener('click', handleClickWindow);
-        window.addEventListener('touch', handleClickWindow);
+       // window.addEventListener('touch', handleClickWindow);
     }
     init();
 }
