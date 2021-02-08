@@ -98,6 +98,72 @@ const memootjes = [
   forEmotions: ["blij", "afgemat"],
   keyword: "woord"
 },
+{
+  text: "Dat wij daar toen - en dat jij dacht - dat ook dit -ooit verloren - Dat ik dan daar - en jij ik wij - samen -als nooit tevoren.",
+  author: "Joke De Kerpel",
+  linkText: "@darteledichter",
+  link: "https://www.instagram.com/darteledichter/",
+  forEmotions: ["blij", "giechelig", "somber", "afgemat"],
+  keyword: "verloren"
+},
+{
+  text: "Jij piekt, ik daal. Jij daalt, ik piek. We zijn vier handen- trekken elkaar op- liften ons hoger dan onze volle hoofden - geluk hoeft niet gesynchroniseerd",
+  author: "Joke De Kerpel",
+  linkText: "@darteledichter",
+  link: "https://www.instagram.com/darteledichter/",
+  forEmotions: ["blij", "giechelig", "somber", "afgemat"],
+  keyword: "piek"
+},
+{
+  text: "Hoe je je gevoelens dissecteerde - en het toch hoop bleek te zijn.",
+  author: "Joke De Kerpel",
+  linkText: "@darteledichter",
+  link: "https://www.instagram.com/darteledichter/",
+  forEmotions: ["blij", "giechelig", "somber", "afgemat"],
+  keyword: "hoop"
+},
+{
+  text: "Kies je voor een wijk als elleboog om in te nestelen of liever de lange laan een uitgestrekte arm.",
+  author: "Sien Demuynck",
+  linkText: "Meer over Sien en het collectief",
+  link: "https://letterzetterkortrijk.be/collectief",
+  forEmotions: ["blij", "giechelig", "somber", "afgemat"],
+  keyword: "wijk"
+},
+{
+  text: "Verloren hinkel ik over de sproeten op mijn vingers.",
+  author: "Sien Demuynck",
+  linkText: "Meer over Sien en het collectief",
+  link: "https://letterzetterkortrijk.be/collectief",
+  forEmotions: ["blij", "giechelig", "somber", "afgemat"],
+  keyword: "sproeten"
+},
+{
+  text: "Smartphone (zn; de): dikke middelvinger naar die leerkracht die je maaltafels liet leren omdat je ‘nooit een rekenmachine in je achterzak zou hebben’.",
+  author: "Tine Lefebvre",
+  linkText: "@tinelefebvre",
+  link: "https://www.instagram.com/tinelefebvre/",
+  forEmotions: ["blij", "giechelig", "somber", "afgemat"],
+  keyword: "maaltafels"
+},
+{
+  text: "Ik wens je veel specialiteiten en een Miranda die trots op ze is.",
+  author: "Tine Lefebvre",
+  linkText: "@tinelefebvre",
+  link: "https://www.instagram.com/tinelefebvre/",
+  forEmotions: ["blij", "giechelig", "somber"],
+  keyword: "trots"
+},
+{
+  text: "Misschien is naïviteit het nog-niet-weten-dat en de stille hoop koesteren dat het ook nooit hoeft.",
+  author: "Tine Lefebvre",
+  linkText: "@tinelefebvre",
+  link: "https://www.instagram.com/tinelefebvre/",
+  forEmotions: ["blij", "giechelig", "somber", "afgemat"],
+  keyword: "hoop"
+},
+
+
 ]
 
 

@@ -1,4 +1,6 @@
 /* another css file*/
+
+
 @keyframes roundtime {
   to {
     /* More performant than animating `width` */
@@ -370,7 +372,7 @@ p {
 
 .wrapper {
   display: flex;
-  flex-flow: row wrap;
+  /*flex-flow: row wrap;*/
   justify-content: flex-start;
   align-items: center;
   justify-items: center;
@@ -798,9 +800,22 @@ p {
   content:"";
   padding-right: .5rem;
 }
+@media only screen and (max-width: 1400px) {
 
+  .wordForm__intro {
+    margin: 0;
+  }
+
+}
 
 @media only screen and (max-width: 1200px) {
+
+  .wrapper {
+    flex-flow: row wrap;
+  }
+  .inputfield {
+    width: 100%
+  }
 
   .emotics__label {
     font-size: .7rem;

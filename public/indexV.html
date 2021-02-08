@@ -127,7 +127,9 @@
             <span class="error"></span>
             <div class="wrapper">
               <input type="text" id="enteredWord" class="enteredWord inputfield" name="enteredWord" minlength="2" maxlength="20" pattern="\b(?!\bword\b)[A-Za-z]+\b" required>
-              <input id="sumbitwordbutton" class="verstuurbutton" type="submit" value="VERSTUUR">
+             <!-- <input id="sumbitwordbutton" class="verstuurbutton" type="submit" value="VERSTUUR">-->
+             <button class="buttonVerstuur primbutton prim">Verstuur</button>
+            
             </div>
           </form>
 
@@ -218,12 +220,13 @@
 
           </div>
         </section>
+        <a class="link buttonlink" href="#info"><button class="button">Meer over de installatie</button></a>
      </article>
 
     </section>
 
 
-    <section class="onepager__section section__information scrollSnap">
+    <section id="info" class="onepager__section section__information scrollSnap">
       <h2 class="section__title">Meer informatie over de installatie</h2>
       <article class="section__article information__parts">
         <div class="information__part">
