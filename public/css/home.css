@@ -30,11 +30,11 @@
 }
 
 .timer {
- 
+
   /* ... */
   animation: roundtime calc(var(--duration) * 1s) linear forwards;
   transform-origin: left center;
- 
+
   height: 100%;
   width: 100%;
   padding: 0 1.2rem;
@@ -889,9 +889,9 @@ p {
     margin: 0;
   }
   .textparagraph {
-   
+
     margin: 0;
-  
+
   }
 
 }
@@ -1007,6 +1007,9 @@ p {
     align-content: center;
     align-items: center;
     justify-items: center;
+    top: 105vh;
+    left: 1055vw;
+    position: absolute;
     /*position: absolute;
     z-index: 4;*/
   }
