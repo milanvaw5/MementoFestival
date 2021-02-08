@@ -81,13 +81,13 @@
       <form class="formmobile form-1">
         <div class="questionbox">
           <p class="wordForm__question">Wat betekent verdwalen voor jou?</p>
-          <img class="questionmark" alt="v" src="assets/img/icons/questionmark.svg">
+          <img class="questionmark" alt="vraagtekenicoontje" src="assets/img/icons/questionmark.svg">
         </div>
         <p class="wordForm__subinfo">Jouw antwoord komt mee in de live letterdoos te staan!</p>
         <span class="error"></span>
         <div class="wrapper">
-          <input type="text" id="enteredWord" class="enteredWord inputfield" name="enteredWord" minlength="2" maxlength="20" required>
-          <input id="sumbitwordbutton" class="verstuurbutton" type="submit" value="VERSTUUR">
+          <input type="text" id="enteredWord" class="enteredWord inputfield" name="enteredWord" minlength="2" maxlength="20" pattern="\b(?!\bword\b)[A-Za-z]+\b" required>
+          <button class="buttonVerstuur primbutton prim">Verstuur</button>
         </div>
       </form>
 

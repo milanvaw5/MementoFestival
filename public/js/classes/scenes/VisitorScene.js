@@ -615,6 +615,7 @@ handleLetterArrays(l){
       });
       socket.on('message', message => {
         console.log(`Received message: ${message}`);
+        console.log(message);
         woordje = message;
         this.readInWord();
 
@@ -850,10 +851,11 @@ handleLetterArrays(l){
         
         $wordForm.style.display = "none";
         $feelingsForm.style.display = "block";
-        socket.emit('message', $msgInput.value);
+        console.log(field.value)
+        socket.emit('message', field.value);
         //socket.emit('messages', messages);
         //socket.emit('points', points);
-        $msgInput.value = '';
+        field.value = '';
         console.log(`Form is valid => submit form`);
         }
       }
