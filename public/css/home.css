@@ -1,7 +1,82 @@
 /* another css file*/
+
+
+@keyframes roundtime {
+  to {
+    /* More performant than animating `width` */
+    transform: scaleX(0);
+  }
+}
+
+.hand {
+  z-index: 2;
+}
+.hartje {
+  z-index: 2;
+}
+.schud {
+  z-index: 2;
+}
+
+.button--timer {
+  display:grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: 'overlap';
+  justify-items: center;
+}
+
+.button--timer div {
+  grid-area: overlap;
+}
+
+.timer {
+ 
+  /* ... */
+  animation: roundtime calc(var(--duration) * 1s) linear forwards;
+  transform-origin: left center;
+ 
+  height: 100%;
+  width: 100%;
+  padding: 0 1.2rem;
+}
+
+.timer--hand {
+  background: linear-gradient(to bottom, var(--green), var(--green));
+}
+.timer--hart {
+  background: linear-gradient(to bottom, var(--orange), var(--orange));
+}
+.timer--schud {
+  background: linear-gradient(to bottom, var(--blue), var(--blue));
+}
+
+.wordGame {
+  justify-self: flex-start;
+}
+.videos {
+  justify-self: flex-end;
+}
+
+.popup--word {
+  padding: 1rem;
+  width: 20rem;
+  z-index: 5;
+  opacity: 0;
+  /*display: none;*/
+  position: absolute;
+  top: 60%;
+  right: 0;
+  background-color: var(--orange);
+}
+.popup__text {
+  font-size: .8rem;
+  width: 100%;
+}
+
 .snapContainer {
   height: 100vh;
   overflow: scroll;
+  scroll-behavior: smooth;
   scroll-snap-type: mandatory;
   scroll-snap-points-y: repeat(100vh);
   scroll-snap-type: y mandatory;
@@ -32,6 +107,7 @@
 
 .section__article {
   display: grid;
+  grid-template-columns: 1fr;
   grid-template-rows: auto;
   justify-content: center;
   align-items: center;
@@ -62,19 +138,20 @@ p {
 }
 
 .previewVideo {
-  width: 50vw;
   height: 100vh;
+ /* width: 50vw;*/
   background-size: cover;
   transition: 1s opacity;
-  position: relative;
+  /*position: relative;*/
   z-index: -1;
+  animation: appear 1s ease
 }
 
 .informationblock {
   z-index: 1;
   color: var(--white);
   background-color: var(--black);
-  width: 11rem;
+  width: 10rem;
   height: 3rem;
   padding: 1rem;
   display: grid;
@@ -85,8 +162,30 @@ p {
 }
 
 .live__footage {
+  display: flex;
   top: 5vh;
   left: 5vw;
+  position: absolute;
+}
+
+@keyframes pulse {
+  0% {transform: scale(1)}
+  50% {transform: scale(.8)}
+  100% {transform: scale(1)}
+}
+
+@keyframes appear {
+  0% {opacity: 0}
+  100% {opacity: 1}
+}
+
+@keyframes disappear {
+  0% {opacity: 1}
+  100% {opacity: 0}
+}
+
+.bol {
+  animation: pulse infinite 2s ease;
 }
 
 .video__auteur__name {
@@ -112,6 +211,7 @@ p {
 
 .section__wordgame {
   grid-template-columns: 3fr 2fr;
+  position: relative;
 }
 
 .article__forms {
@@ -273,7 +373,7 @@ p {
 
 .wrapper {
   display: flex;
-  flex-flow: row wrap;
+  /*flex-flow: row wrap;*/
   justify-content: flex-start;
   align-items: center;
   justify-items: center;
@@ -289,6 +389,7 @@ p {
 }
 
 .questionmark {
+  cursor: pointer;
   margin: 1rem;
 }
 
@@ -354,12 +455,13 @@ p {
   display: none;
 }
 
-.feelingOption:checked ~ .emotics__label {
+/*.feelingOption:checked ~ .emotics__label {
   color: red;
   background-image: url('../assets/img/emotics/happyco.svg');
   background-repeat: no-repeat;
   background-position: bottom;
-}
+}*/
+
 
 .emotics__listitems {
   display: grid;
@@ -384,68 +486,68 @@ p {
   height: 5rem;
 }
 
-.happy {
+.blij {
   background-image: url('../assets/img/emotics/happy.svg');
   background-repeat: no-repeat;
   background-position: bottom;
 }
 
-.sad {
+.somber {
   background-image: url('../assets/img/emotics/sad.svg');
   background-repeat: no-repeat;
   background-position: bottom;
 }
 
-.tired {
+.afgemat {
   background-image: url('../assets/img/emotics/tired.svg');
   background-repeat: no-repeat;
   background-position: bottom;
 }
 
-.quirky {
+.giechelig {
   background-image: url('../assets/img/emotics/quirky.svg');
   background-repeat: no-repeat;
   background-position: bottom;
 }
 
-.happy:hover {
+.blij:hover {
   background-image: url('../assets/img/emotics/happyco.png');
   background-position: bottom right;
 }
 
-.sad:hover {
+.somber:hover {
   background-image: url('../assets/img/emotics/sadco.png');
   background-position: bottom right;
 }
 
-.quirky:hover {
+.giechelig:hover {
   background-image: url('../assets/img/emotics/quirkyco.png');
   background-position: bottom right;
 }
 
-.tired:hover {
+.afgemat:hover {
   background-image: url('../assets/img/emotics/tiredco.png');
   background-position: bottom right;
 }
 
 
 
-.happy:active {
+.blij:active {
   background-image: url('../assets/img/emotics/happyco.png');
   background-position: bottom right;
 }
 
-.sad:active {
+.somber:active {
   background-image: url('../assets/img/emotics/sadco.png');
   background-position: bottom right;
 }
 
-.quirky:active {
+.giechelig:active {
   background-image: url('../assets/img/emotics/quirkyco.png');
   background-position: bottom right;
 }
 
-.tired:active {
+.afgemat:active {
   background-image: url('../assets/img/emotics/tiredco.png');
   background-position: bottom right;
 }
@@ -556,7 +658,7 @@ p {
 
 .map {
   border: .1rem solid var(--black);
-  height: 100%;
+  height: 15rem;
   width: 100%;
 }
 
@@ -704,9 +806,22 @@ p {
   content:"";
   padding-right: .5rem;
 }
+@media only screen and (max-width: 1400px) {
 
+  .wordForm__intro {
+    margin: 0;
+  }
+
+}
 
 @media only screen and (max-width: 1200px) {
+
+  .wrapper {
+    flex-flow: row wrap;
+  }
+  .inputfield {
+    width: 100%
+  }
 
   .emotics__label {
     font-size: .7rem;
@@ -731,7 +846,7 @@ p {
   }
 
   .praktisch {
-    padding: .2rem;
+    padding: 1rem;
     margin-right: 5vw;
     width: 40vw;
   }
@@ -769,8 +884,17 @@ p {
 
 }
 
+@media only screen and (max-width: 1110px) {
+  .intro {
+    margin: 0;
+  }
+  .textparagraph {
+   
+    margin: 0;
+  
+  }
 
-
+}
 @media only screen and (max-width: 800px) {
 
   .videos {

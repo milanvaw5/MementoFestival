@@ -6,14 +6,18 @@ let lowercase;
 let readWord = 'abcde';
 let split = [];
 let letters = [];
+let feelings = [];
 let hartjes = [];
-let widthDivScreen = document.querySelector(`.bottomblock`).style.width;
+let widthDivScreen;
+if(document.querySelector(`.bottomblock`)){
+   widthDivScreen = document.querySelector(`.bottomblock`).style.width;
+}
 let spacebetween = 60;
 let isLive = false;
 let $liveTitle = document.querySelector(`.live__footage__indication`);
 let $liveSub = document.querySelector(`.live__footage__subindication`);
 let $liveDot = document.querySelector(`.bol`);
-const $btnHallo = document.querySelector(`.groen`);
+const $btnHand = document.querySelector(`.groen`);
 const $btnSchud = document.querySelector(`.blauw`);
 const $btnHartje = document.querySelector(`.orangje`);
 let selectedFeeling;
@@ -21,14 +25,18 @@ let memootjesEmotion = [];
 let lostLetters = [];
 let foundLetters = [];
 let isClickable = false;
+let isHandClickable = true;
+let isHeartClickable = true;
+let isShakeClickable = true;
 
-
-
+const forbiddenWordsEn = ["4r5e", "5h1t", "5hit", "a55", "anal", "anus", "ar5e", "arrse", "arse", "ass", "ass-fucker", "asses", "assfucker", "assfukka", "asshole", "assholes", "asswhole", "a_s_s", "b!tch", "b00bs", "b17ch", "b1tch", "ballbag", "balls", "ballsack", "bastard", "beastial", "beastiality", "bellend", "bestial", "bestiality", "bi+ch", "biatch", "bitch", "bitcher", "bitchers", "bitches", "bitchin", "bitching", "bloody", "blow job", "blowjob", "blowjobs", "boiolas", "bollock", "bollok", "boner", "boob", "boobs", "booobs", "boooobs", "booooobs", "booooooobs", "breasts", "buceta", "bugger", "bum", "bunny fucker", "butt", "butthole", "buttmuch", "buttplug", "c0ck", "c0cksucker", "carpet muncher", "cawk", "chink", "cipa", "cl1t", "clit", "clitoris", "clits", "cnut", "cock", "cock-sucker", "cockface", "cockhead", "cockmunch", "cockmuncher", "cocks", "cocksuck", "cocksucked", "cocksucker", "cocksucking", "cocksucks", "cocksuka", "cocksukka", "cok", "cokmuncher", "coksucka", "coon", "cox", "crap", "cum", "cummer", "cumming", "cums", "cumshot", "cunilingus", "cunillingus", "cunnilingus", "cunt", "cuntlick", "cuntlicker", "cuntlicking", "cunts", "cyalis", "cyberfuc", "cyberfuck", "cyberfucked", "cyberfucker", "cyberfuckers", "cyberfucking", "d1ck", "damn", "dick", "dickhead", "dildo", "dildos", "dink", "dinks", "dirsa", "dlck", "dog-fucker", "doggin", "dogging", "donkeyribber", "doosh", "duche", "dyke", "ejaculate", "ejaculated", "ejaculates", "ejaculating", "ejaculatings", "ejaculation", "ejakulate", "f u c k", "f u c k e r", "f4nny", "fag", "fagging", "faggitt", "faggot", "faggs", "fagot", "fagots", "fags", "fanny", "fannyflaps", "fannyfucker", "fanyy", "fatass", "fcuk", "fcuker", "fcuking", "feck", "fecker", "felching", "fellate", "fellatio", "fingerfuck", "fingerfucked", "fingerfucker", "fingerfuckers", "fingerfucking", "fingerfucks", "fistfuck", "fistfucked", "fistfucker", "fistfuckers", "fistfucking", "fistfuckings", "fistfucks", "flange", "fook", "fooker", "fuck", "fucka", "fucked", "fucker", "fuckers", "fuckhead", "fuckheads", "fuckin", "fucking", "fuckings", "fuckingshitmotherfucker", "fuckme", "fucks", "fuckwhit", "fuckwit", "fudge packer", "fudgepacker", "fuk", "fuker", "fukker", "fukkin", "fuks", "fukwhit", "fukwit", "fux", "fux0r", "f_u_c_k", "gangbang", "gangbanged", "gangbangs", "gaylord", "gaysex", "goatse", "God", "god-dam", "god-damned", "goddamn", "goddamned", "hardcoresex", "hell", "heshe", "hoar", "hoare", "hoer", "homo", "hore", "horniest", "horny", "hotsex", "jack-off", "jackoff", "jap", "jerk-off", "jism", "jiz", "jizm", "jizz", "kawk", "knob", "knobead", "knobed", "knobend", "knobhead", "knobjocky", "knobjokey", "kock", "kondum", "kondums", "kum", "kummer", "kumming", "kums", "kunilingus", "l3i+ch", "l3itch", "labia", "lust", "lusting", "m0f0", "m0fo", "m45terbate", "ma5terb8", "ma5terbate", "masochist", "master-bate", "masterb8", "masterbat*", "masterbat3", "masterbate", "masterbation", "masterbations", "masturbate", "mo-fo", "mof0", "mofo", "mothafuck", "mothafucka", "mothafuckas", "mothafuckaz", "mothafucked", "mothafucker", "mothafuckers", "mothafuckin", "mothafucking", "mothafuckings", "mothafucks", "mother fucker", "motherfuck", "motherfucked", "motherfucker", "motherfuckers", "motherfuckin", "motherfucking", "motherfuckings", "motherfuckka", "motherfucks", "muff", "mutha", "muthafecker", "muthafuckker", "muther", "mutherfucker", "n1gga", "n1gger", "nazi", "nigg3r", "nigg4h", "nigga", "niggah", "niggas", "niggaz", "nigger", "niggers", "nob", "nob jokey", "nobhead", "nobjocky", "nobjokey", "numbnuts", "nutsack", "orgasim", "orgasims", "orgasm", "orgasms", "p0rn", "pawn", "pecker", "penis", "penisfucker", "phonesex", "phuck", "phuk", "phuked", "phuking", "phukked", "phukking", "phuks", "phuq", "pigfucker", "pimpis", "piss", "pissed", "pisser", "pissers", "pisses", "pissflaps", "pissin", "pissing", "pissoff", "poop", "porn", "porno", "pornography", "pornos", "prick", "pricks", "pron", "pube", "pusse", "pussi", "pussies", "pussy", "pussys", "rectum", "retard", "rimjaw", "rimming", "s hit", "s.o.b.", "sadist", "schlong", "screwing", "scroat", "scrote", "scrotum", "semen", "sex", "sh!+", "sh!t", "sh1t", "shag", "shagger", "shaggin", "shagging", "shemale", "shi+", "shit", "shitdick", "shite", "shited", "shitey", "shitfuck", "shitfull", "shithead", "shiting", "shitings", "shits", "shitted", "shitter", "shitters", "shitting", "shittings", "shitty", "skank", "slut", "sluts", "smegma", "smut", "snatch", "son-of-a-bitch", "spac", "spunk", "s_h_i_t", "t1tt1e5", "t1tties", "teets", "teez", "testical", "testicle", "tit", "titfuck", "tits", "titt", "tittie5", "tittiefucker", "titties", "tittyfuck", "tittywank", "titwank", "tosser", "turd", "tw4t", "twat", "twathead", "twatty", "twunt", "twunter", "v14gra", "v1gra", "vagina", "viagra", "vulva", "w00se", "wang", "wank", "wanker", "wanky", "whoar", "whore", "willies", "willy", "xrated", "xxx"];
+const forbiddenWordsNl = ["abortus", "anaal", "anus", "ezel", "ass-neuker", "ezels", "lul","klootzakken","ballbag","ballen","bastaard-","bellend","beestachtig","beestachtigheid","teef","teven","zeuren","bloedig","pijpbeurt","bollok","lobbes","tieten","borsten","buceta","kont","mikpunt","tapijt muncher","spleet","cipa","clitoris","pik","cock-sucker","hanen","coon","onzin","cum","klaarkomen","cunillingus","kut","vloek","dick","dildo","dildo's","dink","dog-neuker","duche","dijk","ejaculaat","ejaculatie","ejaculeert","zaadlozing","flikker","fagging","takkenbossen","fanny","felching","fellatio","flens","neuken","fucked","neuker","fuckers","fuckings","neukt","fudge packer","god-damned","godverdomme","hel","hore","geile","jerk-off","kock","schaamlippen","lust","begeren","masochist","masturberen","moeder klootzak","nazi","neger","negers","orgasim","orgasme","orgasmes","snavel","penis","pissen","dronken","pisser","pissend","pissing","donder op","achterschip","porno","pornografie","prik","prikt","pube","kutjes","kutje","verkrachting","rapist","rectum","vertragen","rimmen","sadist","schroeven","scrotum","sperma","seks","shag","shagging","shemale","stront","shite","diarree","schijten","shitty","slet","sletten","smegma","roetvlek","rukken","son-of-a-teef","spac","fut","zaadbal","mees","titt","drol","vagina","viagra","vulva","wang","wank","hoer","x beoordeeld","xxx"];
+const forbiddenWordsFr = [ "avortement", "anal", "anus", "cul", "enculer", "culs", "connard", "connards", "sac de billes", "des balles", "bellend", "bestial", "bestialité", "chienne", "chiennes", "salope", "sanglant", "pipe", "bollok", "boob", "seins", "les seins", "buceta", "clochard", "bout", "tapis muncher", "fente", "cipa", "clitoris", "coq", "suceuse", "coqs", "nègre", "merde", "sperme", "éjaculation", "cunillingus", "chatte", "zut", "queue", "godemiché", "godes", "tremper", "baiseur de chien", "duché", "digue", "éjaculer", "éjaculé", "éjacule", "éjaculant", "pédé", "fagging", "fagot", "fagots", "penchant", "fellation", "bride", "baisée", "enfoiré", "baiseurs", "putain de", "fuckings", "baise", "emballeur de fudge", "damné", "putain", "enfer", "hore", "corné", "se branler", "kock", "les lèvres", "luxure", "convoitise", "masochiste", "masturber", "mère enculée", "nazi", "nègres", "orgasim", "orgasme", "orgasmes", "quéquette", "pénis", "pisse", "bourré", "pisser", "faire chier", "caca", "porno", "pornographie", "piquer", "piqûres", "pube", "chattes", "râpé", "violeur", "rectum", "retard", "rimming", "sadique", "scrotum", "sexe", "baiser", "transexuelle", "chier", "chié", "merdique", "skank", "salopes", "smegma", "cochonneries", "arracher", "fils de pute", "espacer", "cran", "testicule", "mésange", "titt", "vagin", "viagra", "vulve", "wang", "branler", "x évalué", "xxx"];
+const forbiddenWordsDe = [ "abtreibung", "anal", "anus", "arsch", "arschficker", "esel", "arschloch", "arschlöcher", "balltasche", "bälle", "bastard", "bellend", "bestial", "bestialität", "hündin", "hündinnen", "schluchzen", "blutig", "blasen", "bollok", "boob", "brüste", "buceta", "gammler", "hintern", "teppichmuncher", "spalt", "cipa", "klitoris", "schwanz", "schwanzlutscher", "schwänze", "waschbär", "mist", "sperma", "abspritzen", "cunillingus", "fotze", "verdammt", "dildo", "dildos", "dink", "hundeficker", "duche", "deich", "ejakulieren", "ejakuliert", "ejakulation", "kippe", "fagging", "schwuchtel", "schwuchteln", "fanny", "felching", "fellatio", "flansch", "scheiße", "gefickt", "ficker", "ficken", "fickt", "fudge packer", "gott verdammt", "gottverdammt", "hölle", "hore", "geil", "wichsen", "kock", "schamlippen", "lust", "lüstern", "masochist", "masturbieren", "mutter ficker", "nazi", "nigger", "orgasim", "orgasmus", "orgasmen", "pecker", "penis", "piss", "besoffen", "pisser", "pisst", "pissen", "pissoff", "poop", "porno", "pornographie", "stechen", "stiche", "pube", "fotzen", "muschi", "vergewaltigen", "vergewaltiger", "rektum", "verzögern", "rimming", "sadist", "schrauben", "hodensack", "samen", "sex", "shag", "shagging", "transen", "scheisse", "geschissen", "scheißen", "beschissen", "prostituierte", "schlampe", "schlampen", "smegma", "schmutz", "schnappen", "hurensohn", "abstand", "hoden", "tit", "titten", "titt", "turd", "vagina", "viagra", "vulva", "wang", "hure", "x bewertet", "xxx"];
 const memootjes = [
   {
   text: "Spoel je rimpels weg, kam het verdriet uit je haren. Ze zijn geen deel van jou, ze reizen alleen maar even mee.",
   author: "Alice Boudrey",
-  stageName: "",
   linkText: "@hihelloalice",
   link: "https://www.instagram.com/hihelloalice/",
   forEmotions: ["somber", "blij"],
@@ -36,13 +44,126 @@ const memootjes = [
 },
 {
   text: "En het voelt als thuiskomen.",
-  author: "Alice Boudrey",
-  stageName: "",
+  author: "Loncke Oona",
   linkText: "@oonaloncke",
   link: "https://www.instagram.com/oonaloncke/",
-  forEmotions: "somber",
-  keyword: "thuiskomen"
+  forEmotions: ["somber", "afgemat"],
+  keyword: "thuis"
 },
+{
+  text: "Een dreigende wolk zweeft boven mijn hoofd en lijkt me te willen opslokken.",
+  author: "Loncke Oona",
+  linkText: "@oonaloncke",
+  link: "https://www.instagram.com/oonaloncke/",
+  forEmotions: "blij",
+  keyword: "wolk"
+},
+{
+  text: "Het enige dat mij soelaas brengt is hetgeen ik niet kan grijpen.",
+  author: "Loncke Oona",
+  linkText: "@oonaloncke",
+  link: "https://www.instagram.com/oonaloncke/",
+  forEmotions: ["blij", "giechelig"],
+  keyword: "soelaas"
+},
+{
+  text: "Vandaag zette jij voor ons het podium op - leende je ons je oren en je ogen - we buigen diep voor jou, publiek - sluit je zelf even de gordijnen?",
+  author: "Louise Maddens",
+  linkText: "Meer over Louise en het Collectief",
+  link: "https://letterzetterkortrijk.be/collectief",
+  forEmotions: ["blij", "somber", "afgemat"],
+  keyword: "podium"
+},
+{
+  text: "Ik gebruikte het internet al toen er nog Ethiopische prinsen geld aanboden via mail, ik weet wat ik doe.",
+  author: "Martijn Verhelst",
+  linkText: "@verhelstmartijn",
+  link: "https://www.instagram.com/verhelstmartijn/",
+  forEmotions: ["blij", "giechelig", "somber", "afgemat"],
+  keyword: "mail"
+},
+{
+  text: "In de zomer hebben we ook problemen, hetzij van een ander kaliber. Wie gaat de flamingo opblazen bijvoorbeeld?",
+  author: "Martijn Verhelst",
+  linkText: "@verhelstmartijn",
+  link: "https://www.instagram.com/verhelstmartijn/",
+  forEmotions: ["blij", "giechelig", "somber", "afgemat"],
+  keyword: "flamingo"
+},
+{
+  text: "Dit zou een heel diepe boodschap kunnen zijn, over het leven de liefde en God. Maar dat is dit niet, dit zijn woorden die een boodschap willen zijn maar de woorden niet vinden.",
+  author: "Martijn Verhelst",
+  linkText: "@verhelstmartijn",
+  link: "https://www.instagram.com/verhelstmartijn/",
+  forEmotions: ["blij", "afgemat"],
+  keyword: "woord"
+},
+{
+  text: "Dat wij daar toen - en dat jij dacht - dat ook dit -ooit verloren - Dat ik dan daar - en jij ik wij - samen -als nooit tevoren.",
+  author: "Joke De Kerpel",
+  linkText: "@darteledichter",
+  link: "https://www.instagram.com/darteledichter/",
+  forEmotions: ["blij", "giechelig", "somber", "afgemat"],
+  keyword: "verloren"
+},
+{
+  text: "Jij piekt, ik daal. Jij daalt, ik piek. We zijn vier handen- trekken elkaar op- liften ons hoger dan onze volle hoofden - geluk hoeft niet gesynchroniseerd",
+  author: "Joke De Kerpel",
+  linkText: "@darteledichter",
+  link: "https://www.instagram.com/darteledichter/",
+  forEmotions: ["blij", "giechelig", "somber", "afgemat"],
+  keyword: "piek"
+},
+{
+  text: "Hoe je je gevoelens dissecteerde - en het toch hoop bleek te zijn.",
+  author: "Joke De Kerpel",
+  linkText: "@darteledichter",
+  link: "https://www.instagram.com/darteledichter/",
+  forEmotions: ["blij", "giechelig", "somber", "afgemat"],
+  keyword: "hoop"
+},
+{
+  text: "Kies je voor een wijk als elleboog om in te nestelen of liever de lange laan een uitgestrekte arm.",
+  author: "Sien Demuynck",
+  linkText: "Meer over Sien en het collectief",
+  link: "https://letterzetterkortrijk.be/collectief",
+  forEmotions: ["blij", "giechelig", "somber", "afgemat"],
+  keyword: "wijk"
+},
+{
+  text: "Verloren hinkel ik over de sproeten op mijn vingers.",
+  author: "Sien Demuynck",
+  linkText: "Meer over Sien en het collectief",
+  link: "https://letterzetterkortrijk.be/collectief",
+  forEmotions: ["blij", "giechelig", "somber", "afgemat"],
+  keyword: "sproeten"
+},
+{
+  text: "Smartphone (zn; de): dikke middelvinger naar die leerkracht die je maaltafels liet leren omdat je ‘nooit een rekenmachine in je achterzak zou hebben’.",
+  author: "Tine Lefebvre",
+  linkText: "@tinelefebvre",
+  link: "https://www.instagram.com/tinelefebvre/",
+  forEmotions: ["blij", "giechelig", "somber", "afgemat"],
+  keyword: "maaltafels"
+},
+{
+  text: "Ik wens je veel specialiteiten en een Miranda die trots op ze is.",
+  author: "Tine Lefebvre",
+  linkText: "@tinelefebvre",
+  link: "https://www.instagram.com/tinelefebvre/",
+  forEmotions: ["blij", "giechelig", "somber"],
+  keyword: "trots"
+},
+{
+  text: "Misschien is naïviteit het nog-niet-weten-dat en de stille hoop koesteren dat het ook nooit hoeft.",
+  author: "Tine Lefebvre",
+  linkText: "@tinelefebvre",
+  link: "https://www.instagram.com/tinelefebvre/",
+  forEmotions: ["blij", "giechelig", "somber", "afgemat"],
+  keyword: "hoop"
+},
+
+
 ]
 
 
@@ -184,6 +305,10 @@ export default class VisitorScene extends Phaser.Scene {
     this.load.image('tired3', 'assets/img/letterdoos/snoringSmiley/x1/snoringOrange.png');
     this.load.image('tired4', 'assets/img/letterdoos/snoringSmiley/x1/snoringYellow.png');
 
+    this.load.image('heart', 'assets/img/letterdoos/heart/hart.png');
+    this.load.image('hand', 'assets/img/letterdoos/hand/x1/handDark.png');
+
+
  
 
   }
@@ -224,11 +349,45 @@ export default class VisitorScene extends Phaser.Scene {
 
     this.group1 = this.matter.world.nextGroup();
     this.group2 = this.matter.world.nextGroup(true);
+    
+    this.matter.world.on('collisionstart', function (event, bodyA, bodyB) {
+      //console.log(bodyA.texture.key);
+   
+      if (event.pairs[0].bodyA.gameObject){
+        if(bodyA.gameObject.texture.key === "handLeft"){
+          if(bodyB.gameObject.texture.key === "hand"){
+            console.log(bodyA.gameObject.texture.key);
+            //bodyB.gameObject.visible = false;
+            //bodyB.gameObject.opacity = 0;
+            bodyB.gameObject.destroy();
+            this.matter.world.remove(bodyB);
+            console.log(bodyB)
+           
+          }
+          
+        }
+        if(bodyA.gameObject.texture.key === "hand"){
+          if(bodyB.gameObject.texture.key === "handLeft"){
+            console.log(bodyA.gameObject.texture.key);
+            this.matter.world.remove(bodyA);
 
+          }
+          
+        }
+      //console.log(bodyA.gameObject.texture.key);
+      //console.log(bodyB.gameObject.texture.key);
 
+      }
+     
+  }, this);
     this.spawnLetters();
+
     this.scale.on('resize', this.resize, this);
     //timer = setTimeout(this.readInAuteurInput(), 50000);
+  }
+
+  collide(){
+    
   }
 
   resize(){
@@ -331,7 +490,7 @@ export default class VisitorScene extends Phaser.Scene {
     this.rightAnkleAvatar.y = jointPositionsGebruikers.rightAnklePos.y;
 
 
-    /*if(isLive){
+    if(isLive){
       if($liveTitle.textContent === 'live'){
 
       }else{
@@ -344,7 +503,7 @@ export default class VisitorScene extends Phaser.Scene {
        $liveTitle.textContent = 'offline';
        $liveSub.textContent = 'tot later';
        $liveDot.style.display = 'none';
-    }*/
+    }
   };
 
 
@@ -359,9 +518,9 @@ export default class VisitorScene extends Phaser.Scene {
 
 
       console.log('spawnWord: ' + split[letter]);
-      const l = this.matter.add.sprite(fallPosition, 0,  split[letter], 0, {restitution: .5});
+      const l = this.matter.add.sprite(fallPosition, 0,  split[letter], 0, {restitution: .5, slop: 1});
 
-      l.setInteractive({useHandCursor: true}).on('pointerdown', () => this.onClick(l));
+      l.setInteractive({useHandCursor: true}).on('pointerdown', () => this.onClickLetter(l));
 
       l.setCollisionGroup(this.group1)
      // l.setCollidesWith(0)
@@ -374,22 +533,15 @@ export default class VisitorScene extends Phaser.Scene {
 
   };
 
-  onClick(l){
+  onClickLetter(l){
  if(isClickable){
-    if(lostLetters.length <= 1){
-      this.handleLetterArrays(l);
-      $challengeForm.style.display = "none";
-      $haikuForm.style.display = "block";
-
-    }else{
-      this.handleLetterArrays(l);
-    }
+  this.handleLetterArrays(l)
     }
   }
 
 handleLetterArrays(l){
   if(lostLetters.includes(l.texture.key)){
-    console.log(l.texture.key);
+
     lostLetters.forEach(lostLetter => {
       const index = lostLetters.indexOf(lostLetter);
       if (lostLetter == l.texture.key){
@@ -399,12 +551,20 @@ handleLetterArrays(l){
     });
     foundLetters.push(l.texture.key);
     let foundLetter = document.querySelector(`.challengeLetter--${l.texture.key}`);
-    console.log(l.texture.key);
+
     foundLetter.src = `assets/img/alphabet/x0.5/${l.texture.key}.png`;
     foundLetter.classList.add(`letter`)
     foundLetter.classList.add(`foundLetter--${l.texture.key}`)
     foundLetter.classList.remove(`challengeLetter--${l.texture.key}`)
-    console.log(l.texture.key);
+ 
+    console.log(lostLetters.length);
+
+    if(lostLetters.length <= 0){
+      this.handleLetterArrays(l);
+      $challengeForm.style.display = "none";
+      $haikuForm.style.display = "block";
+
+    }
   };
 }
 
@@ -450,6 +610,7 @@ handleLetterArrays(l){
       socket.on('getFeelings', feelings => {
         feelings.forEach(feeling => {
           this.createFeeling(feeling);
+          feelings.push(feeling);
         })
       });
       socket.on('message', message => {
@@ -472,7 +633,33 @@ handleLetterArrays(l){
 
         letters.forEach(letter => {
           letter.setVelocity(20, 30)
-        })
+        });
+        feelings.forEach(feeling => {
+          feeling.setVelocity(20, 30)
+        });
+
+      });
+      socket.on('handShaken', () => {
+
+      console.log("hand shooked")
+
+      });
+      socket.on('heartAll', () => {
+        console.log("hartje??")
+        const hartje = this.matter.add.sprite(200, this.cameras.main.height, 'heart', 0, {restitution: .5, ignoreGravity: true});
+        hartje.setCollisionGroup(this.group2);
+        hartje.setCollidesWith(0);
+        hartje.setVelocityY(-20);
+        hartjes.push(hartje);
+        console.log(this.group1);
+        console.log(this.group2);
+    
+       
+
+      });
+      socket.on('handAll', () => {
+
+       
 
       });
       socket.on('selectedFeeling', selectedFeeling => {
@@ -540,7 +727,7 @@ handleLetterArrays(l){
         $wordForm.noValidate = true;
         console.log("wordform")
         const $enteredWord = $wordForm.querySelector(`.enteredWord`);
-        $wordForm.addEventListener('submit', e => this.handleSubmitMessage(e));
+        $wordForm.addEventListener('submit', e => this.handleSubmitMessage(e, $wordForm));
         $enteredWord.addEventListener('input', e => this.handeInputField(e, $wordForm))
       }
       if($feelingsForm){
@@ -557,6 +744,9 @@ handleLetterArrays(l){
       if($btnHartje){
         $btnHartje.addEventListener('click', e => this.handleClickHartje(e));
       }
+      if($btnHand){
+        $btnHand.addEventListener('click', e => this.handleClickHand(e));
+      }
 
     };
 
@@ -570,6 +760,8 @@ handleLetterArrays(l){
         case "afgemat": this.feeling = this.matter.add.sprite(fallPosition, 0, `tired${rand.toString()}`, 0, {restitution: .5});break;
 
       }
+      feelings.push(this.feeling);
+      console.log(feelings)
     }
 
     handleClickOntdek(e){
@@ -599,6 +791,9 @@ handleLetterArrays(l){
       if ($field.validity.tooLong) {
         message = `Het woord mag maximaal 20 characters bevatten`;
       }
+      if ($field.validity.patternMismatch) {
+        message = `Gebruik enkel letters van het alfabet (a-z)`;
+      }
       if (message) {
         $field.parentElement.parentElement.querySelector(`.error`).textContent = message;
       }
@@ -611,12 +806,18 @@ handleLetterArrays(l){
 
     handeInputField(e, form){
       const field = e.currentTarget;
+    
+      console.log(field.value);
+     
       if (!form.checkValidity()) {
         this.showValidationInfo(field);
        } else {
          form.querySelector(`.error`).textContent = "";
        // field.parentElement.querySelector(`.error`).textContent = ""
        }
+       if(forbiddenWordsEn.includes(field.value) || forbiddenWordsNl.includes(field.value) || forbiddenWordsFr.includes(field.value) || forbiddenWordsDe.includes(field.value)) {
+        form.querySelector(`.error`).textContent = "Deze woorden worden niet toegelaten";
+      }
         /*
        if(form === $feelingsForm){
          const pic = field.parentElement.querySelector(`.${field.value}`)
@@ -627,16 +828,21 @@ handleLetterArrays(l){
 
     }
 
-    handleSubmitMessage = e => {
+    handleSubmitMessage = (e, form) => {
        e.preventDefault();
+       const field = $wordForm.querySelector(`.enteredWord`);
        if (!$wordForm.checkValidity()) {
 
-       const field = $wordForm.querySelector(`.enteredWord`);
-        
+  
        this.showValidationInfo(field)
   
        // $wordForm.querySelector(`.error`).innerHTML = `Some errors occured`;
       } else {
+        if(forbiddenWordsEn.includes(field.value) || forbiddenWordsNl.includes(field.value) || forbiddenWordsFr.includes(field.value) || forbiddenWordsDe.includes(field.value)) {
+          form.querySelector(`.error`).textContent = "Deze woorden worden niet toegelaten";
+        }else{
+
+        
         $wordForm.style.display = "none";
         $feelingsForm.style.display = "block";
         socket.emit('message', $msgInput.value);
@@ -644,6 +850,7 @@ handleLetterArrays(l){
         //socket.emit('points', points);
         $msgInput.value = '';
         console.log(`Form is valid => submit form`);
+        }
       }
 
      
@@ -681,7 +888,7 @@ handleLetterArrays(l){
           
          
          });
-
+         console.log(memootjesEmotion);
          let rand;
          if(memootjesEmotion.length === 1){
           rand = 0;
@@ -692,7 +899,15 @@ handleLetterArrays(l){
  
   
          console.log(rand);
-       
+
+         // call facebook share with data
+         /*this.shareOverrideOGMeta({
+          link: 'https://www.google.com',
+          image: 'https://www.google.com',
+          caption: 'Reference info',
+          description: memootjesEmotion[rand].text
+          });*/
+
          $haiku.textContent = memootjesEmotion[rand].text;
          $auteurName.textContent = memootjesEmotion[rand].author;
          $auteurSocials.innerHTML = memootjesEmotion[rand].linkText;
@@ -724,25 +939,89 @@ handleLetterArrays(l){
        }
    }
 
+
+ shareOverrideOGMeta(data)
+{
+	FB.ui({
+		method: 'share_open_graph',
+		action_type: 'og.likes',
+		action_properties: JSON.stringify({
+			object: {
+				'og:url': data.overrideLink,
+				'og:title': data.overrideTitle,
+				'og:description': data.overrideDescription,
+				'og:image': data.overrideImage
+			}
+		})
+	},
+	function (response) {
+	// Action after response
+	});
+}
+
+   handleClickHand = e => {
+    
+    if(isHandClickable === false){
+
+    }else{
+      const $timer = $btnHand.querySelector(`.timer--hand`);
+   
+      $timer.classList.add('timer');
+      socket.emit('hand');
+      const fallPositionX = Phaser.Math.Between(60, this.cameras.main.height - 60);
+      const fallPositionY = Phaser.Math.Between(60, this.cameras.main.width - 60);
+      const hand = this.matter.add.sprite(fallPositionX, fallPositionY, 'hand', 0, {restitution: .5, ignoreGravity: true});
+      isHandClickable = false;
+      if(isHandClickable === false){
+        setTimeout(function(){ 
+          $timer.classList.remove('timer');
+          isHandClickable = true;
+         }, 5000);
+      }
+    }  
+   }
+
    handleClickSchud = e => {
-    socket.emit('schud');
-    console.log('schud')
-    console.log(letters)
+
+
+    if(isShakeClickable === false){
+
+    }else{
+      const $timer = $btnSchud.querySelector(`.timer--schud`);
+      $timer.classList.add('timer');
+      socket.emit('schud');
+      console.log('schud')
+      console.log(letters)
+      isShakeClickable = false;
+      if(isShakeClickable === false){
+        setTimeout(function(){ 
+          $timer.classList.remove('timer');
+          isShakeClickable = true;
+         }, 5000);
+      }
+    }
+
 
 
    }
 
    handleClickHartje = e => {
-    socket.emit('hartje');
-    console.log('hartje')
-    const hartje = this.matter.add.sprite(200, this.cameras.main.height, 'tired', 0, {restitution: .5, ignoreGravity: true});
-    hartje.setCollisionGroup(this.group2)
-    hartje.setCollidesWith(0)
-    hartje.setVelocityY(-20);
-    hartjes.push(hartje);
-    console.log(this.group1)
-    console.log(this.group2)
+    if(isHeartClickable === false){
 
+    }else{
+      const $timer = $btnHartje.querySelector(`.timer--hart`);
+      $timer.classList.add('timer');
+      socket.emit('hartje');
+      console.log('hartje')
+      isHeartClickable = false;
+      if(isHeartClickable === false){
+        setTimeout(function(){ 
+          $timer.classList.remove('timer');
+          isHeartClickable = true;
+         }, 5000);
+      }
+
+    }
    }
 
 
