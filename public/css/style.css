@@ -37,6 +37,10 @@ body {
   font-size: 0.8rem;
 }
 
+.btnLogin {
+  display: block;
+}
+
 .button {
   min-height: 3.5rem;
   max-height: 4rem;
@@ -191,6 +195,12 @@ body {
   background-color: var(--black);
   transform: rotate(65deg);
   z-index: -1;
+}
+
+.qr-block__code {
+  height: 5vh;
+  width: 5vw;
+  margin: 1rem 1rem 0;
 }
 
 .buttonVerstuur:active {
