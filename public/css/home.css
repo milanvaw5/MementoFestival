@@ -302,6 +302,9 @@ p {
   justify-items: center;
 }
 
+@media (hover: hover) {
+
+
 .groen:hover {
   background-color: var(--green);
   color: var(--black);
@@ -335,7 +338,7 @@ p {
   position: relative;
   padding: 0 1rem;
 }
-
+}
 .hartje::before {
   content: url('../assets/img/interactions/heart.svg');
   position: relative;
