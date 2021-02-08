@@ -54,7 +54,7 @@ body {
   color: var(--black);
   background-color: var(--white);
   cursor: pointer;
-  display: block;
+  /*display: block;*/
 
   letter-spacing: 0.075em;
   position: relative;

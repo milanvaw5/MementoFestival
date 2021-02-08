@@ -1,4 +1,53 @@
 /* another css file*/
+@keyframes roundtime {
+  to {
+    /* More performant than animating `width` */
+    transform: scaleX(0);
+  }
+}
+
+.hand {
+  z-index: 2;
+}
+.hartje {
+  z-index: 2;
+}
+.schud {
+  z-index: 2;
+}
+
+.button--timer {
+  display:grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: 'overlap';
+  justify-items: center;
+}
+
+.button--timer div {
+  grid-area: overlap;
+}
+
+.timer {
+ 
+  /* ... */
+  animation: roundtime calc(var(--duration) * 1s) linear forwards;
+  transform-origin: left center;
+ 
+  height: 100%;
+  width: 100%;
+  padding: 0 1.2rem;
+}
+
+.timer--hand {
+  background: linear-gradient(to bottom, var(--green), var(--green));
+}
+.timer--hart {
+  background: linear-gradient(to bottom, var(--orange), var(--orange));
+}
+.timer--schud {
+  background: linear-gradient(to bottom, var(--blue), var(--blue));
+}
+
 .wordGame {
   justify-self: flex-start;
 }
