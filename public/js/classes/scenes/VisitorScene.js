@@ -532,8 +532,11 @@ export default class VisitorScene extends Phaser.Scene {
       console.log('spawnWord: ' + split[letter]);
       const l = this.matter.add.sprite(fallPosition, 0,  split[letter], 0, {restitution: .5, slop: 1});
 
-      l.setInteractive({useHandCursor: true}).on('pointerdown', () => this.onClickLetter(l));
-
+     // l.setInteractive({useHandCursor: true}).on('pointerdown', () => this.onClickLetter(l));
+     l.setInteractive({useHandCursor: true}).on('pointerdown', function(){
+        console.log("yay");
+     }, this);
+      console.log(l);
       l.setCollisionGroup(this.group1)
      // l.setCollidesWith(0)
 
@@ -547,6 +550,7 @@ export default class VisitorScene extends Phaser.Scene {
 
   onClickLetter(l){
  if(isClickable){
+   console.log(l);
   this.handleLetterArrays(l)
     }
   }
@@ -892,6 +896,7 @@ handleLetterArrays(l){
       
        } else {
         isClickable = true;
+        console.log(isClickable);
         $feelingsForm.style.display = "none";
         $challengeForm.style.display = "block";
         $feelingOptions.forEach(option => {

@@ -10,7 +10,7 @@ export default class Game extends Phaser.Game {
         //type: Phaser.AUTO,
         scale: {
           mode: Phaser.Scale.FIT,
-          parent: 'bottomblock',
+         // parent: 'bottomblock',
           width: '100%',
           height: '100'
       },
@@ -47,6 +47,7 @@ export default class Game extends Phaser.Game {
           gamepad: false,
           windowEvents: true,
       },
+      debug: true,
       }
       
     }else{
