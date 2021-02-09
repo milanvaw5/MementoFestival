@@ -178,6 +178,7 @@ let bodyPos = {
 
 let jointPositionsGebruikers = {
   nosePos: {x:1, y:1},
+  leftEyePos: {x:1, y:1},
   leftWristPos: {x:1, y:1},
   rightWristPos: {x:1, y:1},
   leftShoulderPos: {x:1, y:1},
@@ -193,6 +194,7 @@ let jointPositionsGebruikers = {
 }
 let jointPositionsGebruikersTarget = {
   nosePosTarget: {x:1, y:1},
+  leftEyePosTarget: {x:1, y:1},
   leftWristPosTarget: {x:1, y:1},
   rightWristPosTarget: {x:1, y:1},
   leftShoulderPosTarget: {x:1, y:1},
@@ -329,8 +331,9 @@ export default class VisitorScene extends Phaser.Scene {
     //this.initMap();
     //backgroundimage = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'backgroundimage');
 
-    this.noseAvatar = this.matter.add.image(jointPositionsGebruikers.nosePos.x, jointPositionsGebruikers.nosePos.y, 'head', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
+    //this.noseAvatar = this.matter.add.image(jointPositionsGebruikers.nosePos.x, jointPositionsGebruikers.nosePos.y, 'head', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
     //this.bodyAvater = this.matter.add.image(jointPositionsGebruikers.nosePos.x, jointPositionsGebruikers.nosePos.y, 'body', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1}).setScale(.8);
+    this.leftEyeAvatar = this.matter.add.image(jointPositionsGebruikers.leftEyePos.x, jointPositionsGebruikers.leftEyePos.y, 'head', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
     this.leftWristAvatar = this.matter.add.image(jointPositionsGebruikers.leftWristPos.x, jointPositionsGebruikers.leftWristPos.y, 'handLeft', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
     this.rightWristAvatar = this.matter.add.image(jointPositionsGebruikers.rightWristPos.x, jointPositionsGebruikers.rightWristPos.y, 'handRight', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
     this.leftShoulderAvatar = this.matter.add.image(jointPositionsGebruikers.leftShoulderPos.x, jointPositionsGebruikers.leftShoulderPos.y, 'joint', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
@@ -428,13 +431,18 @@ export default class VisitorScene extends Phaser.Scene {
       }
       console.log(letters);
     }
+    /*
     jointPositionsGebruikers.nosePos.x += ( jointPositionsGebruikersTarget.nosePosTarget.x - jointPositionsGebruikers.nosePos.x ) / 10;
     jointPositionsGebruikers.nosePos.y += ( jointPositionsGebruikersTarget.nosePosTarget.y - jointPositionsGebruikers.nosePos.y ) / 10;
     this.noseAvatar.x = jointPositionsGebruikers.nosePos.x;
     this.noseAvatar.y = jointPositionsGebruikers.nosePos.y;
    //this.bodyAvater.x = jointPositionsGebruikers.nosePos.x;
     //this.bodyAvater.y = jointPositionsGebruikers.nosePos.y + 220;
-
+*/
+jointPositionsGebruikers.leftEyePos.x += ( jointPositionsGebruikersTarget.leftEyePosTarget.x - jointPositionsGebruikers.leftEyePos.x ) / 10;
+jointPositionsGebruikers.leftEyePos.y += ( jointPositionsGebruikersTarget.leftEyePosTarget.y - jointPositionsGebruikers.leftEyePos.y ) / 10;
+this.leftEyeAvatar.x = jointPositionsGebruikers.leftEyePos.x + 10;
+this.leftEyeAvatar.y = jointPositionsGebruikers.leftEyePos.y;
 
     jointPositionsGebruikers.leftWristPos.x += ( jointPositionsGebruikersTarget.leftWristPosTarget.x - jointPositionsGebruikers.leftWristPos.x ) / 10;
     jointPositionsGebruikers.leftWristPos.y += ( jointPositionsGebruikersTarget.leftWristPosTarget.y - jointPositionsGebruikers.leftWristPos.y ) / 10;
@@ -738,6 +746,9 @@ handleLetterArrays(l){
 
         jointPositionsGebruikersTarget.nosePosTarget.x = this.cameras.main.width * jointPositions.nosePos.x;
         jointPositionsGebruikersTarget.nosePosTarget.y = this.cameras.main.height * jointPositions.nosePos.y;
+
+        jointPositionsGebruikersTarget.leftEyePosTarget.x = this.cameras.main.width * jointPositions.leftEyePos.x;
+        jointPositionsGebruikersTarget.leftEyePosTarget.y = this.cameras.main.height * jointPositions.leftEyePos.y;
 /*
         jointPositionsGebruikersTarget.leftEyePosTarget.x = this.cameras.main.width * jointPositions.leftEyePos.x;
         jointPositionsGebruikersTarget.leftEyePosTarget.y = this.cameras.main.height * jointPositions.leftEyePos.y;

@@ -40,16 +40,16 @@
             console.log(question);
             switch(question){
                 case "questionmark questionmark--word": 
-                text = "Het thema van het festival is dit jaar “verdwalen”. Wij vroegen ons af wat verdwalen betekent voor jou.";
+                text = "Het thema van het Memento Woordfestival is dit jaar “Verdwalen”. We vragen ons af wat verdwalen betekent voor jou.";
                 break;
                 case "questionmark questionmark--feeling": 
-                text = "Laat de mensen op het festival weten hoe je je voelt. De emotie die jij kiest zal mee in de letterdoos vallen.";
+                text = "Laat de mensen op het festival weten hoe je je voelt. De emotie die jij kiest zal mee in De Letterdoos vallen.";
                 break;
                 case "questionmark questionmark--challenge": 
-                text = "Staat jouw letter er niet bij? Dan moet je even wachten! Je kan terwijl even zwaaien of een hartje sturen.";
+                text = "Staat jouw letter er niet bij? Dan moet je even wachten op beurt! Terwijl je wacht kan je even een highfive of een hartje sturen.";
                 break;
                 case "questionmark questionmark--live": 
-                text = "Alles wat je ziet in De Letterdoos is live aan het gebeuren. Jij en de community bepalen wat er in De Letterdoos komt. ";
+                text = "Alles wat je ziet is live aan het gebeuren op het festival. Jij en de rest van de online community bepaalt wat er in de letterdoos komt. Bekijk de opties rechts en bespeel De Letterdoos!";
                // top = 0;
                 //right = "70%";
                 

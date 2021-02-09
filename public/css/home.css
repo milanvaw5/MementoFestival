@@ -198,7 +198,7 @@ p {
   z-index: 1;
   color: var(--white);
   background-color: var(--black);
-  width: 10rem;
+  width: 8rem;
   height: 3rem;
   padding: 1rem;
   display: grid;
@@ -236,6 +236,9 @@ p {
 }
 
 .bol {
+  margin-top: .4rem;
+  margin-left: .4rem;
+  width: 75%;
   animation: pulse infinite 2s ease;
 }
 
@@ -307,10 +310,10 @@ p {
   align-content: center;
   justify-items: start;
 }
-
-.bol {
-  padding: 0 .4rem 0 0;
+.live__footage__indication{
+  margin-left: .8rem;
 }
+
 
 .bordered {
   background-color: var(--white);
@@ -351,7 +354,7 @@ p {
   padding-bottom: 2rem;
 }
 
-@media (hover: hover) {
+@media (hover: hover) { /* small trick, hover only detects on desktop, as soon as it is touch device => all the code inside this block isn't handled. Fixed the weird hover problem for mobile*/
 
 
 .groen:hover {
@@ -380,7 +383,7 @@ p {
   content: url('../assets/img/interactions/wave.svg');
   transform: rotate(30deg);
   display: block;
-  padding: .2rem 0 0;
+  /*padding: .2rem 0 0;*/
 }
 
 .blauw:hover .schud::after {
@@ -389,16 +392,19 @@ p {
   padding: .2rem 0 0 .3rem;
   transform: rotate(300deg);
 }
+.hartje:hover::before {
+  content: url('../assets/img/interactions/heartblack.svg');
 }
+}
+
+
 .hartje::before {
   content: url('../assets/img/interactions/heart.svg');
   display: block;
   padding: .2rem .3rem 0 0;
 }
 
-.hartje:hover::before {
-  content: url('../assets/img/interactions/heartblack.svg');
-}
+
 
 .hand::before {
   content: url('../assets/img/interactions/wave.svg');
