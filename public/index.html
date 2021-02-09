@@ -32,19 +32,40 @@
     <section style="display: none" class="section-admin section-admin--active">
       <h2 class="section-admin__title">Letterdoos Game</h2>
       <!--<canvas id="output" style="z-index: 1;"></canvas>-->
-        <div id="bottomblock" class="adminWordGame">
+
+        <div class="admin__datasection">
+
           <div class="qr-block">
             <img class="qr-block__code" src="assets/img/fakeqrcode.svg" alt="QR-code">
             <p class="qr-block__text">Scan me om woorden in te voeren!</p>
           </div>
-        <!-- hier komt de wordgame -->
-        <video class="webcam" id="video" playsinline style=" -moz-transform: scaleX(-1);
-        -o-transform: scaleX(-1);
-        -webkit-transform: scaleX(-1);
-        transform: scaleX(-1);
-        ">
-        </video>
+
+          <div class="admin__datasection__datapieces">
+            <p class="admin__datasection__datatitel">De interacties van vandaag:</p>
+            <div class="admin__datasection__datapiece">
+              <img src="assets/img/interactions/wave.svg" alt="hand" class="admin__datasection__dataimg">
+              <p>Aantal gegeven high fives - </p>
+              <p class="highfivescount"></p>
+            </div>
+            <div class="admin__datasection__datapiece">
+              <img src="assets/img/interactions/heart.svg" alt="heart" class="admin__datasection__dataimg">
+              <p>Aantal verstuurde hartjes - </p>
+              <p class="heartscount"></p>
+            </div>
+          </div>
+
         </div>
+
+        <div id="bottomblock" class="adminWordGame">
+
+          <video class="webcam" id="video" playsinline style=" -moz-transform: scaleX(-1);
+          -o-transform: scaleX(-1);
+          -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+          ">
+          </video>
+        </div>
+
     </section>
   </body>
 
