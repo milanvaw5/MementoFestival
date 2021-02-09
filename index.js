@@ -8,6 +8,8 @@ const io = require('socket.io')(server);
 
 let words = [];
 let feelings = [];
+let highfives = 0;
+let hearts = 0;
 let admin;
 let livePing;
 io.on('connection', socket => {
@@ -37,8 +39,8 @@ io.on('connection', socket => {
   });
 
   socket.on('hartje', () => {
-
-    io.sockets.emit(`heartAll`);
+    hearts++;
+    io.sockets.emit(`heartAll`, hearts);
     
   });
 
@@ -49,8 +51,9 @@ io.on('connection', socket => {
   });
 
   socket.on('handShake', id => {
-    
-    io.sockets.to(id).emit(`handShaken`);
+    highfives++;
+    io.sockets.to(id).emit(`handShaken`, highfives);
+    io.sockets.to(admin).emit(`handShaken`, highfives);
     
   });
 
@@ -66,6 +69,13 @@ io.on('connection', socket => {
 
   socket.on('requestFeelings', () => {
     socket.emit('getFeelings', feelings);
+  });
+
+  socket.on('requestHearts', () => {
+    socket.emit('getHeartCount', hearts);
+  });
+  socket.on('requestHighfives', () => {
+    socket.emit('getHighfiveCount', highfives);
   });
 
   

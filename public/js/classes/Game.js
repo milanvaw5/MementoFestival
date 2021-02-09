@@ -3,18 +3,19 @@ import AdminScene from './scenes/AdminScene.js';
 export default class Game extends Phaser.Game {
 
   constructor(){
+
     let config;
     const path = window.location.pathname;
     if(path === "/index.html" || path === "/"){
        config = {
-        //type: Phaser.AUTO,
+        type: Phaser.AUTO,
         scale: {
           mode: Phaser.Scale.FIT,
-         // parent: 'bottomblock',
-          width: '100%',
-          height: '100'
+          parent: 'bottomblock',
+          width: 1000,
+          height: 1000
       },
-       // type: Phaser.AUTO,
+
   
         physics: {
           default: 'matter',
@@ -52,12 +53,12 @@ export default class Game extends Phaser.Game {
       
     }else{
        config = {
-        //type: Phaser.AUTO,
+        type: Phaser.AUTO,
         scale: {
           mode: Phaser.Scale.FIT,
           parent: 'bottomblock',
-          width: '100%',
-          height: '100%'
+          width: 1000,
+          height: 1000
       },
        // type: Phaser.AUTO,
   
@@ -84,10 +85,10 @@ export default class Game extends Phaser.Game {
               preventDefaultWheel: false // IMPORTANT: let's you scroll website when cursor is on phaser canvas !
           },
           activePointers: 1,
-          /*touch: {
+          touch: {
               target: null,
               capture: true,
-          },*/
+          },
           smoothFactor: 0,
           gamepad: false,
           windowEvents: true,

@@ -8,6 +8,8 @@ let split = [];
 let letters = [];
 let feelings = [];
 let hartjes = [];
+let highfiveCount = 0;
+let heartCount = 0;
 let widthDivScreen;
 if(document.querySelector(`.bottomblock`)){
    widthDivScreen = document.querySelector(`.bottomblock`).style.width;
@@ -616,6 +618,8 @@ handleLetterArrays(l){
         console.log(`Connected: ${socket.id}`);
         socket.emit('requestWords');
         socket.emit('requestFeelings');
+        socket.emit('requestHearts');
+        socket.emit('requestHighfives');
       });
       socket.on('getWords', words => {
         words.forEach(word => {
@@ -629,6 +633,18 @@ handleLetterArrays(l){
           feelings.push(feeling);
         })
       });
+      socket.on('getHeartCount', hearts => {
+        heartCount = hearts;
+        console.log(heartCount);
+        // use in DOM
+      });
+
+      socket.on('getHighfiveCount', highfives => {
+        highfiveCount = highfives;
+        console.log(highfiveCount);
+        // use in DOM
+      });
+
       socket.on('message', message => {
         console.log(`Received message: ${message}`);
         console.log(message);
@@ -656,7 +672,11 @@ handleLetterArrays(l){
         });
 
       });
-      socket.on('handShaken', () => {
+      socket.on('handShaken', highfives => {
+        highfiveCount = highfives;
+        console.log(highfiveCount);
+        // use in DOM
+
         const $popupHighfive = document.querySelector(`.popup--highfive`);
         const $highFiveText = $popupHighfive.querySelector(`p`);
         const $highFiveImg = $popupHighfive.querySelector(`img`);
@@ -672,8 +692,11 @@ handleLetterArrays(l){
 
 
       });
-      socket.on('heartAll', () => {
-        console.log("hartje??")
+      socket.on('heartAll', hearts => {
+        heartCount = hearts;
+        console.log(heartCount);
+        // use in DOM
+
         const hartje = this.matter.add.sprite(200, this.cameras.main.height, 'heart', 0, {restitution: .5, ignoreGravity: true});
         hartje.setCollisionGroup(this.group2);
         hartje.setCollidesWith(0);
@@ -1006,7 +1029,7 @@ handleLetterArrays(l){
       $highFiveText.textContent = "Je high five is verstuurd!";
       $popupHighfive.style.animation = "appearAndDisappear 4s ease";
       $popupHighfive.style.opacity = "0";
-      //$highFiveImg.style.animation = "highFive 4s ease";
+      $highFiveImg.style.animation = "highFive 4s ease";
       setTimeout(function(){
         $popupHighfive.style.animation = "none";
         $popupHighfive.style.opacity = "0";
