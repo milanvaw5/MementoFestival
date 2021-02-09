@@ -4,7 +4,12 @@
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: 'overlap';
+    justify-content: end;
+    align-items: flex-end;
+    align-content: flex-end;
+    justify-items: flex-end;
     background-color: var(--white);
+    width: 80vw;
   }
 
   canvas {
@@ -28,10 +33,20 @@
     align-content: center;
     align-items: center;
     justify-items: center;
+    background-image: url("assets/img/leftstrokeprojection.svg");
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: 20vw 100vh;
 }
 
 .section-admin--active {
     display: none;
+}
+
+.leftstroke {
+  height: 100vh;
+  width: 20%;
+  z-index: -1;
 }
 
 .loginForm {

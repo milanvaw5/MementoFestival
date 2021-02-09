@@ -249,7 +249,7 @@ export default class VisitorScene extends Phaser.Scene {
   preload(){
     console.log(`PRELOAD visitor`);
     //Preloading sprites
-   
+
     this.load.image('head', 'assets/img/avatar/avatarGreen/x1/headGreen.png');
     this.load.image('footLeft', 'assets/img/avatar/avatarGreen/x1/footLeftGreen.png');
     this.load.image('footRight', 'assets/img/avatar/avatarGreen/x1/footRightGreen.png');
@@ -258,7 +258,7 @@ export default class VisitorScene extends Phaser.Scene {
     this.load.image('body', 'assets/img/avatar/avatarGreen/x1/bodyGreen.png');
     this.load.image('knee', 'assets/img/avatar/avatarGreen/x1/kneeGreen.png');
     this.load.image('joint', 'assets/img/avatar/avatarGreen/x1/schijfGroen.png');
- 
+
     this.load.image('a', 'assets/img/alphabet/x0.5/a.png');
     this.load.image('b', 'assets/img/alphabet/x0.5/b.png');
     this.load.image('c', 'assets/img/alphabet/x0.5/c.png');
@@ -314,7 +314,7 @@ export default class VisitorScene extends Phaser.Scene {
     this.load.image('hand', 'assets/img/letterdoos/hand/x1/handDark.png');
 
 
- 
+
 
   }
 
@@ -344,21 +344,21 @@ export default class VisitorScene extends Phaser.Scene {
     this.polygon = new Phaser.Geom.Polygon([{x:100, y:100}, {x: 200, y: 200}, {x: 200, y: 400}, {x: 100, y: 500}]);
     this.graphics = this.add.graphics({ fillStyle: { color: 0x32b099 } });
 
-   
+
     this.pointer = this.input.activePointer;
     //this.input.mouse.onMouseWheel.preventDefault = false
 
 
 
-   
+
 
 
     this.group1 = this.matter.world.nextGroup();
     this.group2 = this.matter.world.nextGroup(true);
-    
+
    /* this.matter.world.on('collisionstart', function (event, bodyA, bodyB) {
       //console.log(bodyA.texture.key);
-   
+
       if (event.pairs[0].bodyA.gameObject){
         if(bodyA.gameObject.texture.key === "handLeft"){
           if(bodyB.gameObject.texture.key === "hand"){
@@ -368,9 +368,9 @@ export default class VisitorScene extends Phaser.Scene {
             bodyB.gameObject.destroy();
             this.matter.world.remove(bodyB);
             console.log(bodyB)
-           
+
           }
-          
+
         }
         if(bodyA.gameObject.texture.key === "hand"){
           if(bodyB.gameObject.texture.key === "handLeft"){
@@ -378,13 +378,13 @@ export default class VisitorScene extends Phaser.Scene {
             this.matter.world.remove(bodyA);
 
           }
-          
+
         }
       //console.log(bodyA.gameObject.texture.key);
       //console.log(bodyB.gameObject.texture.key);
 
       }
-     
+
   }, this);
 */
 
@@ -418,7 +418,7 @@ export default class VisitorScene extends Phaser.Scene {
     this.noseAvatar.y = jointPositionsGebruikers.nosePos.y;
    //this.bodyAvater.x = jointPositionsGebruikers.nosePos.x;
     //this.bodyAvater.y = jointPositionsGebruikers.nosePos.y + 220;
-    
+
 
     jointPositionsGebruikers.leftWristPos.x += ( jointPositionsGebruikersTarget.leftWristPosTarget.x - jointPositionsGebruikers.leftWristPos.x ) / 10;
     jointPositionsGebruikers.leftWristPos.y += ( jointPositionsGebruikersTarget.leftWristPosTarget.y - jointPositionsGebruikers.leftWristPos.y ) / 10;
@@ -484,19 +484,19 @@ export default class VisitorScene extends Phaser.Scene {
     this.graphics.clear();
     this.graphics.fillPoints([
       {
-        x: jointPositionsGebruikers.leftShoulderPos.x, 
+        x: jointPositionsGebruikers.leftShoulderPos.x,
         y: jointPositionsGebruikers.leftShoulderPos.y
-      }, 
+      },
       {
-      x: jointPositionsGebruikers.rightShoulderPos.x, 
+      x: jointPositionsGebruikers.rightShoulderPos.x,
       y: jointPositionsGebruikers.rightShoulderPos.y
-      }, 
+      },
       {
-        x: jointPositionsGebruikers.rightHipPos.x, 
+        x: jointPositionsGebruikers.rightHipPos.x,
         y: jointPositionsGebruikers.rightHipPos.y
-      }, 
+      },
       {
-        x: jointPositionsGebruikers.leftHipPos.x, 
+        x: jointPositionsGebruikers.leftHipPos.x,
         y: jointPositionsGebruikers.leftHipPos.y
       }], true);
     //this.polygon
@@ -568,7 +568,7 @@ handleLetterArrays(l){
     foundLetter.classList.add(`letter`)
     foundLetter.classList.add(`foundLetter--${l.texture.key}`)
     foundLetter.classList.remove(`challengeLetter--${l.texture.key}`)
- 
+
     console.log(lostLetters.length);
 
     if(lostLetters.length <= 0){
@@ -660,7 +660,7 @@ handleLetterArrays(l){
         $popupHighfive.style.animation = "appearAndDisappear 4s ease";
         $popupHighfive.style.opacity = "0";
         $highFiveImg.style.animation = "highFive 1s ease";
-        setTimeout(function(){ 
+        setTimeout(function(){
           $popupHighfive.style.animation = "none";
           $popupHighfive.style.opacity = "0";
           $highFiveImg.style.animation = "none";
@@ -677,13 +677,13 @@ handleLetterArrays(l){
         hartjes.push(hartje);
         console.log(this.group1);
         console.log(this.group2);
-    
-       
+
+
 
       });
       socket.on('handAll', () => {
 
-       
+
 
       });
       socket.on('selectedFeeling', selectedFeeling => {
@@ -835,9 +835,9 @@ handleLetterArrays(l){
 
     handeInputField(e, form){
       const field = e.currentTarget;
-    
+
       console.log(field.value);
-     
+
       if (!form.checkValidity()) {
         this.showValidationInfo(field);
        } else {
@@ -862,16 +862,16 @@ handleLetterArrays(l){
        const field = $wordForm.querySelector(`.enteredWord`);
        if (!$wordForm.checkValidity()) {
 
-  
+
        this.showValidationInfo(field)
-  
+
        // $wordForm.querySelector(`.error`).innerHTML = `Some errors occured`;
       } else {
         if(forbiddenWordsEn.includes(field.value) || forbiddenWordsNl.includes(field.value) || forbiddenWordsFr.includes(field.value) || forbiddenWordsDe.includes(field.value)) {
           form.querySelector(`.error`).textContent = "Deze woorden worden niet toegelaten";
         }else{
 
-        
+
         $wordForm.style.display = "none";
         $feelingsForm.style.display = "block";
         console.log(field.value)
@@ -883,13 +883,13 @@ handleLetterArrays(l){
         }
       }
 
-     
+
     }
     handleSubmitFeeling = e => {
       e.preventDefault();
       if (!$feelingsForm.checkValidity()) {
         $feelingsForm.querySelector(`.error`).innerHTML = `Selecteer één emotie om verder te gaan`;
-      
+
        } else {
         isClickable = true;
         $feelingsForm.style.display = "none";
@@ -900,10 +900,10 @@ handleLetterArrays(l){
           }
         });
         memootjes.forEach(memootje => {
-      
+
           if(Array.isArray(memootje.forEmotions)){
             memootje.forEmotions.forEach(forEmotion => {
-        
+
                if(forEmotion === selectedFeeling){
                  console.log(forEmotion)
                  memootjesEmotion.push(memootje);
@@ -915,8 +915,8 @@ handleLetterArrays(l){
               memootjesEmotion.push(memootje);
             }
           }
-          
-         
+
+
          });
          console.log(memootjesEmotion);
          let rand;
@@ -926,8 +926,8 @@ handleLetterArrays(l){
           //rand = Math.floor(Math.random(memootjesEmotion.length - 1)*2);
           rand = Math.floor(Math.random()* (memootjesEmotion.length - 1));
          }
- 
-  
+
+
          console.log(rand);
 
          // call facebook share with data
@@ -944,9 +944,9 @@ handleLetterArrays(l){
          $auteurSocials.href = memootjesEmotion[rand].link;
 
          const $challengeWord = document.querySelector(`.wordForm__challenge`);
- 
+
           let challengeword = memootjesEmotion[rand].keyword.toLowerCase();
-      
+
           challengeword = challengeword.split('');
           challengeword.forEach(letter => {
             lostLetters.push(letter);
@@ -958,14 +958,14 @@ handleLetterArrays(l){
           });
           socket.emit('feeling', selectedFeeling);
           console.log(`Form is valid => submit form`);
-        
-          
-         
-        
-       
-       
 
-      
+
+
+
+
+
+
+
        }
    }
 
@@ -990,7 +990,7 @@ handleLetterArrays(l){
 }
 
    handleClickHand = e => {
-    
+
     if(isHandClickable === false){
 
     }else{
@@ -998,11 +998,11 @@ handleLetterArrays(l){
       const $highFiveText = $popupHighfive.querySelector(`p`);
       const $highFiveImg = $popupHighfive.querySelector(`img`);
 
-      $highFiveText.textContent = "Highfive is verstuurd";
+      $highFiveText.textContent = "Je high five is verstuurd!";
       $popupHighfive.style.animation = "appearAndDisappear 4s ease";
       $popupHighfive.style.opacity = "0";
-      $highFiveImg.style.animation = "highFive 4s ease";
-      setTimeout(function(){ 
+      //$highFiveImg.style.animation = "highFive 4s ease";
+      setTimeout(function(){
         $popupHighfive.style.animation = "none";
         $popupHighfive.style.opacity = "0";
         $highFiveImg.style.animation = "none";
@@ -1015,12 +1015,12 @@ handleLetterArrays(l){
     //  const hand = this.matter.add.sprite(fallPositionX, fallPositionY, 'hand', 0, {restitution: .5, ignoreGravity: true});
       isHandClickable = false;
       if(isHandClickable === false){
-        setTimeout(function(){ 
+        setTimeout(function(){
           $timer.classList.remove('timer');
           isHandClickable = true;
          }, 5000);
       }
-    }  
+    }
    }
 
    handleClickSchud = e => {
@@ -1036,7 +1036,7 @@ handleLetterArrays(l){
       console.log(letters)
       isShakeClickable = false;
       if(isShakeClickable === false){
-        setTimeout(function(){ 
+        setTimeout(function(){
           $timer.classList.remove('timer');
           isShakeClickable = true;
          }, 5000);
@@ -1057,7 +1057,7 @@ handleLetterArrays(l){
       console.log('hartje')
       isHeartClickable = false;
       if(isHeartClickable === false){
-        setTimeout(function(){ 
+        setTimeout(function(){
           $timer.classList.remove('timer');
           isHeartClickable = true;
          }, 5000);
