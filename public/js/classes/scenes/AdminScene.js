@@ -9,6 +9,8 @@ let words = [];
 let letters = [];
 let feelings = [];
 let hartjes = [];
+let highfiveCount = 0;
+let heartCount = 0;
 let widthDivScreen ;
 if(document.querySelector('.adminWordGame')){
   widthDivScreen = document.querySelector('.adminWordGame').style.width;
@@ -421,6 +423,29 @@ export default class AdminScene extends Phaser.Scene {
           
         }
 
+        if(bodyA.gameObject.texture.key === "hand"){
+          if(bodyB.gameObject.texture.key === "handRight"){
+            console.log(bodyA.gameObject.texture.key);
+            this.matter.world.remove(bodyA);
+
+          }
+          
+        }
+
+        if(bodyA.gameObject.texture.key === "handRight"){
+          if(bodyB.gameObject.texture.key === "hand"){
+            console.log(bodyA.gameObject.texture.key);
+            //bodyB.gameObject.visible = false;
+            //bodyB.gameObject.opacity = 0;
+            bodyB.gameObject.destroy();
+            this.matter.world.remove(bodyB);
+            console.log(bodyB)
+            socket.emit('handShake', handShakeId);
+           
+          }
+          
+        }
+
 
       }
      
@@ -644,7 +669,34 @@ export default class AdminScene extends Phaser.Scene {
 
         console.log(`Admin connected: ${socket.id}`);
         socket.emit('admin');
+        socket.emit('requestHearts');
+        socket.emit('requestHighfives');
       });
+
+      socket.on('getHeartCount', hearts => {
+        heartCount = hearts;
+        console.log(heartCount);
+        // use in DOM
+      });
+
+      socket.on('getHighfiveCount', highfives => {
+        highfiveCount = highfives;
+        console.log(highfiveCount);
+        // use in DOM
+      });
+
+      socket.on('handShaken', highfives => {
+        highfiveCount = highfives;
+        console.log(highfiveCount);
+        // use in DOM
+      });
+
+      socket.on('heartAll', hearts => {
+        heartCount = hearts;
+        console.log(heartCount);
+        // use in DOM
+      });
+
       socket.on('message', message => {
         console.log(`Received message: ${message}`);
         words.push(message);

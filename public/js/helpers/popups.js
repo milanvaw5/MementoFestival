@@ -78,7 +78,7 @@
             questionmark.addEventListener('click', handleClickQuestionmark);
             //questionmark.addEventListener('touch', handleClickQuestionmark);
         });
-        //window.addEventListener('click', handleClickWindow);
+        window.addEventListener('click', handleClickWindow);
        // window.addEventListener('touch', handleClickWindow);
     }
     init();
