@@ -23,10 +23,12 @@
 canvas {
   /*max-width: 100vw;*/
   max-height: 100vh;
+  height: 100%;
   background-color: var(--white);
   border: .1 solid var(--black);
   /*display: block;*/
   opacity: 100%;
+  z-index: 1;
 }
 
 .hand {
@@ -278,7 +280,7 @@ p {
   align-content: center;
   align-items: center;
   justify-items: center;
-  z-index: 0;
+  z-index: 5;
 }
 
 .blobs {
@@ -287,7 +289,7 @@ p {
 
 .bottomblock {
   height: 100vh;
-  max-width: 60vw;
+  max-width: 80vw;
 }
 
 .title {
@@ -942,7 +944,7 @@ p {
 
   .bottomblock {
     height: 100%;
-    max-width: 60vw;
+    max-width: 80vw;
   }
 
   .title  {

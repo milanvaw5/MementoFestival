@@ -231,7 +231,6 @@ if($wordForm){
   $haikuForm.style.display = `none`;
 }
 
-
 const $msgInput = document.getElementById('enteredWord');
 const $feelingOptions = document.querySelectorAll(`.feelingOption`);
 
@@ -772,6 +771,14 @@ handleLetterArrays(l){
 
       if($introForm){
         $btnOntdek.addEventListener('click', e => this.handleClickOntdek(e));
+
+        if (window.innerWidth < 1000) {
+          $introForm.style.display = `none`;
+          $wordForm.style.display = `block`;
+        }
+        else {
+          $wordForm.style.display = `none`;
+        }
         //$btnOntdek.addEventListener('touch', e => this.handleClickOntdek(e));
         //document.querySelector(`canvas`).style.height = "100vh";
       }

@@ -298,7 +298,7 @@ export default class AdminScene extends Phaser.Scene {
 
   preload(){
     console.log(`PRELOAD admin`);
- 
+
     this.load.image('test', 'assets/test.png');
 
     this.load.image('head', 'assets/img/avatar/avatarGreen/x1/headGreen.png');
@@ -362,7 +362,7 @@ export default class AdminScene extends Phaser.Scene {
     this.load.image('tired3', 'assets/img/letterdoos/snoringSmiley/x1/snoringOrange.png');
     this.load.image('tired4', 'assets/img/letterdoos/snoringSmiley/x1/snoringYellow.png');
 
-    
+
     this.load.image('hand', 'assets/img/letterdoos/hand/x1/handDark.png');
     this.load.image('heart', 'assets/img/letterdoos/heart/hart.png');
 
@@ -399,7 +399,7 @@ export default class AdminScene extends Phaser.Scene {
 
     this.matter.world.on('collisionstart', function (event, bodyA, bodyB) {
       //console.log(bodyA.texture.key);
-   
+
       if (event.pairs[0].bodyA.gameObject){
         if(bodyA.gameObject.texture.key === "handLeft"){
           if(bodyB.gameObject.texture.key === "hand"){
@@ -410,9 +410,9 @@ export default class AdminScene extends Phaser.Scene {
             this.matter.world.remove(bodyB);
             console.log(bodyB)
             socket.emit('handShake', handShakeId);
-           
+
           }
-          
+
         }
         if(bodyA.gameObject.texture.key === "hand"){
           if(bodyB.gameObject.texture.key === "handLeft"){
@@ -420,7 +420,7 @@ export default class AdminScene extends Phaser.Scene {
             this.matter.world.remove(bodyA);
 
           }
-          
+
         }
 
         if(bodyA.gameObject.texture.key === "hand"){
@@ -429,7 +429,7 @@ export default class AdminScene extends Phaser.Scene {
             this.matter.world.remove(bodyA);
 
           }
-          
+
         }
 
         if(bodyA.gameObject.texture.key === "handRight"){
@@ -441,14 +441,14 @@ export default class AdminScene extends Phaser.Scene {
             this.matter.world.remove(bodyB);
             console.log(bodyB)
             socket.emit('handShake', handShakeId);
-           
+
           }
-          
+
         }
 
 
       }
-     
+
   }, this);
   }
 
@@ -675,24 +675,28 @@ export default class AdminScene extends Phaser.Scene {
 
       socket.on('getHeartCount', hearts => {
         heartCount = hearts;
+        document.querySelector('.heartscount').innerHTML = heartCount;
         console.log(heartCount);
         // use in DOM
       });
 
       socket.on('getHighfiveCount', highfives => {
         highfiveCount = highfives;
+        document.querySelector('.highfivescount').innerHTML = highfiveCount;
         console.log(highfiveCount);
         // use in DOM
       });
 
       socket.on('handShaken', highfives => {
         highfiveCount = highfives;
+        document.querySelector('.highfivescount').innerHTML = highfiveCount;
         console.log(highfiveCount);
         // use in DOM
       });
 
       socket.on('heartAll', hearts => {
         heartCount = hearts;
+        document.querySelector('.heartscount').innerHTML = heartCount;
         console.log(heartCount);
         // use in DOM
       });
@@ -715,8 +719,8 @@ export default class AdminScene extends Phaser.Scene {
         hartjes.push(hartje);
         console.log(this.group1);
         console.log(this.group2);
-    
-       
+
+
 
       });
       socket.on('handAll', id => {
@@ -726,7 +730,7 @@ export default class AdminScene extends Phaser.Scene {
         const hand = this.matter.add.sprite(fallPositionX, fallPositionY, 'hand', 0, {restitution: .5, ignoreGravity: true});
 
       });
-      
+
 
       socket.on('shakeAll', () => {
 
@@ -748,7 +752,7 @@ export default class AdminScene extends Phaser.Scene {
           case "giechelig": this.feeling = this.matter.add.sprite(fallPosition, 0, `quirky${rand.toString()}`, 0, {restitution: .5, slop: 1});break;
           case "blij": this.feeling = this.matter.add.sprite(fallPosition, 0, `happy${rand.toString()}`, 0, {restitution: .5, slop: 1});break;
           case "afgemat": this.feeling = this.matter.add.sprite(fallPosition, 0, `tired${rand.toString()}`, 0, {restitution: .5, slop: 1});break;
-  
+
         }
         feelings.push(this.feeling);
       });
