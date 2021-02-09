@@ -25,7 +25,7 @@ canvas {
   max-height: 100vh;
   background-color: var(--white);
   border: .1 solid var(--black);
-  display: block;
+  /*display: block;*/
   opacity: 100%;
 }
 

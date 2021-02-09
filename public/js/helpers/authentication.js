@@ -5,13 +5,15 @@
     const $loginForm = document.querySelector(`.loginForm`);
     const $btnLogout = document.querySelector(`.btnLogout`);
     const $sectionAdminActive = document.querySelector(`.section-admin--active`);
+    const $sectionAdmin = document.querySelector(`.section-admin`);
     let firebaseInstance;
     let authInstance;
 
     const authStateChange = user => {
         if(user){
             console.log(`De user is ingelogd: ${user.email}`);
-            $sectionAdminActive.style.display = "block";
+            $sectionAdminActive.style.display = "grid";
+            $sectionAdmin.style.display = "none";
             $sectionAdminActive.scrollIntoView();
             $loginForm.style.display = "none";
             $btnLogout.style.display = "block";
@@ -42,7 +44,7 @@
         e.preventDefault();
         const email = $email.value;
         const password = $password.value;
-        
+
         try {
             const result = await authInstance.signInWithEmailAndPassword(
               email,
@@ -50,9 +52,9 @@
             );
                 const user = authInstance.currentUser;
                 authInstance.onAuthStateChanged(user => authStateChange(user));
-               
+
             return result;
-           
+
           } catch (error) {
             return error.code;
           }
@@ -72,7 +74,7 @@
           firebaseInstance = firebase.initializeApp(firebaseConfig);
           // Initialize Firebase authentication
           authInstance = firebase.auth();
- 
+
         $btnLogin.addEventListener(`click`, handleSubmitLogin);
         $btnLogout.addEventListener(`click`, handleSubmitLogout);
     }
