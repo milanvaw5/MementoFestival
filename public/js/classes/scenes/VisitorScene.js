@@ -41,7 +41,7 @@ const memootjes = [
   link: "https://www.instagram.com/hihelloalice/",
   forEmotions: ["somber", "blij"],
   keyword: "rimpels"
-},/*
+},
 {
   text: "En het voelt als thuiskomen.",
   author: "Loncke Oona",
@@ -161,18 +161,22 @@ const memootjes = [
   link: "https://www.instagram.com/tinelefebvre/",
   forEmotions: ["blij", "giechelig", "somber", "afgemat"],
   keyword: "hoop"
-},*/
+}
 
 
 ]
 
+let bodyPos = {
+  x1: 100,
+  y1: 100,
+  x2: 200,
+  y2: 200
+}
 
 let jointPositionsGebruikers = {
   nosePos: {x:1, y:1},
   leftWristPos: {x:1, y:1},
   rightWristPos: {x:1, y:1},
-  leftEyePos: {x:1, y:1},
-  rightEyePos: {x:1, y:1},
   leftShoulderPos: {x:1, y:1},
   rightShoulderPos: {x:1, y:1},
   leftElbowPos: {x:1, y:1},
@@ -188,8 +192,6 @@ let jointPositionsGebruikersTarget = {
   nosePosTarget: {x:1, y:1},
   leftWristPosTarget: {x:1, y:1},
   rightWristPosTarget: {x:1, y:1},
-  leftEyePosTarget: {x:1, y:1},
-  rightEyePosTarget: {x:1, y:1},
   leftShoulderPosTarget: {x:1, y:1},
   rightShoulderPosTarget: {x:1, y:1},
   leftElbowPosTarget: {x:1, y:1},
@@ -209,6 +211,10 @@ let auteurInput = ['Verloren','hinkel ik','over de sproeten op mijn vingers',
 'Onontdekt','en zorgeloos','dolend door mijn eigen hoofd'];*/
 
 let auteurInput = ['verloren','hinkelik','overdesproeten','opmijnvingers'];
+let $timer;
+if($btnHand){
+  $timer = $btnHand.querySelector(`.timer--hand`);
+}
 
 const $btnOntdek = document.querySelector(`.btn-ontdek`);
 const $introForm = document.querySelector(`.introForm`);
@@ -243,16 +249,15 @@ export default class VisitorScene extends Phaser.Scene {
   preload(){
     console.log(`PRELOAD visitor`);
     //Preloading sprites
-
-    //this.load.image('backgroundimage', 'assets/bimg.jpg');
-    //this.load.image('d', 'assets/ball.png');
-    this.load.image('test', 'assets/test.png');
+   
     this.load.image('head', 'assets/img/avatar/avatarGreen/x1/headGreen.png');
     this.load.image('footLeft', 'assets/img/avatar/avatarGreen/x1/footLeftGreen.png');
     this.load.image('footRight', 'assets/img/avatar/avatarGreen/x1/footRightGreen.png');
     this.load.image('handLeft', 'assets/img/avatar/avatarGreen/x1/handLeftGreen.png');
     this.load.image('handRight', 'assets/img/avatar/avatarGreen/x1/handRightGreen.png');
     this.load.image('body', 'assets/img/avatar/avatarGreen/x1/bodyGreen.png');
+    this.load.image('knee', 'assets/img/avatar/avatarGreen/x1/kneeGreen.png');
+    this.load.image('joint', 'assets/img/avatar/avatarGreen/x1/schijfGroen.png');
  
     this.load.image('a', 'assets/img/alphabet/x0.5/a.png');
     this.load.image('b', 'assets/img/alphabet/x0.5/b.png');
@@ -323,22 +328,23 @@ export default class VisitorScene extends Phaser.Scene {
     //backgroundimage = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'backgroundimage');
 
     this.noseAvatar = this.matter.add.image(jointPositionsGebruikers.nosePos.x, jointPositionsGebruikers.nosePos.y, 'head', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
-    this.bodyAvater = this.matter.add.image(jointPositionsGebruikers.nosePos.x, jointPositionsGebruikers.nosePos.y, 'body', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1}).setScale(.8);
+    //this.bodyAvater = this.matter.add.image(jointPositionsGebruikers.nosePos.x, jointPositionsGebruikers.nosePos.y, 'body', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1}).setScale(.8);
     this.leftWristAvatar = this.matter.add.image(jointPositionsGebruikers.leftWristPos.x, jointPositionsGebruikers.leftWristPos.y, 'handLeft', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
     this.rightWristAvatar = this.matter.add.image(jointPositionsGebruikers.rightWristPos.x, jointPositionsGebruikers.rightWristPos.y, 'handRight', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
-    this.leftEyeAvatar = this.matter.add.image(jointPositionsGebruikers.leftEyePos.x, jointPositionsGebruikers.leftEyePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
-    this.rightEyeAvatar = this.matter.add.image(jointPositionsGebruikers.rightEyePos.x, jointPositionsGebruikers.rightEyePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
-    this.leftShoulderAvatar = this.matter.add.image(jointPositionsGebruikers.leftShoulderPos.x, jointPositionsGebruikers.leftShoulderPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
-    this.rightShoulderAvatar = this.matter.add.image(jointPositionsGebruikers.rightShoulderPos.x, jointPositionsGebruikers.rightShoulderPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
-    this.leftElbowAvatar = this.matter.add.image(jointPositionsGebruikers.leftElbowPos.x, jointPositionsGebruikers.leftElbowPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
-    this.rightElbowAvatar = this.matter.add.image(jointPositionsGebruikers.rightElbowPos.x, jointPositionsGebruikers.rightElbowPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
-    this.leftHipAvatar = this.matter.add.image(jointPositionsGebruikers.leftHipPos.x, jointPositionsGebruikers.leftHipPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
-    this.rightHipAvatar = this.matter.add.image(jointPositionsGebruikers.rightHipPos.x, jointPositionsGebruikers.rightHipPos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
-    this.leftKneeAvatar = this.matter.add.image(jointPositionsGebruikers.leftKneePos.x, jointPositionsGebruikers.leftKneePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
-    this.rightKneeAvatar = this.matter.add.image(jointPositionsGebruikers.rightKneePos.x, jointPositionsGebruikers.rightKneePos.y, 'test', 0, {mass: 1000, inverseMass: 1000, ignoreGravity: false, density: 1});
+    this.leftShoulderAvatar = this.matter.add.image(jointPositionsGebruikers.leftShoulderPos.x, jointPositionsGebruikers.leftShoulderPos.y, 'joint', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
+    this.rightShoulderAvatar = this.matter.add.image(jointPositionsGebruikers.rightShoulderPos.x, jointPositionsGebruikers.rightShoulderPos.y, 'joint', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
+    this.leftElbowAvatar = this.matter.add.image(jointPositionsGebruikers.leftElbowPos.x, jointPositionsGebruikers.leftElbowPos.y, 'joint', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
+    this.rightElbowAvatar = this.matter.add.image(jointPositionsGebruikers.rightElbowPos.x, jointPositionsGebruikers.rightElbowPos.y, 'joint', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
+    this.leftHipAvatar = this.matter.add.image(jointPositionsGebruikers.leftHipPos.x, jointPositionsGebruikers.leftHipPos.y, 'joint', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
+    this.rightHipAvatar = this.matter.add.image(jointPositionsGebruikers.rightHipPos.x, jointPositionsGebruikers.rightHipPos.y, 'joint', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
+    this.leftKneeAvatar = this.matter.add.image(jointPositionsGebruikers.leftKneePos.x, jointPositionsGebruikers.leftKneePos.y, 'knee', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
+    this.rightKneeAvatar = this.matter.add.image(jointPositionsGebruikers.rightKneePos.x, jointPositionsGebruikers.rightKneePos.y, 'knee', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
     this.leftAnkleAvatar = this.matter.add.image(jointPositionsGebruikers.leftAnklePos.x, jointPositionsGebruikers.leftAnklePos.y, 'footLeft', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
     this.rightAnkleAvatar = this.matter.add.image(jointPositionsGebruikers.rightAnklePos.x, jointPositionsGebruikers.rightAnklePos.y, 'footRight', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
+    this.polygon = new Phaser.Geom.Polygon([{x:100, y:100}, {x: 200, y: 200}, {x: 200, y: 400}, {x: 100, y: 500}]);
+    this.graphics = this.add.graphics({ fillStyle: { color: 0x32b099 } });
 
+   
     this.pointer = this.input.activePointer;
     //this.input.mouse.onMouseWheel.preventDefault = false
 
@@ -350,7 +356,7 @@ export default class VisitorScene extends Phaser.Scene {
     this.group1 = this.matter.world.nextGroup();
     this.group2 = this.matter.world.nextGroup(true);
     
-    this.matter.world.on('collisionstart', function (event, bodyA, bodyB) {
+   /* this.matter.world.on('collisionstart', function (event, bodyA, bodyB) {
       //console.log(bodyA.texture.key);
    
       if (event.pairs[0].bodyA.gameObject){
@@ -380,15 +386,14 @@ export default class VisitorScene extends Phaser.Scene {
       }
      
   }, this);
+*/
+
     this.spawnLetters();
 
     this.scale.on('resize', this.resize, this);
     //timer = setTimeout(this.readInAuteurInput(), 50000);
   }
 
-  collide(){
-    
-  }
 
   resize(){
 
@@ -411,21 +416,14 @@ export default class VisitorScene extends Phaser.Scene {
     jointPositionsGebruikers.nosePos.y += ( jointPositionsGebruikersTarget.nosePosTarget.y - jointPositionsGebruikers.nosePos.y ) / 10;
     this.noseAvatar.x = jointPositionsGebruikers.nosePos.x;
     this.noseAvatar.y = jointPositionsGebruikers.nosePos.y;
-    this.bodyAvater.x = jointPositionsGebruikers.nosePos.x;
-    this.bodyAvater.y = jointPositionsGebruikers.nosePos.y + 300;
+   //this.bodyAvater.x = jointPositionsGebruikers.nosePos.x;
+    //this.bodyAvater.y = jointPositionsGebruikers.nosePos.y + 220;
     
 
     jointPositionsGebruikers.leftWristPos.x += ( jointPositionsGebruikersTarget.leftWristPosTarget.x - jointPositionsGebruikers.leftWristPos.x ) / 10;
     jointPositionsGebruikers.leftWristPos.y += ( jointPositionsGebruikersTarget.leftWristPosTarget.y - jointPositionsGebruikers.leftWristPos.y ) / 10;
     this.leftWristAvatar.x = jointPositionsGebruikers.leftWristPos.x;
     this.leftWristAvatar.y = jointPositionsGebruikers.leftWristPos.y;
-
-
-    jointPositionsGebruikers.leftEyePos.x += ( jointPositionsGebruikersTarget.leftEyePosTarget.x - jointPositionsGebruikers.leftEyePos.x ) / 10;
-    jointPositionsGebruikers.leftEyePos.y += ( jointPositionsGebruikersTarget.leftEyePosTarget.y - jointPositionsGebruikers.leftEyePos.y ) / 10;
-    this.leftEyeAvatar.x = jointPositionsGebruikers.leftEyePos.x;
-    this.leftEyeAvatar.y = jointPositionsGebruikers.leftEyePos.y;
-
 
     jointPositionsGebruikers.leftShoulderPos.x += ( jointPositionsGebruikersTarget.leftShoulderPosTarget.x - jointPositionsGebruikers.leftShoulderPos.x ) / 10;
     jointPositionsGebruikers.leftShoulderPos.y += ( jointPositionsGebruikersTarget.leftShoulderPosTarget.y - jointPositionsGebruikers.leftShoulderPos.y ) / 10;
@@ -459,11 +457,6 @@ export default class VisitorScene extends Phaser.Scene {
     this.rightWristAvatar.x = jointPositionsGebruikers.rightWristPos.x;
     this.rightWristAvatar.y = jointPositionsGebruikers.rightWristPos.y;
 
-    jointPositionsGebruikers.rightEyePos.x += ( jointPositionsGebruikersTarget.rightEyePosTarget.x - jointPositionsGebruikers.rightEyePos.x ) / 10;
-    jointPositionsGebruikers.rightEyePos.y += ( jointPositionsGebruikersTarget.rightEyePosTarget.y - jointPositionsGebruikers.rightEyePos.y ) / 10;
-    this.rightEyeAvatar.x = jointPositionsGebruikers.rightEyePos.x;
-    this.rightEyeAvatar.y = jointPositionsGebruikers.rightEyePos.y;
-
     jointPositionsGebruikers.rightShoulderPos.x += ( jointPositionsGebruikersTarget.rightShoulderPosTarget.x - jointPositionsGebruikers.rightShoulderPos.x ) / 10;
     jointPositionsGebruikers.rightShoulderPos.y += ( jointPositionsGebruikersTarget.rightShoulderPosTarget.y - jointPositionsGebruikers.rightShoulderPos.y ) / 10;
     this.rightShoulderAvatar.x = jointPositionsGebruikers.rightShoulderPos.x;
@@ -488,7 +481,26 @@ export default class VisitorScene extends Phaser.Scene {
     jointPositionsGebruikers.rightAnklePos.y += ( jointPositionsGebruikersTarget.rightAnklePosTarget.y - jointPositionsGebruikers.rightAnklePos.y ) / 10;
     this.rightAnkleAvatar.x = jointPositionsGebruikers.rightAnklePos.x;
     this.rightAnkleAvatar.y = jointPositionsGebruikers.rightAnklePos.y;
-
+    this.graphics.clear();
+    this.graphics.fillPoints([
+      {
+        x: jointPositionsGebruikers.leftShoulderPos.x, 
+        y: jointPositionsGebruikers.leftShoulderPos.y
+      }, 
+      {
+      x: jointPositionsGebruikers.rightShoulderPos.x, 
+      y: jointPositionsGebruikers.rightShoulderPos.y
+      }, 
+      {
+        x: jointPositionsGebruikers.rightHipPos.x, 
+        y: jointPositionsGebruikers.rightHipPos.y
+      }, 
+      {
+        x: jointPositionsGebruikers.leftHipPos.x, 
+        y: jointPositionsGebruikers.leftHipPos.y
+      }], true);
+    //this.polygon
+   //this.polygon.setTo([{x:jointPositionsGebruikers.rightShoulderPos.x, y:jointPositionsGebruikers.rightShoulderPos.y}, {x: jointPositionsGebruikers.leftShoulderPos.x, y: jointPositionsGebruikers.leftShoulderPos.y}, {x: jointPositionsGebruikers.rightHipPos.x, y: jointPositionsGebruikers.rightHipPos.y}, {x: jointPositionsGebruikers.leftHipPos.x, y: jointPositionsGebruikers.leftHipPos.y}]);
 
     if(isLive){
       if($liveTitle.textContent === 'live'){
@@ -641,8 +653,19 @@ handleLetterArrays(l){
 
       });
       socket.on('handShaken', () => {
+        const $popupHighfive = document.querySelector(`.popup--highfive`);
+        const $highFiveText = $popupHighfive.querySelector(`p`);
+        const $highFiveImg = $popupHighfive.querySelector(`img`);
+        $highFiveText.textContent = "Je hebt een highfive terug van uit Kortrijk!";
+        $popupHighfive.style.animation = "appearAndDisappear 4s ease";
+        $popupHighfive.style.opacity = "0";
+        $highFiveImg.style.animation = "highFive 1s ease";
+        setTimeout(function(){ 
+          $popupHighfive.style.animation = "none";
+          $popupHighfive.style.opacity = "0";
+          $highFiveImg.style.animation = "none";
+         }, 4000);
 
-      console.log("hand shooked")
 
       });
       socket.on('heartAll', () => {
@@ -671,13 +694,13 @@ handleLetterArrays(l){
 
         jointPositionsGebruikersTarget.nosePosTarget.x = this.cameras.main.width * jointPositions.nosePos.x;
         jointPositionsGebruikersTarget.nosePosTarget.y = this.cameras.main.height * jointPositions.nosePos.y;
-
+/*
         jointPositionsGebruikersTarget.leftEyePosTarget.x = this.cameras.main.width * jointPositions.leftEyePos.x;
         jointPositionsGebruikersTarget.leftEyePosTarget.y = this.cameras.main.height * jointPositions.leftEyePos.y;
 
         jointPositionsGebruikersTarget.rightEyePosTarget.x =  this.cameras.main.width * jointPositions.rightEyePos.x;
         jointPositionsGebruikersTarget.rightEyePosTarget.y = this.cameras.main.height * jointPositions.rightEyePos.y;
-
+*/
         jointPositionsGebruikersTarget.leftWristPosTarget.x = this.cameras.main.width * jointPositions.leftWristPos.x;
         jointPositionsGebruikersTarget.leftWristPosTarget.y = this.cameras.main.height * jointPositions.leftWristPos.y;
 
@@ -723,7 +746,7 @@ handleLetterArrays(l){
       if($introForm){
         $btnOntdek.addEventListener('click', e => this.handleClickOntdek(e));
         //$btnOntdek.addEventListener('touch', e => this.handleClickOntdek(e));
-       // document.querySelector(`canvas`).style.height = "100vh";
+        //document.querySelector(`canvas`).style.height = "100vh";
       }
 
       if($wordForm){
@@ -971,13 +994,25 @@ handleLetterArrays(l){
     if(isHandClickable === false){
 
     }else{
-      const $timer = $btnHand.querySelector(`.timer--hand`);
-   
+      const $popupHighfive = document.querySelector(`.popup--highfive`);
+      const $highFiveText = $popupHighfive.querySelector(`p`);
+      const $highFiveImg = $popupHighfive.querySelector(`img`);
+
+      $highFiveText.textContent = "Highfive is verstuurd";
+      $popupHighfive.style.animation = "appearAndDisappear 4s ease";
+      $popupHighfive.style.opacity = "0";
+      $highFiveImg.style.animation = "highFive 4s ease";
+      setTimeout(function(){ 
+        $popupHighfive.style.animation = "none";
+        $popupHighfive.style.opacity = "0";
+        $highFiveImg.style.animation = "none";
+       }, 4000);
+
       $timer.classList.add('timer');
       socket.emit('hand');
-      const fallPositionX = Phaser.Math.Between(60, this.cameras.main.height - 60);
-      const fallPositionY = Phaser.Math.Between(60, this.cameras.main.width - 60);
-      const hand = this.matter.add.sprite(fallPositionX, fallPositionY, 'hand', 0, {restitution: .5, ignoreGravity: true});
+     // const fallPositionX = Phaser.Math.Between(60, this.cameras.main.height - 60);
+    //  const fallPositionY = Phaser.Math.Between(60, this.cameras.main.width - 60);
+    //  const hand = this.matter.add.sprite(fallPositionX, fallPositionY, 'hand', 0, {restitution: .5, ignoreGravity: true});
       isHandClickable = false;
       if(isHandClickable === false){
         setTimeout(function(){ 
