@@ -324,7 +324,7 @@ export default class VisitorScene extends Phaser.Scene {
 
   create(){
     console.log(`CREATE`);
-  
+
     //this.cameras.main.setBackgroundColor('rgba(0, 0, 0, 0)');
     this.makeConnection();
 
@@ -403,7 +403,7 @@ export default class VisitorScene extends Phaser.Scene {
     //  this.scale.setGameSize(gameSize.width, gameSize.height);
     //}, this);
 
-    
+
 
     //timer = setTimeout(this.readInAuteurInput(), 50000);
   }
@@ -415,12 +415,12 @@ export default class VisitorScene extends Phaser.Scene {
 
 
   update(){
-  
+
   this.scale.resize(1000, 1000); // fixes the bug: setInteractive oonly works when windows is resized once, putting this in create() was advised from forums but didn't work, used update() instead
   // https://phaser.discourse.group/t/problem-with-setinteractive-function/3261
   // https://stackoverflow.com/questions/57247491/problem-with-setinteractive-function-in-phaser-3
-  
-    
+
+
     //bij een bepaald aantal letters op het scherm - zullen er een hoeveelheid verdwijnen,
     //random gekozen om zo nieuwe woorden en mysterie te creëren
     if (letters.length === 50) {
@@ -977,7 +977,7 @@ handleLetterArrays(l){
             memootje.forEmotions.forEach(forEmotion => {
 
                if(forEmotion === selectedFeeling){
-                 
+
                  memootjesEmotion.push(memootje);
                }
             });
@@ -1065,7 +1065,8 @@ handleLetterArrays(l){
 
     if(isHandClickable === false){
 
-    }else{
+    }
+    else{
       const $popupHighfive = document.querySelector(`.popup--highfive`);
       const $highFiveText = $popupHighfive.querySelector(`p`);
       const $highFiveImg = $popupHighfive.querySelector(`img`);
