@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta property="og:url"           content="https://www.facebook.com" />
-<meta property="og:type"          content="website" />
-<meta property="og:title"         content="De Letterdoos" />
-<meta property="og:description"   content="Your description" />
-<meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="De Letterdoos" />
+    <meta property="og:description"   content="Your description" />
+    <meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://use.typekit.net/jts7xpz.css">
@@ -22,9 +22,9 @@
   <body class="snapContainer">
     <h1 class="titel hidden">De Letterdoos - Memento Festival</h1>
 
-    <section id="intro" class="onepager__section scrollSnap">
+    <section id="intro" class="onepager__section section__intro scrollSnap">
       <h2 class="section__title hidden">Home</h2>
-    
+
       <article class="section__article intro">
         <h3 class="article__title hidden">Informatie over De Letterdoos</h3>
         <div class="textparagraph intro__top">
@@ -52,6 +52,7 @@
 
     <section id="wordgame" class="onepager__section section__wordgame scrollSnap">
       <h2 class="section__title hidden">De Letterdoos online game</h2>
+
       <div class="popup popup--word">
         <p class="popup__text"></p>
       </div>
@@ -60,19 +61,24 @@
         <img src="assets/img/letterdoos/hand/x1/handDark.png" alt="hand">
       </div>
 
+
+
       <article class="section__article article__wordgame">
+        <div class="popup popup--word">
+          <p class="popup__text"></p>
+        </div>
         <h3 class="article__title hidden">Stream</h3>
 
         <div class="live__footage">
         <div class="wordGame informationblock">
-         
+
           <div class="live__footage__indicationblock">
             <img class="bol" alt="bol" src="assets/img/bol.png">
             <p class="live__footage__indication title">LIVE</p>
           </div>
           <p class="live__footage__subindication">op het festival</p>
-       
-          
+
+
         </div>
         <img class="questionmark questionmark--live" alt="vraagtekenicoontje" src="assets/img/icons/questionmark.svg">
       </div>
@@ -96,15 +102,18 @@
       </form>-->
 
       <article class="section__article article__forms">
-        <a class="link buttonlink" href="#intro"><button class="button">Terug naar home</button></a>
-        <h3 class="article__title">De Letterdoos</h3>
 
-        <section class="form__section">
+        <section class="form__section formsection__homebtn">
+          <h4 class="article__title">De Letterdoos</h4>
+          <a class="link buttonlink" href="#intro"><button class="button">Terug naar home</button></a>
+        </section>
+
+        <section class="form__section bordered">
           <h4 class="title">Bespeel De Letterdoos</h4>
         </section>
 
-        <section class="controls form__section form__section__buttons">
-          <h4 class="form__title">Interacties</h3>
+        <section class="form__section form__section__buttons bordered">
+          <h4 class="form__title">Interacties</h4>
           <div class="form__section__topbuttons">
 
             <button class="button button--timer groen" style="--duration: 5;"><div class="timer--hand"></div><div class="hand">Zeg hallo!</div></button>
@@ -113,8 +122,17 @@
           </div>
           <button class="button button--timer blauw" style="--duration: 5;"><div class="timer--schud"></div><div class="schud">Schud De Letterdoos</div></button>
         </section>
-        <section class="memootje form__section">
-          <h4 class="form__title">Vragen</h3>
+
+
+        <section class="form__section memootje bordered">
+          <h4 class="form__title">Vragen</h4>
+
+          <div class="rotation">
+            <img class="rotation__arrow" alt="rotation arrow" src="assets/img/icons/arrowtop.svg">
+            <img class="rotation__hand" alt="rotation hand" src="assets/img/interactions/wave.svg">
+            <p>Draai je toestel om woorden in te geven.</p>
+            <img class="rotation__arrow" alt="rotation arrow" src="assets/img/icons/arrowbottom.svg">
+          </div>
 
           <div class="introForm form-0">
             <p class="wordForm__question__expl__title">Ontdek je memootje!</p>
@@ -122,20 +140,10 @@
             <button class="btn-next btn-ontdek button primbutton">Volgende</button>
           </div>
 
-          <div class="wordForm__question__expl qwoord">
-            <p class="wordForm__question__expl__title">
-              Het thema van het festival is dit jaar “verdwalen”. Wij vroegen ons af wat verdwalen betekent voor jou.
-            </p>
-            <p class="wordForm__question__expl__subtitle">
-              Scroll naar beneden om meer te weten te komen over het festival en de installatie.
-            </p>
-          </div>
-
-        
           <form class="wordForm form-1">
             <p class="wordForm__intro">Voltooi de drie taken om jouw persoonlijk Memootje te ontdekken.</p>
             <p class="wordForm__countdown">1/3</p>
-            
+
             <div class="questionbox">
               <p class="wordForm__question">Wat betekent verdwalen voor jou?</p>
               <img class="questionmark questionmark--word" alt="vraagtekenicoontje" src="assets/img/icons/questionmark.svg">
@@ -146,25 +154,16 @@
               <input type="text" id="enteredWord" class="enteredWord inputfield" name="enteredWord" minlength="2" maxlength="20" pattern="\b(?!\bword\b)[A-Za-z]+\b" required>
              <!-- <input id="sumbitwordbutton" class="verstuurbutton" type="submit" value="VERSTUUR">-->
              <button class="buttonVerstuur primbutton prim">Verstuur</button>
-            
+
             </div>
           </form>
-
-          <div class="wordForm__question__expl" id="qemotic">
-            <p class="wordForm__question__expl__title">
-              Kortrijk als community staat voor ons vooraan in de lijst.****
-            </p>
-            <p class="wordForm__question__expl__subtitle">
-              Laat de mensen op het festival weten hoe je je voelt. De emotie die jij kiest zal mee in de letterdoos vallen.
-            </p>
-          </div>
 
           <form class="feelingsForm form-2">
             <p class="wordForm__intro">Voltooi de drie taken om jouw persoonlijk Memootje te ontdekken</p>
             <p class="wordForm__countdown">2/3</p>
             <div class="questionbox">
               <p class="wordForm__question">Hoe voel jij je vandaag?</p>
-             
+
              <img class="questionmark questionmark--feeling" alt="vraagtekenicoontje" src="assets/img/icons/questionmark.svg">
             </div>
 
@@ -205,15 +204,6 @@
             <!--<button class="btn-next btn-next--emotion volgendebutton">Volgende</button>-->
           </form>
 
-          <div class="wordForm__question__expl" id="qklikword">
-            <p class="wordForm__question__expl__title">
-              Een kleine challenge voor jouw prijs.
-            </p>
-            <p class="wordForm__question__expl__subtitle">
-              Neem interactie met de letterdoos en klik op de juiste letters om jouw memootje te ontvangen.
-            </p>
-          </div>
-
           <form class="challengeForm form-3">
             <p class="wordForm__intro">Voltooi de drie taken om jouw persoonlijk Memootje te ontdekken.</p>
             <p class="wordForm__countdown">3/3</p>
@@ -222,10 +212,7 @@
               <img class="questionmark questionmark--challenge" alt="vraagtekenicoontje" src="assets/img/icons/questionmark.svg">
             </div>
             <p class="wordForm__subinfo">Klik op de letters in de letterdoos om het woord in te vullen.</p>
-
             <div class="wordForm__challenge"></div>
-
-
           </form>
 
           <div class="haikuForm form-4">
@@ -237,7 +224,13 @@
 
           </div>
         </section>
-        <a class="link buttonlink" href="#info"><button class="button">Meer over de installatie</button></a>
+
+        <section class="form__section formsection__instalabtn">
+          <h4 class="article__title">Link to installation info</h4>
+          <a class="link buttonlink" href="#info"><button class="button">Meer over de installatie</button></a>
+        </section>
+
+
      </article>
 
     </section>
@@ -246,11 +239,13 @@
     <section id="info" class="onepager__section section__information scrollSnap">
       <h2 class="section__title">Meer informatie over de installatie</h2>
       <article class="section__article information__parts">
+
         <div class="information__part">
           <h3 class="title">Stap in de Letterdoos</h3>
           <p>De Letterdoos kan je niet alleen vanop je scherm besturen, maar ook in Kortrijk zelf. Kom eens langs en neem een kijkje of spring zelf in de Letterdoos en beweeg door de letters als het virtuele personage.</p>
         </div>
-       <div class="information__part">
+
+        <div class="information__part">
           <p class="article__subtitle subtitle">Wandelparcours</p>
           <p>De Letterdoos maakt deel uit van het Memento wandelparcours en is voor iedereen toegankelijk.</p>
           <div class="wandelapp__section">
@@ -259,42 +254,38 @@
               Neem deel via de app en laat je verassen door de adembenemende stad Kortrijk.
               <a class="wandelapplink" href="https://www.youtube.com/watch?v=Q0oIoR9mLwc">Meer informatie in de app.</a></p>
           </div>
-          </div>
+        </div>
+
        </article>
-      <article class="section__article form__section praktisch">
-        <h3 class="title">Praktisch</h3>
-        <ul class="praktisch__items">
-          <li class="praktisch__date title">18/04/2021 - 24/04/2021</li>
-          <li class="praktisch__time">Elke dag van 08:00 tot 20:00</li>
-          <li class="praktisch__location">8500 Kortrijk, Astridpark 54 </li>
-        </ul>
 
+      <article class="section__article form__section section__praktisch">
 
-        <!-- creëert een hoop warnings CSP, maar mogen gegenegeerd worden: https://www.reddit.com/r/firefox/comments/fpptyj/firefox_content_security_policy_console_output/-->
-        <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2519.8195234390837!2d3.255779815752779!3d50.83450676749796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c33afa5a73961b%3A0x20cef998adf3063e!2sAstridpark%2C%208500%20Kortrijk!5e0!3m2!1snl!2sbe!4v1612714036464!5m2!1snl!2sbe" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-      </div>
-        <ul class="praktisch__travelitems">
-          <li class="praktisch__travelitem trein">15 min wandelen van Station Kortrijk (1,5km)</li>
-          <li class="praktisch__travelitem parking">Parking Budabrug of Broeltorens tegen betaling</li>
-          <li class="praktisch__travelitem fiets">Fietsenstalling voorzien</li>
-        </ul>
+        <div class="praktisch bordered">
+          <h3 class="title">Praktisch</h3>
+          <ul class="praktisch__items">
+            <li class="praktisch__date title">18/04/2021 - 24/04/2021</li>
+            <li class="praktisch__time">Elke dag van 08:00 tot 20:00</li>
+            <li class="praktisch__location">8500 Kortrijk, Astridpark 54 </li>
+          </ul>
+
+          <!-- creëert een hoop warnings CSP, maar mogen gegenegeerd worden: https://www.reddit.com/r/firefox/comments/fpptyj/firefox_content_security_policy_console_output/-->
+          <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2519.8195234390837!2d3.255779815752779!3d50.83450676749796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c33afa5a73961b%3A0x20cef998adf3063e!2sAstridpark%2C%208500%20Kortrijk!5e0!3m2!1snl!2sbe!4v1612714036464!5m2!1snl!2sbe" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+          <ul class="praktisch__travelitems">
+            <li class="praktisch__travelitem trein">15 min wandelen van Station Kortrijk (1,5km)</li>
+            <li class="praktisch__travelitem parking">Parking Budabrug of Broeltorens tegen betaling</li>
+            <li class="praktisch__travelitem fiets">Fietsenstalling voorzien</li>
+          </ul>
+        </div>
+
       </article>
+
     </section>
 
     <section class="onepager__section information__blocks scrollSnap">
-      <h2 class="section__title">Meer informatie over Memento en Covid-19</h2>
 
       <article class="information__block">
-        <img class="blob" alt="blob" src="./assets/img/blobs/orangeblob.png">
-        <div class="information__block__partleft">
-          <h3 class="title">Covid-19</h3>
-          <p>Het initiatief is ontstaan door de beperkingen van COVID-19. Dit jaar wil Memento meer bieden op het vlak van een online festival ervaring. We betrekken de online community mee op een interactieve manier en maken plaats voor een intieme ontmoeting tussen de artiesten van het collectief en het publiek.</p>
-          <button class="button smallbutton primbutton">Memento festival</button>
-        </div>
-      </article>
-   
-      <article class="information__block">
-        <div class="information__block__partright">
+        <div class="information__block__part">
           <h3 class="title">Memento Woordfestival 2021</h3>
           <p>De Letterdoos maakt deel uit van het Memento Woordfestival in Kortrijk.
             Het festival bestaat uit het initiatief van de <strong>Letterzetter van Kortrijk</strong>.
@@ -308,7 +299,17 @@
         </div>
         <img class="blob" alt="blob" src="./assets/img/blobs/yellowcloud.png">
       </article>
-   
+
+      <article class="information__block">
+        <img class="blob" alt="blob" src="./assets/img/blobs/orangeblob.png">
+        <div class="information__block__part">
+          <h2 class="section__title">Meer informatie over Memento en Covid-19</h2>
+          <h3 class="title">Covid-19</h3>
+          <p>Het initiatief is ontstaan door de beperkingen van COVID-19. Dit jaar wil Memento meer bieden op het vlak van een online festival ervaring. We betrekken de online community mee op een interactieve manier en maken plaats voor een intieme ontmoeting tussen de artiesten van het collectief en het publiek.</p>
+          <button class="button smallbutton primbutton">Memento festival</button>
+        </div>
+      </article>
+
     </section>
 
     <footer class="footer scrollSnap">

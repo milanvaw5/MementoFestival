@@ -10,13 +10,6 @@ html {
   /*overflow: hidden;*/
 }
 
-canvas {
-    max-width: 100vw;
-    max-height: 100vh;
-    background-color: var(--white);
-    border: .1 solid var(--black);
-}
-
 body {
     max-width: 100vw;
     max-height: 100vh;
@@ -45,11 +38,15 @@ body {
   font-size: 0.8rem;
 }
 
+.btnLogin {
+  display: block;
+}
+
 .button {
   min-height: 3.5rem;
   max-height: 4rem;
   padding: 0 1.2rem;
-  margin: 1rem .5rem 1.5rem;
+  margin: .5rem .2rem 1.5rem;
   font-weight: 700;
   border: 0.1rem solid var(--black);
   color: var(--black);
@@ -67,7 +64,7 @@ body {
   left: -1rem;
   text-align: center;
   vertical-align: middle;
-  line-height: 0;
+  line-height: 1rem;
 }
 
 .button::before {
@@ -95,7 +92,7 @@ body {
   z-index: -1;
 }
 
-/* 
+/*
 @media (hover: hover) {
   .button:hover {
     cursor: pointer;
@@ -103,7 +100,7 @@ body {
     bottom: -1rem;
     box-shadow: none;
   }
-  
+
   .button:hover::after, .button:hover::before {
     background-color: var(--white);
   }
@@ -118,13 +115,14 @@ body {
     bottom: -1rem;
     box-shadow: none;
   }
-  
+
   .buttonVerstuur:hover::after, .buttonVerstuur:hover::before {
     background-color: var(--white);
     opacity: 0;
   }
 }
 */
+
 .button:active {
   cursor: pointer;
   left: .5rem;
@@ -135,18 +133,16 @@ body {
 .button:active::after, .button:active::before {
   background-color: var(--white);
 }
+
 .primbutton:active {
   background-color: var(--black);
   color: var(--white);
 }
 
-
 .primbutton {
   background-color: var(--black);
   color: var(--white);
 }
-
-
 
 .prim {
   color: var(--white);
@@ -202,6 +198,12 @@ body {
   z-index: -1;
 }
 
+.qr-block__code {
+  height: 5vh;
+  width: 5vw;
+  margin: 1rem 1rem 0;
+}
+
 .buttonVerstuur:active {
   cursor: pointer;
   left: .5rem;
@@ -217,8 +219,6 @@ body {
   background-color: var(--black);
   color: var(--white);
 }
-
-
 
 .prim {
   color: var(--white);
