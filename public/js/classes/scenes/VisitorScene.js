@@ -900,14 +900,22 @@ handleLetterArrays(l){
        this.showValidationInfo(field)
 
        // $wordForm.querySelector(`.error`).innerHTML = `Some errors occured`;
-      } else {
+      }
+      else {
+
         if(forbiddenWordsEn.includes(field.value) || forbiddenWordsNl.includes(field.value) || forbiddenWordsFr.includes(field.value) || forbiddenWordsDe.includes(field.value)) {
           form.querySelector(`.error`).textContent = "Deze woorden worden niet toegelaten";
-        }else{
-
-
-        $wordForm.style.display = "none";
-        $feelingsForm.style.display = "block";
+        }
+        else {
+          if (window.innerWidth <= 1000 && window.innerWidth >= 500) {
+            $introForm.style.display = `none`;
+            $wordForm.style.display = `block`;
+            $feelingsForm.style.display = "none";
+          }
+          else {
+            $wordForm.style.display = "none";
+            $feelingsForm.style.display = "block";
+          }
         console.log(field.value)
         socket.emit('message', field.value);
         //socket.emit('messages', messages);
