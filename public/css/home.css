@@ -804,6 +804,11 @@ p {
   display: none;
 }
 
+.wordForm {
+  opacity: 100;
+  height: 100;
+}
+
 /*******************************/
 
 .footer {
@@ -1020,7 +1025,7 @@ p {
     max-width: 40vw;
   }
 
-  .form__section__buttons, .formsection__homebtn, .formsection__instalabtn, .introForm {
+  .form__section__buttons, .formsection__homebtn, .formsection__instalabtn, .introForm, .wordForm__countdown, .questionmark {
     display: none;
   }
 
@@ -1171,6 +1176,11 @@ p {
 
   canvas {
     opacity: 0;
+  }
+
+  .wordForm {
+    opacity: 0;
+    height: 0;
   }
 
   .rotation {

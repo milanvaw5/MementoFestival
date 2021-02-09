@@ -772,7 +772,7 @@ handleLetterArrays(l){
       if($introForm){
         $btnOntdek.addEventListener('click', e => this.handleClickOntdek(e));
 
-        if (window.innerWidth < 1000) {
+        if (window.innerWidth <= 1000 && window.innerWidth >= 500) {
           $introForm.style.display = `none`;
           $wordForm.style.display = `block`;
         }
