@@ -33,10 +33,6 @@
     align-content: center;
     align-items: center;
     justify-items: center;
-    background-image: url("assets/img/leftstrokeprojection.svg");
-    background-position: left top;
-    background-repeat: no-repeat;
-    background-size: 20vw 100vh;
 }
 
 .section-admin--active {
@@ -92,4 +88,19 @@
     padding: 1rem;
     background-color: var(--black);
     color: var(--white);
+}
+
+/************************************/
+
+.admin__datasection {
+
+  background-image: url("assets/img/leftstrokeprojection.svg");
+  background-position: left top;
+  background-repeat: no-repeat;
+  background-size: 20vw 100vh;
+}
+
+
+.admin__datasection__datapieces {
+  color: var(--white);
 }
