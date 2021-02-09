@@ -1,3 +1,4 @@
+let resizeBug = true;
 let letter;
 let woordje;
 //let backgroundimage;
@@ -321,7 +322,7 @@ export default class VisitorScene extends Phaser.Scene {
 
   create(){
     console.log(`CREATE`);
-
+  
     //this.cameras.main.setBackgroundColor('rgba(0, 0, 0, 0)');
     this.makeConnection();
 
@@ -388,21 +389,35 @@ export default class VisitorScene extends Phaser.Scene {
 
   }, this);
 */
+//this.scale.resize(999, 999);
 
     this.spawnLetters();
+   // this.scale.setGameSize(800, 800);
+    //this.scale.updateBounds();
+    //this.scale.on('resize', this.resize, this);
 
-    this.scale.on('resize', this.resize, this);
+    //this.scale.on('resize', function(gameSize, baseSize, displaySize, previousWidth, previousHeight) {
+    //  this.scale.setGameSize(gameSize.width, gameSize.height);
+    //}, this);
+
+    
+
     //timer = setTimeout(this.readInAuteurInput(), 50000);
   }
 
 
   resize(){
-
+    console.log("is resized")
   }
 
 
   update(){
-
+  
+  this.scale.resize(1000, 1000); // fixes the bug: setInteractive oonly works when windows is resized once, putting this in create() was advised from forums but didn't work, used update() instead
+  // https://phaser.discourse.group/t/problem-with-setinteractive-function/3261
+  // https://stackoverflow.com/questions/57247491/problem-with-setinteractive-function-in-phaser-3
+  
+    
     //bij een bepaald aantal letters op het scherm - zullen er een hoeveelheid verdwijnen,
     //random gekozen om zo nieuwe woorden en mysterie te creëren
     if (letters.length === 50) {
@@ -533,10 +548,10 @@ export default class VisitorScene extends Phaser.Scene {
       console.log('spawnWord: ' + split[letter]);
       const l = this.matter.add.sprite(fallPosition, 0,  split[letter], 0, {restitution: .5, slop: 1});
 
-     // l.setInteractive({useHandCursor: true}).on('pointerdown', () => this.onClickLetter(l));
-     l.setInteractive({useHandCursor: true}).on('pointerdown', function(){
-        console.log("yay");
-     }, this);
+      l.setInteractive({useHandCursor: true}).on('pointerdown', () => this.onClickLetter(l));
+     //l.setInteractive({useHandCursor: true}).on('pointerdown', function(){
+     //   console.log("yay");
+     //}, this);
       console.log(l);
       l.setCollisionGroup(this.group1)
      // l.setCollidesWith(0)
@@ -557,24 +572,27 @@ export default class VisitorScene extends Phaser.Scene {
   }
 
 handleLetterArrays(l){
+  let foundALetter = false;
   if(lostLetters.includes(l.texture.key)){
 
     lostLetters.forEach(lostLetter => {
       const index = lostLetters.indexOf(lostLetter);
-      if (lostLetter == l.texture.key){
+      if (lostLetter == l.texture.key && foundALetter === false){
         lostLetters.splice(index, 1);
-        console.log(lostLetters)
+        console.log(lostLetters);
+        foundALetter = true;
       }
     });
     foundLetters.push(l.texture.key);
     let foundLetter = document.querySelector(`.challengeLetter--${l.texture.key}`);
-
+    console.log(foundLetter);
     foundLetter.src = `assets/img/alphabet/x0.5/${l.texture.key}.png`;
     foundLetter.classList.add(`letter`)
     foundLetter.classList.add(`foundLetter--${l.texture.key}`)
     foundLetter.classList.remove(`challengeLetter--${l.texture.key}`)
-
-    console.log(lostLetters.length);
+    foundALetter = false;
+    //console.log(lostLetters.length);
+    //console.log(foundLetters.length);
 
     if(lostLetters.length <= 0){
       this.handleLetterArrays(l);
@@ -940,7 +958,7 @@ handleLetterArrays(l){
             memootje.forEmotions.forEach(forEmotion => {
 
                if(forEmotion === selectedFeeling){
-                 console.log(forEmotion)
+                 
                  memootjesEmotion.push(memootje);
                }
             });
@@ -1124,7 +1142,7 @@ handleLetterArrays(l){
     readWord = woordje;
     if (readWord!= '') {
       console.log(readWord);
-      this.splitWord(readWord);
+      //this.splitWord(readWord);
       this.spawnWord();
       console.log(letters);
       //timer = setInterval(this.readInAuteurInput(), 50000); //timer resetten
