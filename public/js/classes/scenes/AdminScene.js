@@ -485,9 +485,10 @@ export default class AdminScene extends Phaser.Scene {
     });
 
     letterWaitingToBeDestroyed.push(letters[rand]);
-   // letters[rand].destroy();
+    // letters[rand].destroy();
     letters.splice(rand, 1);
     console.log('Dit is de index:' + index);
+
     if(index === 3){
       setTimeout(function(){
         letterWaitingToBeDestroyed.forEach(letter => {
@@ -835,6 +836,7 @@ export default class AdminScene extends Phaser.Scene {
 
         }
         feelings.push(this.feeling);
+        letters.push(this.feeling);
       });
 
     };
