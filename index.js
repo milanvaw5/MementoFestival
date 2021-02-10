@@ -17,6 +17,9 @@ io.on('connection', socket => {
 
   socket.on('admin', () => {
     admin = socket.id;
+    words = [];
+    feelings = [];
+    io.sockets.emit(`synchronize`);
     console.log(`admin: ${socket.id}`);
     livePing = setInterval(() => {
       io.sockets.emit('live');
@@ -27,6 +30,9 @@ io.on('connection', socket => {
     console.log(message);
 
     words.push(message);
+    if(words.length > 30){
+      words.shift();
+    }
     console.log(words);
     io.sockets.emit(`message`, message);
     
@@ -76,6 +82,10 @@ io.on('connection', socket => {
   });
   socket.on('requestHighfives', () => {
     socket.emit('getHighfiveCount', highfives);
+  });
+
+  socket.on('clearLetter', letter => {
+    socket.emit('clearLetterAll', letter);
   });
 
   

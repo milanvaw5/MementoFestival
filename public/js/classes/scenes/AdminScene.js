@@ -20,6 +20,7 @@ let socket; // will be assigned a value later
 let percentageX;
 let percentageY;
 let handShakeId;
+let isClearing = false;
 /*
 let auteurInput = ['Verloren','hinkel ik','over de sproeten op mijn vingers',
 'Afgeslagen','langzaam ademend','langs mijn armen dwalend','Mijn rug','terug – gezucht –',
@@ -399,7 +400,13 @@ export default class AdminScene extends Phaser.Scene {
     this.group1 = this.matter.world.nextGroup();
     this.group2 = this.matter.world.nextGroup(true);
 
-  
+    this.time.addEvent({
+      delay: 300,             
+      callback: this.clearLetters,
+      callbackScope : this,
+      args: [letters],
+      loop: true
+  });
 
     this.spawnLetters();
     // emit only 10 times per second
@@ -460,6 +467,40 @@ export default class AdminScene extends Phaser.Scene {
   }, this);
   }
 
+  clearLetters(){
+
+    if(letters.length > 10 && isClearing === false){
+      isClearing = true;
+      let letterWaitingToBeDestroyed = [];
+      for (let index = 0; index < 4; index++) {
+       
+      const rand = Math.floor(Math.random()*letters.length);
+
+      console.log(rand);
+      this.tweens.add({
+        targets: letters[rand],
+        scale: 0,
+        duration: 100,
+        ease: 'Linear'
+    });
+    
+    letterWaitingToBeDestroyed.push(letters[rand]);
+   // letters[rand].destroy();
+    letters.splice(rand, 1);
+    console.log('Dit is de index:' + index);
+    if(index === 3){
+      setTimeout(function(){
+        letterWaitingToBeDestroyed.forEach(letter => {
+          letter.destroy();
+        });
+      }, 300);
+      
+      isClearing = false;
+    }
+
+    }
+  }
+}
   onEvent(){
    //socket.emit('points', jointPositions);
     socket.emit('points', jointPositionsWebcamPercentage);
@@ -476,6 +517,7 @@ export default class AdminScene extends Phaser.Scene {
       }
     }
 
+  
 
   // this.calcPercentage();
 /*
@@ -763,11 +805,19 @@ export default class AdminScene extends Phaser.Scene {
         const hand = this.matter.add.sprite(fallPositionX, fallPositionY, 'hand', 0, {restitution: .5, ignoreGravity: true}).setScale(.1);
         this.tweens.add({
           targets: hand,
-          scaleX: 1,
-          scaleY: 1,
-          duration: 200,
+          scale: 1.1,
+          duration: 100,
           ease: 'Linear'
       });
+      this.time.delayedCall(100, () => {
+        this.tweens.add({
+            targets: hand,
+            scale: 1,
+            duration: 50,
+            ease: 'Linear'
+        });
+    }, this);
+
       });
 
 

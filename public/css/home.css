@@ -133,7 +133,7 @@ canvas {
 
 .snapContainer {
   height: 100vh;
-  overflow: scroll;
+  overflow-y: scroll;
   scroll-behavior: smooth;
   scroll-snap-type: mandatory;
   scroll-snap-points-y: repeat(100vh);
