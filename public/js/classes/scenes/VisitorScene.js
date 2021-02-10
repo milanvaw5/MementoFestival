@@ -416,26 +416,48 @@ export default class VisitorScene extends Phaser.Scene {
     //random gekozen om zo nieuwe woorden en mysterie te creëren
   clearLetters(){
 
+      if(feelings.length > 6 && isClearing === false) {
+        isClearing = true;
+        let feelingWaitingToBeDestroyed = [];
+
+        for (let index = 0; index < 4; index++) {
+          const rand = Math.floor(Math.random()*feelings.length);
+          console.log(rand);
+          this.tweens.add({
+            targets: feelings[rand],
+            scale: 0,
+            duration: 100,
+            ease: 'Linear'
+        });
+
+        feelingWaitingToBeDestroyed.push(feeling[rand]);
+        feeling.splice(rand, 1);
+        console.log('Dit is de index:' + index);
+        if(index === 3){
+          setTimeout(function(){
+            letterWaitingToBeDestroyed.forEach(letter => {
+              letter.destroy();
+            });
+          }, 300);
+          isClearing = false;
+      }
+
       if(letters.length > 70 && isClearing === false){
         isClearing = true;
         let letterWaitingToBeDestroyed = [];
+
         for (let index = 0; index < 4; index++) {
-
-
-
-
-        const rand = Math.floor(Math.random()*letters.length);
-
-        console.log(rand);
-        this.tweens.add({
-          targets: letters[rand],
-          scale: 0,
-          duration: 100,
-          ease: 'Linear'
-      });
+          const rand = Math.floor(Math.random()*letters.length);
+          console.log(rand);
+          this.tweens.add({
+            targets: letters[rand],
+            scale: 0,
+            duration: 100,
+            ease: 'Linear'
+        });
 
       letterWaitingToBeDestroyed.push(letters[rand]);
-     // letters[rand].destroy();
+      // letters[rand].destroy();
       letters.splice(rand, 1);
       console.log('Dit is de index:' + index);
       if(index === 3){
