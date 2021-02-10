@@ -46,7 +46,7 @@ a {
   12% {transform: scale(1, 1)}
   80% {transform: scale(1, 1) rotate(0deg)}
   100% {transform: scale(0, 0) rotate(360deg)}
-  
+
 }
 
 .highfivehand {
@@ -343,7 +343,7 @@ p {
 .title {
   display: block;
   font-size: 1.8rem;
-  font-family: GT Pressura Pro Bold, Arial, Helvetica, sans-serif;
+  font-family: 'Gt pressura bold', Arial, Helvetica, sans-serif;
   text-transform: uppercase;
 }
 

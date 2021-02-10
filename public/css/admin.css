@@ -114,7 +114,7 @@
 
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 2fr .7fr 1.3fr .1fr;
+  grid-template-rows: 1fr 2fr .7fr 1.3fr .5fr;
   justify-content: center;
   justify-items: flex-start;
   align-content: center;
