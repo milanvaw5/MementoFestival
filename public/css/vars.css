@@ -1,7 +1,4 @@
 :root {
-<<<<<<< HEAD
-  --color: rgb(89, 0, 255);
-=======
   --orange: #ec9553;
   --green : #32b099;
   --yellow: #f3d268;
@@ -11,5 +8,4 @@
   --white: #fbf9f7;
   /*--white: #f9f8f3;*/
   /*--white: #faf5ef;*/
->>>>>>> dev
 }

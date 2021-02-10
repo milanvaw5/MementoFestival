@@ -1,25 +1,3 @@
-<<<<<<< HEAD
-/*.body {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    height: 90vh;
-}
-
-#webcam {
-
-}
-
-#canvas {
-    width: 50%;
-    height: 100%;
-    margin: auto;
-}*/
-
-canvas {
-    max-width: 100vw;
-    max-height: 100vh;
-=======
 @import "homeStijnExtra.css";
 @import "home.css";
 @import "vars.css";
@@ -34,24 +12,11 @@ html {
 
 .popup {
   z-index: 8;
->>>>>>> dev
 }
 
 body {
     max-width: 100vw;
     max-height: 100vh;
-<<<<<<< HEAD
-}
-
-.section__title, .article__title {
-    display: none;
-}
-
-.button {
-  padding: 1rem;
-  margin: 1rem 0;
-  border: .2rem solid black;
-=======
     overflow: hidden;
     background-color: var(--white);
     font-family: sofia-pro, sans-serif, Arial, Helvetica, sans-serif;
@@ -67,22 +32,15 @@ body {
 
 .hidden {
     display: none;
->>>>>>> dev
 }
 
 .link {
   text-decoration: none;
-<<<<<<< HEAD
-  color: black;
-=======
   color: var(--black);
->>>>>>> dev
   font-weight: 800;
   text-transform: capitalize;
   font-size: 0.8rem;
 }
-<<<<<<< HEAD
-=======
 
 .btnLogin {
   display: block;
@@ -322,4 +280,3 @@ body {
 
 
 }
->>>>>>> dev
