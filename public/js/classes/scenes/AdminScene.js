@@ -409,7 +409,7 @@ export default class AdminScene extends Phaser.Scene {
 
     this.spawnLetters();
     // emit only 10 times per second
-    this.time.addEvent({ delay: 100, callback: this.onEvent, callbackScope: this, loop: true });
+    this.time.addEvent({ delay: 200, callback: this.onEvent, callbackScope: this, loop: true });
 
     this.matter.world.on('collisionstart', function (event, bodyA, bodyB) {
       //console.log(bodyA.texture.key);
