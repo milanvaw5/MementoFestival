@@ -12,7 +12,7 @@
 
     const authStateChange = user => {
         if(user){
-            console.log(`De user is ingelogd: ${user.email}`);
+            //console.log(`De user is ingelogd: ${user.email}`);
             $sectionAdminActive.style.display = "grid";
             $sectionAdmin.style.display = "none";
             $sectionAdminActive.scrollIntoView();
@@ -23,7 +23,7 @@
             script.type = "module";
             document.head.appendChild(script);
         }else{
-            console.log(`De user is uitgelogd`);
+            //console.log(`De user is uitgelogd`);
             location.reload();
         }
     }

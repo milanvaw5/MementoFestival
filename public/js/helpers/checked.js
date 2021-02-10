@@ -9,7 +9,6 @@
    const handleClickEmotic = e => {
     
        const feeling = e.currentTarget.textContent.replace(/\s/g,'').toLowerCase();
-       console.log(feeling);
        $blij.style.backgroundImage = `url(../assets/img/emotics/happy.svg)`;
        $somber.style.backgroundImage = `url(../assets/img/emotics/sad.svg)`;
        $giechelig.style.backgroundImage = `url(../assets/img/emotics/quirky.svg)`;

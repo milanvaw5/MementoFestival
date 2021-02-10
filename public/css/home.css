@@ -499,7 +499,7 @@ p {
 }
 
 .questionmark {
-  cursor: help;
+  cursor: pointer;
   margin: 1rem;
 }
 

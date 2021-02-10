@@ -1,8 +1,6 @@
 let resizeBug = true;
 let letter;
 let woordje;
-//let backgroundimage;
-let spawnWordInterval;
 let lowercase;
 let readWord = 'abcde';
 let split = [];
@@ -172,7 +170,6 @@ const memootjes = [
 
 
 let jointPositionsGebruikers = {
-  nosePos: {x:0, y:0},
   leftEyePos: {x:0, y:0},
   leftWristPos: {x:0, y:0},
   rightWristPos: {x:0, y:0},
@@ -188,7 +185,6 @@ let jointPositionsGebruikers = {
   rightAnklePos: {x:0, y:0}
 }
 let jointPositionsGebruikersTarget = {
-  nosePosTarget: {x:0, y:0},
   leftEyePosTarget: {x:0, y:0},
   leftWristPosTarget: {x:0, y:0},
   rightWristPosTarget: {x:0, y:0},
@@ -204,13 +200,9 @@ let jointPositionsGebruikersTarget = {
   rightAnklePosTarget: {x:0, y:0}
 }
 
-/*
-let auteurInput = ['Verloren','hinkel ik','over de sproeten op mijn vingers',
-'Afgeslagen','langzaam ademend','langs mijn armen dwalend','Mijn rug','terug – gezucht –',
-'geen bescherming op de vlucht','Veilig','aan mijn zij','de afgrond daar als lijn',
-'Onontdekt','en zorgeloos','dolend door mijn eigen hoofd'];*/
 
-let auteurInput = ['verloren','hinkelik','overdesproeten','opmijnvingers'];
+
+
 let $timer;
 if($btnHand){
   $timer = $btnHand.querySelector(`.timer--hand`);
@@ -246,8 +238,7 @@ export default class VisitorScene extends Phaser.Scene {
   }
 
   preload(){
-    console.log(`PRELOAD visitor`);
-    //Preloading sprites
+  
 
     this.load.image('head', 'assets/img/avatar/avatarGreen/x1/headGreen.png');
     this.load.image('footLeft', 'assets/img/avatar/avatarGreen/x1/footLeftGreen.png');
@@ -318,16 +309,8 @@ export default class VisitorScene extends Phaser.Scene {
   }
 
   create(){
-    console.log(`CREATE`);
-
-    //this.cameras.main.setBackgroundColor('rgba(0, 0, 0, 0)');
     this.makeConnection();
 
-    //this.initMap();
-    //backgroundimage = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'backgroundimage');
-
-    //this.noseAvatar = this.matter.add.image(jointPositionsGebruikers.nosePos.x, jointPositionsGebruikers.nosePos.y, 'head', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
-    //this.bodyAvater = this.matter.add.image(jointPositionsGebruikers.nosePos.x, jointPositionsGebruikers.nosePos.y, 'body', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1}).setScale(.8);
 
     this.leftEyeAvatar = this.matter.add.image(jointPositionsGebruikers.leftEyePos.x, jointPositionsGebruikers.leftEyePos.y, 'head', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
     this.leftWristAvatar = this.matter.add.image(jointPositionsGebruikers.leftWristPos.x, jointPositionsGebruikers.leftWristPos.y, 'handLeft', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
@@ -359,57 +342,12 @@ export default class VisitorScene extends Phaser.Scene {
   });
 
 
-
-
-
     this.group1 = this.matter.world.nextGroup();
     this.group2 = this.matter.world.nextGroup(true);
 
-   /* this.matter.world.on('collisionstart', function (event, bodyA, bodyB) {
-      //console.log(bodyA.texture.key);
-
-      if (event.pairs[0].bodyA.gameObject){
-        if(bodyA.gameObject.texture.key === "handLeft"){
-          if(bodyB.gameObject.texture.key === "hand"){
-            console.log(bodyA.gameObject.texture.key);
-            //bodyB.gameObject.visible = false;
-            //bodyB.gameObject.opacity = 0;
-            bodyB.gameObject.destroy();
-            this.matter.world.remove(bodyB);
-            console.log(bodyB)
-
-          }
-
-        }
-        if(bodyA.gameObject.texture.key === "hand"){
-          if(bodyB.gameObject.texture.key === "handLeft"){
-            console.log(bodyA.gameObject.texture.key);
-            this.matter.world.remove(bodyA);
-
-          }
-
-        }
-      //console.log(bodyA.gameObject.texture.key);
-      //console.log(bodyB.gameObject.texture.key);
-
-      }
-
-  }, this);
-*/
-//this.scale.resize(999, 999);
-
+  
     this.spawnLetters();
-   // this.scale.setGameSize(800, 800);
-    //this.scale.updateBounds();
-    //this.scale.on('resize', this.resize, this);
 
-    //this.scale.on('resize', function(gameSize, baseSize, displaySize, previousWidth, previousHeight) {
-    //  this.scale.setGameSize(gameSize.width, gameSize.height);
-    //}, this);
-
-
-
-    //timer = setTimeout(this.readInAuteurInput(), 50000);
   }
 
      //bij een bepaald aantal letters op het scherm - zullen er een hoeveelheid verdwijnen,
@@ -422,7 +360,6 @@ export default class VisitorScene extends Phaser.Scene {
 
         for (let index = 0; index < 4; index++) {
           const rand = Math.floor(Math.random()*feelings.length);
-          console.log(rand);
           this.tweens.add({
             targets: feelings[rand],
             scale: 0,
@@ -432,7 +369,6 @@ export default class VisitorScene extends Phaser.Scene {
 
         feelingWaitingToBeDestroyed.push(feelings[rand]);
         feelings.splice(rand, 1);
-        console.log('Dit is de index:' + index);
         if(index === 3){
           setTimeout(function(){
             feelingWaitingToBeDestroyed.forEach(feeling => {
@@ -450,7 +386,6 @@ export default class VisitorScene extends Phaser.Scene {
 
         for (let index = 0; index < 4; index++) {
           const rand = Math.floor(Math.random()*letters.length);
-          console.log(rand);
           this.tweens.add({
             targets: letters[rand],
             scale: 0,
@@ -459,9 +394,7 @@ export default class VisitorScene extends Phaser.Scene {
         });
 
       letterWaitingToBeDestroyed.push(letters[rand]);
-      // letters[rand].destroy();
       letters.splice(rand, 1);
-      console.log('Dit is de index:' + index);
       if(index === 3){
         setTimeout(function(){
           letterWaitingToBeDestroyed.forEach(letter => {
@@ -591,35 +524,21 @@ export default class VisitorScene extends Phaser.Scene {
 
   //woord word gespawned op scherm
   spawnWord() {
-
     let fallPosition = Phaser.Math.Between(60, widthDivScreen / 4);
     this.splitWord();
-
-    for (letter = 0; letter < split.length; letter++)
-    {
-
-
-      console.log('spawnWord: ' + split[letter]);
+    for (letter = 0; letter < split.length; letter++){
       const l = this.matter.add.sprite(fallPosition, 0,  split[letter], 0, {restitution: .5, slop: 1});
-
       l.setInteractive({useHandCursor: true}).on('pointerdown', () => this.onClickLetter(l));
-
-      console.log(l);
       l.setCollisionGroup(this.group1)
      // l.setCollidesWith(0)
-
       fallPosition = fallPosition + spacebetween;
-
       letters.push(l);
-
     }
-
   };
 
   onClickLetter(l){
- if(isClickable){
-   console.log(l);
-  this.handleLetterArrays(l)
+    if(isClickable){
+        this.handleLetterArrays(l)
     }
   }
 
@@ -631,20 +550,17 @@ handleLetterArrays(l){
       const index = lostLetters.indexOf(lostLetter);
       if (lostLetter == l.texture.key && foundALetter === false){
         lostLetters.splice(index, 1);
-        console.log(lostLetters);
         foundALetter = true;
       }
     });
     foundLetters.push(l.texture.key);
     let foundLetter = document.querySelector(`.challengeLetter--${l.texture.key}`);
-    console.log(foundLetter);
     foundLetter.src = `assets/img/alphabet/x0.5/${l.texture.key}.png`;
     foundLetter.classList.add(`letter`)
     foundLetter.classList.add(`foundLetter--${l.texture.key}`)
     foundLetter.classList.remove(`challengeLetter--${l.texture.key}`)
     foundALetter = false;
-    //console.log(lostLetters.length);
-    //console.log(foundLetters.length);
+
 
     if(lostLetters.length <= 0){
       this.handleLetterArrays(l);
@@ -654,7 +570,7 @@ handleLetterArrays(l){
     }
   };
 }
-
+/*
     //de timer is nul dus word een auteurinput gedropt en daarna de timer gereset
     readInAuteurInput() {
       console.log('auteurinput');
@@ -669,14 +585,12 @@ handleLetterArrays(l){
       else {
         console.log('error auteurinput');
       }
-    };
+    };*/
 
     splitWord (){
       lowercase = readWord.toLowerCase();
       lowercase = lowercase.replace(/\s/g, '');
       split = lowercase.split('');
-      console.log('splitWord: ' + split);
-    //  letters.push(split);
     };
 
 
@@ -684,7 +598,7 @@ handleLetterArrays(l){
     makeConnection() {
       socket = io.connect('/');
       socket.on('connect', () => {
-        console.log(`Connected: ${socket.id}`);
+        //console.log(`Connected: ${socket.id}`);
         socket.emit('requestWords');
         socket.emit('requestFeelings');
         socket.emit('requestHearts');
@@ -718,19 +632,14 @@ handleLetterArrays(l){
       });
       socket.on('getHeartCount', hearts => {
         heartCount = hearts;
-        console.log(heartCount);
-        // use in DOM
       });
 
       socket.on('getHighfiveCount', highfives => {
         highfiveCount = highfives;
-        console.log(highfiveCount);
-        // use in DOM
       });
 
       socket.on('message', message => {
-        console.log(`Received message: ${message}`);
-        console.log(message);
+        //console.log(`Received message: ${message}`);
         woordje = message;
         this.readInWord();
 
@@ -757,9 +666,6 @@ handleLetterArrays(l){
       });
       socket.on('handShaken', highfives => {
         highfiveCount = highfives;
-        console.log(highfiveCount);
-        // use in DOM
-
         const $popupHighfive = document.querySelector(`.popup--highfive`);
         const $highFiveText = $popupHighfive.querySelector(`p`);
         const $highFiveImg = $popupHighfive.querySelector(`img`);
@@ -777,35 +683,20 @@ handleLetterArrays(l){
       });
       socket.on('heartAll', hearts => {
         heartCount = hearts;
-        console.log(heartCount);
-        // use in DOM
-
         const hartje = this.matter.add.sprite(200, this.cameras.main.height, 'heart', 0, {restitution: .5, ignoreGravity: true});
         hartje.setCollisionGroup(this.group2);
         hartje.setCollidesWith(0);
         hartje.setVelocityY(-20);
         hartjes.push(hartje);
-        console.log(this.group1);
-        console.log(this.group2);
-
-
-
+  
       });
-      socket.on('handAll', () => {
 
-
-
-      });
 
       socket.on('selectedFeeling', selectedFeeling => {
         this.createFeeling(selectedFeeling);
 
       });
       socket.on('points', jointPositions => {
-
-        jointPositionsGebruikersTarget.nosePosTarget.x = this.cameras.main.width * jointPositions.nosePos.x;
-        jointPositionsGebruikersTarget.nosePosTarget.y = this.cameras.main.height * jointPositions.nosePos.y;
-
         jointPositionsGebruikersTarget.leftEyePosTarget.x = this.cameras.main.width * jointPositions.leftEyePos.x;
         jointPositionsGebruikersTarget.leftEyePosTarget.y = this.cameras.main.height * jointPositions.leftEyePos.y;
 
@@ -861,13 +752,12 @@ handleLetterArrays(l){
         else {
           $wordForm.style.display = `none`;
         }
-        //$btnOntdek.addEventListener('touch', e => this.handleClickOntdek(e));
+   
         //document.querySelector(`canvas`).style.height = "100vh";
       }
 
       if($wordForm){
         $wordForm.noValidate = true;
-        console.log("wordform")
         const $btnRefresh = document.querySelector(`.refresh`);
         $btnRefresh.addEventListener('click', this.handleClickRefresh);
         const $enteredWord = $wordForm.querySelector(`.enteredWord`);
@@ -880,19 +770,16 @@ handleLetterArrays(l){
         $feelingOptions.forEach(field => {
           field.addEventListener('input', e => this.handeInputField(e, $feelingsForm))
         });
-        //document.querySelector(`.btn-next--emotion`).addEventListener('click', e => this.handleClickNextEmotion(e))
+      
       }
       if($btnSchud){
         $btnSchud.addEventListener('click', e => this.handleClickSchud(e));
-        //$btnSchud.addEventListener('touch', e => this.handleClickSchud(e));
       }
       if($btnHartje){
         $btnHartje.addEventListener('click', e => this.handleClickHartje(e));
-        //$btnHartje.addEventListener('touch', e => this.handleClickHartje(e));
       }
       if($btnHand){
         $btnHand.addEventListener('click', e => this.handleClickHand(e));
-        //$btnHand.addEventListener('touch', e => this.handleClickHand(e));
       }
 
     };
@@ -908,7 +795,6 @@ handleLetterArrays(l){
 
       }
       feelings.push(this.feeling);
-      console.log(feelings)
     }
 
     handleClickRefresh(){
@@ -958,7 +844,6 @@ handleLetterArrays(l){
       if (message) {
         $field.parentElement.parentElement.querySelector(`.error`).textContent = message;
       }
-      console.log(message)
     };
 
     handleClickNextEmotion(e){
@@ -967,8 +852,6 @@ handleLetterArrays(l){
 
     handeInputField(e, form){
       const field = e.currentTarget;
-
-      console.log(field.value);
 
       if (!form.checkValidity()) {
         this.showValidationInfo(field);
@@ -993,11 +876,7 @@ handleLetterArrays(l){
        e.preventDefault();
        const field = $wordForm.querySelector(`.enteredWord`);
        if (!$wordForm.checkValidity()) {
-
-
-       this.showValidationInfo(field)
-
-       // $wordForm.querySelector(`.error`).innerHTML = `Some errors occured`;
+       this.showValidationInfo(field);
       }
       else {
 
@@ -1014,12 +893,9 @@ handleLetterArrays(l){
             $wordForm.style.display = "none";
             $feelingsForm.style.display = "block";
           }
-        console.log(field.value)
         socket.emit('message', field.value);
-        //socket.emit('messages', messages);
-        //socket.emit('points', points);
         field.value = '';
-        console.log(`Form is valid => submit form`);
+        //console.log(`Form is valid => submit form`);
         }
       }
 
@@ -1032,7 +908,6 @@ handleLetterArrays(l){
 
        } else {
         isClickable = true;
-        console.log(isClickable);
         $feelingsForm.style.display = "none";
         $challengeForm.style.display = "block";
         $feelingOptions.forEach(option => {
@@ -1059,17 +934,15 @@ handleLetterArrays(l){
 
 
          });
-         console.log(memootjesEmotion);
          let rand;
          if(memootjesEmotion.length === 1){
           rand = 0;
          }else{
-          //rand = Math.floor(Math.random(memootjesEmotion.length - 1)*2);
           rand = Math.floor(Math.random()* (memootjesEmotion.length - 1));
          }
 
 
-         console.log(rand);
+
 
          // call facebook share with data
          /*this.shareOverrideOGMeta({
@@ -1098,7 +971,7 @@ handleLetterArrays(l){
             $challengeWord.appendChild(letterImg);
           });
           socket.emit('feeling', selectedFeeling);
-          console.log(`Form is valid => submit form`);
+          //console.log(`Form is valid => submit form`);
        }
    }
 
@@ -1144,9 +1017,6 @@ handleLetterArrays(l){
 
       $timer.classList.add('timer');
       socket.emit('hand');
-     // const fallPositionX = Phaser.Math.Between(60, this.cameras.main.height - 60);
-    //  const fallPositionY = Phaser.Math.Between(60, this.cameras.main.width - 60);
-    //  const hand = this.matter.add.sprite(fallPositionX, fallPositionY, 'hand', 0, {restitution: .5, ignoreGravity: true});
       isHandClickable = false;
       if(isHandClickable === false){
         setTimeout(function(){
@@ -1166,8 +1036,6 @@ handleLetterArrays(l){
       const $timer = $btnSchud.querySelector(`.timer--schud`);
       $timer.classList.add('timer');
       socket.emit('schud');
-      console.log('schud')
-      console.log(letters)
       isShakeClickable = false;
       if(isShakeClickable === false){
         setTimeout(function(){
@@ -1188,7 +1056,6 @@ handleLetterArrays(l){
       const $timer = $btnHartje.querySelector(`.timer--hart`);
       $timer.classList.add('timer');
       socket.emit('hartje');
-      console.log('hartje')
       isHeartClickable = false;
       if(isHeartClickable === false){
         setTimeout(function(){
@@ -1205,50 +1072,21 @@ handleLetterArrays(l){
 
     let fallPosition = Phaser.Math.Between(20, widthDivScreen / 2);
 
-    for (let startOffLetters = 0; startOffLetters < letters.length; startOffLetters++)
-    {
-      console.log('spawnLetters: ' + letters[startOffLetters]);
+    for (let startOffLetters = 0; startOffLetters < letters.length; startOffLetters++){
       letters[startOffLetters] = this.matter.add.sprite(fallPosition, 0, letters[startOffLetters], 0, {restitution: .5});
-
-
-
       fallPosition = fallPosition + spacebetween;
-      console.log(fallPosition);
     }
-    console.log('start letters are dropped');
   };
 
-       //indien een woord werd ingegeven word het woord ingelezen gesplits en erna gespawend
+  //indien een woord werd ingegeven word het woord ingelezen gesplits en erna gespawend
    readInWord (){
     readWord = woordje;
     if (readWord!= '') {
-      console.log(readWord);
-      //this.splitWord(readWord);
       this.spawnWord();
-      console.log(letters);
       //timer = setInterval(this.readInAuteurInput(), 50000); //timer resetten
     }
     else {
       console.log('niks ingegeven');
-
     }
   };
-/*
-   // Initialize and add the map
-   initMap() {
-    // The location of Uluru
-    const uluru = { lat: 50.829, lng: 3.271 };
-    // The map, centered at Uluru
-    const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 4,
-      center: uluru,
-    });
-    // The marker, positioned at Uluru
-    const marker = new google.maps.Marker({
-      position: uluru,
-      map: map,
-    });
-  }
-*/
-
 }
