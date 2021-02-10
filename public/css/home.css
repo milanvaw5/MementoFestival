@@ -10,9 +10,13 @@
 
 a {
   cursor: pointer;
-  /*display: inline-block;
-  position:inherit;
-  z-index: 19;*/
+  display: inline-block;
+  /*position:inherit;*/
+  z-index: 19;
+}
+
+.blobright, .blobleft {
+  background-image: none;
 }
 
 .popup--highfive {
@@ -136,6 +140,8 @@ canvas {
   scroll-snap-type: y mandatory;
   display: grid;
   grid-template-rows: auto;
+  z-index: 0;
+  position: relative;
 }
 
 .scrollSnap {
@@ -191,6 +197,7 @@ canvas {
 p {
   line-height: 1.6rem;
   margin-top: .5rem;
+  z-index: 19;
   /*display: inline-block;*/
 }
 
@@ -713,7 +720,7 @@ p {
 }
 
 .section__praktisch {
-  max-width: 80%;
+  width: 80%;
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr;
@@ -721,7 +728,6 @@ p {
   align-content: center;
   justify-content: center;
   justify-items: center;
-  margin: 5rem 0;
 }
 
 .praktisch {
@@ -879,6 +885,7 @@ p {
   font-weight: 800;
   margin: 0 .5rem;
   text-align: center;
+  text-decoration: underline;
 }
 
 .footer__projectbetrokkenen {
@@ -938,6 +945,14 @@ p {
 }
 
 @media only screen and (max-width: 1250px) {
+
+  .section__praktisch {
+    margin: 5rem 0;
+  }
+
+  .information__blocks {
+    height: 150vh;
+  }
 
   .wrapper {
     flex-flow: row wrap;
@@ -1013,7 +1028,12 @@ p {
   }
 
   .information__parts {
-    margin: 15rem 0 0rem;
+    margin: 1rem 0 0rem;
+    grid-template-rows: 1fr 1fr;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: start;
   }
 
   .information__part {
@@ -1084,12 +1104,24 @@ p {
     align-content: space-around;
     justify-items: center;
   }
+
+  .section__praktisch {
+    width: 50%;
+  }
 }
 
 @media only screen and (max-width: 800px) {
 
   .logo{
     width: 40vw;
+  }
+
+  .information__blocks {
+    background-image: url('../assets/img/blobs/orangeblob.png'), url('../assets/img/blobs/yellowcloud.png');
+    background-position: top right, 0% 65%;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    margin-top: 2rem;
   }
 
   .onepager__section {
@@ -1200,6 +1232,18 @@ p {
 }
 
 @media only screen and (max-width: 500px) {
+
+  .section__information {
+    height: 220vh;
+  }
+
+  .information__blocks {
+    background-size: 70%;
+  }
+
+  .information__block {
+    margin: 3rem 0;
+  }
 
   canvas {
     opacity: 0;
