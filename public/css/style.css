@@ -202,12 +202,6 @@ body {
   z-index: -1;
 }
 
-.qr-block__code {
-  height: 5vh;
-  width: 5vw;
-  margin: 1rem 1rem 0;
-}
-
 .buttonVerstuur:active {
   cursor: pointer;
   left: .5rem;
