@@ -416,7 +416,7 @@ export default class VisitorScene extends Phaser.Scene {
     //random gekozen om zo nieuwe woorden en mysterie te creëren
   clearLetters(){
 
-      if(letters.length > 80 && isClearing === false){
+      if(letters.length > 70 && isClearing === false){
         isClearing = true;
         let letterWaitingToBeDestroyed = [];
         for (let index = 0; index < 4; index++) {
