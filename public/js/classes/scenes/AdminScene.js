@@ -126,7 +126,7 @@ const poseNetState = {
 
 
 const detectPoseInRealTime = (video) => {
-  const canvas = document.getElementById('output');
+  //const canvas = document.getElementById('output');
 
   const flipPoseHorizontal = true;
 
@@ -246,8 +246,11 @@ function drawKeypoints(keypoints, minConfidence, scale = 1) {
 
 const setupCamera = async () => {
   const video = document.getElementById('video');
-  video.width = videoWidth;
-  video.height = videoHeight;
+
+    video.width = videoWidth;
+    video.height = videoHeight;
+  
+  
 
   const stream = await navigator.mediaDevices.getUserMedia({
     'audio': false,
@@ -276,6 +279,7 @@ const startVideo = async () => {
 }
 
 const init = async () => {
+  console.log(window.location.pathname)
    poseNetModel = await posenet.load({
       architecture: poseNetState.input.architecture,
       outputStride: poseNetState.input.outputStride,
@@ -288,7 +292,7 @@ const init = async () => {
 
 
   }
-  if(window.location.pathname === "/admin.html" || window.location.pathname === "/"){
+  if(window.location.pathname === "/admin.html"){
     init();
   }
 

@@ -868,6 +868,8 @@ handleLetterArrays(l){
       if($wordForm){
         $wordForm.noValidate = true;
         console.log("wordform")
+        const $btnRefresh = document.querySelector(`.refresh`);
+        $btnRefresh.addEventListener('click', this.handleClickRefresh);
         const $enteredWord = $wordForm.querySelector(`.enteredWord`);
         $wordForm.addEventListener('submit', e => this.handleSubmitMessage(e, $wordForm));
         $enteredWord.addEventListener('input', e => this.handeInputField(e, $wordForm))
@@ -909,9 +911,23 @@ handleLetterArrays(l){
       console.log(feelings)
     }
 
-    handleClickOntdek(e){
+    handleClickRefresh(){
+      document.querySelector(`.wordForm__challenge`).querySelectorAll(`.letter`).forEach(letter => {
+        letter.remove();
+      });
+      selectedFeeling = "";
+      memootjesEmotion = [];
+      lostLetters = [];
+      foundLetters = [];
+      isClickable = false;
+      $haikuForm.style.display = "none";
+      $introForm.style.display = "grid";
+    }
+
+    handleClickOntdek(){
       $introForm.style.display = "none";
       $wordForm.style.display = "block";
+
     }
 
     showValidationInfo($field) {
