@@ -246,8 +246,11 @@ function drawKeypoints(keypoints, minConfidence, scale = 1) {
 
 const setupCamera = async () => {
   const video = document.getElementById('video');
-  video.width = videoWidth;
-  video.height = videoHeight;
+
+    video.width = videoWidth;
+    video.height = videoHeight;
+  
+  
 
   const stream = await navigator.mediaDevices.getUserMedia({
     'audio': false,
@@ -288,7 +291,7 @@ const init = async () => {
 
 
   }
-  if(window.location.pathname === "/admin.html" || window.location.pathname === "/"){
+  if(window.location.pathname === "/admin.html"){
     init();
   }
 
