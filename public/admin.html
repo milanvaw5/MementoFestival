@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://use.typekit.net/jts7xpz.css">
+    <link href="//db.onlinewebfonts.com/c/fa6584b49f2dbb17b7483544bfa0b654?family=GT+Pressura+Pro+Bold" rel="stylesheet" type="text/css"/>
+     <!-- Load TensorFlow.js -->
+ <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
+ <!-- Load Posenet -->
+ <script src="https://unpkg.com/@tensorflow-models/posenet"></script>
+    <title>De Letterdoos - installatie</title>
+</head>
+  <body>
+
+    <h1 class="titel hidden">De Letterdoos - Memento Festival</h1>
+
+    <section class="section-admin">
+      <form class="loginForm">
+        <label class="loginForm__labels" for="">E-mail
+        <input class="email inputfield loginForm__input" type="email" value="">
+        </label>
+        <label class="loginForm__labels" for="">Wachtwoord
+        <input class="password inputfield loginForm__input" type="password" value="">
+        </label>
+        <button class="btnLogin button" type="submit" value="Login">Login</button>
+      </form>
+    </section>
+
+
+    <section style="display: none" class="section-admin--active">
+
+        <div class="admin__datasection">
+
+          <div class="qr-block">
+            <h2 class="section-admin__title">Letterdoos Game</h2>
+            <img class="qr-block__code" src="assets/img/fakeqrcode.png" alt="QR-code">
+            <p class="qr-block__text">Scan mij en geef een woord in!</p>
+          </div>
+
+          <div class="admin__datasection__datapieces">
+
+            <p class="admin__datasection__datatitel title">De interacties van vandaag:</p>
+
+            <div class="admin__datasection__datapiece">
+              <img src="assets/img/interactions/handwh.svg" alt="hand" class="admin__datasection__dataimg">
+              <p>High fives</p>
+              <p class="highfivescount"></p>
+            </div>
+
+            <div class="admin__datasection__datapiece">
+              <img src="assets/img/interactions/heartwh.svg" alt="heart" class="admin__datasection__dataimg">
+              <p>Hartjes</p>
+              <p class="heartscount"></p>
+            </div>
+
+          </div>
+
+          <img src="assets/img/logowh.svg" alt="letterdooslogo" class="admin__datasection__letterdooslogowh">
+
+          <img src="assets/img/mementologos/mementologowh.svg" alt="mementologo" class="admin__datasection__mementologowh">
+
+          <button style="display: block" class="btnLogout">Logout</button>
+        </div>
+
+        <div id="bottomblock" class="adminWordGame">
+
+          <video class="webcam" id="video" playsinline style=" -moz-transform: scaleX(-1);
+          -o-transform: scaleX(-1);
+          -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+          ">
+          </video>
+        </div>
+
+    </section>
+  </body>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-auth.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+
+</script>
+<script type="module" src="js/helpers/authentication.js"></script>
+<script src="js/vendors/phaser.min.js"></script>
+<script src="js/vendors/matter.js"></script>
+<!--<script src="/socket.io/socket.io.js"></script>-->
+<script src="https://cdn.socket.io/3.1.1/socket.io.min.js%22%3E"></script>
+<!--<script type="module" src="js/script.js"></script>-->
+
+</html>
+
