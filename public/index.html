@@ -4,97 +4,373 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:url"           content="https://www.facebook.com" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="De Letterdoos" />
+    <meta property="og:description"   content="Your description" />
+    <meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://use.typekit.net/jts7xpz.css">
     <link href="//db.onlinewebfonts.com/c/fa6584b49f2dbb17b7483544bfa0b654?family=GT+Pressura+Pro+Bold" rel="stylesheet" type="text/css"/>
      <!-- Load TensorFlow.js -->
- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
- <!-- Load Posenet -->
- <script src="https://unpkg.com/@tensorflow-models/posenet"></script>
-    <title>De Letterdoos - installatie</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
+    <!-- Load Posenet -->
+    <script src="https://unpkg.com/@tensorflow-models/posenet"></script>
+    <title>De Letterdoos - online bezoeker</title>
 </head>
-  <body>
-
+  <body class="snapContainer">
     <h1 class="titel hidden">De Letterdoos - Memento Festival</h1>
 
-    <section class="section-admin">
-      <form class="loginForm">
-        <label class="loginForm__labels" for="">E-mail
-        <input class="email inputfield loginForm__input" type="email" value="">
-        </label>
-        <label class="loginForm__labels" for="">Wachtwoord
-        <input class="password inputfield loginForm__input" type="password" value="">
-        </label>
-        <button class="btnLogin button" type="submit" value="Login">Login</button>
-      </form>
+    <section id="intro" class="onepager__section section__intro scrollSnap">
+      <h2 class="section__title hidden">Home</h2>
+
+      <article class="section__article intro">
+        <h3 class="article__title hidden">Informatie over De Letterdoos</h3>
+        <div class="textparagraph intro__top">
+          <img class="logo" alt="logo" src="assets/img/logo.png">
+          <p>De Letterdoos is een fysieke installatie op het Memento Woordfestival. Via deze website brengen we echter het festival naar jou toe. Jij bepaalt, samen met de rest van de online community, wat er op de installatie komt te staan.</p>
+        </div>
+        <div class="textparagraph center">
+          <p>Je vindt'em in <strong>Kortrijk</strong> op de Houtmarkt 54</p>
+          <p><strong>OF</strong></p>
+          <a class="link buttonlink prim" href="#wordgame"><button class="button primbutton">BEZOEK LETTERDOOS ONLINE</button></a>
+          <img class="arrow" alt="arrow" src="assets/img/arrowdown.png">
+        </div>
+      </article>
+
+      <article class="section__article videos">
+        <h3 class="article__title hidden">Reeks van video's van literaire creaties van Memento collectief</h3>
+        <video class="previewVideo" type="video/mp4" playsinline autoplay muted>
+          Your browser does not support the video tag.
+        </video>
+      </article>
+
+    </section>
+
+    <section id="wordgame" class="onepager__section section__wordgame scrollSnap">
+      <h2 class="section__title hidden">De Letterdoos online game</h2>
+
+      <div class="popup popup--word">
+        <p class="popup__text"></p>
+      </div>
+      <div class="popup--highfive">
+        <p></p>
+        <img src="assets/img/interactions/wave.svg" alt="hand" class="highfivehand">
+      </div>
+
+
+
+      <article class="section__article article__wordgame">
+        <div class="popup popup--word">
+          <p class="popup__text"></p>
+        </div>
+        <h3 class="article__title hidden">Stream</h3>
+
+        <div class="live__footage">
+        <div class="wordGame informationblock">
+
+          <div class="live__footage__indicationblock">
+            <img class="bol" alt="bol" src="assets/img/bol.svg">
+            <p class="live__footage__indication title">LIVE</p>
+          </div>
+          <p class="live__footage__subindication">op het festival</p>
+
+
+        </div>
+        <img class="questionmark questionmark--live" alt="vraagtekenicoontje" src="assets/img/icons/questionmark.svg">
+      </div>
+
+        <div id="bottomblock" class="wordGame bottomblock">
+        <!-- hier komt de wordgame -->
+        </div>
+      </article>
+
+      <!--<form class="formmobile form-1">
+        <div class="questionbox">
+          <p class="wordForm__question">Wat betekent verdwalen voor jou?</p>
+          <img class="questionmark questionmark--word" alt="vraagtekenicoontje" src="assets/img/icons/questionmark.svg">
+        </div>
+        <p class="wordForm__subinfo">Jouw antwoord komt mee in de live letterdoos te staan!</p>
+        <span class="error"></span>
+        <div class="wrapper">
+          <input type="text" id="enteredWord" class="enteredWord inputfield" name="enteredWord" minlength="2" maxlength="20" pattern="\b(?!\bword\b)[A-Za-z]+\b" required>
+          <button class="buttonVerstuur primbutton prim">Verstuur</button>
+        </div>
+      </form>-->
+
+      <article class="section__article article__forms">
+
+        <section class="form__section formsection__homebtn">
+          <h4 class="article__title">De Letterdoos</h4>
+          <a class="link buttonlink" href="#intro"><button class="button">Terug naar home</button></a>
+        </section>
+
+        <section class="form__section bordered">
+          <h4 class="title">Bespeel De Letterdoos</h4>
+        </section>
+
+        <section class="form__section form__section__buttons bordered">
+          <h4 class="form__title">Interacties</h4>
+          <div class="form__section__topbuttons">
+
+            <button class="button button--timer groen" style="--duration: 5;"><div class="timer--hand"></div><div class="hand">High five!</div></button>
+            <button class="button button--timer orangje" style="--duration: 5;"><div class="timer--hart"></div><div class="hartje">Stuur hartje!</div></button>
+
+          </div>
+          <button class="button button--timer blauw" style="--duration: 5;"><div class="timer--schud"></div><div class="schud">Schud De Letterdoos</div></button>
+        </section>
+
+
+        <section class="form__section memootje bordered">
+          <h4 class="form__title">Vragen</h4>
+
+          <div class="rotation">
+            <img class="rotation__arrow" alt="rotation arrow" src="assets/img/icons/arrowtop.svg">
+            <img class="rotation__hand" alt="rotation hand" src="assets/img/interactions/wave.svg">
+            <p>Draai je toestel om woorden in te geven.</p>
+            <img class="rotation__arrow" alt="rotation arrow" src="assets/img/icons/arrowbottom.svg">
+          </div>
+
+          <div class="introForm form-0">
+            <p class="wordForm__question__expl__title">Ontdek je memootje!</p>
+            <p class="wordForm__intro">Een auteur heeft iets achtergelaten voor jou...</p>
+            <button class="btn-next btn-ontdek button primbutton">Volgende</button>
+          </div>
+
+          <form class="wordForm form-1">
+            <p class="wordForm__intro">Voltooi de drie taken om jouw persoonlijk Memootje te ontdekken.</p>
+            <p class="wordForm__countdown">1/3</p>
+
+            <div class="questionbox">
+              <p class="wordForm__question">Wat betekent verdwalen voor jou?</p>
+              <img class="questionmark questionmark--word" alt="vraagtekenicoontje" src="assets/img/icons/questionmark.svg">
+            </div>
+            <p class="wordForm__subinfo">Jouw antwoord komt mee in de live letterdoos te staan!</p>
+            <span class="error"></span>
+            <div class="wrapper">
+              <input type="text" id="enteredWord" class="enteredWord inputfield" name="enteredWord" minlength="2" maxlength="16" pattern="[A-Za-z]+" required>
+             <!-- <input id="sumbitwordbutton" class="verstuurbutton" type="submit" value="VERSTUUR">-->
+             <button class="buttonVerstuur primbutton prim">Verstuur</button>
+
+            </div>
+          </form>
+
+          <form class="feelingsForm form-2">
+            <p class="wordForm__intro">Voltooi de drie taken om jouw persoonlijk Memootje te ontdekken</p>
+            <p class="wordForm__countdown">2/3</p>
+            <div class="questionbox">
+              <p class="wordForm__question">Hoe voel jij je vandaag?</p>
+
+             <img class="questionmark questionmark--feeling" alt="vraagtekenicoontje" src="assets/img/icons/questionmark.svg">
+            </div>
+
+            <span class="error"></span>
+
+
+          <div class="emotics__listitems">
+            <label class="emotics__label">Blij
+              <div class="emotics__items">
+              <div class="emotics__item blij"></div>
+              <input class="feelingOption" type="radio" name="emotie" value="blij" id="" required>
+            </div>
+
+          </label>
+          <label class="emotics__label">Somber
+            <div class="emotics__items">
+              <div class="emotics__item somber"></div>
+              <input class="feelingOption" type="radio" name="emotie" value="somber" id="" required>
+            </div>
+
+          </label>
+          <label class="emotics__label">Giechelig
+            <div class="emotics__items">
+              <div class="emotics__item giechelig"></div>
+                <input class="feelingOption" type="radio" name="emotie" value="giechelig" id="" required>
+            </div>
+
+          </label>
+          <label class="emotics__label">Afgemat<div class="emotics__items">
+              <div class="emotics__item afgemat"></div>
+              <input class="feelingOption" type="radio" name="emotie" value="afgemat" id="" required>
+            </div>
+
+          </label>
+          </div>
+            <button class="buttonVerstuur primbutton prim">Verstuur</button>
+            <!--<input id="sumbitwordbutton" class="verstuurbutton" type="submit" value="VERSTUUR">-->
+            <!--<button class="btn-next btn-next--emotion volgendebutton">Volgende</button>-->
+          </form>
+
+          <form class="challengeForm form-3">
+            <p class="wordForm__intro">Voltooi de drie taken om jouw persoonlijk Memootje te ontdekken.</p>
+            <p class="wordForm__countdown">3/3</p>
+            <div class="questionbox">
+              <p class="wordForm__question">Vervolledig het woord.</p>
+              <img class="questionmark questionmark--challenge" alt="vraagtekenicoontje" src="assets/img/icons/questionmark.svg">
+            </div>
+            <p class="wordForm__subinfo">Klik op de letters in de letterdoos om het woord in te vullen.</p>
+            <div class="wordForm__challenge"></div>
+          </form>
+
+          <div class="haikuForm form-4">
+            <p class="wordForm__question">JOUW MEMOOTJE!</p>
+            <p class="wordForm__haiku haiku">hier komt haiku</p>
+            <p class="wordForm__auteur__name">hier komt auteur</p>
+            <div class="wordForm__auteur__socials">
+              <a class="wordForm__auteur__socials__link" href="" target="_blank">hier komt auteur link</a>
+            </div>
+            <a class="link buttonlink prim" href="http://milanvanalderwerelt.be/MementoFestival/indexV.html#wordgame"><button class="button primbutton">Nog een keer!</button></a>
+             <!-- <div class="fb-share-button" data-href="https://www.google.com" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Partager</a></div>-->
+
+          </div>
+        </section>
+
+        <section class="form__section formsection__instalabtn">
+          <h4 class="article__title">Link to installation info</h4>
+          <a class="link buttonlink" href="#info"><button class="button">Meer over de installatie</button></a>
+        </section>
+
+
+     </article>
+
     </section>
 
 
-    <section style="display: none" class="section-admin--active">
+    <section id="info" class="onepager__section section__information scrollSnap">
 
-        <div class="admin__datasection">
-
-          <div class="qr-block">
-            <h2 class="section-admin__title">Letterdoos Game</h2>
-            <img class="qr-block__code" src="assets/img/fakeqrcode.png" alt="QR-code">
-            <p class="qr-block__text">Scan mij en geef een woord in!</p>
-          </div>
-
-          <div class="admin__datasection__datapieces">
-
-            <p class="admin__datasection__datatitel title">De interacties van vandaag:</p>
-
-            <div class="admin__datasection__datapiece">
-              <img src="assets/img/interactions/handwh.svg" alt="hand" class="admin__datasection__dataimg">
-              <p>High fives</p>
-              <p class="highfivescount"></p>
-            </div>
-
-            <div class="admin__datasection__datapiece">
-              <img src="assets/img/interactions/heartwh.svg" alt="heart" class="admin__datasection__dataimg">
-              <p>Hartjes</p>
-              <p class="heartscount"></p>
-            </div>
-
-          </div>
-
-          <img src="assets/img/logowh.svg" alt="letterdooslogo" class="admin__datasection__letterdooslogowh">
-
-          <img src="assets/img/mementologos/mementologowh.svg" alt="mementologo" class="admin__datasection__mementologowh">
-
-          <button style="display: block" class="btnLogout">Logout</button>
+      <article class="section__article information__parts">
+        <h2 class="section__title">Meer informatie over de installatie</h2>
+        <div class="information__part">
+          <h3 class="title">Stap in de Letterdoos</h3>
+          <p>De Letterdoos kan je niet alleen vanaf je scherm besturen, maar ook in Kortrijk zelf. Kom eens langs, neem een kijkje en spring zelf in De Letterdoos! Beweeg door de letters als een virtueel personnage.</p>
         </div>
 
-        <div id="bottomblock" class="adminWordGame">
-
-          <video class="webcam" id="video" playsinline style=" -moz-transform: scaleX(-1);
-          -o-transform: scaleX(-1);
-          -webkit-transform: scaleX(-1);
-          transform: scaleX(-1);
-          ">
-          </video>
+        <div class="information__part">
+          <p class="article__subtitle subtitle">Woordroute</p>
+          <p>De Letterdoos maakt deel uit van de <a class="inline__link" href="https://www.mementowoordfestival.be/woordroute/" target="_blank">Memento Woordroute</a> en is voor iedereen zoveel mogelijk toegankelijk gemaakt. </p>
+          <div class="wandelapp__section">
+            <img class="wandelapp__img" alt="wandelapplogo" src="./assets/img/woordroutelogo.svg">
+            <p>Naast het festival voorziet het Memento Woordfestival ook in een
+              <a class="inline__link" href="https://www.mementowoordfestival.be/woordroute/" target="_blank">Woordroute</a>
+              doorheen het centrum van Kortrijk. Neem deel via de app en verdwaal door de binnenstad
+              langs speelse installaties, nieuwe vormen van literaire presentatie en ontdek het werk van een pak artiesten.
+              <a class="wandelapplink" href="https://www.mementowoordfestival.be/woordroute/" target="_blank">Meer informatie in de app.</a></p>
+          </div>
         </div>
+
+       </article>
+
+      <article class="section__article form__section section__praktisch">
+
+        <div class="praktisch bordered">
+          <h3 class="title">Praktisch</h3>
+          <ul class="praktisch__items">
+            <li class="praktisch__date title">18/04/2021 - 24/04/2021</li>
+            <li class="praktisch__time">Elke dag van 08:00 tot 20:00</li>
+            <li class="praktisch__location">8500 Kortrijk, Astridpark 54 </li>
+          </ul>
+
+          <!-- creëert een hoop warnings CSP, maar mogen gegenegeerd worden: https://www.reddit.com/r/firefox/comments/fpptyj/firefox_content_security_policy_console_output/-->
+          <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2519.8195234390837!2d3.255779815752779!3d50.83450676749796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c33afa5a73961b%3A0x20cef998adf3063e!2sAstridpark%2C%208500%20Kortrijk!5e0!3m2!1snl!2sbe!4v1612714036464!5m2!1snl!2sbe" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+          <ul class="praktisch__travelitems">
+            <li class="praktisch__travelitem trein">15 min wandelen van Station Kortrijk (1,5km)</li>
+            <li class="praktisch__travelitem parking">Parking Budabrug of Broeltorens tegen betaling</li>
+            <li class="praktisch__travelitem fiets">Fietsenstalling voorzien</li>
+          </ul>
+        </div>
+
+      </article>
 
     </section>
+
+    <section class="onepager__section information__blocks scrollSnap">
+
+      <article class="information__block">
+        <div class="information__block__part">
+          <h3 class="title">Memento Woordfestival 2021</h3>
+          <p>De Letterdoos maakt deel uit van het Memento Woordfestival in Kortrijk.
+            Het festival bestaat uit het initiatief van de <strong>Letterzetter van Kortrijk</strong>.
+            Letterzetter is een collectief van jonge kunstenaars in de regio namelijk het Lettertype Collectief.
+            De letterzetter van Kortrijk brengt woordkunst steviger in de openbare ruimte en leidt jonge kunstenaars
+            op tot creatieve ondernemers. </p>
+            <div class="buttons__box">
+              <a class="link buttonlink" href="https://letterzetterkortrijk.be/collectief/" target="_blank"><button class="button smallbutton">Letterzetter Kortrijk</button></a>
+              <a class="link buttonlink" href="https://mementowoordfestival.be/tickets/" target="_blank"><button class="button smallbutton primbutton">Bekijk tickets</button></a>
+            </div>
+        </div>
+        <img class="blob" alt="blob" src="./assets/img/blobs/yellowcloud.png">
+      </article>
+
+      <article class="information__block">
+        <img class="blob" alt="blob" src="./assets/img/blobs/orangeblob.png">
+        <div class="information__block__part">
+          <h3 class="title">Covid-19</h3>
+          <p>Het initiatief is ontstaan door de beperkingen van COVID-19.
+            Dit jaar wil Memento meer bieden op het vlak van een online festival ervaring.
+            We betrekken de <strong>online community</strong> mee op een interactieve manier
+            en maken plaats voor een intieme ontmoeting tussen de artiesten van het collectief en het publiek.</p>
+            <p>Meer informatie over de maatregelen kan je vinden op de Memento website.</p>
+            <a class="link buttonlink" href="https://mementowoordfestival.be/" target="_blank"><button class="button smallbutton primbutton">Memento Festival</button></a>
+
+        </div>
+      </article>
+
+    </section>
+
+    <footer class="footer scrollSnap">
+      <div>
+        <img class="mementologo" alt="mementologo" src="./assets/img/mementologos/mementologowh.png">
+      </div>
+      <div class="footer__information">
+        <ul class="footer__links">
+          <li><a class="footer__link" href="https://mementowoordfestival.be/" target="_blank">Memento Festival</a></li>
+          <li><a class="footer__link" href="https://letterzetterkortrijk.be/collectief/" target="_blank">Letterzetter Collectief</a></li>
+          <li><a class="footer__link" href="https://mementowoordfestival.be/tickets/" target="_blank">Memento tickets</a></li>
+          <li><a class="footer__link" href="https://www.mementowoordfestival.be/woordroute/" target="_blank">Woordroute app</a></li>
+        </ul>
+        <p class="footer__projectbetrokkenen">Het project is mede mogelijk gemaakt door Memento & studenten Devine-Howest te Kortijk.</p>
+        <p class="footer__mementoinfo">Stad Kortrijk - Grote Markt 54 - 8500 Kortrijk - 1777@kortrijk.be - tel. 1777 (gratis)
+          Alle rechten voorbehouden - Gebruiksvoorwaarden - Privacyverklaring</p>
+      </div>
+    </footer>
+
   </body>
-
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-auth.js"></script>
-
-<script>
-  // Your web app's Firebase configuration
-
+ <!--
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=50.82940673828125,3.271177291870117&callback=initMap">
 </script>
-<script type="module" src="js/helpers/authentication.js"></script>
-<script src="js/vendors/phaser.min.js"></script>
-<script src="js/vendors/matter.js"></script>
-<script src="/socket.io/socket.io.js"></script>
-<!--<script type="module" src="js/script.js"></script>-->
+ -->
+ <!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script>
+window.fbAsyncInit = function() {
+	FB.init({
+	  appId            : '436827411094686',
+	  autoLogAppEvents : true,
+	  xfbml            : true,
+	  version          : 'v2.10'
+	});
+	FB.AppEvents.logPageView();
+  };
+(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
+  <script src="js/vendors/phaser.min.js"></script>
+  <script src="js/vendors/matter.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="module" src="js/script.js"></script>
+  <script type= "module" src="js/helpers/randomVideo.js"></script>
+  <script type= "module" src="js/helpers/checked.js"></script>
+  <script type= "module" src="js/helpers/popups.js"></script>
+  <!--<script type= "module" src="js/helpers/formHandler.js"></script>-->
+  <!--<script type="application/json" src="assets/data/memootjes.json"></script>-->
+
+  <!--<script type= "module" src="js/helpers/scroll.js"></script>-->
 </html>
-

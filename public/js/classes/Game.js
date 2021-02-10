@@ -6,7 +6,7 @@ export default class Game extends Phaser.Game {
 
     let config;
     const path = window.location.pathname;
-    if(path === "/index.html" || path === "/"){
+    if (path === "/admin.html") {
        config = {
         type: Phaser.AUTO,
         scale: {
@@ -15,8 +15,6 @@ export default class Game extends Phaser.Game {
           width: 1000,
           height: 1000
       },
-
-  
         physics: {
           default: 'matter',
           matter: {
@@ -27,7 +25,7 @@ export default class Game extends Phaser.Game {
               right: true
             }
           },
-         
+
         },
         transparent: true,
         input: {
@@ -50,8 +48,9 @@ export default class Game extends Phaser.Game {
       },
       debug: true,
       }
-      
-    }else{
+
+    }
+    else {
        config = {
         type: Phaser.AUTO,
         scale: {
@@ -61,7 +60,7 @@ export default class Game extends Phaser.Game {
           height: 1000
       },
        // type: Phaser.AUTO,
-  
+
         physics: {
           default: 'matter',
           matter: {
@@ -72,7 +71,7 @@ export default class Game extends Phaser.Game {
               right: true
             }
           },
-         
+
         },
         transparent: true,
         input: {
@@ -95,19 +94,20 @@ export default class Game extends Phaser.Game {
       },
       }
     }
-    
+
     super(config);
 
-    
- 
-    if(path === "/index.html" || path === "/"){
+
+
+    if(path === "/admin.html") {
 
       console.log(path)
       this.scene.add(`adminscene`, AdminScene ,true);
-    }else{
+    }
+    else {
       this.scene.add(`visitorscene`, VisitorScene ,true);
     }
-   
+
     console.log('CONNECTING TO SCENE');
   }
 }
