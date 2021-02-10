@@ -15,7 +15,7 @@ let widthDivScreen ;
 if(document.querySelector('.adminWordGame')){
   widthDivScreen = document.querySelector('.adminWordGame').style.width;
 }
-let spacebetween = 200;
+let spacebetween = 60;
 let socket; // will be assigned a value later
 let percentageX;
 let percentageY;
@@ -466,10 +466,11 @@ export default class AdminScene extends Phaser.Scene {
 
   }, this);
   }
-
+ //bij een bepaald aantal letters op het scherm - zullen er een hoeveelheid verdwijnen,
+    //random gekozen om zo nieuwe woorden en mysterie te creëren
   clearLetters(){
 
-    if(letters.length > 10 && isClearing === false){
+    if(letters.length > 100 && isClearing === false){
       isClearing = true;
       let letterWaitingToBeDestroyed = [];
       for (let index = 0; index < 4; index++) {
@@ -507,15 +508,8 @@ export default class AdminScene extends Phaser.Scene {
   }
 
   update(){
-    //bij een bepaald aantal letters op het scherm - zullen er een hoeveelheid verdwijnen,
-    //random gekozen om zo nieuwe woorden en mysterie te creëren
-    if (letters.length >= 250) {
-      for (let numberOfRemoveletters = 10; numberOfRemoveletters>0; numberOfRemoveletters--){
-        for(let removeletters = letters.length-1; removeletters >= 0; removeletters--){
-          array.splice(Math.floor(Math.random()*removeletters.length), 1);
-        }
-      }
-    }
+   
+  
 
   
 

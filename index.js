@@ -5,13 +5,17 @@ const port = process.env.PORT || 80;
 
 const io = require('socket.io')(server);
 
-
+let timer = 0;
+let wordCounter = 0;
+let idleWords = ['verloren','hinkel', 'ik', 'over', 'de', 'sproeten','op', 'mijn', 'vingers'];
 let words = [];
 let feelings = [];
 let highfives = 0;
 let hearts = 0;
 let admin;
 let livePing;
+let idleMode;
+
 io.on('connection', socket => {
   console.log('Socket connected', socket.id);
 
@@ -21,12 +25,46 @@ io.on('connection', socket => {
     feelings = [];
     io.sockets.emit(`synchronize`);
     console.log(`admin: ${socket.id}`);
+    io.sockets.emit(`message`, "welkom");
+    words.push("welkom");
+    setTimeout(function(){
+      io.sockets.emit(`message`, "in");
+      words.push("in");
+    }, 500);
+    setTimeout(function(){
+      io.sockets.emit(`message`, "de");
+      words.push("de");
+    }, 1000);
+    setTimeout(function(){
+      io.sockets.emit(`message`, "letterdoos");
+      words.push("letterdoos");
+    }, 1500);
+
     livePing = setInterval(() => {
       io.sockets.emit('live');
     }, 100);
+
+    idleMode = setInterval(() => {
+      timer++;
+      
+      if(timer >= 30){
+        io.sockets.emit(`message`, idleWords[wordCounter]);
+        words.push(idleWords[0]);
+        if(words.length > 10){
+          words.shift();
+        }
+        wordCounter++
+        if(wordCounter >= idleWords.length){
+          wordCounter = 0;
+        }
+      }
+    }, 2000);
+
+    
   });
   
   socket.on('message', message => {
+    timer = 0;
     console.log(message);
 
     words.push(message);
@@ -100,7 +138,9 @@ io.on('connection', socket => {
       admin = "";
       words = [];
       feelings = [];
+      timer = 0;
       clearInterval(livePing);
+      clearInterval(idleMode);
       io.sockets.emit(`notLive`);
     }
     

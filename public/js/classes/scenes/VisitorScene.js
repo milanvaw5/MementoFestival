@@ -170,44 +170,38 @@ const memootjes = [
 
 ]
 
-let bodyPos = {
-  x1: 100,
-  y1: 100,
-  x2: 200,
-  y2: 200
-}
 
 let jointPositionsGebruikers = {
-  nosePos: {x:1, y:1},
-  leftEyePos: {x:1, y:1},
-  leftWristPos: {x:1, y:1},
-  rightWristPos: {x:1, y:1},
-  leftShoulderPos: {x:1, y:1},
-  rightShoulderPos: {x:1, y:1},
-  leftElbowPos: {x:1, y:1},
-  rightElbowPos: {x:1, y:1},
-  leftKneePos: {x:1, y:1},
-  rightKneePos: {x:1, y:1},
-  leftHipPos: {x:1, y:1},
-  rightHipPos: {x:1, y:1},
-  leftAnklePos: {x:1, y:1},
-  rightAnklePos: {x:1, y:1}
+  nosePos: {x:0, y:0},
+  leftEyePos: {x:0, y:0},
+  leftWristPos: {x:0, y:0},
+  rightWristPos: {x:0, y:0},
+  leftShoulderPos: {x:0, y:0},
+  rightShoulderPos: {x:0, y:0},
+  leftElbowPos: {x:0, y:0},
+  rightElbowPos: {x:0, y:0},
+  leftKneePos: {x:0, y:0},
+  rightKneePos: {x:0, y:0},
+  leftHipPos: {x:0, y:0},
+  rightHipPos: {x:0, y:0},
+  leftAnklePos: {x:0, y:0},
+  rightAnklePos: {x:0, y:0}
 }
 let jointPositionsGebruikersTarget = {
-  nosePosTarget: {x:1, y:1},
-  leftEyePosTarget: {x:1, y:1},
-  leftWristPosTarget: {x:1, y:1},
-  rightWristPosTarget: {x:1, y:1},
-  leftShoulderPosTarget: {x:1, y:1},
-  rightShoulderPosTarget: {x:1, y:1},
-  leftElbowPosTarget: {x:1, y:1},
-  rightElbowPosTarget: {x:1, y:1},
-  leftKneePosTarget: {x:1, y:1},
-  rightKneePosTarget: {x:1, y:1},
-  leftHipPosTarget: {x:1, y:1},
-  rightHipPosTarget: {x:1, y:1},
-  leftAnklePosTarget: {x:1, y:1},
-  rightAnklePosTarget: {x:1, y:1}
+  nosePosTarget: {x:0, y:0},
+  leftEyePosTarget: {x:0, y:0},
+  leftWristPosTarget: {x:0, y:0},
+  rightWristPosTarget: {x:0, y:0},
+  leftShoulderPosTarget: {x:0, y:0},
+  rightShoulderPosTarget: {x:0, y:0},
+  leftElbowPosTarget: {x:0, y:0},
+  rightElbowPosTarget: {x:0, y:0},
+  leftKneePosTarget: {x:0, y:0},
+  rightKneePosTarget: {x:0, y:0},
+  leftHipPosTarget: {x:0, y:0},
+  rightHipPosTarget: {x:0, y:0},
+  leftAnklePosTarget: {x:0, y:0},
+  rightAnklePosTarget: {x:0, y:0}
 }
 
 /*
@@ -334,6 +328,7 @@ export default class VisitorScene extends Phaser.Scene {
 
     //this.noseAvatar = this.matter.add.image(jointPositionsGebruikers.nosePos.x, jointPositionsGebruikers.nosePos.y, 'head', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
     //this.bodyAvater = this.matter.add.image(jointPositionsGebruikers.nosePos.x, jointPositionsGebruikers.nosePos.y, 'body', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1}).setScale(.8);
+    
     this.leftEyeAvatar = this.matter.add.image(jointPositionsGebruikers.leftEyePos.x, jointPositionsGebruikers.leftEyePos.y, 'head', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
     this.leftWristAvatar = this.matter.add.image(jointPositionsGebruikers.leftWristPos.x, jointPositionsGebruikers.leftWristPos.y, 'handLeft', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
     this.rightWristAvatar = this.matter.add.image(jointPositionsGebruikers.rightWristPos.x, jointPositionsGebruikers.rightWristPos.y, 'handRight', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
@@ -417,7 +412,8 @@ export default class VisitorScene extends Phaser.Scene {
     //timer = setTimeout(this.readInAuteurInput(), 50000);
   }
 
-  
+     //bij een bepaald aantal letters op het scherm - zullen er een hoeveelheid verdwijnen,
+    //random gekozen om zo nieuwe woorden en mysterie te creëren
   clearLetters(){
 
       if(letters.length > 10 && isClearing === false){
@@ -469,30 +465,10 @@ export default class VisitorScene extends Phaser.Scene {
   // https://stackoverflow.com/questions/57247491/problem-with-setinteractive-function-in-phaser-3
 
 
-    //bij een bepaald aantal letters op het scherm - zullen er een hoeveelheid verdwijnen,
-    //random gekozen om zo nieuwe woorden en mysterie te creëren
-    if (letters.length === 50) {
-      for (let numberOfRemoveletters = 10; numberOfRemoveletters>0; numberOfRemoveletters--){
-        for(let removeletters = letters.length-1; removeletters >= 0; removeletters--){
-          array.splice(Math.floor(Math.random()*removeletters.length), 1);
-        }
-      }
-      console.log(letters);
-    }
-
-   
-    /*
-    jointPositionsGebruikers.nosePos.x += ( jointPositionsGebruikersTarget.nosePosTarget.x - jointPositionsGebruikers.nosePos.x ) / 10;
-    jointPositionsGebruikers.nosePos.y += ( jointPositionsGebruikersTarget.nosePosTarget.y - jointPositionsGebruikers.nosePos.y ) / 10;
-    this.noseAvatar.x = jointPositionsGebruikers.nosePos.x;
-    this.noseAvatar.y = jointPositionsGebruikers.nosePos.y;
-   //this.bodyAvater.x = jointPositionsGebruikers.nosePos.x;
-    //this.bodyAvater.y = jointPositionsGebruikers.nosePos.y + 220;
-*/
-jointPositionsGebruikers.leftEyePos.x += ( jointPositionsGebruikersTarget.leftEyePosTarget.x - jointPositionsGebruikers.leftEyePos.x ) / 10;
-jointPositionsGebruikers.leftEyePos.y += ( jointPositionsGebruikersTarget.leftEyePosTarget.y - jointPositionsGebruikers.leftEyePos.y ) / 10;
-this.leftEyeAvatar.x = jointPositionsGebruikers.leftEyePos.x + 10;
-this.leftEyeAvatar.y = jointPositionsGebruikers.leftEyePos.y;
+    jointPositionsGebruikers.leftEyePos.x += ( jointPositionsGebruikersTarget.leftEyePosTarget.x - jointPositionsGebruikers.leftEyePos.x ) / 10;
+    jointPositionsGebruikers.leftEyePos.y += ( jointPositionsGebruikersTarget.leftEyePosTarget.y - jointPositionsGebruikers.leftEyePos.y ) / 10;
+    this.leftEyeAvatar.x = jointPositionsGebruikers.leftEyePos.x + 10;
+    this.leftEyeAvatar.y = jointPositionsGebruikers.leftEyePos.y;
 
     jointPositionsGebruikers.leftWristPos.x += ( jointPositionsGebruikersTarget.leftWristPosTarget.x - jointPositionsGebruikers.leftWristPos.x ) / 10;
     jointPositionsGebruikers.leftWristPos.y += ( jointPositionsGebruikersTarget.leftWristPosTarget.y - jointPositionsGebruikers.leftWristPos.y ) / 10;
@@ -573,8 +549,6 @@ this.leftEyeAvatar.y = jointPositionsGebruikers.leftEyePos.y;
         x: jointPositionsGebruikers.leftHipPos.x,
         y: jointPositionsGebruikers.leftHipPos.y
       }], true);
-    //this.polygon
-   //this.polygon.setTo([{x:jointPositionsGebruikers.rightShoulderPos.x, y:jointPositionsGebruikers.rightShoulderPos.y}, {x: jointPositionsGebruikers.leftShoulderPos.x, y: jointPositionsGebruikers.leftShoulderPos.y}, {x: jointPositionsGebruikers.rightHipPos.x, y: jointPositionsGebruikers.rightHipPos.y}, {x: jointPositionsGebruikers.leftHipPos.x, y: jointPositionsGebruikers.leftHipPos.y}]);
 
     if(isLive){
       if($liveTitle.textContent === 'live'){
@@ -607,9 +581,7 @@ this.leftEyeAvatar.y = jointPositionsGebruikers.leftEyePos.y;
       const l = this.matter.add.sprite(fallPosition, 0,  split[letter], 0, {restitution: .5, slop: 1});
 
       l.setInteractive({useHandCursor: true}).on('pointerdown', () => this.onClickLetter(l));
-     //l.setInteractive({useHandCursor: true}).on('pointerdown', function(){
-     //   console.log("yay");
-     //}, this);
+
       console.log(l);
       l.setCollisionGroup(this.group1)
      // l.setCollidesWith(0)
@@ -617,7 +589,7 @@ this.leftEyeAvatar.y = jointPositionsGebruikers.leftEyePos.y;
       fallPosition = fallPosition + spacebetween;
 
       letters.push(l);
-      //console.log(letters);
+   
     }
 
   };
@@ -802,29 +774,7 @@ handleLetterArrays(l){
 
 
       });
-/*
-      socket.on('clearLetterAll', letter => {
-        
-  
-      
-        this.tweens.add({
-          targets: letter,
-          scale: 0,
-          duration: 100,
-          ease: 'Linear'
-      });
-   
-      setTimeout(function(){
 
-        letter.destroy();
-        //this.matter.world.remove(letters[rand]);
-   
-        letters.splice(letters.indexOf(letter), 1);
-        console.log(letters);
-       }, 200);
-      
-      });
-      */
       socket.on('selectedFeeling', selectedFeeling => {
         this.createFeeling(selectedFeeling);
 
@@ -836,13 +786,7 @@ handleLetterArrays(l){
 
         jointPositionsGebruikersTarget.leftEyePosTarget.x = this.cameras.main.width * jointPositions.leftEyePos.x;
         jointPositionsGebruikersTarget.leftEyePosTarget.y = this.cameras.main.height * jointPositions.leftEyePos.y;
-/*
-        jointPositionsGebruikersTarget.leftEyePosTarget.x = this.cameras.main.width * jointPositions.leftEyePos.x;
-        jointPositionsGebruikersTarget.leftEyePosTarget.y = this.cameras.main.height * jointPositions.leftEyePos.y;
 
-        jointPositionsGebruikersTarget.rightEyePosTarget.x =  this.cameras.main.width * jointPositions.rightEyePos.x;
-        jointPositionsGebruikersTarget.rightEyePosTarget.y = this.cameras.main.height * jointPositions.rightEyePos.y;
-*/
         jointPositionsGebruikersTarget.leftWristPosTarget.x = this.cameras.main.width * jointPositions.leftWristPos.x;
         jointPositionsGebruikersTarget.leftWristPosTarget.y = this.cameras.main.height * jointPositions.leftWristPos.y;
 
