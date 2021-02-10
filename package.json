@@ -1,4 +1,6 @@
 {
+  "name": "Memento Festival",
+  "version": "1",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
