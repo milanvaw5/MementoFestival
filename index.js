@@ -5,16 +5,6 @@ const port = process.env.PORT || 80;
 
 const io = require('socket.io')(server);
 
-<<<<<<< HEAD
-io.on('connection', socket => {
-  console.log('Socket connected', socket.id);
-
-  socket.on('message', message => {
-    console.log(message);
-    io.sockets.emit(`message`, message);
-  });
-
-=======
 let timer = 0;
 let wordCounter = 0;
 let idleWords = ['verloren','hinkel', 'ik', 'over', 'de', 'sproeten','op', 'mijn', 'vingers'];
@@ -56,7 +46,7 @@ io.on('connection', socket => {
 
     idleMode = setInterval(() => {
       timer++;
-      
+
       if(timer >= 30){
         io.sockets.emit(`message`, idleWords[wordCounter]);
         words.push(idleWords[0]);
@@ -70,9 +60,9 @@ io.on('connection', socket => {
       }
     }, 2000);
 
-    
+
   });
-  
+
   socket.on('message', message => {
     timer = 0;
     console.log(message);
@@ -83,32 +73,32 @@ io.on('connection', socket => {
     }
     console.log(words);
     io.sockets.emit(`message`, message);
-    
+
   });
 
   socket.on('schud', () => {
 
     io.sockets.emit(`shakeAll`);
-    
+
   });
 
   socket.on('hartje', () => {
     hearts++;
     io.sockets.emit(`heartAll`, hearts);
-    
+
   });
 
   socket.on('hand', () => {
-    
+
     io.sockets.emit(`handAll`, socket.id);
-    
+
   });
 
   socket.on('handShake', id => {
     highfives++;
     io.sockets.to(id).emit(`handShaken`, highfives);
     io.sockets.to(admin).emit(`handShaken`, highfives);
-    
+
   });
 
   socket.on('feeling', selectedFeeling => {
@@ -136,7 +126,7 @@ io.on('connection', socket => {
     socket.emit('clearLetterAll', letter);
   });
 
-  
+
 
   socket.on('points', jointPositions => {
     //console.log(jointPositions);
@@ -153,20 +143,16 @@ io.on('connection', socket => {
       clearInterval(idleMode);
       io.sockets.emit(`notLive`);
     }
-    
+
 });
 
->>>>>>> dev
 });
 
 app.use(express.static('public'));
 
 server.listen(port, () => {
  console.log(`App listening on port ${port}!`);
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> dev
 });
