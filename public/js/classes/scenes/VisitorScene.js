@@ -430,13 +430,13 @@ export default class VisitorScene extends Phaser.Scene {
             ease: 'Linear'
         });
 
-        feelingWaitingToBeDestroyed.push(feeling[rand]);
-        feeling.splice(rand, 1);
+        feelingWaitingToBeDestroyed.push(feelings[rand]);
+        feelings.splice(rand, 1);
         console.log('Dit is de index:' + index);
         if(index === 3){
           setTimeout(function(){
-            letterWaitingToBeDestroyed.forEach(letter => {
-              letter.destroy();
+            feelingWaitingToBeDestroyed.forEach(feeling => {
+              feeling.destroy();
             });
           }, 300);
           isClearing = false;
