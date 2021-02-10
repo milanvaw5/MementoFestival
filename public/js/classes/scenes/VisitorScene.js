@@ -441,6 +441,8 @@ export default class VisitorScene extends Phaser.Scene {
           }, 300);
           isClearing = false;
       }
+        }
+      }
 
       if(letters.length > 70 && isClearing === false){
         isClearing = true;
@@ -469,11 +471,9 @@ export default class VisitorScene extends Phaser.Scene {
 
         isClearing = false;
       }
-
-      }
     }
   }
-
+      }
 
 
   resize(){
