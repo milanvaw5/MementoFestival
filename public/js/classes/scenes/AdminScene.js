@@ -289,7 +289,7 @@ const init = async () => {
 
 
   }
-  if(window.location.pathname === "/index.html" || window.location.pathname === "/"){
+  if(window.location.pathname === "/admin.html" || window.location.pathname === "/"){
     init();
   }
 
@@ -401,7 +401,7 @@ export default class AdminScene extends Phaser.Scene {
     this.group2 = this.matter.world.nextGroup(true);
 
     this.time.addEvent({
-      delay: 300,             
+      delay: 300,
       callback: this.clearLetters,
       callbackScope : this,
       args: [letters],
@@ -474,7 +474,7 @@ export default class AdminScene extends Phaser.Scene {
       isClearing = true;
       let letterWaitingToBeDestroyed = [];
       for (let index = 0; index < 4; index++) {
-       
+
       const rand = Math.floor(Math.random()*letters.length);
 
       console.log(rand);
@@ -484,7 +484,7 @@ export default class AdminScene extends Phaser.Scene {
         duration: 100,
         ease: 'Linear'
     });
-    
+
     letterWaitingToBeDestroyed.push(letters[rand]);
    // letters[rand].destroy();
     letters.splice(rand, 1);
@@ -495,7 +495,7 @@ export default class AdminScene extends Phaser.Scene {
           letter.destroy();
         });
       }, 300);
-      
+
       isClearing = false;
     }
 
@@ -508,10 +508,10 @@ export default class AdminScene extends Phaser.Scene {
   }
 
   update(){
-   
-  
 
-  
+
+
+
 
   // this.calcPercentage();
 /*
@@ -818,10 +818,10 @@ export default class AdminScene extends Phaser.Scene {
       socket.on('shakeAll', () => {
 
         letters.forEach(letter => {
-          letter.setVelocity(20, 30)
+          letter.setVelocity(20, -30)
         });
         feelings.forEach(feeling => {
-          feeling.setVelocity(20, 30)
+          feeling.setVelocity(20, -30)
         });
 
 
