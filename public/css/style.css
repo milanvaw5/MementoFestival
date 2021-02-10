@@ -250,7 +250,7 @@ body {
   padding: 0rem 1rem;
 }
 
-.error {
+.error .errormessage {
   color: var(--orange);
   margin: .4rem 0;
   padding: .4rem;

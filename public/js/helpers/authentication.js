@@ -6,6 +6,7 @@
     const $btnLogout = document.querySelector(`.btnLogout`);
     const $sectionAdminActive = document.querySelector(`.section-admin--active`);
     const $sectionAdmin = document.querySelector(`.section-admin`);
+    let $errorMessage = document.querySelector(`.errormessage`);
     let firebaseInstance;
     let authInstance;
 
@@ -56,6 +57,7 @@
             return result;
 
           } catch (error) {
+            $errorMessage.innerHTML = 'Onjuiste inloggegevens, check op spelfouten & caps log.'
             return error.code;
           }
     }
