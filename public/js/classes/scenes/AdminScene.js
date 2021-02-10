@@ -126,7 +126,7 @@ const poseNetState = {
 
 
 const detectPoseInRealTime = (video) => {
-  const canvas = document.getElementById('output');
+  //const canvas = document.getElementById('output');
 
   const flipPoseHorizontal = true;
 
@@ -279,6 +279,7 @@ const startVideo = async () => {
 }
 
 const init = async () => {
+  console.log(window.location.pathname)
    poseNetModel = await posenet.load({
       architecture: poseNetState.input.architecture,
       outputStride: poseNetState.input.outputStride,
