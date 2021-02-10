@@ -134,6 +134,7 @@
   color: var(--white);
   text-decoration: underline;
   display: block;
+  margin-bottom: .5rem;
 }
 
 .admin__datasection__letterdooslogowh {
