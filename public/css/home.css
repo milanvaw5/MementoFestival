@@ -1,6 +1,8 @@
 /* another css file*/
 
 
+@media only screen and (max-height: 3000px),(max-width: 3000px) {
+
 @keyframes roundtime {
   to {
     /* More performant than animating `width` */
@@ -998,6 +1000,7 @@ p {
 
 .rotation {
   display: none;
+}
 }
 
 @media only screen and (max-height: 3000px),(max-width: 1250px) {
