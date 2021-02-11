@@ -1329,6 +1329,7 @@ p {
 
   .information__blocks {
     background-size: 70%;
+    height: 120vh;
   }
 
   .information__block {
@@ -1360,10 +1361,6 @@ p {
 
   .map {
     display: none;
-  }
-
-  .information__blocks {
-    height: 120vh;
   }
 
   .information__part, .intro {
@@ -1413,6 +1410,10 @@ p {
 }
 
 @media only screen and (max-width: 800px) and (max-height: 500px) and (orientation: landscape) {
+
+  .information__blocks {
+    height: 150vh;
+  }
 
   .wordForm {
     opacity: 100;
