@@ -1382,9 +1382,46 @@ p {
 @media only screen and (max-height: 500px) {
 
   .logo {
-    max-width: 10vw;
-    width: 10vw;
+    max-width: 30vw;
+    width: 30vw;
+    margin-right: 1rem;
   }
 
+  .section__article {
+    max-width: 100%;
+  }
+
+  .intro__top {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr;
+  }
+
+  .intro {
+    max-width: 60%;
+    height: 100%;
+    background-image: url('../assets/img/blobs/greenblob.png'), url('../assets/img/blobs/blueblob.png');
+    background-repeat: no-repeat;
+    background-position: top left, bottom center;
+    z-index: -3rem;
+  }
+
+  .information__parts {
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+  }
+
+  .information__part {
+    max-width: 95%;
+  }
+
+  .wandelapp__section {
+    grid-template-rows: 1fr 2fr;
+    grid-template-columns: 1fr;
+  }
+
+  .wandelapp__img {
+    max-width: 50%;
+    max-height: 50%;
+  }
 
 }
