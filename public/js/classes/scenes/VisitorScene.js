@@ -709,7 +709,7 @@ handleLetterArrays(l){
       });
 
       if($introForm){
-        if (window.innerWidth <= 1000 && window.innerWidth >= 500) {
+        if (window.innerWidth <= 1000 && window.innerWidth >= 0) {
           $introForm.style.display = `none`;
           $wordForm.style.display = `block`;
         }
@@ -823,11 +823,12 @@ handleLetterArrays(l){
       if (!form.checkValidity()) {
         this.showValidationInfo(field);
        } else {
-         form.querySelector(`.error`).textContent = "";
-       }
-       if(forbiddenWordsEn.includes(field.value) || forbiddenWordsNl.includes(field.value) || forbiddenWordsFr.includes(field.value) || forbiddenWordsDe.includes(field.value)) {
+        form.querySelector(`.error`).textContent = "";
+
+        if(forbiddenWordsEn.includes(field.value) || forbiddenWordsNl.includes(field.value) || forbiddenWordsFr.includes(field.value) || forbiddenWordsDe.includes(field.value)) {
         form.querySelector(`.error`).textContent = "Deze woorden worden niet toegelaten";
       }
+    }
     }
 
     handleSubmitMessage = (e, form) => {
@@ -840,13 +841,27 @@ handleLetterArrays(l){
 
         if(forbiddenWordsEn.includes(field.value) || forbiddenWordsNl.includes(field.value) || forbiddenWordsFr.includes(field.value) || forbiddenWordsDe.includes(field.value)) {
           form.querySelector(`.error`).textContent = "Deze woorden worden niet toegelaten";
-          socket.emit('message', field.value);
-          field.value = '';
+        }
+        else {
+          if (window.innerWidth <= 1000 && window.innerWidth >= 500) {
+            $introForm.style.display = `none`;
+            $wordForm.style.display = `block`;
+            }
+          else if (window.innerWidth <= 800 && window.innerHeight <= 500) {
+            $introForm.style.display = `none`;
+            $wordForm.style.display = `block`;
+           }
+          else {
+            $wordForm.style.display = `none`;
+            $feelingsForm.style.display = `block`;
+          }
+        socket.emit('message', field.value);
+        field.value = '';
         }
       }
+
+
     }
-
-
     handleSubmitFeeling = e => {
       e.preventDefault();
       if (!$feelingsForm.checkValidity()) {
