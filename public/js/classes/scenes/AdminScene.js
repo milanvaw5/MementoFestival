@@ -467,18 +467,18 @@ export default class AdminScene extends Phaser.Scene {
     if(letters.length > 70 && isClearing === false){
       isClearing = true;
       let letterWaitingToBeDestroyed = [];
+
       for (let index = 0; index < 4; index++) {
 
       const rand = Math.floor(Math.random()*letters.length);
-
       this.tweens.add({
         targets: letters[rand],
         scale: 0,
         duration: 100,
         ease: 'Linear'
-    });
+      });
 
-        feelingWaitingToBeDestroyed.push(feelings[rand]);
+        letterWaitingToBeDestroyed.push(feelings[rand]);
         feelings.splice(rand, 1);
         if(index === 3){
           setTimeout(function(){
