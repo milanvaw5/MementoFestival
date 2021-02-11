@@ -1409,6 +1409,14 @@ p {
 
 }
 
+@media only screen and (max-width: 730px) and (max-height: 720px) and (orientation: landscape) {
+
+  .information__blocks {
+    height: 200vh;
+  }
+
+}
+
 @media only screen and (max-width: 800px) and (max-height: 500px) and (orientation: landscape) {
 
   .information__blocks {
@@ -1487,14 +1495,6 @@ p {
 
   .footer {
     height: 110vh;
-  }
-
-}
-
-@media only screen and (max-width: 730px) and (max-height: 720px) and (orientation: landscape) {
-
-  .information__blocks {
-    height: 200vh;
   }
 
 }
