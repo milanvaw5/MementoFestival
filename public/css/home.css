@@ -1438,4 +1438,8 @@ p {
     height: 100vh;
   }
 
+  .map {
+    display: none;
+  }
+
 }
