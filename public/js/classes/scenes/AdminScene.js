@@ -151,7 +151,7 @@ const detectPoseInRealTime = (video) => {
 // wordt ook met browserrefresh gedaan 60fps
 function drawKeypoints(keypoints, minConfidence, scale = 1) {
 
-  
+
   let leftEye = keypoints.find(point => point.part === 'leftEye');
   let leftWrist = keypoints.find(point => point.part === 'leftWrist');
   let rightWrist = keypoints.find(point => point.part === 'rightWrist');
@@ -223,8 +223,8 @@ const setupCamera = async () => {
 
     video.width = videoWidth;
     video.height = videoHeight;
-  
-  
+
+
 
   const stream = await navigator.mediaDevices.getUserMedia({
     'audio': false,
@@ -353,7 +353,7 @@ export default class AdminScene extends Phaser.Scene {
   create(){
 
     this.makeConnectionAdmin();
-   
+
     this.leftEyeAvatar = this.matter.add.image(jointPositions.leftEyePos.x, jointPositions.leftEyePos.y, 'head', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
     this.leftWristAvatar = this.matter.add.image(jointPositions.leftWristPos.x, jointPositions.leftWristPos.y, 'handLeft', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
     this.rightWristAvatar = this.matter.add.image(jointPositions.rightWristPos.x, jointPositions.rightWristPos.y, 'handRight', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
@@ -385,15 +385,15 @@ export default class AdminScene extends Phaser.Scene {
     this.time.addEvent({ delay: 200, callback: this.onEmitPositionsDelay, callbackScope: this, loop: true });
 
     this.matter.world.on('collisionstart', function (event, bodyA, bodyB) {
-   
+
 
       if (event.pairs[0].bodyA.gameObject){
         if(bodyA.gameObject.texture.key === "handLeft"){
           if(bodyB.gameObject.texture.key === "hand"){
-        
+
             bodyB.gameObject.destroy();
             this.matter.world.remove(bodyB);
-           
+
             socket.emit('handShake', handShakeId);
 
           }
@@ -401,7 +401,7 @@ export default class AdminScene extends Phaser.Scene {
         }
         if(bodyA.gameObject.texture.key === "hand"){
           if(bodyB.gameObject.texture.key === "handLeft"){
-            
+
             this.matter.world.remove(bodyA);
 
           }
@@ -410,7 +410,7 @@ export default class AdminScene extends Phaser.Scene {
 
         if(bodyA.gameObject.texture.key === "hand"){
           if(bodyB.gameObject.texture.key === "handRight"){
-     
+
             this.matter.world.remove(bodyA);
 
           }
@@ -419,11 +419,11 @@ export default class AdminScene extends Phaser.Scene {
 
         if(bodyA.gameObject.texture.key === "handRight"){
           if(bodyB.gameObject.texture.key === "hand"){
-     
-    
+
+
             bodyB.gameObject.destroy();
             this.matter.world.remove(bodyB);
- 
+
             socket.emit('handShake', handShakeId);
 
           }
@@ -437,40 +437,61 @@ export default class AdminScene extends Phaser.Scene {
   }
  //bij een bepaald aantal letters op het scherm - zullen er een hoeveelheid verdwijnen,
     //random gekozen om zo nieuwe woorden en mysterie te creëren
-  clearLetters(){
+    clearLetters(){
 
-    if(letters.length > 70 && isClearing === false){
-      isClearing = true;
-      let letterWaitingToBeDestroyed = [];
-      for (let index = 0; index < 4; index++) {
+      if(feelings.length > 7 && isClearing === false) {
+        isClearing = true;
+        let feelingWaitingToBeDestroyed = [];
 
-      const rand = Math.floor(Math.random()*letters.length);
-
-      this.tweens.add({
-        targets: letters[rand],
-        scale: 0,
-        duration: 100,
-        ease: 'Linear'
-    });
-
-    letterWaitingToBeDestroyed.push(letters[rand]);
-
-    letters.splice(rand, 1);
-   
-
-    if(index === 3){
-      setTimeout(function(){
-        letterWaitingToBeDestroyed.forEach(letter => {
-          letter.destroy();
+        for (let index = 0; index < 4; index++) {
+          const rand = Math.floor(Math.random()*feelings.length);
+          this.tweens.add({
+            targets: feelings[rand],
+            scale: 0,
+            duration: 100,
+            ease: 'Linear'
         });
-      }, 300);
 
-      isClearing = false;
-    }
+        feelingWaitingToBeDestroyed.push(feelings[rand]);
+        feelings.splice(rand, 1);
+        if(index === 3){
+          setTimeout(function(){
+            feelingWaitingToBeDestroyed.forEach(feeling => {
+              feeling.destroy();
+            });
+          }, 300);
+          isClearing = false;
+      }
+        }
+      }
 
+      if(letters.length > 70 && isClearing === false){
+        isClearing = true;
+        let letterWaitingToBeDestroyed = [];
+
+        for (let index = 0; index < 4; index++) {
+          const rand = Math.floor(Math.random()*letters.length);
+          this.tweens.add({
+            targets: letters[rand],
+            scale: 0,
+            duration: 100,
+            ease: 'Linear'
+        });
+
+      letterWaitingToBeDestroyed.push(letters[rand]);
+      letters.splice(rand, 1);
+      if(index === 3){
+        setTimeout(function(){
+          letterWaitingToBeDestroyed.forEach(letter => {
+            letter.destroy();
+          });
+        }, 300);
+
+        isClearing = false;
+      }
     }
   }
-}
+      }
   onEmitPositionsDelay(){
 
     socket.emit('points', jointPositionsWebcamPercentage);

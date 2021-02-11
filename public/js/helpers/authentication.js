@@ -57,7 +57,7 @@
             return result;
 
           } catch (error) {
-            $errorMessage.innerHTML = 'Onjuiste inloggegevens, controleer op spelfouten & caps log.'
+            $errorMessage.innerHTML = 'Onjuiste inloggegevens.'
             $errorMessage.style.display = "block";
             return error.code;
           }
