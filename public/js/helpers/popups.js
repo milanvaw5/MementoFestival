@@ -56,7 +56,6 @@
             $popupWord.style.animation = "appear 1s ease";
             $popupWord.style.opacity = "1";
             $popupWord.style.zIndex = "5";
-           // $popupWord.style.display = "block";
             $popupText.textContent = text;
             isOpen = true;
         }
@@ -65,7 +64,6 @@
             $popupWord.style.opacity = "0";
             $popupWord.style.zIndex = "0";
             isOpen = false;
-           // $popupWord.style.display = "none";
         }
 
     }

@@ -101,13 +101,13 @@ export default class Game extends Phaser.Game {
 
     if(path === "/admin.html") {
 
-      console.log(path)
+      //console.log(path)
       this.scene.add(`adminscene`, AdminScene ,true);
     }
     else {
       this.scene.add(`visitorscene`, VisitorScene ,true);
     }
 
-    console.log('CONNECTING TO SCENE');
+
   }
 }

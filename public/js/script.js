@@ -4,7 +4,6 @@ let myGame;
 
 {
   const init = () => {
-    //console.log("GAME STARTED");
     myGame = new Game();
   };
 

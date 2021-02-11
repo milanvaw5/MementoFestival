@@ -165,12 +165,6 @@ function drawKeypoints(keypoints, minConfidence, scale = 1) {
   let rightKnee = keypoints.find(point => point.part === 'rightKnee');
   let leftAnkle = keypoints.find(point => point.part === 'leftAnkle');
   let rightAnkle = keypoints.find(point => point.part === 'rightAnkle');
-
-
-
-
-  
-
   if (leftWrist.score > minConfidence) {
       jointPositionsTenserflow.leftWristPos = leftWrist.position;
   }
@@ -361,7 +355,6 @@ export default class AdminScene extends Phaser.Scene {
     this.makeConnectionAdmin();
    
     this.leftEyeAvatar = this.matter.add.image(jointPositions.leftEyePos.x, jointPositions.leftEyePos.y, 'head', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
-
     this.leftWristAvatar = this.matter.add.image(jointPositions.leftWristPos.x, jointPositions.leftWristPos.y, 'handLeft', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
     this.rightWristAvatar = this.matter.add.image(jointPositions.rightWristPos.x, jointPositions.rightWristPos.y, 'handRight', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
     this.leftShoulderAvatar = this.matter.add.image(jointPositions.leftShoulderPos.x, jointPositions.leftShoulderPos.y, 'joint', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
@@ -389,7 +382,7 @@ export default class AdminScene extends Phaser.Scene {
 
     this.spawnLetters();
     // emit only 10 times per second
-    this.time.addEvent({ delay: 200, callback: this.onEvent, callbackScope: this, loop: true });
+    this.time.addEvent({ delay: 200, callback: this.onEmitPositionsDelay, callbackScope: this, loop: true });
 
     this.matter.world.on('collisionstart', function (event, bodyA, bodyB) {
    
@@ -478,7 +471,7 @@ export default class AdminScene extends Phaser.Scene {
     }
   }
 }
-  onEvent(){
+  onEmitPositionsDelay(){
 
     socket.emit('points', jointPositionsWebcamPercentage);
   }
@@ -651,29 +644,9 @@ export default class AdminScene extends Phaser.Scene {
       const l = this.matter.add.sprite(fallPosition, 0, split[letter], 0, {restitution: .5, slop: 1});
       fallPosition = fallPosition + spacebetween;
       letters.push(l);
-
     }
 
   };
-/*
-   //indien een woord werd ingegeven word het woord ingelezen gesplits en erna gespawend
-
-    //de timer is nul dus word een auteurinput gedropt en daarna de timer gereset
-    readInAuteurInput() {
-      console.log('auteurinput');
-      readWord = auteurInput[Math.floor(Math.random() * auteurInput.length)];
-      if (readWord!= '') {
-        console.log(readWord);
-        this.splitWord(readWord);
-        this.spawnWord();
-        //timer = setInterval(this.readInAuteurInput(), 50000); //timer resetten
-        return false;
-      }
-      else {
-        console.log('error auteurinput');
-      }
-    };
-*/
     splitWord (){
       lowercase = readWord.toLowerCase();
       lowercase = lowercase.replace(/\s/g, '');
@@ -685,8 +658,6 @@ export default class AdminScene extends Phaser.Scene {
     makeConnectionAdmin() {
       socket = io.connect('/');
       socket.on('connect', () => {
-
-        //console.log(`Admin connected: ${socket.id}`);
         socket.emit('admin');
         socket.emit('requestHearts');
         socket.emit('requestHighfives');
@@ -713,7 +684,6 @@ export default class AdminScene extends Phaser.Scene {
       });
 
       socket.on('message', message => {
-        //console.log(`Received message: ${message}`);
         words.push(message);
         readWord = message;
         this.spawnWord();

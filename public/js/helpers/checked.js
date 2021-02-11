@@ -27,7 +27,7 @@
    const init = () => {
     $emotics.forEach(item => {
         item.addEventListener('click', handleClickEmotic);
-    })
+    });
    }
    
    

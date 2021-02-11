@@ -238,14 +238,11 @@ export default class VisitorScene extends Phaser.Scene {
   }
 
   preload(){
-  
-
     this.load.image('head', 'assets/img/avatar/avatarGreen/x1/headGreen.png');
     this.load.image('footLeft', 'assets/img/avatar/avatarGreen/x1/footLeftGreen.png');
     this.load.image('footRight', 'assets/img/avatar/avatarGreen/x1/footRightGreen.png');
     this.load.image('handLeft', 'assets/img/avatar/avatarGreen/x1/handLeftGreen.png');
     this.load.image('handRight', 'assets/img/avatar/avatarGreen/x1/handRightGreen.png');
-    this.load.image('body', 'assets/img/avatar/avatarGreen/x1/bodyGreen.png');
     this.load.image('knee', 'assets/img/avatar/avatarGreen/x1/kneeGreen.png');
     this.load.image('joint', 'assets/img/avatar/avatarGreen/x1/schijfGroen.png');
 
@@ -330,7 +327,6 @@ export default class VisitorScene extends Phaser.Scene {
 
 
     this.pointer = this.input.activePointer;
-    //this.input.mouse.onMouseWheel.preventDefault = false
 
 
     this.time.addEvent({
@@ -530,7 +526,6 @@ export default class VisitorScene extends Phaser.Scene {
       const l = this.matter.add.sprite(fallPosition, 0,  split[letter], 0, {restitution: .5, slop: 1});
       l.setInteractive({useHandCursor: true}).on('pointerdown', () => this.onClickLetter(l));
       l.setCollisionGroup(this.group1)
-     // l.setCollidesWith(0)
       fallPosition = fallPosition + spacebetween;
       letters.push(l);
     }
@@ -570,35 +565,15 @@ handleLetterArrays(l){
     }
   };
 }
-/*
-    //de timer is nul dus word een auteurinput gedropt en daarna de timer gereset
-    readInAuteurInput() {
-      console.log('auteurinput');
-      readWord = auteurInput[Math.floor(Math.random() * auteurInput.length)];
-      if (readWord!= '') {
-        console.log(readWord);
-        this.splitWord(readWord);
-        this.spawnWord();
-        //timer = setInterval(this.readInAuteurInput(), 50000); //timer resetten
-        return false;
-      }
-      else {
-        console.log('error auteurinput');
-      }
-    };*/
-
     splitWord (){
       lowercase = readWord.toLowerCase();
       lowercase = lowercase.replace(/\s/g, '');
       split = lowercase.split('');
     };
 
-
-
     makeConnection() {
       socket = io.connect('/');
       socket.on('connect', () => {
-        //console.log(`Connected: ${socket.id}`);
         socket.emit('requestWords');
         socket.emit('requestFeelings');
         socket.emit('requestHearts');
@@ -639,23 +614,18 @@ handleLetterArrays(l){
       });
 
       socket.on('message', message => {
-        //console.log(`Received message: ${message}`);
         woordje = message;
         this.readInWord();
 
       });
       socket.on('live', () => {
-
         isLive = true;
-
       });
+
       socket.on('notLive', () => {
-
         isLive = false;
-
       });
       socket.on('shakeAll', () => {
-
         letters.forEach(letter => {
           letter.setVelocity(20, -30)
         });
@@ -706,13 +676,11 @@ handleLetterArrays(l){
         jointPositionsGebruikersTarget.rightWristPosTarget.x =  this.cameras.main.width * jointPositions.rightWristPos.x;
         jointPositionsGebruikersTarget.rightWristPosTarget.y = this.cameras.main.height * jointPositions.rightWristPos.y;
 
-
         jointPositionsGebruikersTarget.leftShoulderPosTarget.x = this.cameras.main.width * jointPositions.leftShoulderPos.x;
         jointPositionsGebruikersTarget.leftShoulderPosTarget.y = this.cameras.main.height * jointPositions.leftShoulderPos.y;
 
         jointPositionsGebruikersTarget.rightShoulderPosTarget.x =  this.cameras.main.width * jointPositions.rightShoulderPos.x;
         jointPositionsGebruikersTarget.rightShoulderPosTarget.y = this.cameras.main.height * jointPositions.rightShoulderPos.y;
-
 
         jointPositionsGebruikersTarget.leftElbowPosTarget.x = this.cameras.main.width * jointPositions.leftElbowPos.x;
         jointPositionsGebruikersTarget.leftElbowPosTarget.y = this.cameras.main.height * jointPositions.leftElbowPos.y;
@@ -720,20 +688,17 @@ handleLetterArrays(l){
         jointPositionsGebruikersTarget.rightElbowPosTarget.x =  this.cameras.main.width * jointPositions.rightElbowPos.x;
         jointPositionsGebruikersTarget.rightElbowPosTarget.y = this.cameras.main.height * jointPositions.rightElbowPos.y;
 
-
         jointPositionsGebruikersTarget.leftHipPosTarget.x = this.cameras.main.width * jointPositions.leftHipPos.x;
         jointPositionsGebruikersTarget.leftHipPosTarget.y = this.cameras.main.height * jointPositions.leftHipPos.y;
 
         jointPositionsGebruikersTarget.rightHipPosTarget.x =  this.cameras.main.width * jointPositions.rightHipPos.x;
         jointPositionsGebruikersTarget.rightHipPosTarget.y = this.cameras.main.height * jointPositions.rightHipPos.y;
 
-
         jointPositionsGebruikersTarget.leftKneePosTarget.x = this.cameras.main.width * jointPositions.leftKneePos.x;
         jointPositionsGebruikersTarget.leftKneePosTarget.y = this.cameras.main.height * jointPositions.leftKneePos.y;
 
         jointPositionsGebruikersTarget.rightKneePosTarget.x =  this.cameras.main.width * jointPositions.rightKneePos.x;
         jointPositionsGebruikersTarget.rightKneePosTarget.y = this.cameras.main.height * jointPositions.rightKneePos.y;
-
 
         jointPositionsGebruikersTarget.leftAnklePosTarget.x = this.cameras.main.width * jointPositions.leftAnklePos.x;
         jointPositionsGebruikersTarget.leftAnklePosTarget.y = this.cameras.main.height * jointPositions.leftAnklePos.y;
@@ -752,8 +717,6 @@ handleLetterArrays(l){
         else {
           $wordForm.style.display = `none`;
         }
-   
-        //document.querySelector(`canvas`).style.height = "100vh";
       }
 
       if($wordForm){
@@ -857,19 +820,10 @@ handleLetterArrays(l){
         this.showValidationInfo(field);
        } else {
          form.querySelector(`.error`).textContent = "";
-       // field.parentElement.querySelector(`.error`).textContent = ""
        }
        if(forbiddenWordsEn.includes(field.value) || forbiddenWordsNl.includes(field.value) || forbiddenWordsFr.includes(field.value) || forbiddenWordsDe.includes(field.value)) {
         form.querySelector(`.error`).textContent = "Deze woorden worden niet toegelaten";
       }
-        /*
-       if(form === $feelingsForm){
-         const pic = field.parentElement.querySelector(`.${field.value}`)
-         pic.style.backgroundImage = 'url(../assets/img/emotics/happyco.png)';
-         pic.style. backgroundPosition = 'bottom right';
-       }
-       */
-
     }
 
     handleSubmitMessage = (e, form) => {
@@ -895,7 +849,6 @@ handleLetterArrays(l){
           }
         socket.emit('message', field.value);
         field.value = '';
-        //console.log(`Form is valid => submit form`);
         }
       }
 
@@ -919,9 +872,7 @@ handleLetterArrays(l){
 
           if(Array.isArray(memootje.forEmotions)){
             memootje.forEmotions.forEach(forEmotion => {
-
                if(forEmotion === selectedFeeling){
-
                  memootjesEmotion.push(memootje);
                }
             });
@@ -931,26 +882,14 @@ handleLetterArrays(l){
               memootjesEmotion.push(memootje);
             }
           }
-
-
          });
+
          let rand;
          if(memootjesEmotion.length === 1){
           rand = 0;
          }else{
           rand = Math.floor(Math.random()* (memootjesEmotion.length - 1));
          }
-
-
-
-
-         // call facebook share with data
-         /*this.shareOverrideOGMeta({
-          link: 'https://www.google.com',
-          image: 'https://www.google.com',
-          caption: 'Reference info',
-          description: memootjesEmotion[rand].text
-          });*/
 
          $haiku.textContent = memootjesEmotion[rand].text;
          $auteurName.textContent = memootjesEmotion[rand].author;
@@ -959,7 +898,7 @@ handleLetterArrays(l){
 
          const $challengeWord = document.querySelector(`.wordForm__challenge`);
 
-          let challengeword = memootjesEmotion[rand].keyword.toLowerCase();
+         let challengeword = memootjesEmotion[rand].keyword.toLowerCase();
 
           challengeword = challengeword.split('');
           challengeword.forEach(letter => {
@@ -971,29 +910,9 @@ handleLetterArrays(l){
             $challengeWord.appendChild(letterImg);
           });
           socket.emit('feeling', selectedFeeling);
-          //console.log(`Form is valid => submit form`);
        }
    }
 
-
- shareOverrideOGMeta(data)
-{
-	FB.ui({
-		method: 'share_open_graph',
-		action_type: 'og.likes',
-		action_properties: JSON.stringify({
-			object: {
-				'og:url': data.overrideLink,
-				'og:title': data.overrideTitle,
-				'og:description': data.overrideDescription,
-				'og:image': data.overrideImage
-			}
-		})
-	},
-	function (response) {
-	// Action after response
-	});
-}
 
    handleClickHand = e => {
 
@@ -1028,8 +947,6 @@ handleLetterArrays(l){
    }
 
    handleClickSchud = e => {
-
-
     if(isShakeClickable === false){
 
     }else{
@@ -1044,9 +961,6 @@ handleLetterArrays(l){
          }, 5000);
       }
     }
-
-
-
    }
 
    handleClickHartje = e => {
@@ -1063,15 +977,12 @@ handleLetterArrays(l){
           isHeartClickable = true;
          }, 5000);
       }
-
     }
    }
 
 
   spawnLetters() {
-
     let fallPosition = Phaser.Math.Between(20, widthDivScreen / 2);
-
     for (let startOffLetters = 0; startOffLetters < letters.length; startOffLetters++){
       letters[startOffLetters] = this.matter.add.sprite(fallPosition, 0, letters[startOffLetters], 0, {restitution: .5});
       fallPosition = fallPosition + spacebetween;
@@ -1083,10 +994,9 @@ handleLetterArrays(l){
     readWord = woordje;
     if (readWord!= '') {
       this.spawnWord();
-      //timer = setInterval(this.readInAuteurInput(), 50000); //timer resetten
     }
     else {
-      console.log('niks ingegeven');
+
     }
   };
 }
