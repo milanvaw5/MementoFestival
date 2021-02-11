@@ -1383,7 +1383,7 @@ p {
 
 }
 
-@media only screen and (max-height: 800px) and (max-width: 500px) {
+@media only screen and (max-height: 800px), (max-width: 500px) {
 
   .logo {
     max-width: 30vw;
