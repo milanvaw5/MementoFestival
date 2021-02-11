@@ -47,7 +47,7 @@ io.on('connection', socket => {
     idleMode = setInterval(() => {
       timer++;
 
-      if(timer >= 30){
+      if(timer >= 90){
         io.sockets.emit(`message`, idleWords[wordCounter]);
         words.push(idleWords[0]);
         if(words.length > 10){
@@ -58,7 +58,7 @@ io.on('connection', socket => {
           wordCounter = 0;
         }
       }
-    }, 2000);
+    }, 4000);
 
 
   });
