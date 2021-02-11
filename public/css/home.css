@@ -1343,7 +1343,7 @@ p {
   }
 
   .footer {
-    height: 60vh;
+    height: 70vh;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     justify-content: space-around;
