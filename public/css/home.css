@@ -1123,7 +1123,7 @@ p {
   }
 
   .form__section {
-    min-height: 100%;
+    /*min-height: 100%;*/
   }
 }
 
