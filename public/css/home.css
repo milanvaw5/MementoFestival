@@ -1391,6 +1391,10 @@ p {
     margin-right: 1rem;
   }
 
+  .section__information {
+    grid-template-columns: 1fr;
+  }
+
   .section__article {
     max-width: 100%;
   }
