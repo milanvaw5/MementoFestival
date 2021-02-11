@@ -15,6 +15,10 @@ a {
   z-index: 19;
 }
 
+.form__section__titlebox {
+  opacity: 100%;
+}
+
 .blobright, .blobleft {
   background-image: none;
 }
@@ -1379,7 +1383,7 @@ p {
 
 }
 
-@media only screen and (max-height: 500px) {
+@media only screen and (max-height: 800px) and (max-width: 500px) {
 
   .logo {
     max-width: 30vw;
@@ -1389,6 +1393,14 @@ p {
 
   .section__article {
     max-width: 100%;
+  }
+
+  .article__forms {
+    max-width: 60%;
+  }
+
+  .form__section__titlebox {
+    opacity: 0;
   }
 
   .intro__top {
