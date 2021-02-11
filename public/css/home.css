@@ -936,7 +936,7 @@ p {
   justify-items: center;
   text-align: center;
   gap: 1rem;
-  width: 80%;
+  width: 60%;
 }
 
 .footer__image {
@@ -944,6 +944,11 @@ p {
   max-height: 3rem;
   border-radius: 50%;
   margin: 1rem 0;
+}
+
+.footer__image__name {
+  font-size: .9rem;
+  color: var(--white);
 }
 
 /*********************************************/
@@ -1113,6 +1118,11 @@ p {
 }
 
 @media only screen and (max-width: 1000px) {
+
+  .footer__images {
+    width: 80%;
+  }
+
   .logo {
     max-width: 40vw;
   }
