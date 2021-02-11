@@ -1420,8 +1420,7 @@ p {
 
   .information__parts {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    height: 300vh;
+    grid-template-rows: 1fr 1fr;
   }
 
   .information__part {
