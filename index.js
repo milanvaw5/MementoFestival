@@ -65,33 +65,25 @@ io.on('connection', socket => {
 
   socket.on('message', message => {
     timer = 0;
-    console.log(message);
-
     words.push(message);
     if(words.length > 30){
       words.shift();
     }
-    console.log(words);
     io.sockets.emit(`message`, message);
 
   });
 
   socket.on('schud', () => {
-
     io.sockets.emit(`shakeAll`);
-
   });
 
   socket.on('hartje', () => {
     hearts++;
     io.sockets.emit(`heartAll`, hearts);
-
   });
 
   socket.on('hand', () => {
-
     io.sockets.emit(`handAll`, socket.id);
-
   });
 
   socket.on('handShake', id => {
@@ -103,7 +95,6 @@ io.on('connection', socket => {
 
   socket.on('feeling', selectedFeeling => {
     feelings.push(selectedFeeling);
-    console.log(selectedFeeling);
     io.sockets.emit(`selectedFeeling`, selectedFeeling);
   });
 
@@ -126,10 +117,7 @@ io.on('connection', socket => {
     socket.emit('clearLetterAll', letter);
   });
 
-
-
   socket.on('points', jointPositions => {
-    //console.log(jointPositions);
     io.sockets.emit(`points`, jointPositions);
   });
 
@@ -143,16 +131,11 @@ io.on('connection', socket => {
       clearInterval(idleMode);
       io.sockets.emit(`notLive`);
     }
-
-});
-
+  });
 });
 
 app.use(express.static('public'));
 
 server.listen(port, () => {
  console.log(`App listening on port ${port}!`);
-
-
-
 });
