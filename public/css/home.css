@@ -1421,11 +1421,11 @@ p {
   .information__parts {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
+    height: 100%;
   }
 
   .information__part {
     max-width: 95%;
-    height: 100vh;
   }
 
   .wandelapp__img {
