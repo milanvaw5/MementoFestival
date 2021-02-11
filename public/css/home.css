@@ -1113,9 +1113,9 @@ p {
     background-repeat: no-repeat;
     background-position: right top;
     z-index: -1;
-    height: 170vh;
+    height: 100vh;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     justify-content: center;
     align-items: center;
     align-content: center;
