@@ -1000,7 +1000,7 @@ p {
   display: none;
 }
 
-@media only screen and (max-width: 1250px) {
+@media only screen and (max-height: 3000px),(max-width: 1250px) {
 
   .section__praktisch {
     margin: 5rem 0;
@@ -1123,7 +1123,7 @@ p {
   }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-height: 3000px),(max-width: 1000px) {
 
   .footer__images {
     width: 80%;
@@ -1171,7 +1171,7 @@ p {
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-height: 3000px),(max-width: 800px) {
 
   .logo{
     width: 40vw;
@@ -1268,7 +1268,7 @@ p {
 
 
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-height: 3000px), (max-width: 700px) {
 
   .map {
     display: none;
@@ -1292,7 +1292,7 @@ p {
 
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-height: 3000px), (max-width: 500px) {
 
   .section__information {
     height: 220vh;
