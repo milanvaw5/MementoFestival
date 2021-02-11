@@ -1125,6 +1125,11 @@ p {
 
 @media only screen and (max-width: 1000px) {
 
+  .article__wordgame {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+
   .footer__images {
     width: 80%;
   }
