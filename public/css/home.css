@@ -943,12 +943,13 @@ p {
   max-width: 3rem;
   max-height: 3rem;
   border-radius: 50%;
-  margin: 1rem 0;
+  margin: 1rem 0 .5rem;
 }
 
 .footer__image__name {
   font-size: .9rem;
   color: var(--white);
+  line-height: 1rem;
 }
 
 /*********************************************/
@@ -1341,7 +1342,7 @@ p {
   }
 
   .footer {
-    height: 50vh;
+    height: 60vh;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     justify-content: space-around;
@@ -1349,6 +1350,7 @@ p {
     justify-items: center;
     align-items: center;
     padding-bottom: 2rem;
+    margin-top: 2rem;
   }
 
   .information__parts {
