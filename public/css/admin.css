@@ -1,0 +1,185 @@
+.adminWordGame {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 'overlap';
+    justify-content: end;
+    align-items: flex-end;
+    align-content: flex-end;
+    justify-items: flex-end;
+    background-color: var(--white);
+    width: 100%;
+    min-height: 100%;
+  }
+
+  canvas {
+    grid-area: overlap;
+    z-index: 1;
+    background-color: var(--white);
+}
+.webcam {
+    display: none;
+    grid-area: overlap;
+    z-index: 0;
+}
+
+.section-admin--active {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1.2fr 4fr;
+    grid-template-rows: 1fr;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+.section-admin {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.leftstroke {
+  height: 100vh;
+  width: 20%;
+  z-index: -1;
+}
+
+.loginForm {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  justify-content: center;
+  align-content: space-between;
+  align-items: center;
+  justify-items: space-between;
+  margin: 1rem;
+  padding: 2rem;
+  border: solid .1rem var(--black);
+  background-image: url('../assets/img/blobs/stipjes.png');
+}
+
+.loginForm__labels {
+  font-size: 1rem;
+  font-weight: 800;
+  padding-right: .5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  justify-content: center;
+  align-content: space-between;
+  align-items: center;
+  justify-items: space-between;
+}
+
+.loginForm__input {
+  width: 100%;
+}
+
+.qr-block {
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+  margin: 0;
+  width: 100%;
+}
+
+.qr-block__text {
+    padding: 1rem;
+    color: var(--white);
+}
+
+.qr-block__code {
+  width: 6rem;
+  height: 6rem;
+  margin: 1rem .5rem ;
+}
+
+/************************************/
+
+.admin__datasection {
+  background-image: url("../assets/img/leftstroke.svg");
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: var(--white);
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 2.5r 1fr 1.5fr 1fr;
+  justify-content: center;
+  justify-items: flex-start;
+  align-content: space-between;
+  align-items: center;
+  padding: 2rem 3rem 2rem 2rem;
+  min-height: 100vh;
+  font-family: 'sofia-pro', sans-serif, Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  /*display: flex;
+  z-index: 5;
+  position: absolute;*/
+}
+
+.btnLogout {
+  border: none;
+  background-color: rgba(240, 248, 255, 0);
+  color: var(--white);
+  text-decoration: underline;
+  display: block;
+  margin-bottom: .5rem;
+}
+
+.admin__datasection__letterdooslogowh {
+  max-width: 12rem;
+  width: 12rem;
+  padding-left: -1rem;
+  padding: 1rem;
+}
+
+.admin__datasection__mementologowh {
+  max-width: 7rem;
+  width: 7rem;
+  padding: 2rem;
+}
+
+.admin__datasection__datapiece {
+  display: grid;
+  grid-template-columns: 1fr 4fr 2fr;
+  grid-template-rows: 1fr;
+  justify-content: start;
+  justify-items: flex-start;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+  margin: .5rem 0;
+}
+
+.admin__datasection__datapieces {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1.5fr 1fr 1fr;
+  justify-content: start;
+  justify-items: flex-start;
+  align-content: center;
+  align-items: center;
+  border: .1rem solid var(--white);
+  padding: 1rem;
+}
+
+.admin__datasection__dataimg {
+  margin-left: -.5rem;
+}
+
+.admin__datasection__datatitel {
+  font-weight: 700;
+  font-size: 1.6rem;
+  justify-self: start;
+}

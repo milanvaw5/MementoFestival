@@ -1,0 +1,5 @@
+*.crt
+node_modules
+.env
+*.key
+yarn.lock
