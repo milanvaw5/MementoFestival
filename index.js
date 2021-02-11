@@ -66,7 +66,7 @@ io.on('connection', socket => {
   socket.on('message', message => {
     timer = 0;
     words.push(message);
-    if(words.length > 30){
+    if(words.length > 10){
       words.shift();
     }
     io.sockets.emit(`message`, message);

@@ -17,7 +17,7 @@ let spacebetween = 60;
 let socket; // will be assigned a value later
 let handShakeId;
 let isClearing = false;
-
+let isClearingFeelings = false;
 
 let jointPositionsWebcamPercentage = {
   leftEyePos: {x:1, y:1},
@@ -374,7 +374,7 @@ export default class AdminScene extends Phaser.Scene {
 
     this.time.addEvent({
       delay: 300,
-      callback: this.clearLetters,
+      callback: this.clearCanvas,
       callbackScope : this,
       args: [letters],
       loop: true
@@ -437,7 +437,32 @@ export default class AdminScene extends Phaser.Scene {
   }
  //bij een bepaald aantal letters op het scherm - zullen er een hoeveelheid verdwijnen,
     //random gekozen om zo nieuwe woorden en mysterie te creëren
-  clearLetters(){
+  clearCanvas(){
+    if(feelings.length > 7 && isClearingFeelings === false) {
+        isClearingFeelings = true;
+        let feelingWaitingToBeDestroyed = [];
+
+        for (let index = 0; index < 4; index++) {
+          const rand = Math.floor(Math.random()*feelings.length);
+          this.tweens.add({
+            targets: feelings[rand],
+            scale: 0,
+            duration: 100,
+            ease: 'Linear'
+        });
+
+        feelingWaitingToBeDestroyed.push(feelings[rand]);
+        feelings.splice(rand, 1);
+        if(index === 3){
+          setTimeout(function(){
+            feelingWaitingToBeDestroyed.forEach(feeling => {
+              feeling.destroy();
+            });
+          }, 300);
+          isClearingFeelings = false;
+      }
+        }
+      }
 
     if(letters.length > 70 && isClearing === false){
       isClearing = true;
@@ -626,7 +651,7 @@ export default class AdminScene extends Phaser.Scene {
 
   spawnLetters() {
 
-    let fallPosition = Phaser.Math.Between(20, widthDivScreen / 2);
+    let fallPosition = Phaser.Math.Between(30, widthDivScreen / 2);
 
     for (let startOffLetters = 0; startOffLetters < letters.length; startOffLetters++){
       letters[startOffLetters] = this.matter.add.sprite(fallPosition, 0, letters[startOffLetters], 0, {restitution: .5});
