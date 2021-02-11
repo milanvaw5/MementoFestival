@@ -1115,7 +1115,7 @@ p {
     z-index: -1;
     height: 100vh;
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     justify-content: center;
     align-items: center;
     align-content: center;
@@ -1191,7 +1191,7 @@ p {
 
   .section__information {
     display: grid;
-    grid-template-rows: .1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     justify-content: center;
     align-items: center;
     align-content: center;
