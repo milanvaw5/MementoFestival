@@ -883,7 +883,7 @@ p {
 
 .footer__information {
   display: grid;
-  grid-template-rows: 1.1fr 1fr 1fr;
+  grid-template-rows: 1.1fr 1fr 1fr 1fr;
   justify-content: center;
   align-content: center;
   align-items: center;
@@ -926,6 +926,25 @@ p {
 .mementologo {
   margin: 5vw;
 }
+
+.footer__images {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.footer__images {
+  max-width: 3rem;
+  max-height: 3rem;
+  border-radius: 50%;
+}
+
+/*********************************************/
 
 .trein::before {
   background-image: url('../assets/img/icons/trein.png');
