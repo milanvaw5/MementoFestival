@@ -341,7 +341,7 @@ export default class VisitorScene extends Phaser.Scene {
     this.group1 = this.matter.world.nextGroup();
     this.group2 = this.matter.world.nextGroup(true);
 
-  
+
     this.spawnLetters();
 
   }
@@ -504,13 +504,13 @@ export default class VisitorScene extends Phaser.Scene {
     if(isLive){
       if($liveTitle.textContent === 'live'){
 
-      }else{
+      } else{
         $liveTitle.textContent = 'live';
         $liveSub.textContent = 'op het festival';
         $liveDot.style.display = 'block';
       }
 
-    }else{
+    } else{
        $liveTitle.textContent = 'offline';
        $liveSub.textContent = 'tot later';
        $liveDot.style.display = 'none';
@@ -658,7 +658,7 @@ handleLetterArrays(l){
         hartje.setCollidesWith(0);
         hartje.setVelocityY(-20);
         hartjes.push(hartje);
-  
+
       });
 
 
@@ -714,6 +714,10 @@ handleLetterArrays(l){
           $introForm.style.display = `none`;
           $wordForm.style.display = `block`;
         }
+        else if (window.innerWidth <= 800 && window.innerHeight <= 500) {
+          $introForm.style.display = `none`;
+          $wordForm.style.display = `block`;
+        }
         else {
           $wordForm.style.display = `none`;
         }
@@ -733,7 +737,7 @@ handleLetterArrays(l){
         $feelingOptions.forEach(field => {
           field.addEventListener('input', e => this.handeInputField(e, $feelingsForm))
         });
-      
+
       }
       if($btnSchud){
         $btnSchud.addEventListener('click', e => this.handleClickSchud(e));
