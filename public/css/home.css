@@ -1183,6 +1183,7 @@ p {
     background-repeat: no-repeat;
     background-size: 50%;
     margin-top: 2rem;
+    z-index: -1;
   }
 
   .onepager__section {
