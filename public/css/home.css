@@ -1126,7 +1126,7 @@ p {
 @media only screen and (max-width: 1000px) {
 
   .bottomblock {
-    width: 100%;
+    height: 100%;
   }
 
   .section__wordgame {
@@ -1176,7 +1176,6 @@ p {
     height: 100vh;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     justify-content: center;
     align-items: center;
