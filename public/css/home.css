@@ -1418,6 +1418,10 @@ p {
     z-index: -3rem;
   }
 
+  .section__information {
+    height: 100%;
+  }
+
   .information__parts {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
