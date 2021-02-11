@@ -1386,10 +1386,19 @@ p {
 
 @media only screen and (max-width: 800px) and (max-height: 500px) and (orientation: landscape) {
 
+  .wordForm {
+    opacity: 100;
+    height: 100;
+  }
+
   .logo {
     max-width: 30vw;
     width: 30vw;
     margin-right: 1rem;
+  }
+
+  .footer__projectbetrokkenen {
+    margin: .8rem 0;
   }
 
   .section__information {
@@ -1402,6 +1411,10 @@ p {
 
   .article__forms {
     max-width: 60%;
+  }
+
+  .form__section__titlebox {
+    opacity: 0;
   }
 
   .intro__top {
