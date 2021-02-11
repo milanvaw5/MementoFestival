@@ -936,14 +936,14 @@ p {
   justify-items: center;
   text-align: center;
   gap: 1rem;
-  width: 100%;
+  width: 80%;
 }
 
 .footer__image {
   max-width: 3rem;
   max-height: 3rem;
   border-radius: 50%;
-  margin: 1rem;
+  margin: 1rem 0;
 }
 
 /*********************************************/
