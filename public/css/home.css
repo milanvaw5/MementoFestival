@@ -1415,12 +1415,14 @@ p {
   }
 
   .information__parts {
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    height: 300vh;
   }
 
   .information__part {
     max-width: 95%;
+    height: 100vh;
   }
 
   .wandelapp__section {
@@ -1431,6 +1433,11 @@ p {
   .wandelapp__img {
     max-width: 50%;
     max-height: 50%;
+  }
+
+  .article__wordgame {
+    width: 100vw;
+    height: 100vh;
   }
 
 }
