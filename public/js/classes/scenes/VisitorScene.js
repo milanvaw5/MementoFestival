@@ -714,28 +714,22 @@ handleLetterArrays(l){
         if (window.innerWidth <= 1000 && window.innerWidth >= 500) {
           $introForm.style.display = `none`;
           $wordForm.style.display = `block`;
-
-          if($wordForm){
-            $wordForm.noValidate = true;
-            const $btnRefresh = document.querySelector(`.refresh`);
-            $btnRefresh.addEventListener('click', this.handleClickRefresh);
-            const $enteredWord = $wordForm.querySelector(`.enteredWord`);
-            $wordForm.addEventListener('submit', e => this.handleSubmitMessage(e, $wordForm));
-            $enteredWord.addEventListener('input', e => this.handeInputField(e, $wordForm))
-          }
+          $wordForm.noValidate = true;
+          const $btnRefresh = document.querySelector(`.refresh`);
+          $btnRefresh.addEventListener('click', this.handleClickRefresh);
+          const $enteredWord = $wordForm.querySelector(`.enteredWord`);
+          $wordForm.addEventListener('submit', e => this.handleSubmitMessage(e, $wordForm));
+          $enteredWord.addEventListener('input', e => this.handeInputField(e, $wordForm));
         }
         else if (window.innerWidth <= 800 && window.innerHeight <= 500) {
           $introForm.style.display = `none`;
           $wordForm.style.display = `block`;
-
-          if($wordForm){
-            $wordForm.noValidate = true;
-            const $btnRefresh = document.querySelector(`.refresh`);
-            $btnRefresh.addEventListener('click', this.handleClickRefresh);
-            const $enteredWord = $wordForm.querySelector(`.enteredWord`);
-            $wordForm.addEventListener('submit', e => this.handleSubmitMessage(e, $wordForm));
-            $enteredWord.addEventListener('input', e => this.handeInputField(e, $wordForm))
-          }
+          $wordForm.noValidate = true;
+          const $btnRefresh = document.querySelector(`.refresh`);
+          $btnRefresh.addEventListener('click', this.handleClickRefresh);
+          const $enteredWord = $wordForm.querySelector(`.enteredWord`);
+          $wordForm.addEventListener('submit', e => this.handleSubmitMessage(e, $wordForm));
+          $enteredWord.addEventListener('input', e => this.handeInputField(e, $wordForm));
         }
         else {
           $wordForm.style.display = `none`;
@@ -865,28 +859,22 @@ handleLetterArrays(l){
           if (window.innerWidth <= 1000 && window.innerWidth >= 500) {
             $introForm.style.display = `none`;
             $wordForm.style.display = `block`;
-
-            if($wordForm){
-              $wordForm.noValidate = true;
-              const $btnRefresh = document.querySelector(`.refresh`);
-              $btnRefresh.addEventListener('click', this.handleClickRefresh);
-              const $enteredWord = $wordForm.querySelector(`.enteredWord`);
-              $wordForm.addEventListener('submit', e => this.handleSubmitMessage(e, $wordForm));
-              $enteredWord.addEventListener('input', e => this.handeInputField(e, $wordForm))
-            }
+            $wordForm.noValidate = true;
+            const $btnRefresh = document.querySelector(`.refresh`);
+            $btnRefresh.addEventListener('click', this.handleClickRefresh);
+            const $enteredWord = $wordForm.querySelector(`.enteredWord`);
+            $wordForm.addEventListener('submit', e => this.handleSubmitMessage(e, $wordForm));
+            $enteredWord.addEventListener('input', e => this.handeInputField(e, $wordForm));
           }
           else if (window.innerWidth <= 800 && window.innerHeight <= 500) {
             $introForm.style.display = `none`;
             $wordForm.style.display = `block`;
-
-            if($wordForm){
-              $wordForm.noValidate = true;
-              const $btnRefresh = document.querySelector(`.refresh`);
-              $btnRefresh.addEventListener('click', this.handleClickRefresh);
-              const $enteredWord = $wordForm.querySelector(`.enteredWord`);
-              $wordForm.addEventListener('submit', e => this.handleSubmitMessage(e, $wordForm));
-              $enteredWord.addEventListener('input', e => this.handeInputField(e, $wordForm))
-            }
+            $wordForm.noValidate = true;
+            const $btnRefresh = document.querySelector(`.refresh`);
+            $btnRefresh.addEventListener('click', this.handleClickRefresh);
+            const $enteredWord = $wordForm.querySelector(`.enteredWord`);
+            $wordForm.addEventListener('submit', e => this.handleSubmitMessage(e, $wordForm));
+            $enteredWord.addEventListener('input', e => this.handeInputField(e, $wordForm));
           }
           else {
             $wordForm.style.display = `none`;
