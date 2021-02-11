@@ -764,6 +764,7 @@ p {
   align-content: center;
   justify-content: center;
   justify-items: center;
+  z-index: 100;
 }
 
 .praktisch {
