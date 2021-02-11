@@ -935,13 +935,15 @@ p {
   align-items: center;
   justify-items: center;
   text-align: center;
+  gap: 1rem;
   width: 100%;
 }
 
-.footer__images {
+.footer__image {
   max-width: 3rem;
   max-height: 3rem;
   border-radius: 50%;
+  margin: 1rem;
 }
 
 /*********************************************/
