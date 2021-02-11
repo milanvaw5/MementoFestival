@@ -826,7 +826,7 @@ handleLetterArrays(l){
         form.querySelector(`.error`).textContent = "";
 
         if(forbiddenWordsEn.includes(field.value) || forbiddenWordsNl.includes(field.value) || forbiddenWordsFr.includes(field.value) || forbiddenWordsDe.includes(field.value)) {
-        form.querySelector(`.error`).textContent = "Dit woord worden niet toegelaten";
+        form.querySelector(`.error`).textContent = "Dit woord wordt niet toegelaten";
       }
     }
     }
@@ -840,7 +840,7 @@ handleLetterArrays(l){
       else {
 
         if(forbiddenWordsEn.includes(field.value) || forbiddenWordsNl.includes(field.value) || forbiddenWordsFr.includes(field.value) || forbiddenWordsDe.includes(field.value)) {
-          form.querySelector(`.error`).textContent = "Dit woord worden niet toegelaten";
+          form.querySelector(`.error`).textContent = "Dit woord wordt niet toegelaten";
         }
         else {
           if (window.innerWidth <= 1000 && window.innerWidth >= 500) {
