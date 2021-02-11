@@ -1137,10 +1137,6 @@ p {
 
 @media only screen and (max-width: 1000px) {
 
-  .mementologotop {
-    display: none;
-  }
-
   .bottomblock {
     min-height: 100%;
   }
@@ -1335,6 +1331,10 @@ p {
 
 @media only screen and (max-width: 500px) {
 
+  .mementologotop {
+    height: 60%;
+  }
+
   .section__information {
     height: 220vh;
   }
@@ -1430,6 +1430,10 @@ p {
 }
 
 @media only screen and (max-width: 800px) and (max-height: 500px) and (orientation: landscape) {
+
+  .mementologotop {
+    height: 60%;
+  }
 
   .information__blocks {
     height: 150vh;
