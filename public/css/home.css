@@ -209,7 +209,6 @@ canvas {
   align-items: center;
   align-content: space-around;
   justify-items: center;
-  min-height: 100%;
 }
 
 .textparagraph {
@@ -1008,7 +1007,7 @@ p {
   }
 
   .information__blocks {
-    height: 150vh;
+    height: 100%;
   }
 
   .wrapper {
@@ -1121,6 +1120,10 @@ p {
     align-items: center;
     align-content: center;
     justify-items: center;
+  }
+
+  .form__section {
+    min-height: 100%;
   }
 }
 
