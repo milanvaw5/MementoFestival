@@ -709,30 +709,16 @@ handleLetterArrays(l){
       });
 
       if($introForm){
-        $btnOntdek.addEventListener('click', e => this.handleClickOntdek(e));
-
         if (window.innerWidth <= 1000 && window.innerWidth >= 500) {
           $introForm.style.display = `none`;
           $wordForm.style.display = `block`;
-          $wordForm.noValidate = true;
-          const $btnRefresh = document.querySelector(`.refresh`);
-          $btnRefresh.addEventListener('click', this.handleClickRefresh);
-          const $enteredWord = $wordForm.querySelector(`.enteredWord`);
-          $wordForm.addEventListener('submit', e => this.handleSubmitMessage(e, $wordForm));
-          $enteredWord.addEventListener('input', e => this.handeInputField(e, $wordForm));
         }
         else if (window.innerWidth <= 800 && window.innerHeight <= 500) {
           $introForm.style.display = `none`;
           $wordForm.style.display = `block`;
-          $wordForm.noValidate = true;
-          const $btnRefresh = document.querySelector(`.refresh`);
-          $btnRefresh.addEventListener('click', this.handleClickRefresh);
-          const $enteredWord = $wordForm.querySelector(`.enteredWord`);
-          $wordForm.addEventListener('submit', e => this.handleSubmitMessage(e, $wordForm));
-          $enteredWord.addEventListener('input', e => this.handeInputField(e, $wordForm));
         }
         else {
-          $wordForm.style.display = `none`;
+          $btnOntdek.addEventListener('click', e => this.handleClickOntdek(e));
         }
       }
 
@@ -854,38 +840,13 @@ handleLetterArrays(l){
 
         if(forbiddenWordsEn.includes(field.value) || forbiddenWordsNl.includes(field.value) || forbiddenWordsFr.includes(field.value) || forbiddenWordsDe.includes(field.value)) {
           form.querySelector(`.error`).textContent = "Deze woorden worden niet toegelaten";
-        }
-        else {
-          if (window.innerWidth <= 1000 && window.innerWidth >= 500) {
-            $introForm.style.display = `none`;
-            $wordForm.style.display = `block`;
-            $wordForm.noValidate = true;
-            const $btnRefresh = document.querySelector(`.refresh`);
-            $btnRefresh.addEventListener('click', this.handleClickRefresh);
-            const $enteredWord = $wordForm.querySelector(`.enteredWord`);
-            $wordForm.addEventListener('submit', e => this.handleSubmitMessage(e, $wordForm));
-            $enteredWord.addEventListener('input', e => this.handeInputField(e, $wordForm));
-          }
-          else if (window.innerWidth <= 800 && window.innerHeight <= 500) {
-            $introForm.style.display = `none`;
-            $wordForm.style.display = `block`;
-            $wordForm.noValidate = true;
-            const $btnRefresh = document.querySelector(`.refresh`);
-            $btnRefresh.addEventListener('click', this.handleClickRefresh);
-            const $enteredWord = $wordForm.querySelector(`.enteredWord`);
-            $wordForm.addEventListener('submit', e => this.handleSubmitMessage(e, $wordForm));
-            $enteredWord.addEventListener('input', e => this.handeInputField(e, $wordForm));
-          }
-          else {
-            $wordForm.style.display = `none`;
-          }
-        socket.emit('message', field.value);
-        field.value = '';
+          socket.emit('message', field.value);
+          field.value = '';
         }
       }
-
-
     }
+
+
     handleSubmitFeeling = e => {
       e.preventDefault();
       if (!$feelingsForm.checkValidity()) {
