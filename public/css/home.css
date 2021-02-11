@@ -948,7 +948,7 @@ p {
   max-width: 3rem;
   max-height: 3rem;
   border-radius: 50%;
-  margin: 1rem 0 .5rem;
+  margin: .5rem 0 .5rem;
 }
 
 .footer__image__name {
@@ -1402,10 +1402,6 @@ p {
 
   .article__forms {
     max-width: 60%;
-  }
-
-  .form__section__titlebox {
-    opacity: 0;
   }
 
   .intro__top {
