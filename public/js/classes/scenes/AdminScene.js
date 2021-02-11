@@ -1,6 +1,4 @@
 let letter;
-//let backgroundimage;
-let spawnWordInterval;
 let lowercase;
 let fpsFactor = 5;
 let readWord;
@@ -17,20 +15,11 @@ if(document.querySelector('.adminWordGame')){
 }
 let spacebetween = 60;
 let socket; // will be assigned a value later
-let percentageX;
-let percentageY;
 let handShakeId;
 let isClearing = false;
-/*
-let auteurInput = ['Verloren','hinkel ik','over de sproeten op mijn vingers',
-'Afgeslagen','langzaam ademend','langs mijn armen dwalend','Mijn rug','terug – gezucht –',
-'geen bescherming op de vlucht','Veilig','aan mijn zij','de afgrond daar als lijn',
-'Onontdekt','en zorgeloos','dolend door mijn eigen hoofd'];*/
-
-let auteurInput = ['verloren','hinkelik','overdesproeten','opmijnvingers'];
+let isClearingFeelings = false;
 
 let jointPositionsWebcamPercentage = {
-  nosePos: {x:1, y:1},
   leftEyePos: {x:1, y:1},
   leftWristPos: {x:1, y:1},
   rightWristPos: {x:1, y:1},
@@ -47,7 +36,6 @@ let jointPositionsWebcamPercentage = {
 }
 
 let jointPositionsTenserflow = {
-  nosePos: {x:1, y:1},
   leftEyePos: {x:1, y:1},
   leftWristPos: {x:1, y:1},
   rightWristPos: {x:1, y:1},
@@ -64,7 +52,6 @@ let jointPositionsTenserflow = {
 }
 
 let jointPositions = {
-  nosePos: {x:1, y:1},
   leftEyePos: {x:1, y:1},
   leftWristPos: {x:1, y:1},
   rightWristPos: {x:1, y:1},
@@ -81,7 +68,6 @@ let jointPositions = {
 }
 
 let jointPositionsTarget = {
-  nosePosTarget: {x:1, y:1},
   leftEyePosTarget: {x:1, y:1},
   leftWristPosTarget: {x:1, y:1},
   rightWristPosTarget: {x:1, y:1},
@@ -126,7 +112,7 @@ const poseNetState = {
 
 
 const detectPoseInRealTime = (video) => {
-  const canvas = document.getElementById('output');
+  //const canvas = document.getElementById('output');
 
   const flipPoseHorizontal = true;
 
@@ -150,7 +136,6 @@ const detectPoseInRealTime = (video) => {
     }
 
 
-
     poses.forEach(({score, keypoints}) => {
       if (score >= minPoseConfidence) {
         if (poseNetState.output.showPoints) {
@@ -166,7 +151,7 @@ const detectPoseInRealTime = (video) => {
 // wordt ook met browserrefresh gedaan 60fps
 function drawKeypoints(keypoints, minConfidence, scale = 1) {
 
-  let nose = keypoints.find(point => point.part === 'nose');
+
   let leftEye = keypoints.find(point => point.part === 'leftEye');
   let leftWrist = keypoints.find(point => point.part === 'leftWrist');
   let rightWrist = keypoints.find(point => point.part === 'rightWrist');
@@ -180,14 +165,6 @@ function drawKeypoints(keypoints, minConfidence, scale = 1) {
   let rightKnee = keypoints.find(point => point.part === 'rightKnee');
   let leftAnkle = keypoints.find(point => point.part === 'leftAnkle');
   let rightAnkle = keypoints.find(point => point.part === 'rightAnkle');
-
-
-
-
-  if (nose.score > minConfidence) {
-    jointPositionsTenserflow.nosePos = nose.position;
-}
-
   if (leftWrist.score > minConfidence) {
       jointPositionsTenserflow.leftWristPos = leftWrist.position;
   }
@@ -195,11 +172,7 @@ function drawKeypoints(keypoints, minConfidence, scale = 1) {
   if (rightWrist.score > minConfidence) {
       jointPositionsTenserflow.rightWristPos = rightWrist.position;
   }
-/*
-  if (rightEye.score > minConfidence) {
-    jointPositionsTenserflow.rightEyePos = rightEye.position;
-  }
-*/
+
   if (leftEye.score > minConfidence) {
      jointPositionsTenserflow.leftEyePos = leftEye.position;
   }
@@ -247,8 +220,11 @@ function drawKeypoints(keypoints, minConfidence, scale = 1) {
 
 const setupCamera = async () => {
   const video = document.getElementById('video');
-  video.width = videoWidth;
-  video.height = videoHeight;
+
+    video.width = videoWidth;
+    video.height = videoHeight;
+
+
 
   const stream = await navigator.mediaDevices.getUserMedia({
     'audio': false,
@@ -289,7 +265,7 @@ const init = async () => {
 
 
   }
-  if(window.location.pathname === "/admin.html" || window.location.pathname === "/"){
+  if(window.location.pathname === "/admin.html"){
     init();
   }
 
@@ -303,9 +279,9 @@ export default class AdminScene extends Phaser.Scene {
   }
 
   preload(){
-    console.log(`PRELOAD admin`);
 
-    this.load.image('test', 'assets/test.png');
+
+
 
     this.load.image('head', 'assets/img/avatar/avatarGreen/x1/headGreen.png');
     this.load.image('footLeft', 'assets/img/avatar/avatarGreen/x1/footLeftGreen.png');
@@ -375,14 +351,10 @@ export default class AdminScene extends Phaser.Scene {
   }
 
   create(){
-    console.log(`CREATE`);
 
     this.makeConnectionAdmin();
-    //backgroundimage = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'backgroundimage');
 
-   // this.noseAvatar = this.matter.add.image(jointPositions.nosePos.x, jointPositions.nosePos.y, 'head', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
     this.leftEyeAvatar = this.matter.add.image(jointPositions.leftEyePos.x, jointPositions.leftEyePos.y, 'head', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
-
     this.leftWristAvatar = this.matter.add.image(jointPositions.leftWristPos.x, jointPositions.leftWristPos.y, 'handLeft', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
     this.rightWristAvatar = this.matter.add.image(jointPositions.rightWristPos.x, jointPositions.rightWristPos.y, 'handRight', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
     this.leftShoulderAvatar = this.matter.add.image(jointPositions.leftShoulderPos.x, jointPositions.leftShoulderPos.y, 'joint', 0, {mass: 1000, inverseMass: 1000, isStatic: true, ignoreGravity: false, density: 1});
@@ -402,7 +374,7 @@ export default class AdminScene extends Phaser.Scene {
 
     this.time.addEvent({
       delay: 300,
-      callback: this.clearLetters,
+      callback: this.clearCanvas,
       callbackScope : this,
       args: [letters],
       loop: true
@@ -410,20 +382,18 @@ export default class AdminScene extends Phaser.Scene {
 
     this.spawnLetters();
     // emit only 10 times per second
-    this.time.addEvent({ delay: 100, callback: this.onEvent, callbackScope: this, loop: true });
+    this.time.addEvent({ delay: 200, callback: this.onEmitPositionsDelay, callbackScope: this, loop: true });
 
     this.matter.world.on('collisionstart', function (event, bodyA, bodyB) {
-      //console.log(bodyA.texture.key);
+
 
       if (event.pairs[0].bodyA.gameObject){
         if(bodyA.gameObject.texture.key === "handLeft"){
           if(bodyB.gameObject.texture.key === "hand"){
-            console.log(bodyA.gameObject.texture.key);
-            //bodyB.gameObject.visible = false;
-            //bodyB.gameObject.opacity = 0;
+
             bodyB.gameObject.destroy();
             this.matter.world.remove(bodyB);
-            console.log(bodyB)
+
             socket.emit('handShake', handShakeId);
 
           }
@@ -431,7 +401,7 @@ export default class AdminScene extends Phaser.Scene {
         }
         if(bodyA.gameObject.texture.key === "hand"){
           if(bodyB.gameObject.texture.key === "handLeft"){
-            console.log(bodyA.gameObject.texture.key);
+
             this.matter.world.remove(bodyA);
 
           }
@@ -440,7 +410,7 @@ export default class AdminScene extends Phaser.Scene {
 
         if(bodyA.gameObject.texture.key === "hand"){
           if(bodyB.gameObject.texture.key === "handRight"){
-            console.log(bodyA.gameObject.texture.key);
+
             this.matter.world.remove(bodyA);
 
           }
@@ -449,12 +419,11 @@ export default class AdminScene extends Phaser.Scene {
 
         if(bodyA.gameObject.texture.key === "handRight"){
           if(bodyB.gameObject.texture.key === "hand"){
-            console.log(bodyA.gameObject.texture.key);
-            //bodyB.gameObject.visible = false;
-            //bodyB.gameObject.opacity = 0;
+
+
             bodyB.gameObject.destroy();
             this.matter.world.remove(bodyB);
-            console.log(bodyB)
+
             socket.emit('handShake', handShakeId);
 
           }
@@ -468,63 +437,66 @@ export default class AdminScene extends Phaser.Scene {
   }
  //bij een bepaald aantal letters op het scherm - zullen er een hoeveelheid verdwijnen,
     //random gekozen om zo nieuwe woorden en mysterie te creëren
-  clearLetters(){
+  clearCanvas(){
+    if(feelings.length > 7 && isClearingFeelings === false) {
+        isClearingFeelings = true;
+        let feelingWaitingToBeDestroyed = [];
 
-    if(letters.length > 100 && isClearing === false){
+        for (let index = 0; index < 4; index++) {
+          const rand = Math.floor(Math.random()*feelings.length);
+          this.tweens.add({
+            targets: feelings[rand],
+            scale: 0,
+            duration: 100,
+            ease: 'Linear'
+        });
+
+        feelingWaitingToBeDestroyed.push(feelings[rand]);
+        feelings.splice(rand, 1);
+        if(index === 3){
+          setTimeout(function(){
+            feelingWaitingToBeDestroyed.forEach(feeling => {
+              feeling.destroy();
+            });
+          }, 300);
+          isClearingFeelings = false;
+      }
+        }
+      }
+
+    if(letters.length > 70 && isClearing === false){
       isClearing = true;
       let letterWaitingToBeDestroyed = [];
+
       for (let index = 0; index < 4; index++) {
 
       const rand = Math.floor(Math.random()*letters.length);
-
-      console.log(rand);
       this.tweens.add({
         targets: letters[rand],
         scale: 0,
         duration: 100,
         ease: 'Linear'
-    });
+      });
 
-    letterWaitingToBeDestroyed.push(letters[rand]);
-   // letters[rand].destroy();
-    letters.splice(rand, 1);
-    console.log('Dit is de index:' + index);
-    if(index === 3){
-      setTimeout(function(){
-        letterWaitingToBeDestroyed.forEach(letter => {
-          letter.destroy();
-        });
-      }, 300);
+        letterWaitingToBeDestroyed.push(feelings[rand]);
+        feelings.splice(rand, 1);
+        if(index === 3){
+          setTimeout(function(){
+            feelingWaitingToBeDestroyed.forEach(feeling => {
+              feeling.destroy();
+            });
+          }, 300);
+          isClearing = false;
+      }
+        }
+      }
+      }
+  onEmitPositionsDelay(){
 
-      isClearing = false;
-    }
-
-    }
-  }
-}
-  onEvent(){
-   //socket.emit('points', jointPositions);
     socket.emit('points', jointPositionsWebcamPercentage);
   }
 
   update(){
-
-
-
-
-
-  // this.calcPercentage();
-/*
-  jointPositionsWebcamPercentage.nosePos.x = (jointPositionsTenserflow.nosePos.x / videoWidth);
-  jointPositionsWebcamPercentage.nosePos.y = (jointPositionsTenserflow.nosePos.y / videoHeight);
-  jointPositionsTarget.nosePosTarget.x = (this.cameras.main.width * jointPositionsWebcamPercentage.nosePos.x);
-  jointPositionsTarget.nosePosTarget.y = (this.cameras.main.height * jointPositionsWebcamPercentage.nosePos.y);
-  jointPositions.nosePos.x += ( jointPositionsTarget.nosePosTarget.x - jointPositions.nosePos.x ) / fpsFactor;
-  jointPositions.nosePos.y += ( jointPositionsTarget.nosePosTarget.y - jointPositions.nosePos.y ) / fpsFactor;
-  this.noseAvatar.x = jointPositions.nosePos.x;
-  this.noseAvatar.y = jointPositions.nosePos.y;
-  */
-
   jointPositionsWebcamPercentage.leftEyePos.x = (jointPositionsTenserflow.leftEyePos.x / videoWidth);
   jointPositionsWebcamPercentage.leftEyePos.y = (jointPositionsTenserflow.leftEyePos.y / videoHeight);
   jointPositionsTarget.leftEyePosTarget.x = (this.cameras.main.width * jointPositionsWebcamPercentage.leftEyePos.x);
@@ -674,16 +646,12 @@ export default class AdminScene extends Phaser.Scene {
 
   spawnLetters() {
 
-    let fallPosition = Phaser.Math.Between(20, widthDivScreen / 2);
+    let fallPosition = Phaser.Math.Between(30, widthDivScreen / 2);
 
-    for (let startOffLetters = 0; startOffLetters < letters.length; startOffLetters++)
-    {
-      console.log('spawnLetters: ' + letters[startOffLetters]);
+    for (let startOffLetters = 0; startOffLetters < letters.length; startOffLetters++){
       letters[startOffLetters] = this.matter.add.sprite(fallPosition, 0, letters[startOffLetters], 0, {restitution: .5});
       fallPosition = fallPosition + spacebetween;
-
     }
-    console.log('start letters are dropped');
   };
 
   //woord word gespawned op scherm
@@ -692,51 +660,24 @@ export default class AdminScene extends Phaser.Scene {
     let fallPosition = Phaser.Math.Between(20, widthDivScreen / 4);
     this.splitWord();
 
-    for (letter = 0; letter < split.length; letter++)
-    {
-      console.log('spawnWord: ' + split[letter]);
+    for (letter = 0; letter < split.length; letter++){
       const l = this.matter.add.sprite(fallPosition, 0, split[letter], 0, {restitution: .5, slop: 1});
       fallPosition = fallPosition + spacebetween;
       letters.push(l);
-
     }
 
   };
-
-   //indien een woord werd ingegeven word het woord ingelezen gesplits en erna gespawend
-
-
-    //de timer is nul dus word een auteurinput gedropt en daarna de timer gereset
-    readInAuteurInput() {
-      console.log('auteurinput');
-      readWord = auteurInput[Math.floor(Math.random() * auteurInput.length)];
-      if (readWord!= '') {
-        console.log(readWord);
-        this.splitWord(readWord);
-        this.spawnWord();
-        //timer = setInterval(this.readInAuteurInput(), 50000); //timer resetten
-        return false;
-      }
-      else {
-        console.log('error auteurinput');
-      }
-    };
-
     splitWord (){
       lowercase = readWord.toLowerCase();
       lowercase = lowercase.replace(/\s/g, '');
       split = lowercase.split('');
       split = readWord.split('');
-      console.log('splitWord: ' + split);
-      //letters.push(split);
     };
 
 
     makeConnectionAdmin() {
       socket = io.connect('/');
       socket.on('connect', () => {
-
-        console.log(`Admin connected: ${socket.id}`);
         socket.emit('admin');
         socket.emit('requestHearts');
         socket.emit('requestHighfives');
@@ -745,53 +686,37 @@ export default class AdminScene extends Phaser.Scene {
       socket.on('getHeartCount', hearts => {
         heartCount = hearts;
         document.querySelector('.heartscount').innerHTML = heartCount;
-        console.log(heartCount);
-        // use in DOM
       });
 
       socket.on('getHighfiveCount', highfives => {
         highfiveCount = highfives;
         document.querySelector('.highfivescount').innerHTML = highfiveCount;
-        console.log(highfiveCount);
-        // use in DOM
       });
 
       socket.on('handShaken', highfives => {
         highfiveCount = highfives;
         document.querySelector('.highfivescount').innerHTML = highfiveCount;
-        console.log(highfiveCount);
-        // use in DOM
       });
 
       socket.on('heartAll', hearts => {
         heartCount = hearts;
         document.querySelector('.heartscount').innerHTML = heartCount;
-        console.log(heartCount);
-        // use in DOM
       });
 
       socket.on('message', message => {
-        console.log(`Received message: ${message}`);
         words.push(message);
-
-        console.log(words);
         readWord = message;
         this.spawnWord();
       });
 
       socket.on('heartAll', () => {
-        console.log("hartje??")
         const hartje = this.matter.add.sprite(200, this.cameras.main.height, 'heart', 0, {restitution: .5, ignoreGravity: true});
         hartje.setCollisionGroup(this.group2);
         hartje.setCollidesWith(0);
         hartje.setVelocityY(-20);
         hartjes.push(hartje);
-        console.log(this.group1);
-        console.log(this.group2);
-
-
-
       });
+
       socket.on('handAll', id => {
         handShakeId = id;
         const fallPositionX = Phaser.Math.Between(60, this.cameras.main.height - 60);
@@ -838,6 +763,7 @@ export default class AdminScene extends Phaser.Scene {
 
         }
         feelings.push(this.feeling);
+        letters.push(this.feeling);
       });
 
     };

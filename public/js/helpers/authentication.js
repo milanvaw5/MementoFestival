@@ -6,12 +6,13 @@
     const $btnLogout = document.querySelector(`.btnLogout`);
     const $sectionAdminActive = document.querySelector(`.section-admin--active`);
     const $sectionAdmin = document.querySelector(`.section-admin`);
+    let $errorMessage = document.querySelector(`.errormessage`);
     let firebaseInstance;
     let authInstance;
 
     const authStateChange = user => {
         if(user){
-            console.log(`De user is ingelogd: ${user.email}`);
+            //console.log(`De user is ingelogd: ${user.email}`);
             $sectionAdminActive.style.display = "grid";
             $sectionAdmin.style.display = "none";
             $sectionAdminActive.scrollIntoView();
@@ -22,7 +23,7 @@
             script.type = "module";
             document.head.appendChild(script);
         }else{
-            console.log(`De user is uitgelogd`);
+            //console.log(`De user is uitgelogd`);
             location.reload();
         }
     }
@@ -56,6 +57,8 @@
             return result;
 
           } catch (error) {
+            $errorMessage.innerHTML = 'Onjuiste inloggegevens.'
+            $errorMessage.style.display = "block";
             return error.code;
           }
     }

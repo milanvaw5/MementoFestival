@@ -1,7 +1,19 @@
-@import "homeStijnExtra.css";
 @import "home.css";
 @import "vars.css";
 @import "admin.css";
+
+@font-face {
+  font-family: 'sofia-pro';
+  src:  url('../assets/fonts/sofiapro/sofiaprolight.woff') format('woff'),
+        url('../assets/fonts/sofiapro/sofiaprolight.ttf') format('ttf'),
+        url('../assets/fonts/sofiapro/sofiaprolight.otf') format('otf');
+}
+
+@font-face {
+  font-family: 'Gt pressura bold';
+  src:  url('../assets/fonts/gtpressurapro/GTPressuraProBold.woff') format('woff'),
+        url('../assets/fonts/gtpressurapro/GTPressuraProBold.ttf') format('ttf');
+}
 
 html {
   scroll-behavior: smooth;
@@ -19,7 +31,7 @@ body {
     max-height: 100vh;
     overflow: hidden;
     background-color: var(--white);
-    font-family: sofia-pro, sans-serif, Arial, Helvetica, sans-serif;
+    font-family: 'sofia-pro', sans-serif, Arial, Helvetica, sans-serif;
     font-size: 1.2rem;
     font-weight: 400;
     font-style: normal;
@@ -250,11 +262,15 @@ body {
   padding: 0rem 1rem;
 }
 
-.error {
+.error, .errormessage {
   color: var(--orange);
   margin: .4rem 0;
   padding: .4rem;
   font-size: .8rem;
+}
+
+.errormessage {
+  display: none;
 }
 
 @media only screen and (max-width: 1200px) {

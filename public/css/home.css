@@ -15,14 +15,50 @@ a {
   z-index: 19;
 }
 
+.mementologotop {
+  position: absolute;
+  z-index: 10;
+  top: 1rem;
+  left: 1rem;
+  display: block;
+}
+
+.form__section__titlebox {
+  opacity: 100%;
+}
+
 .blobright, .blobleft {
   background-image: none;
 }
 
 .popup--highfive {
+  opacity: 0;
+  position: absolute;
+  text-align: center;
+  padding: 1rem;
+  left: 40%;
+  width: 15vw;
   background-color: var(--green);
   border: .1rem solid var(--black);
   font-weight: 700;
+}
+
+@keyframes appearAndDisappear {
+  0% {opacity: 0}
+  5% {opacity: 1}
+  80% {opacity: 1}
+  100% {opacity: 0}
+}
+
+
+@keyframes highFive {
+  0% {transform: scale(0, 0)}
+  5% {transform: scale(1.1, 1.1)}
+  10% {transform: scale(.7, .7)}
+  12% {transform: scale(1, 1)}
+  80% {transform: scale(1, 1) rotate(0deg)}
+  100% {transform: scale(0, 0) rotate(360deg)}
+
 }
 
 .highfivehand {
@@ -319,7 +355,7 @@ p {
 .title {
   display: block;
   font-size: 1.8rem;
-  font-family: GT Pressura Pro Bold, Arial, Helvetica, sans-serif;
+  font-family: 'Gt pressura bold', Arial, Helvetica, sans-serif;
   text-transform: uppercase;
 }
 
@@ -475,7 +511,7 @@ p {
 }
 
 .questionmark {
-  cursor: help;
+  cursor: pointer;
   margin: 1rem;
 }
 
@@ -728,6 +764,7 @@ p {
   align-content: center;
   justify-content: center;
   justify-items: center;
+  z-index: 100;
 }
 
 .praktisch {
@@ -859,7 +896,7 @@ p {
 
 .footer__information {
   display: grid;
-  grid-template-rows: 1.1fr 1fr 1fr;
+  grid-template-rows: 1.1fr 1fr 1fr 1fr;
   justify-content: center;
   align-content: center;
   align-items: center;
@@ -886,6 +923,7 @@ p {
   margin: 0 .5rem;
   text-align: center;
   text-decoration: underline;
+  z-index: 20;
 }
 
 .footer__projectbetrokkenen {
@@ -902,6 +940,33 @@ p {
 .mementologo {
   margin: 5vw;
 }
+
+.footer__images {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  gap: 1rem;
+  width: 60%;
+}
+
+.footer__image {
+  max-width: 3rem;
+  max-height: 3rem;
+  border-radius: 50%;
+  margin: .5rem 0 .5rem;
+}
+
+.footer__image__name {
+  font-size: .9rem;
+  color: var(--white);
+  line-height: 1rem;
+}
+
+/*********************************************/
 
 .trein::before {
   background-image: url('../assets/img/icons/trein.png');
@@ -951,7 +1016,7 @@ p {
   }
 
   .information__blocks {
-    height: 150vh;
+    height: 100vh;
   }
 
   .wrapper {
@@ -1057,7 +1122,7 @@ p {
     background-repeat: no-repeat;
     background-position: right top;
     z-index: -1;
-    height: 170vh;
+    height: 100vh;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     justify-content: center;
@@ -1065,9 +1130,36 @@ p {
     align-content: center;
     justify-items: center;
   }
+
+  .form__section {
+    /*min-height: 100%;*/
+  }
 }
 
 @media only screen and (max-width: 1000px) {
+
+  .bottomblock {
+    min-height: 100%;
+  }
+
+  .section__wordgame {
+    display: grid;
+    grid-template-columns: 1fr;
+    position: relative;
+}
+
+  .article__wordgame {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    margin: 0vw;
+    width: 100%;
+    height: 100%;
+  }
+
+  .footer__images {
+    width: 80%;
+  }
+
   .logo {
     max-width: 40vw;
   }
@@ -1097,7 +1189,6 @@ p {
     height: 100vh;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     justify-content: center;
     align-items: center;
@@ -1107,6 +1198,13 @@ p {
 
   .section__praktisch {
     width: 50%;
+  }
+}
+
+@media only screen and (max-width: 1250px) and (max-height: 800px) and (orientation: landscape) {
+  .section__information {
+    margin: 5rem 0;
+    height: 170vh;
   }
 }
 
@@ -1122,6 +1220,7 @@ p {
     background-repeat: no-repeat;
     background-size: 50%;
     margin-top: 2rem;
+    z-index: -1;
   }
 
   .onepager__section {
@@ -1130,7 +1229,7 @@ p {
 
   .section__information {
     display: grid;
-    grid-template-rows: .1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     justify-content: center;
     align-items: center;
     align-content: center;
@@ -1143,7 +1242,7 @@ p {
 
   .section__wordgame {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     justify-content: center;
     align-content: center;
     align-items: center;
@@ -1233,12 +1332,17 @@ p {
 
 @media only screen and (max-width: 500px) {
 
+  .mementologotop {
+    height: 5rem;
+  }
+
   .section__information {
     height: 220vh;
   }
 
   .information__blocks {
     background-size: 70%;
+    height: 120vh;
   }
 
   .information__block {
@@ -1272,10 +1376,6 @@ p {
     display: none;
   }
 
-  .information__blocks {
-    height: 120vh;
-  }
-
   .information__part, .intro {
     max-width: 100%;
   }
@@ -1286,7 +1386,7 @@ p {
   }
 
   .footer {
-    height: 50vh;
+    height: 70vh;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     justify-content: space-around;
@@ -1294,6 +1394,7 @@ p {
     justify-items: center;
     align-items: center;
     padding-bottom: 2rem;
+    margin-top: 2rem;
   }
 
   .information__parts {
@@ -1317,6 +1418,108 @@ p {
     margin: 0 1rem;
     max-width: 90vw;
     height: 100%;
+  }
+
+}
+
+@media only screen and (max-width: 730px) and (max-height: 720px) and (orientation: landscape) {
+
+  .section__information {
+    height: 200vh;
+  }
+
+}
+
+@media only screen and (max-width: 800px) and (max-height: 500px) and (orientation: landscape) {
+
+  .mementologotop {
+    height: 5rem;
+  }
+
+  .information__blocks {
+    height: 150vh;
+  }
+
+  .wordForm {
+    opacity: 100;
+    height: 100;
+  }
+
+  .logo {
+    max-width: 30vw;
+    width: 30vw;
+    margin-right: 1rem;
+  }
+
+  .footer__projectbetrokkenen {
+    margin: .8rem 0;
+  }
+
+  .section__information {
+    grid-template-columns: 1fr;
+  }
+
+  .section__article {
+    max-width: 100%;
+  }
+
+  .article__forms {
+    max-width: 60%;
+  }
+
+  .form__section__titlebox {
+    opacity: 0;
+  }
+
+  .intro__top {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr;
+  }
+
+  .intro {
+    max-width: 100%;
+    background-position: top left, bottom center;
+    z-index: -3rem;
+  }
+
+  .section__information {
+    height: 100%;
+  }
+
+  .information__parts {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 100%;
+  }
+
+  .information__part {
+    max-width: 95%;
+  }
+
+  .wandelapp__img {
+    max-width: 50%;
+    max-height: 50%;
+  }
+
+  .article__wordgame {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .map {
+    display: none;
+  }
+
+  .footer {
+    height: 110vh;
+  }
+
+}
+
+@media only screen and (max-width: 360px) and (max-height: 700px) {
+
+  .section__information {
+    height: 250vh;
   }
 
 }

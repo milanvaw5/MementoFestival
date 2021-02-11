@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 3000;
 
 const io = require('socket.io')(server);
 
@@ -46,8 +46,8 @@ io.on('connection', socket => {
 
     idleMode = setInterval(() => {
       timer++;
-      
-      if(timer >= 30){
+
+      if(timer >= 60){
         io.sockets.emit(`message`, idleWords[wordCounter]);
         words.push(idleWords[0]);
         if(words.length > 10){
@@ -60,50 +60,41 @@ io.on('connection', socket => {
       }
     }, 2000);
 
-    
+
   });
-  
+
   socket.on('message', message => {
     timer = 0;
-    console.log(message);
-
     words.push(message);
-    if(words.length > 30){
+    if(words.length > 10){
       words.shift();
     }
-    console.log(words);
     io.sockets.emit(`message`, message);
-    
+
   });
 
   socket.on('schud', () => {
-
     io.sockets.emit(`shakeAll`);
-    
   });
 
   socket.on('hartje', () => {
     hearts++;
     io.sockets.emit(`heartAll`, hearts);
-    
   });
 
   socket.on('hand', () => {
-    
     io.sockets.emit(`handAll`, socket.id);
-    
   });
 
   socket.on('handShake', id => {
     highfives++;
     io.sockets.to(id).emit(`handShaken`, highfives);
     io.sockets.to(admin).emit(`handShaken`, highfives);
-    
+
   });
 
   socket.on('feeling', selectedFeeling => {
     feelings.push(selectedFeeling);
-    console.log(selectedFeeling);
     io.sockets.emit(`selectedFeeling`, selectedFeeling);
   });
 
@@ -126,10 +117,7 @@ io.on('connection', socket => {
     socket.emit('clearLetterAll', letter);
   });
 
-  
-
   socket.on('points', jointPositions => {
-    //console.log(jointPositions);
     io.sockets.emit(`points`, jointPositions);
   });
 
@@ -143,16 +131,11 @@ io.on('connection', socket => {
       clearInterval(idleMode);
       io.sockets.emit(`notLive`);
     }
-    
-});
-
+  });
 });
 
 app.use(express.static('public'));
 
 server.listen(port, () => {
  console.log(`App listening on port ${port}!`);
-
-
-
 });
