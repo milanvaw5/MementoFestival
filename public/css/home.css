@@ -1007,7 +1007,7 @@ p {
   }
 
   .information__blocks {
-    height: 100%;
+    height: 100vh;
   }
 
   .wrapper {
